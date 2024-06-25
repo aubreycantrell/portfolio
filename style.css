@@ -208,11 +208,12 @@ h2 {
   outline: 0;
 }
 
-.two-column {
-  display: grid;
-  grid-template-columns: 2fr 2fr; /* twice as wide columns */
-  gap: 20px; /* space between columns */
-}
-.column {
-  padding: 20px;
-}
+ .three-column {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* three equal columns */
+        gap: 20px; /* space between columns */
+      }
+      .column {
+        padding: 20px;
+      }
+li{ text-align: left;}
