@@ -19,15 +19,14 @@
 
     <!-- The website stylesheet -->
     <link rel="stylesheet" href="/style.css" />
-    
-    
-<link
+
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    
+
     <!-- The website JavaScript file -->
     <script src="/script.js" defer></script>
   </head>
@@ -40,49 +39,122 @@
     <div class="wrapper">
       <div class="content" role="main">
         <div class="container">
-    <header class="d-flex justify-content-center py-3">
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="https://bittersweet-plaid-marlin.glitch.me/" class="nav-link active" aria-current="page">Aubrey Cantrell</a></li>
-        <li class="nav-item"><a href="https://bittersweet-plaid-marlin.glitch.me/printmaking.html" class="nav-link">Printmaking</a></li>
-        <li class="nav-item"><a href="https://bittersweet-plaid-marlin.glitch.me/mixedMedia.html" class="nav-link">Mixed Media</a></li>
-        <li class="nav-item"><a href="https://bittersweet-plaid-marlin.glitch.me/photography.html" class="nav-link">Photography</a></li>
-        <li class="nav-item"><a href="https://bittersweet-plaid-marlin.glitch.me/research.html" class="nav-link">Research</a></li>
-      </ul>
-    </header>
-  </div>
-        <h1 class="title">Aubrey Cantrell</h1>
-        <img
-          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/aubrey?v=1719332533080"
-          class="illustration"
-          alt="Aubrey Cantrell"
-          title="Click the image!"
-        />
-        <div class="instructions">
-          <h2>Computer Science and Studio Art @ Wellesley College</h2>
-          <p>
-            I am passionate about finding patterns in the world around us, using color theory and quantitative methods in my work to create a better understanding of connections between unexpected pairings of subjects. 
-          </p>
+          <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a
+                  href="https://bittersweet-plaid-marlin.glitch.me/"
+                  class="nav-link active"
+                  aria-current="page"
+                  >Aubrey Cantrell</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://bittersweet-plaid-marlin.glitch.me/printmaking.html"
+                  class="nav-link"
+                  >Printmaking</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://bittersweet-plaid-marlin.glitch.me/mixedMedia.html"
+                  class="nav-link"
+                  >Mixed Media</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://bittersweet-plaid-marlin.glitch.me/photography.html"
+                  class="nav-link"
+                  >Photography</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://bittersweet-plaid-marlin.glitch.me/research.html"
+                  class="nav-link"
+                  >Research</a
+                >
+              </li>
+            </ul>
+          </header>
+        </div>
+
+        <main>
+          <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+              <div class="col-lg-6 col-md-8 mx-auto">
+                <h1>Aubrey Cantrell</h1>
+                <h1 class="fw-light">
+                  Computer Science and Studio Art @ Wellesley College
+                </h1>
+
+                <p class="lead text-body-secondary">
+                  I am passionate about finding patterns in the world around us,
+                  using color theory and quantitative methods in my work to
+                  create a better understanding of connections between
+                  unexpected pairings of subjects. 
+
+                  <a
+                    href="https://www.linkedin.com/in/aubrey-cantrell/"
+                    class="btn btn-primary my-2"
+                    >Linkedin</a
+                  >
+                </p>
+                <div class="container my-4">
+                  <div class="two-column">
+                    <div class="column">
+                      <img
+                        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/aubrey?v=1719332533080"
+                        class="illustration"
+                        alt="Aubrey Cantrell"
+                        title="Click the image!"
+                      />
+                    </div>
+                    <div class="column">
+                      <p>Relevant Coursework</p>
+                      <p>
+                        CS 111 Comp Program and Prob Solving Python CS 204 Intro
+                        to Web Development Javascript, HTML, CSS, Unix CS 220
+                        Human Computer Interactions Figma, HTML, CSS, Bootstrap
+                        CS 230 Data Structures Java CS 231 Fundamental
+                        Algorithms CS 235 Theory of Computation MATH 225
+                        Combinatorics and Graph Theory ARTS 105 Drawing I ARTS
+                        216 Spacial Investigations ARTS 221 Digital Imaging
+                        Photoshop, Illustrator, InDesign, Firefly ARTS 223
+                        Alternative Print Methods ARTH 100 Art and its Histories
+                        ARTH 248 Chinese Painting
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <!--  🚧 TODO: ADD BUTTON HERE -->
 
           <!-- Once you've added the button from TODO.md, click it in the page -->
           <!-- Check out the function in script.js to see how it works -->
-        </div>
+
+          <!-- The footer holds our remix button — you can keep or delete it ✂ -->
+          <footer class="footer">
+            <div class="links"></div>
+            <a
+              class="btn--remix"
+              target="_top"
+              href="https://glitch.com/edit/#!/remix/glitch-hello-website"
+            >
+              <img
+                src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FLogo_Color.svg?v=1618199565140"
+                alt=""
+              />
+              Remix on Glitch
+            </a>
+          </footer>
+        </main>
       </div>
     </div>
-    <!-- The footer holds our remix button — you can keep or delete it ✂ -->
-    <footer class="footer">
-      <div class="links"></div>
-      <a
-        class="btn--remix"
-        target="_top"
-        href="https://glitch.com/edit/#!/remix/glitch-hello-website"
-      >
-        <img
-          src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FLogo_Color.svg?v=1618199565140"
-          alt=""
-        />
-        Remix on Glitch
-      </a>
-    </footer>
   </body>
 </html>
