@@ -62,9 +62,10 @@ then lists the style properties to apply
   box-sizing: border-box;
   border-radius: 4px;
   text-decoration: none;
-  color: #000;
+  color: #"00000";
   white-space: nowrap;
   margin-left: auto;
+  
 }
 .btn--remix img {
   margin-right: 0.5rem;
