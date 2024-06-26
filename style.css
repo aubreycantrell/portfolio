@@ -227,3 +227,10 @@ li{ text-align: left;}
       align-items: center;
       height: 100%;
     }
+.backgr{
+   background-image: url('https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/waterThumb?v=1719336750170');
+    background-size: cover;       /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center;  /* Centers the image */
+    background-attachment: fixed; 
+}
