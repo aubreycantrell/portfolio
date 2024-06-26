@@ -65,7 +65,6 @@ then lists the style properties to apply
   color: #"00000";
   white-space: nowrap;
   margin-left: auto;
-  
 }
 .btn--remix img {
   margin-right: 0.5rem;
@@ -211,30 +210,41 @@ h2 {
   outline: 0;
 }
 
- .three-column {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* three equal columns */
-        gap: 20px; /* space between columns */
-      }
-      .column {
-        padding: 20px;
-      }
-li{ text-align: left;}
+.three-column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* three equal columns */
+  gap: 20px; /* space between columns */
+}
+.column {
+  padding: 20px;
+}
+li {
+  text-align: left;
+}
 
 .iframe-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-.backgr{
-   background-image: url('https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/waterThumb?v=1719336750170');
-    background-size: cover;    
-    background-repeat: no-repeat;
-    background-position: center;  
-    background-attachment: fixed; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.backgr {
+  background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/waterThumb?v=1719336750170");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.contain{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    gap: 20px;
+    color: white; 
 }
