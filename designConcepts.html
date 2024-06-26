@@ -15,7 +15,7 @@
       Like the title, which appears on the browser tab but not inside the page
       Further down you'll see the content that displays in the page
     -->
-    <title>Hello World!</title>
+    <title>Design Concepts</title>
 
     <!-- The website stylesheet -->
     <link rel="stylesheet" href="/style.css" />
@@ -35,12 +35,8 @@
       The body includes the content you see in the page
       Each element is defined using tags, like this <div></div>
       The attributes like class="wrapper" let us style elements in the CSS
-
-
-
-** maybe use: https://getbootstrap.com/docs/5.3/examples/cover/#
     -->
-    <div class="wrapper">
+     <div class="wrapper">
       <div class="content" role="main">
         <div class="container">
           <header class="d-flex justify-content-center py-3">
@@ -48,7 +44,7 @@
               <li class="nav-item">
                 <a
                   href="https://bittersweet-plaid-marlin.glitch.me/"
-                  class="nav-link active"
+                  class="nav-link "
                   aria-current="page"
                   >Aubrey Cantrell</a
                 >
@@ -123,7 +119,7 @@
                 </div>
               </li>
 
-              <li class="nav-item">
+               <li class="nav-item">
                 <div class="dropdown">
                   <a
                     href="https://bittersweet-plaid-marlin.glitch.me/mixedMedia.html"
@@ -175,14 +171,15 @@
                         >Woven in Solice</a
                       >
                     </li>
+                  
                   </ul>
                 </div>
               </li>
-              <li class="nav-item">
+               <li class="nav-item">
                 <div class="dropdown">
                   <a
                     href="https://bittersweet-plaid-marlin.glitch.me/photography.html"
-                    class="nav-link dropdown-toggle"
+                    class="nav-link dropdown-toggle "
                     id="photographyDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -230,6 +227,50 @@
                         >Eternal Search for Youth</a
                       >
                     </li>
+                  
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="dropdown">
+                  <a
+                    href="https://bittersweet-plaid-marlin.glitch.me/designConcepts.html"
+                    class="nav-link dropdown-toggle active"
+                    id="designConceptsDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Design Concepts
+                  </a>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="designConceptsDropdown"
+                  >
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://bittersweet-plaid-marlin.glitch.me/designConcepts.html"
+                        >All Work</a
+                      >
+                    </li>
+
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://bittersweet-plaid-marlin.glitch.me/record.html"
+                        >Record Label</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://bittersweet-plaid-marlin.glitch.me/appDesign.html"
+                        >Spam! App Design</a
+                      >
+                    </li>
+                  
+                  
                   </ul>
                 </div>
               </li>
@@ -285,102 +326,176 @@
             </ul>
           </header>
         </div>
-
         <main>
           <section class="py-5 text-center container">
             <div class="row py-lg-5">
-              <div class="col-md-8 mx-auto">
-                <h1>Aubrey Cantrell</h1>
-                <h1 class="fw-light">
-                  Computer Science and Studio Art @ Wellesley College
-                </h1>
-
+              <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Design Concepts</h1>
                 <p class="lead text-body-secondary">
-                  I am passionate about finding patterns in the world around us,
-                  using color theory and quantitative methods in my work to
-                  create a better understanding of connections between
-                  unexpected pairings of subjects. 
+                  App and Brand Concepts demonstrating UI/UX Skill
                 </p>
-                <a
-                  href="https://www.linkedin.com/in/aubrey-cantrell/"
-                  class="btn btn-primary my-2"
-                  >Linkedin</a
-                >
-              </div>
-
-              <div class="container my-4">
-                <div class="three-column">
-                  <div class="column">
-                    <p>CS Coursework</p>
-
-                    <ul>
-                      <li>
-                        CS 111 Comp Program and Prob Solving <em>Python</em>
-                      </li>
-                      <li>
-                        CS 204 Intro to Web Development
-                        <em>Javascript, HTML, CSS, Unix</em>
-                      </li>
-                      <li>
-                        CS 220 Human Computer Interactions
-                        <em>Figma, HTML, CSS, Bootstrap</em>
-                      </li>
-                      <li>CS 230 Data Structures<em> Java</em></li>
-                      <li>CS 231 Fundamental Algorithms</li>
-                      <li>CS 235 Theory of Computation</li>
-                      <li>MATH 225 Combinatorics and Graph Theory</li>
-                    </ul>
-                  </div>
-                  <div class="column">
-                    <img
-                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/aubrey?v=1719332533080"
-                      class="illustration"
-                      alt="Aubrey Cantrell"
-                      title="Click the image!"
-                    />
-                  </div>
-                  <div class="column">
-                    <p>Studio Arts Coursework</p>
-                    <ul>
-                      <li>ARTS 105 Drawing I</li>
-                      <li>ARTS 216 Spacial Investigations</li>
-                      <li>
-                        ARTS 221 Digital Imaging
-                        <em>Photoshop, Illustrator, InDesign, Firefly</em>
-                      </li>
-                      <li>ARTS 223 Alternative Print Methods</li>
-                      <li>ARTH 100 Art and its Histories</li>
-                      <li>ARTH 248 Chinese Painting</li>
-                    </ul>
-                  </div>
-                </div>
               </div>
             </div>
           </section>
 
-          <!--  🚧 TODO: ADD BUTTON HERE -->
-
-          <!-- Once you've added the button from TODO.md, click it in the page -->
-          <!-- Check out the function in script.js to see how it works -->
-
-          <!-- The footer holds our remix button — you can keep or delete it ✂ -->
-          <footer class="footer">
-            <div class="links"></div>
-            <a
-              class="btn--remix"
-              target="_top"
-              href="https://glitch.com/edit/#!/remix/glitch-hello-website"
-            >
-              <img
-                src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FLogo_Color.svg?v=1618199565140"
-                alt=""
-              />
-              Remix on Glitch
-            </a>
-          </footer>
+          <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <img
+                      class="bd-placeholder-img card-img-top"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/waterThumb?v=1719336750170"
+                      alt="Thumbnail"
+                      width="100%"
+                      height="225"
+                      style="object-fit: cover"
+                    />
+                    <div class="card-body">
+                      <p class="card-text">Aquatic Explorations</p>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div class="btn-group">
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-outline-primary"
+                          >
+                            <a
+                              href="https://bittersweet-plaid-marlin.glitch.me/aquatic.html"
+                        
+                              >View</a
+                            >
+                          </button>
+                        </div>
+                        <small class="text-body-secondary"
+                          >35mm Film 2022</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <img
+                      class="bd-placeholder-img card-img-top"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/camelThumb?v=1719336823505"
+                      alt="Thumbnail"
+                      width="100%"
+                      height="225"
+                      style="object-fit: cover"
+                    />
+                    <div class="card-body">
+                      <p class="card-text">Mongolia</p>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div class="btn-group">
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-outline-primary"
+                          >
+                            <a
+                              href="https://bittersweet-plaid-marlin.glitch.me/mongolia.html"
+                        
+                              >View</a
+                            >
+                          </button>
+                        </div>
+                        <small class="text-body-secondary">Digital 2021</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <img
+                      class="bd-placeholder-img card-img-top"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/silvia?v=1719336889925"
+                      alt="Thumbnail"
+                      width="100%"
+                      height="225"
+                      style="object-fit: cover"
+                    />
+                    <div class="card-body">
+                      <p class="card-text">By the Sea</p>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div class="btn-group">
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-outline-primary"
+                          >
+                            <a
+                              href="https://bittersweet-plaid-marlin.glitch.me/sea.html"
+                        
+                              >View</a
+                            >
+                          </button>
+                        </div>
+                        <small class="text-body-secondary"
+                          >Lithography 2023</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <img
+                      class="bd-placeholder-img card-img-top"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/search?v=1719336938998"
+                      alt="Thumbnail"
+                      width="100%"
+                      height="225"
+                      style="object-fit: cover"
+                    />
+                    <div class="card-body">
+                      <p class="card-text">Eternal Search for Youth</p>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <div class="btn-group">
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-outline-primary"
+                          >
+                            <a
+                              href="https://bittersweet-plaid-marlin.glitch.me/youth.html"
+                        
+                              >View</a
+                            >
+                          </button>
+                        </div>
+                        <small class="text-body-secondary"
+                          >35mm Film 2022</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="footer">
+      <div class="links"></div>
+      <a
+        class="btn--remix"
+        target="_top"
+        href="https://glitch.com/edit/#!/remix/glitch-hello-website"
+      >
+        <img
+          src="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FLogo_Color.svg?v=1618199565140"
+          alt=""
+        />
+        Remix on Glitch
+      </a>
+    </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
   </body>
 </html>
