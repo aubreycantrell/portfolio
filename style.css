@@ -15,6 +15,9 @@ then lists the style properties to apply
 */
 
 /* Our default values set as CSS variables */
+img{
+   border-radius: 20px;
+}
 :root {
   --color-bg: #69f7be;
   --color-text-main: #000000;
@@ -78,7 +81,7 @@ then lists the style properties to apply
   display: flex;
   justify-content: space-between;
   margin: 1rem auto 0;
-  padding: 1rem 0 0.75rem 0;
+  padding: 1rem 1rem 0.75rem 1rem;
   width: 100%;
   flex-wrap: wrap;
   border-top: 4px solid #fff;
@@ -217,6 +220,9 @@ h2 {
 }
 .column {
   padding: 20px;
+   display: flex; /* Use flexbox to place items side by side */
+            justify-content: center; /* Center the images horizontally */
+            gap: 10px; /* Space between images */
 
 }
 li {
@@ -239,6 +245,7 @@ li {
   justify-content: center;
   align-items: center;
   height: 100vh;
+   border-radius: 20px;
 }
 
 .contain{
@@ -251,4 +258,5 @@ li {
   padding-left: 10%;
   padding-right: 10%;
 }
+
 
