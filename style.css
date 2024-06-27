@@ -244,7 +244,7 @@ li {
   display: flex;
   padding: 10%;
   align-items: center;
-  height: 100vh;
+  height: 85vh;
    border-radius: 20px;
 }
 
@@ -258,8 +258,18 @@ li {
   padding-left: 10%;
   padding-right: 10%;
 }
+.cont{
+  padding-top: 5%;
+  padding-left: 20%;
+    padding-right: 20%;
+  padding-bottom: 2%;
+  text-align: center;
+}
 .arrow{
-  
+  padding-top: 22%;
+}
+.nav-link:active{
+  color: #"4D7471";
 }
 
 
