@@ -242,7 +242,7 @@ li {
   background-position: center;
   background-attachment: fixed;
   display: flex;
-  justify-content: center;
+  padding: 10%;
   align-items: center;
   height: 100vh;
    border-radius: 20px;
@@ -251,12 +251,15 @@ li {
 .contain{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
     align-items: center;
     gap: 20px;
     color: white; 
   padding-left: 10%;
   padding-right: 10%;
+}
+.arrow{
+  
 }
 
 
