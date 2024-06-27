@@ -1,27 +1,8 @@
-/******************************************************************************
-START Glitch hello-app default styles
 
-The styles in this section do some minimal CSS resets, set default fonts and 
-colors, and handle the layout for our footer and "Remix on Glitch" button. If
-you're new to CSS they may seem a little complicated, but you can scroll down
-to this section's matching END comment to see page-specific styles.
-******************************************************************************/
-
-/* 
-  The style rules specify elements by type and by attributes such as class and ID
-  Each section indicates an element or elements,
-then lists the style properties to apply
-  See if you can cross-reference the rules in this file with the elements in index.html
-*/
-
-/* Our default values set as CSS variables */
-img{
-   border-radius: 20px;
-}
 :root {
   --color-bg: #69f7be;
-  --color-text-main: #4D7471;
-  --color-primary: #4D7471;
+  --color-text-main: #4d7471;
+  --color-primary: #4d7471;
   --wrapper-height: 87vh;
   --image-max-width: 300px;
   --image-margin: 3rem;
@@ -30,6 +11,10 @@ img{
 }
 
 /* Basic page style resets */
+
+img {
+  border-radius: 20px;
+}
 * {
   box-sizing: border-box;
 }
@@ -220,10 +205,9 @@ h2 {
 }
 .column {
   padding: 20px;
-   display: flex; /* Use flexbox to place items side by side */
-            justify-content: center; /* Center the images horizontally */
-            gap: 10px; /* Space between images */
-
+  display: flex; /* Use flexbox to place items side by side */
+  justify-content: center; /* Center the images horizontally */
+  gap: 10px; /* Space between images */
 }
 li {
   text-align: left;
@@ -245,28 +229,26 @@ li {
   padding: 10%;
   align-items: center;
   height: 85vh;
-   border-radius: 20px;
+  border-radius: 20px;
 }
 
-.contain{
-    display: flex;
-    flex-direction: column;
-    
-    align-items: center;
-    gap: 20px;
-    color: white; 
+.contain {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  gap: 20px;
+  color: white;
   padding-left: 10%;
   padding-right: 10%;
 }
-.cont{
+.cont {
   padding-top: 5%;
   padding-left: 20%;
-    padding-right: 20%;
+  padding-right: 20%;
   padding-bottom: 2%;
   text-align: center;
 }
-.arrow{
+.arrow {
   padding-top: 22%;
 }
-
-
