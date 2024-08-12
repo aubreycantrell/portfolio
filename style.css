@@ -297,8 +297,25 @@ ul {
     padding: 0; /* Optional: Removes default padding */
     margin: 0; /* Optional: Removes default margin */
 }
+.nav-link {
+    color: #000000; /* Default text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Add padding */
+    display: inline-block; /* Ensure proper spacing */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+/* Styles for the active navigation link */
 .nav-link.active {
-  color: #3b7671;
+    color: #ffffff; /* Text color for active link */
+    background-color: #3b7671; /* Background color for active link */
+    border-radius: 5px; /* Optional: Rounded corners */
+}
+
+/* Optional: Hover effect for non-active links */
+.nav-link:hover {
+    background-color: #2a5e56; /* Darker shade for hover effect */
+    color: #ffffff; /* Ensure text color contrasts well on hover */
 }
 
        
