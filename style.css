@@ -133,7 +133,7 @@ body {
 .illustration {
   max-width: 100%;
   max-height: var(--image-max-width);
-  margin-top: var(--image-margin);
+  
 }
 
 /* Instructions */
@@ -213,6 +213,10 @@ li {
   text-align: left;
 }
 
+p {
+  text-align: center
+}
+
 .iframe-container {
   display: flex;
   justify-content: center;
@@ -256,9 +260,15 @@ li {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  padding: 15px;
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
+ .half-width-container {
+            width: 50%; /* Set the container to 50% of the screen width */
+            margin: 0 auto; /* Center the container */
+        }
+       
