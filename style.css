@@ -292,4 +292,13 @@ p {
     width: 100%; /* Ensures images fill the grid cell */
     height: auto; /* Maintains aspect ratio */
 }
+ul {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0; /* Optional: Removes default padding */
+    margin: 0; /* Optional: Removes default margin */
+}
+.nav-link.active {
+  color: #3b7671;
+}
+
        
