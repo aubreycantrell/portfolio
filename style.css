@@ -230,7 +230,7 @@ p {
   background-position: center;
   background-attachment: fixed;
   display: flex;
-  padding: 10%;
+  padding: 5%;
   align-items: center;
   height: 85vh;
   border-radius: 20px;
@@ -243,13 +243,13 @@ p {
   align-items: center;
   gap: 20px;
   color: white;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 .cont {
   padding-top: 5%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
   padding-bottom: 5%;
   text-align: center;
 }
@@ -270,5 +270,9 @@ p {
  .half-width-container {
             width: 100%; /* Set the container to 50% of the screen width */
             margin: 0 auto; /* Center the container */
-        }
+        
+   
+}
+
+
        
