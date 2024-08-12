@@ -282,5 +282,14 @@ p {
 .text {
     flex: 1; /* Takes available space on the left */
 }
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three equal-width columns */
+    gap: 10px; /* Optional: Adjust space between images */
+}
 
+.image-grid img {
+    width: 100%; /* Ensures images fill the grid cell */
+    height: auto; /* Maintains aspect ratio */
+}
        
