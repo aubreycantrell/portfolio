@@ -273,6 +273,14 @@ p {
         
    
 }
-
+.cont1 {
+    display: flex;
+    justify-content: space-between; /* Distributes space between text and image */
+    align-items: center; /* Aligns items vertically centered */
+    padding: 20px; /* Optional: Add padding */
+}
+.text {
+    flex: 1; /* Takes available space on the left */
+}
 
        
