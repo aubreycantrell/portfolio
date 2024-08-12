@@ -268,7 +268,7 @@ p {
   transform: translateY(0);
 }
  .half-width-container {
-            width: 75%; /* Set the container to 50% of the screen width */
+            width: 100%; /* Set the container to 50% of the screen width */
             margin: 0 auto; /* Center the container */
         }
        
