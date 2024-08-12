@@ -248,9 +248,9 @@ p {
 }
 .cont {
   padding-top: 5%;
-  padding-left: 20%;
-  padding-right: 20%;
-  padding-bottom: 2%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 5%;
   text-align: center;
 }
 .arrow {
@@ -268,7 +268,7 @@ p {
   transform: translateY(0);
 }
  .half-width-container {
-            width: 50%; /* Set the container to 50% of the screen width */
+            width: 75%; /* Set the container to 50% of the screen width */
             margin: 0 auto; /* Center the container */
         }
        
