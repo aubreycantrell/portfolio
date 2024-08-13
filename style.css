@@ -1,4 +1,3 @@
-
 :root {
   --color-bg: #69f7be;
   --color-text-main: #4d7471;
@@ -37,7 +36,7 @@ img {
 
 /* Our remix on glitch button */
 .btn--remix {
-  font-family:HK Grotesk;
+  font-family: HK Grotesk;
   padding: 0.75rem 1rem;
   font-size: 1.1rem;
   line-height: 1rem;
@@ -98,7 +97,6 @@ a:not(.btn--remix):visited {
 END Glitch hello-app default styles
 ******************************************************************************/
 
-
 body {
   font-family: HK Grotesk;
   background-color: var(--color-bg);
@@ -134,7 +132,6 @@ body {
 .illustration {
   max-width: 100%;
   max-height: var(--image-max-width);
-  
 }
 
 /* Instructions */
@@ -154,8 +151,6 @@ input {
   padding: 0.5rem 1rem;
   transition: 500ms;
 }
-
-
 
 /* Subheading */
 h2 {
@@ -217,7 +212,7 @@ li {
 }
 
 p {
-  text-align: center
+  text-align: center;
 }
 
 .iframe-container {
@@ -270,82 +265,99 @@ p {
   opacity: 1;
   transform: translateY(0);
 }
- .half-width-container {
-            width: 100%; /* Set the container to 50% of the screen width */
-            margin: 0 auto; /* Center the container */
-        
-   
+.half-width-container {
+  width: 100%; /* Set the container to 50% of the screen width */
+  margin: 0 auto; /* Center the container */
 }
 .cont1 {
-    display: flex;
-    justify-content: space-between; /* Distributes space between text and image */
-    align-items: center; /* Aligns items vertically centered */
-    padding: 20px; /* Optional: Add padding */
+  display: flex;
+  justify-content: space-between; /* Distributes space between text and image */
+  align-items: center; /* Aligns items vertically centered */
+  padding: 20px; /* Optional: Add padding */
 }
 .text {
-    flex: 1; /* Takes available space on the left */
+  flex: 1; /* Takes available space on the left */
 }
 .image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates three equal-width columns */
-    gap: 10px; /* Optional: Adjust space between images */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates three equal-width columns */
+  gap: 10px; /* Optional: Adjust space between images */
 }
 
 .image-grid img {
-    width: 100%; /* Ensures images fill the grid cell */
-    height: auto; /* Maintains aspect ratio */
+  width: 100%; /* Ensures images fill the grid cell */
+  height: auto; /* Maintains aspect ratio */
 }
 ul {
-    list-style-type: none; /* Removes bullet points */
-    padding: 0; /* Optional: Removes default padding */
-    margin: 0; /* Optional: Removes default margin */
+  list-style-type: none; /* Removes bullet points */
+  padding: 0; /* Optional: Removes default padding */
+  margin: 0; /* Optional: Removes default margin */
 }
 
 .nav-pills .nav-link {
-    color: black !important; /* Override default Bootstrap color */
-    text-decoration: none; /* Remove underline */
-    padding: 10px 15px; /* Add padding */
-    display: inline-block; /* Ensure proper spacing */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+  color: black !important; /* Override default Bootstrap color */
+  text-decoration: none; /* Remove underline */
+  padding: 10px 15px; /* Add padding */
+  display: inline-block; /* Ensure proper spacing */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
 .nav-pills .nav-link.active {
-    color: white !important; /* Text color for active link */
-    background-color: #2a5e56 !important; /* Background color for active link */
-    border-radius: 5px; /* Optional: Rounded corners */
+  color: white !important; /* Text color for active link */
+  background-color: #2a5e56 !important; /* Background color for active link */
+  border-radius: 5px; /* Optional: Rounded corners */
 }
 
 .nav-pills .nav-link:hover {
-    background-color: #789c9c !important; /* Darker shade for hover effect */
-    color: white !important; /* Ensure text color contrasts well on hover */
+  background-color: #789c9c !important; /* Darker shade for hover effect */
+  color: white !important; /* Ensure text color contrasts well on hover */
 }
 
 #imageSection {
-    display: flex;
-    justify-content: space-around; /* space evenly between and around the images */
-    align-items: center; /* vertically center images */
-    width: 50%; /* ensure the section takes up the full width of its container */
-    max-width: 1200px; /* optional: restrict the section width */
-    margin: auto; /* center the section on the page */
+  display: flex;
+  justify-content: space-around; /* space evenly between and around the images */
+  align-items: center; /* vertically center images */
+  width: 50%; /* ensure the section takes up the full width of its container */
+  max-width: 1200px; /* optional: restrict the section width */
+  margin: auto; /* center the section on the page */
 }
 #imageSection1 {
-    display: flex;
-    justify-content: space-around; /* space evenly between and around the images */
-    align-items: center; /* vertically center images */
-    width: 75%; /* ensure the section takes up the full width of its container */
-    max-width: 1200px; /* optional: restrict the section width */
-    margin: auto; /* center the section on the page */
+  display: flex;
+  justify-content: space-around; /* space evenly between and around the images */
+  align-items: center; /* vertically center images */
+  width: 75%; /* ensure the section takes up the full width of its container */
+  max-width: 1200px; /* optional: restrict the section width */
+  margin: auto; /* center the section on the page */
 }
 
 .imageWrapper {
-    flex: 1; /* each image wrapper will take equal space */
-    max-width: 25%; /* restrict the maximum width of each image */
-    box-sizing: border-box; /* ensure padding does not increase element width */
+  flex: 1; /* each image wrapper will take equal space */
+  max-width: 25%; /* restrict the maximum width of each image */
+  box-sizing: border-box; /* ensure padding does not increase element width */
 }
 
 .imageWrapper img {
-    width: 100%; /* image will take full width of the wrapper */
-    height: auto; /* maintain aspect ratio */
-    display: block; /* prevent extra space under images */
-    border-radius: 5px; /* optional: round the corners of the images */
+  width: 100%; /* image will take full width of the wrapper */
+  height: auto; /* maintain aspect ratio */
+  display: block; /* prevent extra space under images */
+  border-radius: 5px; /* optional: round the corners of the images */
+}
+
+@keyframes levitating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 6px);
+  }
+  100% {
+    transform: translate(0, -0px);
+  }
+}
+.levitating {
+  text-transform: uppercase;
+  animation-name: levitating;
+  animation-duration: 1.6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
