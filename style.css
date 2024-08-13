@@ -324,7 +324,7 @@ ul {
     display: flex;
     justify-content: space-around; /* space evenly between and around the images */
     align-items: center; /* vertically center images */
-    width: 100%; /* ensure the section takes up the full width of its container */
+    width: 50%; /* ensure the section takes up the full width of its container */
     max-width: 1200px; /* optional: restrict the section width */
     margin: auto; /* center the section on the page */
 }
@@ -332,7 +332,7 @@ ul {
     display: flex;
     justify-content: space-around; /* space evenly between and around the images */
     align-items: center; /* vertically center images */
-    width: 100%; /* ensure the section takes up the full width of its container */
+    width: 75%; /* ensure the section takes up the full width of its container */
     max-width: 1200px; /* optional: restrict the section width */
     margin: auto; /* center the section on the page */
 }
