@@ -328,11 +328,18 @@ ul {
     max-width: 1200px; /* optional: restrict the section width */
     margin: auto; /* center the section on the page */
 }
+#imageSection1 {
+    display: flex;
+    justify-content: space-around; /* space evenly between and around the images */
+    align-items: center; /* vertically center images */
+    width: 100%; /* ensure the section takes up the full width of its container */
+    max-width: 1200px; /* optional: restrict the section width */
+    margin: auto; /* center the section on the page */
+}
 
 .imageWrapper {
     flex: 1; /* each image wrapper will take equal space */
-    max-width: 30%; /* restrict the maximum width of each image */
-    padding: 10px; /* optional: add padding around each image */
+    max-width: 25%; /* restrict the maximum width of each image */
     box-sizing: border-box; /* ensure padding does not increase element width */
 }
 
