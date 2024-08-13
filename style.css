@@ -37,7 +37,7 @@ img {
 
 /* Our remix on glitch button */
 .btn--remix {
-  font-family: HK Grotesk;
+  font-family:HK Grotesk;
   padding: 0.75rem 1rem;
   font-size: 1.1rem;
   line-height: 1rem;
@@ -50,7 +50,7 @@ img {
   box-sizing: border-box;
   border-radius: 4px;
   text-decoration: none;
-  color: #"00000";
+  color: #000000;
   white-space: nowrap;
   margin-left: auto;
 }
@@ -78,7 +78,7 @@ a:not(.btn--remix):visited {
   font-style: normal;
   font-weight: normal;
   font-size: 1.1rem;
-  color: #000;
+  color: 000000;
   text-decoration: none;
   border-style: none;
 }
@@ -297,25 +297,14 @@ ul {
     padding: 0; /* Optional: Removes default padding */
     margin: 0; /* Optional: Removes default margin */
 }
-.nav-link {
-    color: #000000; /* Default text color */
-    text-decoration: none; /* Remove underline */
-    padding: 10px 15px; /* Add padding */
-    display: inline-block; /* Ensure proper spacing */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+.nav-pills .nav-link.active {
+    background-color: #3b7671;
+    color: #FFFFFF; /* Set the text color to white */
 }
 
-/* Styles for the active navigation link */
-.nav-link.active {
-    color: #ffffff; /* Text color for active link */
-    background-color: #3b7671; /* Background color for active link */
-    border-radius: 5px; /* Optional: Rounded corners */
+/* Optional: Hover effect on active link to maintain color consistency */
+.nav-pills .nav-link.active:hover {
+    background-color: #3b7671;
+    color: #FFFFFF; /* Ensure text color remains white on hover */
 }
-
-/* Optional: Hover effect for non-active links */
-.nav-link:hover {
-    background-color: #2a5e56; /* Darker shade for hover effect */
-    color: #ffffff; /* Ensure text color contrasts well on hover */
-}
-
        
