@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            width: 80%;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+        .color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            margin-top: 10px;
+        }
+        .my-element {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ffffff;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
+</head>
+<body>
+    <div class="my-element" id="myElement"></div>
+<h1>Select a Color</h1>
+<input type="color" id="colorPicker">
+<button onclick="randomizeColor()">Feeling Lucky</button>
+
+<div class="color-grid">
+    <div class="color-item">
+        <h2>Color</h2>
+        <div id="tone" class="color-box"></div>
+    </div>
+    <div class="color-item">
+        <h2>Complementary Color</h2>
+        <div id="complementary" class="color-box"></div>
+    </div>
+    <div class="color-item">
+        <h2>Triadic Colors</h2>
+        <div id="triadic1" class="color-box"></div>
+        <div id="triadic2" class="color-box"></div>
+    </div>
+    <div class="color-item">
+        <h2>Tetradic Colors</h2>
+        <div id="tetradic1" class="color-box"></div>
+        <div id="tetradic2" class="color-box"></div>
+        <div id="tetradic3" class="color-box"></div>
+    </div>
+
+    <div class="color-item">
+        <h2>Analogous Colors</h2>
+        <div id="analogous1" class="color-box"></div>
+        <div id="analogous2" class="color-box"></div>
+    </div>
+</div>
+
+<script>
+    const colorPicker = document.getElementById('colorPicker');
+
+    // Initial color selection event listener
+    colorPicker.addEventListener('input', (event) => {
+        updateColorSchemes(event.target.value);
+    });
+
+    // Randomize color function
+    function randomizeColor() {
+        let randomColor = tinycolor.random().toHexString();
+        colorPicker.value = randomColor;
+        updateColorSchemes(randomColor);
+    }
+
+    function updateBackground(color){
+        
+        const element = document.getElementById('myElement');
+        element.style.backgroundColor = color;
+    }
+
+    // Function to update all color schemes based on a given color
+    function updateColorSchemes(color) {
+        //background 
+        updateBackground(color);
+
+        // Tone
+        document.getElementById('tone').style.backgroundColor = color;
+
+        // Complementary
+        let complementaryColor = tinycolor(color).complement().toHexString();
+        document.getElementById('complementary').style.backgroundColor = complementaryColor;
+
+        // Triadic
+        let triadicColors = tinycolor(color).triad();
+        document.getElementById('triadic1').style.backgroundColor = triadicColors[1].toHexString();
+        document.getElementById('triadic2').style.backgroundColor = triadicColors[2].toHexString();
+
+        // Tetradic
+        let tetradicColors = tinycolor(color).tetrad();
+        document.getElementById('tetradic1').style.backgroundColor = tetradicColors[1].toHexString();
+        document.getElementById('tetradic2').style.backgroundColor = tetradicColors[2].toHexString();
+        document.getElementById('tetradic3').style.backgroundColor = tetradicColors[3].toHexString();
+
+        // Analogous
+        let analogousColors = tinycolor(color).analogous();
+        document.getElementById('analogous1').style.backgroundColor = analogousColors[1].toHexString();
+        document.getElementById('analogous2').style.backgroundColor = analogousColors[2].toHexString();
+    }
+
+    // Initial call to update color schemes with default color picker value
+    updateColorSchemes(colorPicker.value);
+   
+   // monochromatic, analogous, complementary, split complementary, triadic, square, and rectangle or tetradic
+
+</script>
+
+</body>
+</html>
+
