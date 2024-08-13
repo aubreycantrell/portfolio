@@ -98,6 +98,7 @@ a:not(.btn--remix):visited {
 END Glitch hello-app default styles
 ******************************************************************************/
 
+
 body {
   font-family: HK Grotesk;
   background-color: var(--color-bg);
@@ -153,6 +154,8 @@ input {
   padding: 0.5rem 1rem;
   transition: 500ms;
 }
+
+
 
 /* Subheading */
 h2 {
@@ -297,14 +300,22 @@ ul {
     padding: 0; /* Optional: Removes default padding */
     margin: 0; /* Optional: Removes default margin */
 }
-.nav-pills .nav-link.active {
-    background-color: #3b7671;
-    color: #FFFFFF; /* Set the text color to white */
+
+.nav-pills .nav-link {
+    color: black !important; /* Override default Bootstrap color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Add padding */
+    display: inline-block; /* Ensure proper spacing */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
-/* Optional: Hover effect on active link to maintain color consistency */
-.nav-pills .nav-link.active:hover {
-    background-color: #3b7671;
-    color: #FFFFFF; /* Ensure text color remains white on hover */
+.nav-pills .nav-link.active {
+    color: white !important; /* Text color for active link */
+    background-color: #2a5e56 !important; /* Background color for active link */
+    border-radius: 5px; /* Optional: Rounded corners */
 }
-       
+
+.nav-pills .nav-link:hover {
+    background-color: #789c9c !important; /* Darker shade for hover effect */
+    color: white !important; /* Ensure text color contrasts well on hover */
+}
