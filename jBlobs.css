@@ -27,15 +27,17 @@ body {
     left: 42%;
     z-index: 9999;
     font-size: 40px;
-    font-family: 'Asap', sans-serif;
+    font-family: HK Grotesk;
 }
 
 .button {
     margin: 10px auto;
     padding: 15px;
-    background-color: tomato;
+    background-color: #789c9c;
     border-radius: 10px;
+  border-color: #789c9c;
     font-size: 30px;
+  color: white;
 }
 
 #intro {
@@ -43,15 +45,14 @@ body {
     margin: auto;
     font-size: 20px;
     z-index: 9999;
-    font-family: 'Asap', sans-serif; 
-    overflow: auto;          /* will override the one from body */
-}
+    font-family: HK Grotesk;
+    overflow: auto !important; /* Ensures overflow is respected */ 
 
 h1 {
     width: 50%;
     margin: auto;
     margin-top: 10%;
     margin-bottom: none;
-    font-family: 'Asap', sans-serif; 
+    font-family: HK Grotesk; 
     
 }
