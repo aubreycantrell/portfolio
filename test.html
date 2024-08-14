@@ -1,199 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link
-    rel="icon"
-    href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
-  />
-  <title>Aubrey Cantrell</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+    />
 
-  <link rel="stylesheet" href="/style.css" />
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-    crossorigin="anonymous"
-  />
-  <!-- Include Three.js Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <title>Aubrey Cantrell</title>
 
-  <!-- Custom Script -->
-  <script src="/script.js" defer></script>
-</head>
-<body>
-  <div class="wrapper">
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <script src="/script.js" defer></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+  </head>
+  <body>
     <div class="content" role="main">
-      <div class="container">
-        <header class="d-flex justify-content-center py-3">
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a
-                href="https://aubreycantrell.glitch.me/"
-                class="nav-link"
-                aria-current="page"
-                >Aubrey Cantrell</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                href="https://aubreycantrell.glitch.me/designConcepts.html"
-                class="nav-link"
-                >UI/UX Design</a
-              >
-            </li>
-            <li class="nav-item">
-              <div class="dropdown">
+      
+      
+      
+      <div class="wrapper">
+        
+        <div class="container">
+         
+          <header class="d-flex justify-content-center py-3">
+            <!-- <div id="logoContainer">
+               <a href="https://aubreycantrell.glitch.me/"
+        ><img
+          class="logo levitating "
+          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+      /></a>
+       
+    </div> -->
+             
+            <ul class="nav nav-pills">
+              <li class="nav-item">
                 <a
-                  href="https://aubreycantrell.glitch.me/studioArts.html"
-                  class="nav-link dropdown-toggle active"
-                  id="studioArtsDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                  href="https://aubreycantrell.glitch.me/"
+                  class="nav-link active"
+                  aria-current="page"
+                  >Aubrey Cantrell</a
                 >
-                  Studio Arts
-                </a>
-                <ul
-                  class="dropdown-menu"
-                  aria-labelledby="studioArtsDropdown"
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://aubreycantrell.glitch.me/designConcepts.html"
+                  class="nav-link"
+                  >UI/UX Design</a
                 >
+              </li>
+              <li class="nav-item">
+                <div class="dropdown">
+                  <a
+                    href="https://aubreycantrell.glitch.me/studioArts.html"
+                    class="nav-link dropdown-toggle"
+                    id="studioArtsDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Studio Arts
+                  </a>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="studioArtsDropdown"
+                  >
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://aubreycantrell.glitch.me/printmaking.html"
+                        >Printmaking</a
+                      >
+                    </li>
+
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://aubreycantrell.glitch.me/mixedMedia.html"
+                        >Mixed Media</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://aubreycantrell.glitch.me/photography.html"
+                        >Photography</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  href="https://aubreycantrell.glitch.me/research.html"
+                  class="nav-link"
+                  >Research</a
+                >
+              </li>
+            </ul>
+          </header>
+        </div>
+        <main class="px-3">
+          <section class="backgr contain ">
+            <div>
+              <h1>Aubrey Cantrell</h1>
+            </div>
+
+            <p class="lead">
+              Computer Science and Studio Arts @ Wellesley College
+            </p>
+
+            <div class="arrow levitating">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-arrow-down-short"
+                viewbox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"
+                />
+              </svg>
+            </div>
+          </section>
+          <div id="threejs-container" style="width: 100%; height: 500px"></div>
+          <section class="cont">
+            
+            <!-- First row with text and image -->
+            <div class="half-width-container">
+              <div class="row">
+                <div class="col-8 cont">
+                  <section id="imageSection">
+                    <div class="imageWrapper levitating">
+                      <img
+                        class="illustration column reveal text-center"
+                        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1269%202.jpeg?v=1723600471690
+"
+                        alt="Turtle figurine"
+                      />
+                    </div>
+                    <div class="imageWrapper levitating">
+                      <img
+                        class="illustration column reveal text-center"
+                        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1260.jpeg?v=1723600470208
+"
+                        alt="California Sticker"
+                      />
+                    </div>
+                    <div class="imageWrapper levitating">
+                      <img
+                        class="illustration column reveal text-center"
+                        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1266.jpeg?v=1723600545620
+"
+                        alt="Shell from Half Moon Bay"
+                      />
+                    </div>
+                  </section>
+                  <p class="column slide-in-element-left text-center lead">
+                    I am a junior at Wellesley College, double majoring in
+                    Computer Science and Studio Arts, and am proud to call
+                    the Bay Area, CA home.
+                  </p>
+                </div>
+                <div class="col-4">
+                  <img
+                    class="illustration column reveal text-center"
+                    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/aubrey?v=1719332533080"
+                    alt="Aubrey Cantrell"
+                  />
+                </div>
+              </div>
+              <div class="row cont1">
+                <div class="col-4">
+                <img
+                  class="illustration column reveal text-center levitating"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/theRedString?v=1719334311172"
+                  alt="the red string"
+                />
+                </div>
+                <div class="col-8 cont1 text">
+                  <p class="column slide-in-element-right text-center lead">
+                    I am passionate about finding the balance between artistic
+                    and purposeful designs, to better user interaction and
+                    creating memorable interface experiences.
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+              <div class="col-8 cont">
+                <p class="column  text-center  lead">
+                  In my free time you can find me outdoors; surfing,
+                  rockclimbing, cycling or hiking!
+                </p>
+                <section id="imageSection1">
+                  <div class="imageWrapper levitating">
+                    <img
+                      class="illustration column reveal text-center"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1265.jpeg?v=1723600471275
+"
+                      alt="Surf wax"
+                    />
+                  </div>
+                  <div class="imageWrapper levitating">
+                    <img
+                      class="illustration column reveal text-center"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1264.jpeg?v=1723600672802
+"
+                      alt="Camera"
+                    />
+                  </div>
+                  <div class="imageWrapper levitating">
+                    <img
+                      class="illustration column reveal text-center"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1262.jpeg?v=1723600617711
+"
+                      alt="Shell from Half Moon Bay"
+                    />
+                  </div>
+                </section>
+              </div>
+              <div class="col-4">
+                <img
+                  class="illustration column reveal text-center"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_9507.jpeg?v=1723494809361"
+                  alt="Aubrey Cantrell"
+                />
+              </div>
+            </div>
+
+            </div>
+            
+
+            <!-- Second row with coursework information -->
+            <div class="reveal row cont">
+              <div class="col-md-6">
+                <p class="lead">Computer Science Coursework</p>
+                <ul>
+                  <li>CS 111 Comp Program and Prob Solving <em>Python</em></li>
                   <li>
-                    <a
-                      class="dropdown-item"
-                      href="https://aubreycantrell.glitch.me/printmaking.html"
-                      >Printmaking</a
-                    >
+                    CS 204 Intro to Web Development
+                    <em>Javascript, HTML, CSS, Unix</em>
                   </li>
                   <li>
-                    <a
-                      class="dropdown-item"
-                      href="https://aubreycantrell.glitch.me/mixedMedia.html"
-                      >Mixed Media</a
-                    >
+                    CS 220 Human Computer Interactions
+                    <em>Figma, HTML, CSS, Bootstrap</em>
                   </li>
+                  <li>CS 230 Data Structures <em> Java</em></li>
+                  <li>CS 231 Fundamental Algorithms</li>
+                  <li>CS 235 Theory of Computation</li>
+                  <li>MATH 225 Combinatorics and Graph Theory</li>
+                </ul>
+                <img
+                class="illustration column reveal text-center"
+                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/surBlues_collection%20cropped.png?v=1723599563824"
+                alt="Aubrey Cantrell"
+              />
+              </div>
+              <div class="col-md-6">
+                <img
+                class="illustration column reveal text-center"
+                src="
+                     https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/unflossed_collection%20cropped.png?v=1723599618433"
+                alt="Aubrey Cantrell"
+              />
+                <p class="lead">Studio Arts Coursework</p>
+
+                <ul>
+                  <li>ARTS 105 Drawing I</li>
+                  <li>ARTS 216 Spacial Investigations</li>
                   <li>
-                    <a
-                      class="dropdown-item"
-                      href="https://aubreycantrell.glitch.me/photography.html"
-                      >Photography</a
-                    >
+                    ARTS 221 Digital Imaging
+                    <em>Photoshop, Illustrator, InDesign, Firefly</em>
                   </li>
+                  <li>ARTS 223 Alternative Print Methods</li>
+                  <li>ARTH 100 Art and its Histories</li>
+                  <li>ARTH 248 Chinese Painting</li>
                 </ul>
               </div>
-            </li>
-            <li class="nav-item">
-              <a
-                href="https://aubreycantrell.glitch.me/research.html"
-                class="nav-link"
-                >Research</a
-              >
-            </li>
-          </ul>
-        </header>
+            </div>
+          </section>
+        </main>
       </div>
-      <!-- Container for Three.js -->
-      <div id="threejs-container" style="width: 100%; height: 250px"></div>
-      
     </div>
-  </div>
-  <!-- Script for Three.js Water Animation -->
-  <script>
-   document.addEventListener("DOMContentLoaded", function () {
-  // Set up Three.js environment
-  const container = document.getElementById("threejs-container");
 
-  // Create Scene
-  const scene = new THREE.Scene();
+    <!--  🚧 TODO: ADD BUTTON HERE -->
 
-  // Create Camera
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
-  );
+    <!-- Once you've added the button from TODO.md, click it in the page -->
+    <!-- Check out the function in script.js to see how it works -->
 
-  // Create Renderer
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  container.appendChild(renderer.domElement);
+    <!-- The footer holds our remix button — you can keep or delete it ✂ -->
+    <div class="container">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+      >
+          <a class="col-md-4 mb-0 text-body-secondary" href="mailto:aubrey.cantrell@wellesley.com">aubrey.cantrell@wellesley.edu
+        </a>        <!-- <a href = "https://www.linkedin.com/in/aubrey-cantrell/"> linkedin </a> -->
 
-  // Set Renderer Background Color
-  renderer.setClearColor(0xffffff, 0); // White color with transparent background
+        <svg class="bi me-2" width="5" height="5">
+          <img
+            class="illustration column text-center imageWrapper"
+            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+            alt="Glass Dolphin"
+          />
+        </svg>
 
-  // Load Texture Image
-  const textureLoader = new THREE.TextureLoader();
-  const waveTexture = textureLoader.load(
-    "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
-  );
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/designConcepts.html"
+              class="nav-link px-2 text-body-secondary"
+              >UI/UX Design</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/studioArts.html"
+              class="nav-link px-2 text-body-secondary"
+              >Studio Art</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/research.html"
+              class="nav-link px-2 text-body-secondary"
+              >Research</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/contact.html"
+              class="nav-link px-2 text-body-secondary"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </footer>
+    </div>
 
-  // Create Material with Wave Texture
-  const waveMaterial = new THREE.MeshBasicMaterial({ map: waveTexture });
+    <script
+      src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Step 2: Set up Three.js environment
+      const container = document.getElementById("threejs-container");
 
-  // Create Plane Geometry for the Waves
-  const geometry = new THREE.PlaneGeometry(20, 20, 50, 50);
-  const plane = new THREE.Mesh(geometry, waveMaterial);
-  scene.add(plane);
+      // Create Scene
+      const scene = new THREE.Scene();
 
-  // Load Image Texture
-  const imageTexture = textureLoader.load(
-    "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723658862833" // Replace with your image URL
-  );
+      // Create Camera
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+      );
 
-  // Create Material with Image Texture
-  const imageMaterial = new THREE.MeshBasicMaterial({ map: imageTexture, transparent: true });
+      // Create Renderer
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      container.appendChild(renderer.domElement);
 
-  // Create Plane Geometry for the Image
-  const imageGeometry = new THREE.PlaneGeometry(2, 2); // Adjust size as needed
-  const imagePlane = new THREE.Mesh(imageGeometry, imageMaterial);
-  imagePlane.position.set(0, 5, 0); // Position as needed
-  scene.add(imagePlane);
+      // Set Renderer Background Color
+      renderer.setClearColor(0xffffff); // Light sky blue
 
-  // Position the Camera
-  camera.position.z = 0;
-  camera.position.y = 13;
-  camera.lookAt(new THREE.Vector3(0, 0, 0));
+      // Load Texture Image
+      const textureLoader = new THREE.TextureLoader();
+      const texture = textureLoader.load(
+        "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
+      ); // Replace with your image URL
 
-  // Animation Function
-  function animate() {
-    requestAnimationFrame(animate);
+      // Create Material with Texture
+      const material = new THREE.MeshBasicMaterial({ map: texture });
 
-    // Animate the wave
-    const positionAttribute = geometry.attributes.position;
-    const time = performance.now() / 1000;
-    for (let i = 0; i < positionAttribute.count; i++) {
-      const x = positionAttribute.getX(i);
-      const y = positionAttribute.getY(i);
-      const z = Math.sin(x * 0.5 + time) * Math.cos(y * 0.5 + time) * 0.5;
-      positionAttribute.setZ(i, z);
-    }
-    positionAttribute.needsUpdate = true;
+      // Create Plane Geometry for the Waves
+      const geometry = new THREE.PlaneGeometry(20, 20, 50, 50);
 
-    // Update the image's z position to follow the wave
-    const waveX = imagePlane.position.x;
-    const waveY = imagePlane.position.y;
-    const waveZ = Math.sin(waveX * 0.5 + time) * Math.cos(waveY * 0.5 + time) * 0.5;
-    imagePlane.position.z = waveZ;
+      // Create Mesh
+      const plane = new THREE.Mesh(geometry, material);
+      scene.add(plane);
 
-    renderer.render(scene, camera);
-  }
+      // Position the Camera
+      camera.position.z = 0;
+      camera.position.y = 13;
+      camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-  // Start the Animation
-  animate();
+      // Animation Function
+      function animate() {
+        requestAnimationFrame(animate);
 
-  // Handle Resize Events
-  window.addEventListener("resize", onWindowResize, false);
+        // Animate the wave
+        const positionAttribute = geometry.attributes.position;
+        const time = performance.now() / 1000;
+        for (let i = 0; i < positionAttribute.count; i++) {
+          const x = positionAttribute.getX(i);
+          const y = positionAttribute.getY(i);
+          const z = Math.sin(x * 0.5 + time) * Math.cos(y * 0.5 + time) * 0.5;
+          positionAttribute.setZ(i, z);
+        }
+        positionAttribute.needsUpdate = true;
 
-  function onWindowResize() {
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-  }
-});
+        renderer.render(scene, camera);
+      }
 
+      // Start the Animation
+      animate();
 
+      // Handle Resize Events
+      window.addEventListener("resize", onWindowResize, false);
+
+      function onWindowResize() {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      }
+    });
   </script>
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
