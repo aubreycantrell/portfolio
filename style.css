@@ -387,3 +387,26 @@ ul {
 .dropdown-menu {
   --bs-dropdown-link-active-bg: #4d7471 !important;
 }
+
+.slide-in-element-left{
+  position: relative; /* Or position: absolute; depending on your layout */
+  left: -100%; /* Start off-screen */
+  opacity: 0;
+  transition: all 0.5s ease-in-out; /* Adjust duration and timing function as needed */
+}
+
+.slide-in-element-left.slide-in {
+  left: 0;
+  opacity: 1;
+}
+.slide-in-element-right{
+  position: relative; /* Or position: absolute; depending on your layout */
+  right: -100%; /* Start off-screen */
+  opacity: 0;
+  transition: all 0.5s ease-in-out; /* Adjust duration and timing function as needed */
+}
+
+.slide-in-element-right.slide-in {
+  right: 0;
+  opacity: 1;
+}

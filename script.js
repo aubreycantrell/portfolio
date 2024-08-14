@@ -104,3 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animate();
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector(".slide-in-element-left").classList.add("slide-in");
+});
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector(".slide-in-element-right").classList.add("slide-in");
+});
