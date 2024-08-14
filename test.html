@@ -210,16 +210,16 @@
           
           
            <!-- swap out with images -->
-          <div id="homepage0">
-              <h1 id="onboarding-sol" class="selected-yahoo-solution" data-selected="yes" data-point="onboarding">Breadcrumb</h1>
+          <div id="homepage-select">
+              <h1 id="about-me" class="selected-yahoo-solution" data-selected="yes" data-point="about-data">Breadcrumb</h1>
               <h1 id="tooltip-sol" class="solutions-header-title" data-selected="no" data-point="tooltip">Search</h1>
               <h1 id="constraint-sol" class="solutions-header-title" data-selected="no" data-point="constraints">Navigation</h1>
             </div>
 
           
            <!-- swap out with descriptions -->
-            <div id="homepage-select">
-              <section id="about-me" class="cont" data-point="about-data"> 
+            <div id="homepage-show">
+              <div id="about-show" class="cont" data-point="about-data"> 
             <!-- First row with text and image -->
             <div class="half-width-container">
               <div class="row">
@@ -322,11 +322,55 @@
                 </div>
               </div>
             </div>
-              </section>
+              </div>
               
-              <p id="tooltip-exp" class="solution-hide" data-point="tooltip"><strong>WHY:</strong> The main audience consists of 
-              Yahoo designers and engineers. In most cases, employees are doing known-item seeking. The search bar allows 
-              employees to get to their target documentation as quickly as possible, without having to scrub the nav.</p>
+              <div id="tooltip-exp" class="solution-hide reveal row cont" data-point="tooltip">
+              <div class="col-md-6">
+                <p class="lead">Computer Science Coursework</p>
+                <ul>
+                  <li>CS 111 Comp Program and Prob Solving <em>Python</em></li>
+                  <li>
+                    CS 204 Intro to Web Development
+                    <em>Javascript, HTML, CSS, Unix</em>
+                  </li>
+                  <li>
+                    CS 220 Human Computer Interactions
+                    <em>Figma, HTML, CSS, Bootstrap</em>
+                  </li>
+                  <li>CS 230 Data Structures <em> Java</em></li>
+                  <li>CS 231 Fundamental Algorithms</li>
+                  <li>CS 235 Theory of Computation</li>
+                  <li>MATH 225 Combinatorics and Graph Theory</li>
+                </ul>
+                <img
+                class="illustration column reveal text-center"
+                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/surBlues_collection%20cropped.png?v=1723599563824"
+                alt="Aubrey Cantrell"
+              />
+              </div>
+              <div class="col-md-6">
+                <img
+                class="illustration column reveal text-center"
+                src="
+                     https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/unflossed_collection%20cropped.png?v=1723599618433"
+                alt="Aubrey Cantrell"
+              />
+                <p class="lead">Studio Arts Coursework</p>
+
+                <ul>
+                  <li>ARTS 105 Drawing I</li>
+                  <li>ARTS 216 Spacial Investigations</li>
+                  <li>
+                    ARTS 221 Digital Imaging
+                    <em>Photoshop, Illustrator, InDesign, Firefly</em>
+                  </li>
+                  <li>ARTS 223 Alternative Print Methods</li>
+                  <li>ARTH 100 Art and its Histories</li>
+                  <li>ARTH 248 Chinese Painting</li>
+                </ul>
+              </div>
+              </div>  
+              </div>
               
               <p id="onboarding-constraints" class="solution-hide" data-point="constraints"><strong>WHY:</strong>
                Implementing a hoverable side navigation to give room for the wider, 12-column grid layout.</p>
