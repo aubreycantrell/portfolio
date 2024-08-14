@@ -112,3 +112,43 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelector(".slide-in-element-right").classList.add("slide-in");
 });
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector(".slide-in-element-left").classList.add("slide-in");
+});
+
+const imageContainer = document.querySelector('.image-container');
+const warpedImage = document.querySelector('.warped-image');
+
+let isDragging = false;
+let startX, startY, initialX, initialY;
+
+function onMouseDown(e) {
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    initialX = warpedImage.offsetLeft;
+    initialY = warpedImage.offsetTop;
+}
+
+function onMouseMove(e) {
+    if (!isDragging) return;
+
+    let dx = e.clientX - startX;
+    let dy = e.clientY - startY;
+
+    let warpX = (dx / imageContainer.offsetWidth) * 50;
+    let warpY = (dy / imageContainer.offsetHeight) * 50;
+
+    warpedImage.style.transform = `translate(${initialX + dx}px, ${initialY + dy}px) scale(${1 + Math.abs(warpX / 100)}, ${1 + Math.abs(warpY / 100)}) rotate(${warpX}deg)`;
+    warpedImage.style.filter = `blur(${Math.abs(warpX / 10)}px)`;
+}
+
+function onMouseUp() {
+    isDragging = false;
+    warpedImage.style.transform = `translate(0, 0) scale(1) rotate(0deg)`;
+}
+
+imageContainer.addEventListener('mousedown', onMouseDown);
+imageContainer.addEventListener('mousemove', onMouseMove);
+imageContainer.addEventListener('mouseup', onMouseUp);
+imageContainer.addEventListener('mouseleave', onMouseUp);
