@@ -30,14 +30,15 @@
             position: relative;
             width: 100%;
             height: 300px;
+            display : center;
         }
 
         /* Element 1 */
         .element1 {
             position: absolute;
-            top: 250px;
-            width: 100%;
-            height: 200px;
+            top: 110px;
+            width: 60%;
+            height: auto;
             z-index: 2;
         }
 
@@ -49,6 +50,15 @@
             width: 100%;
             height: 50%;
             z-index: 1;
+        }
+      
+      .element3 {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            z-index: 3;
         }
       </style>
   </head>
@@ -196,8 +206,9 @@
             <div
               id="threejs-container"
               style="width: 100%; height: 500px"
-              class = "element2"
+              class = "element2 "
             ></div>
+            
             
             
              </div>
@@ -439,12 +450,15 @@
         );
 
         // Create Renderer
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        const renderer = new THREE.WebGLRenderer({ antialias: true,  alpha: true});
         renderer.setSize(container.clientWidth, container.clientHeight);
         container.appendChild(renderer.domElement);
 
         // Set Renderer Background Color
-        renderer.setClearColor(0xffffff); // Light sky blue
+        
+      
+        
+        renderer.setClearColor(0xffffff,0); // Light sky blue
 
         // Load Texture Image
         const textureLoader = new THREE.TextureLoader();
