@@ -24,6 +24,7 @@
     />
 
     <script src="/script.js" defer></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   </head>
   <body>
     <div class="content" role="main">
@@ -138,7 +139,9 @@
               </svg>
             </div>
           </section>
+          <div id="threejs-container" style="width: 100%; height: 500px"></div>
           <section class="cont">
+            
             <!-- First row with text and image -->
             <div class="half-width-container">
               <div class="row">
@@ -355,6 +358,82 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Step 2: Set up Three.js environment
+      const container = document.getElementById("threejs-container");
+
+      // Create Scene
+      const scene = new THREE.Scene();
+
+      // Create Camera
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+      );
+
+      // Create Renderer
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      container.appendChild(renderer.domElement);
+
+      // Set Renderer Background Color
+      renderer.setClearColor(0xffffff); // Light sky blue
+
+      // Load Texture Image
+      const textureLoader = new THREE.TextureLoader();
+      const texture = textureLoader.load(
+        "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
+      ); // Replace with your image URL
+
+      // Create Material with Texture
+      const material = new THREE.MeshBasicMaterial({ map: texture });
+
+      // Create Plane Geometry for the Waves
+      const geometry = new THREE.PlaneGeometry(20, 20, 50, 50);
+
+      // Create Mesh
+      const plane = new THREE.Mesh(geometry, material);
+      scene.add(plane);
+
+      // Position the Camera
+      camera.position.z = 0;
+      camera.position.y = 13;
+      camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+      // Animation Function
+      function animate() {
+        requestAnimationFrame(animate);
+
+        // Animate the wave
+        const positionAttribute = geometry.attributes.position;
+        const time = performance.now() / 1000;
+        for (let i = 0; i < positionAttribute.count; i++) {
+          const x = positionAttribute.getX(i);
+          const y = positionAttribute.getY(i);
+          const z = Math.sin(x * 0.5 + time) * Math.cos(y * 0.5 + time) * 0.5;
+          positionAttribute.setZ(i, z);
+        }
+        positionAttribute.needsUpdate = true;
+
+        renderer.render(scene, camera);
+      }
+
+      // Start the Animation
+      animate();
+
+      // Handle Resize Events
+      window.addEventListener("resize", onWindowResize, false);
+
+      function onWindowResize() {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      }
+    });
+  </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>

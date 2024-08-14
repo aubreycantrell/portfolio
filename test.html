@@ -94,7 +94,7 @@
         </header>
       </div>
       <!-- Container for Three.js -->
-      <div id="threejs-container" style="width: 100%; height: 500px"></div>
+      <div id="threejs-container" style="width: 100%; height: 250px"></div>
     </div>
   </div>
   <!-- Script for Three.js Water Animation -->
@@ -120,12 +120,12 @@
       container.appendChild(renderer.domElement);
 
       // Set Renderer Background Color
-      renderer.setClearColor(0xffffff, 0); // Light sky blue
+      renderer.setClearColor(0xffffff); // Light sky blue
 
       // Load Texture Image
       const textureLoader = new THREE.TextureLoader();
       const texture = textureLoader.load(
-        "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_0196.jpeg?v=1719357694035"
+        "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
       ); // Replace with your image URL
 
       // Create Material with Texture
@@ -139,8 +139,8 @@
       scene.add(plane);
 
       // Position the Camera
-      camera.position.z = 10;
-      camera.position.y = 5;
+      camera.position.z = 0;
+      camera.position.y = 13;
       camera.lookAt(new THREE.Vector3(0, 0, 0));
 
       // Animation Function
