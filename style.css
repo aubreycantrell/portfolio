@@ -328,7 +328,7 @@ ul {
   max-width: 1200px; /* optional: restrict the section width */
   margin: auto; /* center the section on the page */
 }
-#imageSection2 {
+.imageSection2 {
   display: flex;
   justify-content: space-around; /* space evenly between and around the images */
   align-items: center; /* vertically center images */

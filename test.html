@@ -25,6 +25,32 @@
 
     <script src="/script.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+    .section1 {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        /* Element 1 */
+        .element1 {
+            position: absolute;
+            top: 250px;
+            width: 100%;
+            height: 200px;
+            z-index: 2;
+        }
+
+        /* Element 2 */
+        .element2 {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            z-index: 1;
+        }
+      </style>
   </head>
   <body>
     <div class="content" role="main">
@@ -135,34 +161,47 @@
             </div>
           </section>
 
-            <div id="imageSection2" class="col-8">
-              <div class="imageWrapper levitating">
-                <img
-                  class="illustration column reveal text-center"
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723658862833
+          <div class = "section1">
+            
+         
+          
+          <div class="imageSection2 col-8 element1">
+            <div class="imageWrapper levitating">
+              <img
+                class="illustration column reveal text-center"
+                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723658862833
 "
-                  alt="crane pink"
-                />
-              </div>
-              <div class="imageWrapper levitating">
-                <img
-                  class="illustration column reveal text-center"
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/yellow%20crane%20.png?v=1723658865295
-"
-                  alt="crane orange"
-                />
-              </div>
-              <div class="imageWrapper levitating">
-                <img
-                  class="illustration column reveal text-center"
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/green%20crane.png?v=1723658864440
-"
-                  alt="crane green"
-                />
-              </div>
+                alt="crane pink"
+              />
             </div>
+            <div class="imageWrapper levitating">
+              <img
+                class="illustration column reveal text-center"
+                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/yellow%20crane%20.png?v=1723658865295
+"
+                alt="crane orange"
+              />
+            </div>
+            <div class="imageWrapper levitating">
+              <img
+                class="illustration column reveal text-center"
+                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/green%20crane.png?v=1723658864440
+"
+                alt="crane green"
+              />
+            </div>
+          </div>
 
-          <div id="threejs-container" style="width: 100%; height: 500px"></div>
+      
+            <div
+              id="threejs-container"
+              style="width: 100%; height: 500px"
+              class = "element2"
+            ></div>
+            
+            
+             </div>
+          
 
           <section class="cont">
             <!-- First row with text and image -->
