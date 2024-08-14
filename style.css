@@ -271,7 +271,7 @@ p {
 }
 .cont1 {
   display: flex;
-  justify-content: space-between; /* Distributes space between text and image */
+  justify-content: center; /* Distributes space between text and image */
   align-items: center; /* Aligns items vertically centered */
 }
 .text {
