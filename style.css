@@ -383,3 +383,6 @@ ul {
   left: 10px;
   padding: 10px; /* Optional, adds some space around the logo */
 }
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg : #4d7471;}
