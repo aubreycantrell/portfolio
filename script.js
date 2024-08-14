@@ -152,3 +152,5 @@ imageContainer.addEventListener('mousedown', onMouseDown);
 imageContainer.addEventListener('mousemove', onMouseMove);
 imageContainer.addEventListener('mouseup', onMouseUp);
 imageContainer.addEventListener('mouseleave', onMouseUp);
+
+const container = document.getElementById('threejs-container');

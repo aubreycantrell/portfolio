@@ -421,14 +421,7 @@ ul {
     filter: blur(2px);
 }
 
-/* Style for the wave container */
-.wave-container {
-    position: relative;
-    width: 100%;
-    height: 200px; /* Adjust the height as needed */
-    overflow: hidden;
-    background: linear-gradient(to bottom, #6b8ba4, #ffffff);
-}
+
 
 #threejs-container {
     width: 100%;
