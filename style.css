@@ -361,3 +361,26 @@ ul {
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
+
+.logo {
+  width: 58px;
+  height: 58px;
+}
+
+.rotate {
+  animation: rotation 5s infinite linear;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+#logoContainer {
+  position: absolute; /* Allows for precise positioning */
+  top: 0;
+  left: 0;
+  padding: 10px; /* Optional, adds some space around the logo */
+}
