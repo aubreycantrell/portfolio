@@ -49,3 +49,58 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(column);
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const imageSection = document.getElementById("imageSection");
+    const images = imageSection.querySelectorAll(".imageWrapper");
+    
+    // Initialize positions and velocities for each image
+    const imageProps = Array.from(images).map((img, index) => {
+        return {
+            element: img,
+            posX: index * 120, // Starting position
+            speedX: 2 + Math.random() * 3 // Random speed between 2 and 5
+        };
+    });
+
+    function animate() {
+        imageProps.forEach((imgProp, index) => {
+            // Update position
+            imgProp.posX += imgProp.speedX;
+            
+            // Check for wall collisions
+            if (imgProp.posX <= 0 || imgProp.posX + imgProp.element.offsetWidth >= imageSection.offsetWidth) {
+                imgProp.speedX *= -1;
+            }
+            
+            // Check for collisions with other images
+            imageProps.forEach((otherImgProp, otherIndex) => {
+                if (index !== otherIndex && checkCollision(imgProp, otherImgProp)) {
+                    // Swap speeds for bounce effect
+                    const tempSpeed = imgProp.speedX;
+                    imgProp.speedX = otherImgProp.speedX;
+                    otherImgProp.speedX = tempSpeed;
+                }
+            });
+            
+            // Apply updated position
+            imgProp.element.style.left = imgProp.posX + "px";
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    function checkCollision(img1, img2) {
+        const rect1 = img1.element.getBoundingClientRect();
+        const rect2 = img2.element.getBoundingClientRect();
+        
+        return (
+            rect1.right >= rect2.left &&
+            rect1.left <= rect2.right &&
+            rect1.bottom >= rect2.top &&
+            rect1.top <= rect2.bottom
+        );
+    }
+
+    animate();
+});
