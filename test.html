@@ -99,80 +99,100 @@
   </div>
   <!-- Script for Three.js Water Animation -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Step 2: Set up Three.js environment
-      const container = document.getElementById("threejs-container");
+   document.addEventListener("DOMContentLoaded", function () {
+  // Set up Three.js environment
+  const container = document.getElementById("threejs-container");
 
-      // Create Scene
-      const scene = new THREE.Scene();
+  // Create Scene
+  const scene = new THREE.Scene();
 
-      // Create Camera
-      const camera = new THREE.PerspectiveCamera(
-        75,
-        container.clientWidth / container.clientHeight,
-        0.1,
-        1000
-      );
+  // Create Camera
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+  );
 
-      // Create Renderer
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      container.appendChild(renderer.domElement);
+  // Create Renderer
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
 
-      // Set Renderer Background Color
-      renderer.setClearColor(0xffffff); // Light sky blue
+  // Set Renderer Background Color
+  renderer.setClearColor(0xffffff, 0); // White color with transparent background
 
-      // Load Texture Image
-      const textureLoader = new THREE.TextureLoader();
-      const texture = textureLoader.load(
-        "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
-      ); // Replace with your image URL
+  // Load Texture Image
+  const textureLoader = new THREE.TextureLoader();
+  const waveTexture = textureLoader.load(
+    "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
+  );
 
-      // Create Material with Texture
-      const material = new THREE.MeshBasicMaterial({ map: texture });
+  // Create Material with Wave Texture
+  const waveMaterial = new THREE.MeshBasicMaterial({ map: waveTexture });
 
-      // Create Plane Geometry for the Waves
-      const geometry = new THREE.PlaneGeometry(20, 20, 50, 50);
+  // Create Plane Geometry for the Waves
+  const geometry = new THREE.PlaneGeometry(20, 20, 50, 50);
+  const plane = new THREE.Mesh(geometry, waveMaterial);
+  scene.add(plane);
 
-      // Create Mesh
-      const plane = new THREE.Mesh(geometry, material);
-      scene.add(plane);
+  // Load Image Texture
+  const imageTexture = textureLoader.load(
+    "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723658862833" // Replace with your image URL
+  );
 
-      // Position the Camera
-      camera.position.z = 0;
-      camera.position.y = 13;
-      camera.lookAt(new THREE.Vector3(0, 0, 0));
+  // Create Material with Image Texture
+  const imageMaterial = new THREE.MeshBasicMaterial({ map: imageTexture, transparent: true });
 
-      // Animation Function
-      function animate() {
-        requestAnimationFrame(animate);
+  // Create Plane Geometry for the Image
+  const imageGeometry = new THREE.PlaneGeometry(2, 2); // Adjust size as needed
+  const imagePlane = new THREE.Mesh(imageGeometry, imageMaterial);
+  imagePlane.position.set(0, 5, 0); // Position as needed
+  scene.add(imagePlane);
 
-        // Animate the wave
-        const positionAttribute = geometry.attributes.position;
-        const time = performance.now() / 1000;
-        for (let i = 0; i < positionAttribute.count; i++) {
-          const x = positionAttribute.getX(i);
-          const y = positionAttribute.getY(i);
-          const z = Math.sin(x * 0.5 + time) * Math.cos(y * 0.5 + time) * 0.5;
-          positionAttribute.setZ(i, z);
-        }
-        positionAttribute.needsUpdate = true;
+  // Position the Camera
+  camera.position.z = 0;
+  camera.position.y = 13;
+  camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-        renderer.render(scene, camera);
-      }
+  // Animation Function
+  function animate() {
+    requestAnimationFrame(animate);
 
-      // Start the Animation
-      animate();
+    // Animate the wave
+    const positionAttribute = geometry.attributes.position;
+    const time = performance.now() / 1000;
+    for (let i = 0; i < positionAttribute.count; i++) {
+      const x = positionAttribute.getX(i);
+      const y = positionAttribute.getY(i);
+      const z = Math.sin(x * 0.5 + time) * Math.cos(y * 0.5 + time) * 0.5;
+      positionAttribute.setZ(i, z);
+    }
+    positionAttribute.needsUpdate = true;
 
-      // Handle Resize Events
-      window.addEventListener("resize", onWindowResize, false);
+    // Update the image's z position to follow the wave
+    const waveX = imagePlane.position.x;
+    const waveY = imagePlane.position.y;
+    const waveZ = Math.sin(waveX * 0.5 + time) * Math.cos(waveY * 0.5 + time) * 0.5;
+    imagePlane.position.z = waveZ;
 
-      function onWindowResize() {
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
-      }
-    });
+    renderer.render(scene, camera);
+  }
+
+  // Start the Animation
+  animate();
+
+  // Handle Resize Events
+  window.addEventListener("resize", onWindowResize, false);
+
+  function onWindowResize() {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  }
+});
+
+
   </script>
 </body>
 </html>
