@@ -438,10 +438,20 @@ ul {
     height: 500px; /* Adjust the height as needed */
 }
 
-/* Existing CSS ... */
+#homepage-select {
+  {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+  
+.homepage-hide {
+  display: none;
+}
 
-
-
-/* Rest of your existing CSS ... */
+.homepage-show {
+  display: block;
+}
 
 

@@ -180,3 +180,35 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cranes = document.querySelectorAll(".imageSection2 img");
+  const sections = document.querySelectorAll("#homepage-show .cont");
+
+  // Function to show the correct section
+  const showSection = (dataPoint) => {
+    sections.forEach((section) => {
+      if (section.dataset.point === dataPoint) {
+        section.classList.remove("homepage-hide");
+        section.classList.add("homepage-show");
+      } else {
+        section.classList.remove("homepage-show");
+        section.classList.add("homepage-hide");
+      }
+    });
+  };
+
+  // Add click event listeners to each crane
+  cranes.forEach((crane) => {
+    crane.addEventListener("click", () => {
+      const dataPoint = crane.dataset.point;
+      showSection(dataPoint);
+
+      // Optional: Add selected styling to the clicked crane
+      cranes.forEach((c) => c.classList.remove("selected"));
+      crane.classList.add("selected");
+    });
+  });
+});
+
+
