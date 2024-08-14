@@ -26,41 +26,41 @@
     <script src="/script.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-    .section1 {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            display : center;
-        }
+      .section1 {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        display: center;
+      }
 
-        /* Element 1 */
-        .element1 {
-            position: absolute;
-            top: 110px;
-            width: 60%;
-            height: auto;
-            z-index: 2;
-        }
+      /* Element 1 */
+      .element1 {
+        position: absolute;
+        top: 110px;
+        width: 60%;
+        height: auto;
+        z-index: 2;
+      }
 
-        /* Element 2 */
-        .element2 {
-            position: absolute;
-            top: 0px;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            z-index: 1;
-        }
-      
+      /* Element 2 */
+      .element2 {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        z-index: 1;
+      }
+
       .element3 {
-            position: absolute;
-            top: 0px;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            z-index: 3;
-        }
-      </style>
+        position: absolute;
+        top: 0px;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        z-index: 3;
+      }
+    </style>
   </head>
   <body>
     <div class="content" role="main">
@@ -171,47 +171,72 @@
             </div>
           </section>
 
-          <div class = "section1">
-            
-         
-          
-          <div class="imageSection2 col-8 element1">
-            <div class="imageWrapper levitating">
-              <img
-                class="illustration column reveal text-center"
-                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723658862833
+          <div class="section1">
+            <div class="imageSection2 col-8 element1">
+              <div class="imageWrapper levitating">
+                <img
+                  class="illustration column reveal text-center"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723658862833
 "
-                alt="crane pink"
-              />
-            </div>
-            <div class="imageWrapper levitating">
-              <img
-                class="illustration column reveal text-center"
-                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/yellow%20crane%20.png?v=1723658865295
+                  alt="crane pink"
+                />
+              </div>
+              <div class="imageWrapper levitating">
+                <img
+                  class="illustration column reveal text-center"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/yellow%20crane%20.png?v=1723658865295
 "
-                alt="crane orange"
-              />
-            </div>
-            <div class="imageWrapper levitating">
-              <img
-                class="illustration column reveal text-center"
-                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/green%20crane.png?v=1723658864440
+                  alt="crane orange"
+                />
+              </div>
+              <div class="imageWrapper levitating">
+                <img
+                  class="illustration column reveal text-center"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/green%20crane.png?v=1723658864440
 "
-                alt="crane green"
-              />
+                  alt="crane green"
+                />
+              </div>
             </div>
-          </div>
 
-      
             <div
               id="threejs-container"
               style="width: 100%; height: 500px"
-              class = "element2 "
+              class="element2"
             ></div>
+          </div>
+          
+          
+          
+          
+          
+          <div id="solution-points">
+              <h1 id="onboarding-sol" class="selected-yahoo-solution" data-selected="yes" data-point="onboarding">Breadcrumb</h1>
+              <h1 id="tooltip-sol" class="solutions-header-title" data-selected="no" data-point="tooltip">Search</h1>
+              <h1 id="constraint-sol" class="solutions-header-title" data-selected="no" data-point="constraints">Navigation</h1>
+            </div>
+
+            <div id="solution-explainations">
+              <p id="onboarding-exp" class="" data-point="onboarding"><strong>WHY:</strong> This enforces recognition over recall, 
+                thus minimizing the reader's memory load and allowing users to quickly get to a 
+                specific topic on a page (which is especially useful for longer pages). Lastly, it allows users to understand 
+                where they are within the structure of main and subpages, as well as explore related content farther up the tree.</p>
+              <p id="tooltip-exp" class="solution-hide" data-point="tooltip"><strong>WHY:</strong> The main audience consists of 
+              Yahoo designers and engineers. In most cases, employees are doing known-item seeking. The search bar allows 
+              employees to get to their target documentation as quickly as possible, without having to scrub the nav.</p>
+              <p id="onboarding-constraints" class="solution-hide" data-point="constraints"><strong>WHY:</strong>
+               Implementing a hoverable side navigation to give room for the wider, 12-column grid layout.</p>
+            </div>
+
+            <div class="img-shadow" id="solution-gifs">
+              <img id="onboarding-gif" data-point="onboarding" src="images/yahoo/breadcrumb.gif" alt="Onboarding questionnaire">
+              <img id="tooltip-gif" data-point="tooltip" class="solution-hide" src="images/yahoo/search.gif" alt="Tooltip feature">
+              <img id="onboarding-gif" data-point="constraints" class="solution-hide" src="images/yahoo/nav.gif" alt="Form dissabling feature">
+            </div>
             
-            
-            
-             </div>
+         </div>
+          
+          
           
 
           <section class="cont">
@@ -450,15 +475,16 @@
         );
 
         // Create Renderer
-        const renderer = new THREE.WebGLRenderer({ antialias: true,  alpha: true});
+        const renderer = new THREE.WebGLRenderer({
+          antialias: true,
+          alpha: true,
+        });
         renderer.setSize(container.clientWidth, container.clientHeight);
         container.appendChild(renderer.domElement);
 
         // Set Renderer Background Color
-        
-      
-        
-        renderer.setClearColor(0xffffff,0); // Light sky blue
+
+        renderer.setClearColor(0xffffff, 0); // Light sky blue
 
         // Load Texture Image
         const textureLoader = new THREE.TextureLoader();

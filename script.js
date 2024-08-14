@@ -154,3 +154,29 @@ imageContainer.addEventListener('mouseup', onMouseUp);
 imageContainer.addEventListener('mouseleave', onMouseUp);
 
 const container = document.getElementById('threejs-container');
+
+document.addEventListener("DOMContentLoaded", function () {
+  const columns = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  columns.forEach(column => {
+    observer.observe(column);
+  });
+
+  // New code for random animation delay
+  const levitatingItems = document.querySelectorAll('.levitating');
+
+  levitatingItems.forEach(item => {
+    const randomDelay = Math.random() * 1.6;
+    item.style.setProperty('--random-delay', randomDelay);
+  });
+});
+
