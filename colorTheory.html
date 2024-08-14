@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/style.css" />
+
   <link rel="icon" href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126" >
+   <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+
+    <script src="/script.js" defer></script>
     <title>Color Picker</title>
     <style>
         body {
@@ -18,8 +29,8 @@
         .color-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 20px;
-            width: 80%;
+            gap: 2%;
+            width: 90%;
             max-width: 1000px;
             margin-top: 20px;
         }
@@ -43,11 +54,83 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
 </head>
+    <div class="wrapper">
+      <div class="content" role="main">
+        <div class="container">
+          <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a
+                  href="https://aubreycantrell.glitch.me/"
+                  class="nav-link"
+                  aria-current="page"
+                  >Aubrey Cantrell</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://aubreycantrell.glitch.me/designConcepts.html"
+                  class="nav-link active"
+                  >UI/UX Design</a
+                >
+              </li>
+              <li class="nav-item">
+                <div class="dropdown">
+                  <a
+                    href="https://aubreycantrell.glitch.me/studioArts.html"
+                    class="nav-link dropdown-toggle"
+                    id="studioArtsDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Studio Arts
+                  </a>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="studioArtsDropdown"
+                  >
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://aubreycantrell.glitch.me/printmaking.html"
+                        >Printmaking</a
+                      >
+                    </li>
+
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://aubreycantrell.glitch.me/mixedMedia.html"
+                        >Mixed Media</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://aubreycantrell.glitch.me/photography.html"
+                        >Photography</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  href="https://aubreycantrell.glitch.me/research.html"
+                  class="nav-link"
+                  >Research</a
+                >
+              </li>
+            </ul>
+          </header>
+        </div>
 <body>
     <div class="my-element" id="myElement"></div>
 <h1>Select a Color</h1>
 <input type="color" id="colorPicker">
-<button onclick="randomizeColor()">Feeling Lucky</button>
+<!--<button onclick="randomizeColor()">Feeling Lucky</button> -->
 
 <div class="color-grid">
     <div class="color-item">
@@ -76,6 +159,7 @@
         <div id="analogous2" class="color-box"></div>
     </div>
 </div>
+  
 
 <script>
     const colorPicker = document.getElementById('colorPicker');
@@ -135,5 +219,54 @@
 </script>
 
 </body>
+         <div class="container">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+      >
+          <a class="col-md-4 mb-0 text-body-secondary" href="mailto:aubrey.cantrell@wellesley.com">aubrey.cantrell@wellesley.edu
+        </a>        <!-- <a href = "https://www.linkedin.com/in/aubrey-cantrell/"> linkedin </a> -->
+
+        <svg class="bi me-2" width="5" height="5">
+          <img
+            class="illustration column text-center imageWrapper"
+            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+            alt="Glass Dolphin"
+          />
+        </svg>
+
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/designConcepts.html"
+              class="nav-link px-2 text-body-secondary"
+              >UI/UX Design</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/studioArts.html"
+              class="nav-link px-2 text-body-secondary"
+              >Studio Art</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/research.html"
+              class="nav-link px-2 text-body-secondary"
+              >Research</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/contact.html"
+              class="nav-link px-2 text-body-secondary"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </footer>
+    </div>
+      </div>
+  </div>
 </html>
 
