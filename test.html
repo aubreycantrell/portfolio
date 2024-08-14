@@ -76,8 +76,6 @@
        
     </div> -->
 
-            
-            
             <!-- nav bar -->
             <ul class="nav nav-pills">
               <li class="nav-item">
@@ -146,10 +144,8 @@
               </li>
             </ul>
           </header>
-          </div>
-          
-          
-        
+        </div>
+
         <main class="px-3">
           <!-- background image -->
           <section class="backgr contain">
@@ -178,29 +174,35 @@
             </div>
           </section>
 
-          
-          
           <!-- floating cranes and water -->
           <div class="section1">
             <div class="imageSection2 col-8 element1">
               <div class="imageWrapper levitating">
                 <img
-                  class="illustration column reveal text-center"
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723658862833
-"
-                  alt="crane pink"
+                      id="about-me"
+                      data-selected="yes"
+                      data-point="about-data"
+                      class="illustration column reveal text-center selected-pink-crane"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723658862833"
+                      alt="crane pink"
                 />
               </div>
               <div class="imageWrapper levitating">
                 <img
-                  class="illustration column reveal text-center"
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/yellow%20crane%20.png?v=1723658865295
-"
-                  alt="crane orange"
+                      id="coursework"
+                      data-selected="no"
+                      data-point="course-data"
+                      class="illustration column reveal text-center selected-orange-crane"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/yellow%20crane%20.png?v=1723658865295"
+                      alt="crane orange"
                 />
               </div>
               <div class="imageWrapper levitating">
                 <img
+                     id="site-design"
+              class="site-design"
+              data-selected="no"
+              data-point="design-data"
                   class="illustration column reveal text-center"
                   src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/green%20crane.png?v=1723658864440
 "
@@ -218,27 +220,13 @@
 
           <!-- swap out with images -->
           <div id="homepage-select">
+            
+           
             <h1
-              id="about-me"
-              class="selected-yahoo-solution"
-              data-selected="yes"
-              data-point="about-data"
-            >
-              Breadcrumb
-            </h1>
-            <h1
-              id="tooltip-sol"
-              class="solutions-header-title"
+              id="selected-green-crane"
+              class="site-design"
               data-selected="no"
-              data-point="tooltip"
-            >
-              Search
-            </h1>
-            <h1
-              id="constraint-sol"
-              class="solutions-header-title"
-              data-selected="no"
-              data-point="constraints"
+              data-point="design-data"
             >
               Navigation
             </h1>
@@ -353,11 +341,8 @@
             </div>
             <!-- coursework -->
             <div
-              id="course-show"
-              class="homepage-hide reveal row cont"
-              data-point="course-data"
-            >
-              <div class="">
+              id="course-show" class="homepage-hide reveal row cont" data-point="course-data">
+              <div class="col-md-6">
                 <p class="lead">Computer Science Coursework</p>
                 <ul>
                   <li>CS 111 Comp Program and Prob Solving <em>Python</em></li>
@@ -405,69 +390,15 @@
           </div>
           <!-- site design -->
           <div id="design-show" class="homepage-hide" data-point="design-data">
-            <strong>WHY:</strong> Implementing a hoverable side navigation to
-            give room for the wider, 12-column grid layout.
+            <strong>Placeholder</strong> This is where I will show the design aspects of the portfolio.
           </div>
-
-          <!-- Second row with coursework information -->
-          <section class="cont">
-            <div class="reveal row cont">
-              <div class="col-md-6">
-                <p class="lead">Computer Science Coursework</p>
-                <ul>
-                  <li>CS 111 Comp Program and Prob Solving <em>Python</em></li>
-                  <li>
-                    CS 204 Intro to Web Development
-                    <em>Javascript, HTML, CSS, Unix</em>
-                  </li>
-                  <li>
-                    CS 220 Human Computer Interactions
-                    <em>Figma, HTML, CSS, Bootstrap</em>
-                  </li>
-                  <li>CS 230 Data Structures <em> Java</em></li>
-                  <li>CS 231 Fundamental Algorithms</li>
-                  <li>CS 235 Theory of Computation</li>
-                  <li>MATH 225 Combinatorics and Graph Theory</li>
-                </ul>
-                <img
-                  class="illustration column reveal text-center"
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/surBlues_collection%20cropped.png?v=1723599563824"
-                  alt="Aubrey Cantrell"
-                />
-              </div>
-              <div class="col-md-6">
-                <img
-                  class="illustration column reveal text-center"
-                  src="
-                     https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/unflossed_collection%20cropped.png?v=1723599618433"
-                  alt="Aubrey Cantrell"
-                />
-                <p class="lead">Studio Arts Coursework</p>
-
-                <ul>
-                  <li>ARTS 105 Drawing I</li>
-                  <li>ARTS 216 Spacial Investigations</li>
-                  <li>
-                    ARTS 221 Digital Imaging
-                    <em>Photoshop, Illustrator, InDesign, Firefly</em>
-                  </li>
-                  <li>ARTS 223 Alternative Print Methods</li>
-                  <li>ARTH 100 Art and its Histories</li>
-                  <li>ARTH 248 Chinese Painting</li>
-                </ul>
-              </div>
-            </div>
-          </section>
+        
         </main>
       </div>
     </div>
-
-    <!--  🚧 TODO: ADD BUTTON HERE -->
-
-    <!-- Once you've added the button from TODO.md, click it in the page -->
-    <!-- Check out the function in script.js to see how it works -->
-
-    <!-- The footer holds our remix button — you can keep or delete it ✂ -->
+    
+    
+    <!-- The footer  -->
     <div class="container">
       <footer
         class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
