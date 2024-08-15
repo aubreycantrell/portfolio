@@ -24,17 +24,51 @@
     />
 
     <script src="/script.js" defer></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+      .section1 {
+        position: relative;
+        width: 100%;
+        height: 20%; /* Adjust height if necessary */
+        display: flex;
+        align-items: center; /* Vertically center the content */
+        justify-content: center; /* Horizontally center the content */
+        overflow: hidden;
+      }
+
+      /* Element 1 */
+      .element1 {
+        position: absolute;
+        top: 20%;
+        width: 70%;
+        height: auto;
+        z-index: 3; /* Adjust z-index to be higher than element2 and element3 */
+      }
+
+      /* Element 2 */
+      .element2 {
+        top: 0px;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        z-index: 2; /* Lower z-index */
+      }
+
+      .element3 {
+        padding-top: 5%;
+        padding: 5%;
+        top: -260px;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        z-index: 1; /* Lowest z-index */
+      }
+    </style>
   </head>
   <body>
     <div class="content" role="main">
-      
-      
-      
       <div class="wrapper">
-        
         <div class="container">
-         
           <header class="d-flex justify-content-center py-3">
             <!-- <div id="logoContainer">
                <a href="https://aubreycantrell.glitch.me/"
@@ -44,7 +78,8 @@
       /></a>
        
     </div> -->
-             
+
+            <!-- nav bar -->
             <ul class="nav nav-pills">
               <li class="nav-item">
                 <a
@@ -113,8 +148,10 @@
             </ul>
           </header>
         </div>
+
         <main class="px-3">
-          <section class="backgr contain ">
+          <!-- background image -->
+          <section class="backgr contain">
             <div>
               <h1>Aubrey Cantrell</h1>
             </div>
@@ -139,178 +176,280 @@
               </svg>
             </div>
           </section>
-          <!--<div id="threejs-container" style="width: 100%; height: 500px"></div> -->
-          <section class="cont">
-            
-            <!-- First row with text and image -->
-            <div class="half-width-container">
-              <div class="row">
-                <div class="col-8 cont">
-                  <section id="imageSection">
-                    <div class="imageWrapper levitating">
-                      <img
-                        class="illustration column reveal text-center"
-                        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1269%202.jpeg?v=1723600471690
+
+          <!-- floating cranes and water -->
+          <div id="homepage-select" class="section1">
+            <div class="imageSection2 col-8 element1">
+              <div class="imageWrapper levitating">
+                <img
+                  id="about-me"
+                  data-selected="yes"
+                  data-point="about-data"
+                  class="illustration column text-center selected-pink-crane"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723658862833"
+                  alt="crane pink"
+                />
+              </div>
+              <div class="imageWrapper levitating">
+                <img
+                  id="coursework"
+                  data-selected="no"
+                  data-point="course-data"
+                  class="illustration column text-center selected-orange-crane"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/yellow%20crane%20.png?v=1723658865295"
+                  alt="crane orange"
+                />
+              </div>
+              <div class="imageWrapper levitating">
+                <img
+                  id="site-design"
+                  data-selected="no"
+                  data-point="design-data"
+                  class="illustration column text-center selected-green-crane"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/green%20crane.png?v=1723658864440"
+                  alt="crane green"
+                />
+              </div>
+            </div>
+
+            <div
+              id="threejs-container"
+              style="width: 100%; height: 500px"
+              class="element2"
+            ></div>
+          </div>
+
+          <!-- each page (3) -->
+          <div id="homepage-show" class="element3 background1 section1">
+            <!-- about me -->
+            <div id="about-show" class="cont" data-point="about-data">
+              <!-- First row with text and image -->
+              <div class="half-width-container">
+                <div class="row">
+                  <h2 style="text-align: center;">Hi, I'm Aubrey!</h2>
+                  <div class="col-12 cont1">
+                    <!--
+                    <section id="imageSection">
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1269%202.jpeg?v=1723600471690
 "
-                        alt="Turtle figurine"
+                          alt="Turtle figurine"
+                        />
+                      </div>
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1260.jpeg?v=1723600470208
+"
+                          alt="California Sticker"
+                        />
+                      </div>
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1266.jpeg?v=1723600545620
+"
+                          alt="Shell from Half Moon Bay"
+                        />
+                      </div>
+                    </section>
+
+--> 
+                    <div class="col-4">
+                      <img
+                        class="illustration column reveal text-center levitating"
+                        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/theRedString?v=1719334311172"
+                        alt="the red string"
                       />
                     </div>
-                    <div class="imageWrapper levitating">
-                      <img
-                        class="illustration column reveal text-center"
-                        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1260.jpeg?v=1723600470208
-"
-                        alt="California Sticker"
-                      />
-                    </div>
-                    <div class="imageWrapper levitating">
-                      <img
-                        class="illustration column reveal text-center"
-                        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1266.jpeg?v=1723600545620
-"
-                        alt="Shell from Half Moon Bay"
-                      />
-                    </div>
-                  </section>
-                  <p class="column slide-in-element-left text-center lead">
-                    I am a junior at Wellesley College, double majoring in
-                    Computer Science and Studio Arts, and am proud to call
-                    the Bay Area, CA home.
-                  </p>
+                    <p class="column text-center lead">
+                      I am a junior at Wellesley College, double majoring in
+                      Computer Science and Studio Arts, and am proud to call the
+                      Bay Area, CA home. I love to be outdoors; you can find me
+                      surfing, rockclimbing, cycling or hiking!
+                    </p>
+                    <img
+                      class="illustration column reveal text-center levitating"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/aubrey?v=1719332533080"
+                      alt="Aubrey Cantrell"
+                    />
+                  </div>
                 </div>
-                <div class="col-4">
+                <div class="row cont1">
+                  <div class="col-8 cont1 text">
+                    <p class="column text-center lead">
+                      I am passionate about finding the balance between artistic
+                      and purposeful designs, to better user interaction and
+                      creating memorable interface experiences.
+                    </p>
+                  </div>
+                  <ul class="nav col-md-4 justify-content-end">
+                    <li class="nav-item">
+                      <a
+                        href="https://aubreycantrell.glitch.me/designConcepts.html"
+                        class="nav-link px-2 text-body-secondary"
+                        >UI/UX Design</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        href="https://aubreycantrell.glitch.me/studioArts.html"
+                        class="nav-link px-2 text-body-secondary"
+                        >Studio Art</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        href="https://aubreycantrell.glitch.me/research.html"
+                        class="nav-link px-2 text-body-secondary"
+                        >Research</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="row">
+                  <!--
+                    <section id="imageSection1">
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1265.jpeg?v=1723600471275
+"
+                          alt="Surf wax"
+                        />
+                      </div>
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1264.jpeg?v=1723600672802
+"
+                          alt="Camera"
+                        />
+                      </div>
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1262.jpeg?v=1723600617711
+"
+                          alt="Shell from Half Moon Bay"
+                        />
+                      </div>
+                    </section>
+-->
+                </div>
+              </div>
+            </div>
+            <!-- coursework -->
+            <div
+              id="course-show"
+              class="homepage-hide cont"
+              data-point="course-data"
+            >
+              <h2>Coursework</h2>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="lead">Computer Science</p>
+                  <ul>
+                    <li>
+                      CS 111 Comp Program and Prob Solving <em>Python</em>
+                    </li>
+                    <li>
+                      CS 204 Intro to Web Development
+                      <em>Javascript, HTML, CSS, Unix</em>
+                    </li>
+                    <li>
+                      CS 220 Human Computer Interactions
+                      <em>Figma, HTML, CSS, Bootstrap</em>
+                    </li>
+                    <li>CS 230 Data Structures <em> Java</em></li>
+                    <li>CS 231 Fundamental Algorithms</li>
+                    <li>CS 235 Theory of Computation</li>
+                    <li>MATH 225 Combinatorics and Graph Theory</li>
+                  </ul>
                   <img
                     class="illustration column reveal text-center"
-                    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/aubrey?v=1719332533080"
+                    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/surBlues_collection%20cropped.png?v=1723599563824"
+                    alt="Aubrey Cantrell"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <p class="lead">Studio Arts</p>
+
+                  <ul>
+                    <li>ARTS 105 Drawing I</li>
+                    <li>ARTS 216 Spacial Investigations</li>
+                    <li>
+                      ARTS 221 Digital Imaging
+                      <em>Photoshop, Illustrator, InDesign, Firefly</em>
+                    </li>
+                    <li>ARTS 223 Alternative Print Methods</li>
+                    <li>ARTH 100 Art and its Histories</li>
+                    <li>ARTH 248 Chinese Painting</li>
+                  </ul>
+                  <img
+                    class="illustration column reveal text-center"
+                    src="
+                     https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/unflossed_collection%20cropped.png?v=1723599618433"
                     alt="Aubrey Cantrell"
                   />
                 </div>
               </div>
-              <div class="row cont1">
-                <div class="col-4">
-                <img
-                  class="illustration column reveal text-center levitating"
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/theRedString?v=1719334311172"
-                  alt="the red string"
-                />
-                </div>
-                <div class="col-8 cont1 text">
-                  <p class="column slide-in-element-right text-center lead">
-                    I am passionate about finding the balance between artistic
-                    and purposeful designs, to better user interaction and
-                    creating memorable interface experiences.
-                  </p>
-                </div>
-              </div>
-              <div class="row">
-              <div class="col-8 cont">
-                <p class="column  text-center  lead">
-                  In my free time you can find me outdoors; surfing,
-                  rockclimbing, cycling or hiking!
-                </p>
-                <section id="imageSection1">
-                  <div class="imageWrapper levitating">
-                    <img
-                      class="illustration column reveal text-center"
-                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1265.jpeg?v=1723600471275
-"
-                      alt="Surf wax"
-                    />
-                  </div>
-                  <div class="imageWrapper levitating">
-                    <img
-                      class="illustration column reveal text-center"
-                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1264.jpeg?v=1723600672802
-"
-                      alt="Camera"
-                    />
-                  </div>
-                  <div class="imageWrapper levitating">
-                    <img
-                      class="illustration column reveal text-center"
-                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1262.jpeg?v=1723600617711
-"
-                      alt="Shell from Half Moon Bay"
-                    />
-                  </div>
-                </section>
-              </div>
-              <div class="col-4">
-                <img
-                  class="illustration column reveal text-center"
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_9507.jpeg?v=1723494809361"
-                  alt="Aubrey Cantrell"
-                />
-              </div>
             </div>
-
+            <!-- site design -->
+            <div
+              id="design-show"
+              class="homepage-hide cont"
+              data-point="design-data"
+            >
+              <strong>Coming soon...</strong> This is where I will show the design
+              aspects of my portfolio. For now, here is some of my recent film!
+               <section class = "section1">
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020011.jpg?v=1723688458408
+"
+                          alt="Half Moon Bay"
+                        />
+                      </div>
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142
+"
+                          alt="Big Sur"
+                        />
+                      </div>
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608010032.jpg?v=1723688457209
+"
+                          alt="Pleasure Point in Santa Cruz"
+                        />
+                      </div>
+                    </section>
             </div>
             
-
-            <!-- Second row with coursework information -->
-            <div class="reveal row cont">
-              <div class="col-md-6">
-                <p class="lead">Computer Science Coursework</p>
-                <ul>
-                  <li>CS 111 Comp Program and Prob Solving <em>Python</em></li>
-                  <li>
-                    CS 204 Intro to Web Development
-                    <em>Javascript, HTML, CSS, Unix</em>
-                  </li>
-                  <li>
-                    CS 220 Human Computer Interactions
-                    <em>Figma, HTML, CSS, Bootstrap</em>
-                  </li>
-                  <li>CS 230 Data Structures <em> Java</em></li>
-                  <li>CS 231 Fundamental Algorithms</li>
-                  <li>CS 235 Theory of Computation</li>
-                  <li>MATH 225 Combinatorics and Graph Theory</li>
-                </ul>
-                <img
-                class="illustration column reveal text-center"
-                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/surBlues_collection%20cropped.png?v=1723599563824"
-                alt="Aubrey Cantrell"
-              />
-              </div>
-              <div class="col-md-6">
-                <img
-                class="illustration column reveal text-center"
-                src="
-                     https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/unflossed_collection%20cropped.png?v=1723599618433"
-                alt="Aubrey Cantrell"
-              />
-                <p class="lead">Studio Arts Coursework</p>
-
-                <ul>
-                  <li>ARTS 105 Drawing I</li>
-                  <li>ARTS 216 Spacial Investigations</li>
-                  <li>
-                    ARTS 221 Digital Imaging
-                    <em>Photoshop, Illustrator, InDesign, Firefly</em>
-                  </li>
-                  <li>ARTS 223 Alternative Print Methods</li>
-                  <li>ARTH 100 Art and its Histories</li>
-                  <li>ARTH 248 Chinese Painting</li>
-                </ul>
-              </div>
-            </div>
-          </section>
+          </div>
         </main>
       </div>
     </div>
 
-    <!--  🚧 TODO: ADD BUTTON HERE -->
-
-    <!-- Once you've added the button from TODO.md, click it in the page -->
-    <!-- Check out the function in script.js to see how it works -->
-
-    <!-- The footer holds our remix button — you can keep or delete it ✂ -->
+    <!-- The footer  -->
     <div class="container">
       <footer
         class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
       >
-          <a class="col-md-4 mb-0 text-body-secondary" href="mailto:aubrey.cantrell@wellesley.com">aubrey.cantrell@wellesley.edu
-        </a>        <!-- <a href = "https://www.linkedin.com/in/aubrey-cantrell/"> linkedin </a> -->
+        <a
+          class="col-md-4 mb-0 text-body-secondary"
+          href="mailto:aubrey.cantrell@wellesley.com"
+          >aubrey.cantrell@wellesley.edu
+        </a>
+        <!-- <a href = "https://www.linkedin.com/in/aubrey-cantrell/"> linkedin </a> -->
 
         <svg class="bi me-2" width="5" height="5">
           <img
@@ -359,81 +498,85 @@
       crossorigin="anonymous"
     ></script>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Step 2: Set up Three.js environment
-      const container = document.getElementById("threejs-container");
+      document.addEventListener("DOMContentLoaded", function () {
+        // Step 2: Set up Three.js environment
+        const container = document.getElementById("threejs-container");
 
-      // Create Scene
-      const scene = new THREE.Scene();
+        // Create Scene
+        const scene = new THREE.Scene();
 
-      // Create Camera
-      const camera = new THREE.PerspectiveCamera(
-        75,
-        container.clientWidth / container.clientHeight,
-        0.1,
-        1000
-      );
+        // Create Camera
+        const camera = new THREE.PerspectiveCamera(
+          75,
+          container.clientWidth / container.clientHeight,
+          0.1,
+          1000
+        );
 
-      // Create Renderer
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      container.appendChild(renderer.domElement);
-
-      // Set Renderer Background Color
-      renderer.setClearColor(0xffffff); // Light sky blue
-
-      // Load Texture Image
-      const textureLoader = new THREE.TextureLoader();
-      const texture = textureLoader.load(
-        "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
-      ); // Replace with your image URL
-
-      // Create Material with Texture
-      const material = new THREE.MeshBasicMaterial({ map: texture });
-
-      // Create Plane Geometry for the Waves
-      const geometry = new THREE.PlaneGeometry(20, 20, 50, 50);
-
-      // Create Mesh
-      const plane = new THREE.Mesh(geometry, material);
-      scene.add(plane);
-
-      // Position the Camera
-      camera.position.z = 0;
-      camera.position.y = 13;
-      camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-      // Animation Function
-      function animate() {
-        requestAnimationFrame(animate);
-
-        // Animate the wave
-        const positionAttribute = geometry.attributes.position;
-        const time = performance.now() / 1000;
-        for (let i = 0; i < positionAttribute.count; i++) {
-          const x = positionAttribute.getX(i);
-          const y = positionAttribute.getY(i);
-          const z = Math.sin(x * 0.5 + time) * Math.cos(y * 0.5 + time) * 0.5;
-          positionAttribute.setZ(i, z);
-        }
-        positionAttribute.needsUpdate = true;
-
-        renderer.render(scene, camera);
-      }
-
-      // Start the Animation
-      animate();
-
-      // Handle Resize Events
-      window.addEventListener("resize", onWindowResize, false);
-
-      function onWindowResize() {
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
+        // Create Renderer
+        const renderer = new THREE.WebGLRenderer({
+          antialias: true,
+          alpha: true,
+        });
         renderer.setSize(container.clientWidth, container.clientHeight);
-      }
-    });
-  </script>
+        container.appendChild(renderer.domElement);
+
+        // Set Renderer Background Color
+
+        renderer.setClearColor(0xffffff, 0); // Light sky blue
+
+        // Load Texture Image
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load(
+          "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
+        ); // Replace with your image URL
+
+        // Create Material with Texture
+        const material = new THREE.MeshBasicMaterial({ map: texture });
+
+        // Create Plane Geometry for the Waves
+        const geometry = new THREE.PlaneGeometry(20, 20, 50, 50);
+
+        // Create Mesh
+        const plane = new THREE.Mesh(geometry, material);
+        scene.add(plane);
+
+        // Position the Camera
+        camera.position.z = 0;
+        camera.position.y = 13;
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        // Animation Function
+        function animate() {
+          requestAnimationFrame(animate);
+
+          // Animate the wave
+          const positionAttribute = geometry.attributes.position;
+          const time = performance.now() / 1000;
+          for (let i = 0; i < positionAttribute.count; i++) {
+            const x = positionAttribute.getX(i);
+            const y = positionAttribute.getY(i);
+            const z = Math.sin(x * 0.5 + time) * Math.cos(y * 0.5 + time) * 0.5;
+            positionAttribute.setZ(i, z);
+          }
+          positionAttribute.needsUpdate = true;
+
+          renderer.render(scene, camera);
+        }
+
+        // Start the Animation
+        animate();
+
+        // Handle Resize Events
+        window.addEventListener("resize", onWindowResize, false);
+
+        function onWindowResize() {
+          camera.aspect = container.clientWidth / container.clientHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+      });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
