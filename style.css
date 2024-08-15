@@ -233,6 +233,18 @@ p {
   height: 85vh;
   border-radius: 20px;
 }
+.background1 {
+  background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-14%20at%206.09.07%20PM.png?v=1723684152403");
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  padding: 5%;
+  align-items: center;
+  height: 85vh;
+  border-radius: 20px;
+}
 
 .contain {
   display: flex;
