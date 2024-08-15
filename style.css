@@ -442,3 +442,16 @@ ul {
   display: block;
 }
 
+.last-element {
+    margin-bottom: 0; /* Removes any bottom margin */
+    padding-bottom: 0; /* Removes any bottom padding */
+}
+.footer1 {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 260px; /* Moves the footer up */
+    margin-top: -260px; /* Removes any extra space */
+
+}
+
