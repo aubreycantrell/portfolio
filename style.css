@@ -481,6 +481,8 @@ ul {
 
   .section1 {
     height: auto; /* Adjust height of section1 */
+    
+    padding: 5%;
   }
 
   /* Adjustments for specific elements */
@@ -493,4 +495,18 @@ ul {
     width: 90%; /* Adjust image width */
     height: auto;
   }
-}
+  .row {
+    flex-direction: column;
+    padding: 0 2%;
+  }
+
+  .col-12, .col-4, .col-8, .col-md-4 {
+    width: 100%;
+    padding: 0 2%;
+  }
+
+
+  .nav-item {
+    margin-bottom: 10px;
+  }
+  }
