@@ -148,10 +148,6 @@ function onMouseUp() {
     warpedImage.style.transform = `translate(0, 0) scale(1) rotate(0deg)`;
 }
 
-imageContainer.addEventListener('mousedown', onMouseDown);
-imageContainer.addEventListener('mousemove', onMouseMove);
-imageContainer.addEventListener('mouseup', onMouseUp);
-imageContainer.addEventListener('mouseleave', onMouseUp);
 
 const container = document.getElementById('threejs-container');
 
@@ -180,41 +176,42 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const cranes = document.querySelectorAll(".imageSection2 img");
-  const sections = document.querySelectorAll("#homepage-show .cont");
+   document.addEventListener("DOMContentLoaded", () => {
+        const cranes = document.querySelectorAll(".imageSection2 img");
+        const sections = document.querySelectorAll("#homepage-show .cont");
 
-  // Function to show the correct section
-  const showSection = (dataPoint) => {
-    sections.forEach((section) => {
-      if (section.dataset.point === dataPoint) {
-        section.classList.remove("homepage-hide");
-        section.classList.add("homepage-show");
-      } else {
-        section.classList.remove("homepage-show");
-        section.classList.add("homepage-hide");
-      }
+        // Function to show the correct section
+        const showSection = (dataPoint) => {
+            sections.forEach((section) => {
+                if (section.dataset.point === dataPoint) {
+                    section.classList.remove("homepage-hide");
+                } else {
+                    section.classList.add("homepage-hide");
+                }
+            });
+        };
+
+        // Add click event listeners to each crane
+        cranes.forEach((crane) => {
+            crane.addEventListener("click", () => {
+                const dataPoint = crane.dataset.point;
+
+                // Log crane id and data-point
+                console.log("Crane clicked:", crane.id);
+                console.log("Data point:", dataPoint);
+
+                // Toggle data-selected attribute and class
+                cranes.forEach((c) => {
+                    if (c === crane) {
+                        c.dataset.selected = "yes";
+                        c.classList.add("selected");
+                    } else {
+                        c.dataset.selected = "no";
+                        c.classList.remove("selected");
+                    }
+                });
+
+                showSection(dataPoint);
+            });
+        });
     });
-  };
-
-  // Add click event listeners to each crane
-  cranes.forEach((crane) => {
-    crane.addEventListener("click", () => {
-      console.log("Crane clicked: ", crane.id);
-      const dataPoint = crane.dataset.point;
-
-      // Toggle data-selected attribute
-      cranes.forEach((c) => {
-        if (c === crane) {
-          c.dataset.selected = "yes";
-          c.classList.add("selected");
-        } else {
-          c.dataset.selected = "no";
-          c.classList.remove("selected");
-        }
-      });
-
-      showSection(dataPoint);
-    });
-  });
-});

@@ -397,7 +397,7 @@ ul {
 .dropdown-menu {
   --bs-dropdown-link-active-bg: #4d7471 !important;
 }
-
+/*
 .slide-in-element-left{
   position: relative; /* Or position: absolute; depending on your layout */
   left: -100%; /* Start off-screen */
