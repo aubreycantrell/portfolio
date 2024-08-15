@@ -473,6 +473,12 @@ ul {
   body {
     height: auto; /* Adjust height for smaller screens */
     overflow-y: visible; /* Allow content to be fully visible */
+
+  }
+  .backgr {
+    background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-15%20at%201.38.24%20PM.png?v=1723754310414");
+    background-size: cover
+      ;
   }
 
   .container {
@@ -525,7 +531,14 @@ ul {
   .col-12, .col-4, .col-8, .col-md-4 {
     width: 100%;
     
+    
   }
+  .column {
+  padding: 5px;
+  display: flex; /* Use flexbox to place items side by side */
+  justify-content: center; /* Center the images horizontally */
+  gap: 5px; /* Space between images */
+}
 
 
   .nav-item {
