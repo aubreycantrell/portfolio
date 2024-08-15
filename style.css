@@ -439,11 +439,13 @@ ul {
 }
 
 #homepage-select {
-  {
-    margin-top: 30px;
+  
+    margin-top: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+
 }
   
 .homepage-hide {

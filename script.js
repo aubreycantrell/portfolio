@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  const cranes = document.querySelectorAll(".imageSection2 img");
+  const cranes = document.querySelectorAll("#homepage-select img");
   const sections = document.querySelectorAll("#homepage-show .cont");
 
   // Function to show the correct section
