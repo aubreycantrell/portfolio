@@ -27,39 +27,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
       .section1 {
-        position: relative;
+  position: relative;
   width: 100%;
-  height: 500px; /* Adjust height if necessary */
+  height: 50px; /* Adjust height if necessary */
   display: flex;
   align-items: center; /* Vertically center the content */
   justify-content: center; /* Horizontally center the content */
   overflow: hidden;
-      }
+}
 
       /* Element 1 */
-      .element1 {
-        position: absolute;
-        top: 10px;
-        width: 60%;
-        height: auto;
-        z-index: 2;
-      }
+     .element1 {
+  position: absolute;
+  top: 10;
+  width: 100%;
+  height: auto;
+  z-index: 3; /* Adjust z-index to be higher than element2 and element3 */
+}
 
-      /* Element 2 */
-      .element2 {
-        top: 0px;
-        left: 0;
-        width: 100%;
-        height: 50%;
-        z-index: 1;
-      }
-      .element3 {
-        top: 0px;
-        left: 0;
-        width: 100%;
-        height: 50%;
-        z-index: 3;
-      }
+/* Element 2 */
+.element2 {
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  z-index: 2; /* Lower z-index */
+}
+
+.element3 {
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  z-index: 1; /* Lowest z-index */
+}
 
     </style>
   </head>
@@ -218,7 +219,7 @@
           </div>
 
           <!-- each page (3) -->
-          <div id="homepage-show" class = "background1 element3">
+          <div id="homepage-show" class = " element3 background1 section1 ">
             <!-- about me -->
             <div id="about-show" class="cont" data-point="about-data">
               <!-- First row with text and image -->
