@@ -180,9 +180,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
-  const cranes = document.querySelectorAll("#homepage-select img");
+  const cranes = document.querySelectorAll(".imageSection2 img");
   const sections = document.querySelectorAll("#homepage-show .cont");
 
   // Function to show the correct section
@@ -201,14 +200,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add click event listeners to each crane
   cranes.forEach((crane) => {
     crane.addEventListener("click", () => {
+      console.log("Crane clicked: ", crane.id);
       const dataPoint = crane.dataset.point;
-      showSection(dataPoint);
 
-      // Optional: Add selected styling to the clicked crane
-      cranes.forEach((c) => c.classList.remove("selected"));
-      crane.classList.add("selected");
+      // Toggle data-selected attribute
+      cranes.forEach((c) => {
+        if (c === crane) {
+          c.dataset.selected = "yes";
+          c.classList.add("selected");
+        } else {
+          c.dataset.selected = "no";
+          c.classList.remove("selected");
+        }
+      });
+
+      showSection(dataPoint);
     });
   });
 });
-
-
