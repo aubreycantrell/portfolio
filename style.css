@@ -455,3 +455,42 @@ ul {
 
 }
 
+#home-page {
+  height: calc(100vh - 260px);
+  overflow-y: auto
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  body {
+    height: auto; /* Adjust height for smaller screens */
+    overflow-y: visible; /* Allow content to be fully visible */
+  }
+
+  .container {
+    height: auto; /* Adjust container height for smaller screens */
+  }
+
+  .section1 {
+    height: auto; /* Adjust height of section1 */
+  }
+
+  /* Adjustments for specific elements */
+  .element1, .element2, .element3 {
+    width: 100%; /* Make images responsive */
+    height: auto;
+  }
+
+  .illustration {
+    width: 90%; /* Adjust image width */
+    height: auto;
+  }
+}
