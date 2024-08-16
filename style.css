@@ -247,6 +247,9 @@ p {
   border-radius: 20px;
     
   }
+.container{
+  padding-bottom: 3%;
+}
 
 .album {
   border-radius: 20px;
@@ -484,7 +487,7 @@ ul {
   }
   
   .backgr-design{
-    background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");
+    
     background-size: cover;
     
   }
