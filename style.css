@@ -243,7 +243,7 @@ p {
   display: flex;
   padding: 5%;
   align-items: center;
-  height: 30vh;
+  height: contain;
   border-radius: 20px;
     
   }
@@ -487,6 +487,7 @@ ul {
   }
   
   .backgr-design{
+    background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-16%20at%2011.21.13%20AM.png?v=1723832477180");
     
     background-size: cover;
     
