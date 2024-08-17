@@ -303,6 +303,7 @@ p {
   display: flex;
   justify-content: center; /* Distributes space between text and image */
   align-items: center; /* Aligns items vertically centered */
+  
 }
 .text {
   flex: 1; /* Takes available space on the left */
@@ -465,6 +466,7 @@ ul {
   height: calc(100vh - 260px);
   overflow-y: auto;
 }
+
 
 @media (max-width: 768px) {
   body {
