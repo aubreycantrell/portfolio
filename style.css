@@ -468,6 +468,14 @@ ul {
   overflow-y: auto;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap; /* Allows the items to wrap to the next line if needed */
+  justify-content: space-between; /* Distributes the items evenly with space between them */
+  align-items: center; /* Aligns items vertically centered */
+  margin: 0 -15px; /* Adjusts for gutter spacing if needed */
+}
+
 
 @media (max-width: 768px) {
   body {
