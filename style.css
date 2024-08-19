@@ -323,7 +323,12 @@ ul {
   list-style-type: none; /* Removes bullet points */
   padding: 0; /* Optional: Removes default padding */
   margin: 0; /* Optional: Removes default margin */
+
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
+
 
 .nav-pills .nav-link {
   color: black !important; /* Override default Bootstrap color */
