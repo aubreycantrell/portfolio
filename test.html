@@ -285,29 +285,7 @@
                       creating memorable interface experiences.
                     </p>
                   </div>
-                  <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item">
-                      <a
-                        href="https://aubreycantrell.glitch.me/designConcepts.html"
-                        class="nav-link px-2 text-body-secondary"
-                        >UI/UX Design</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="https://aubreycantrell.glitch.me/studioArts.html"
-                        class="nav-link px-2 text-body-secondary"
-                        >Studio Art</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        href="https://aubreycantrell.glitch.me/research.html"
-                        class="nav-link px-2 text-body-secondary"
-                        >Research</a
-                      >
-                    </li>
-                  </ul>
+                 
                 </div>
                 <div class="row">
                   <!--
@@ -440,15 +418,20 @@
     </div>
 
     <!-- The footer  -->
-    <div class="container">
+ <div class="container">
       <footer
-        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+        style="position: relative"
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top last-element footer1"
       >
-        <a
-          class="col-md-4 mb-0 text-body-secondary"
-          href="mailto:aubrey.cantrell@wellesley.com"
-          >aubrey.cantrell@wellesley.edu
-        </a>
+        <p>
+          email me @
+          <a
+            class="col-md-4 mb-0 text-body-secondary"
+            href="mailto:aubrey.cantrell@wellesley.com"
+            >aubrey.cantrell@wellesley.edu
+          </a>
+        </p>
+
         <!-- <a href = "https://www.linkedin.com/in/aubrey-cantrell/"> linkedin </a> -->
 
         <svg class="bi me-2" width="5" height="5">
@@ -483,9 +466,9 @@
           </li>
           <li class="nav-item">
             <a
-              href="https://aubreycantrell.glitch.me/contact.html"
+              href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Aubrey%20Cantrell%20Resume%20Design%20(1).pdf?v=1723833868487"
               class="nav-link px-2 text-body-secondary"
-              >Contact</a
+              >Resume</a
             >
           </li>
         </ul>
@@ -574,6 +557,12 @@
           camera.aspect = container.clientWidth / container.clientHeight;
           camera.updateProjectionMatrix();
           renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        if (document.body.id === "home-page") {
+          document.querySelector("header").classList.add("sticky-navbar");
         }
       });
     </script>

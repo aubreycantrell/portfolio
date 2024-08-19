@@ -235,14 +235,13 @@ p {
 }
 
 
+  
+.container{
+  padding-bottom: 3%;
+}
+
 .album {
   border-radius: 20px;
-  
-  
-}
-.buttonbelow{
-  border-radius: 20px;
-  color:white;
   
   
 }
@@ -323,12 +322,7 @@ ul {
   list-style-type: none; /* Removes bullet points */
   padding: 0; /* Optional: Removes default padding */
   margin: 0; /* Optional: Removes default margin */
-
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
 }
-
 
 .nav-pills .nav-link {
   color: black !important; /* Override default Bootstrap color */
@@ -473,14 +467,6 @@ ul {
   overflow-y: auto;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap; /* Allows the items to wrap to the next line if needed */
-  justify-content: space-between; /* Distributes the items evenly with space between them */
-  align-items: center; /* Aligns items vertically centered */
-  margin: 0 -15px; /* Adjusts for gutter spacing if needed */
-}
-
 
 @media (max-width: 768px) {
   body {
@@ -577,7 +563,4 @@ ul {
   width: 100%; /* ensure the section takes up the full width of its container */
   margin: auto; /* center the section on the page */
 }
-  .port {
-    display: none;
-  }
 }
