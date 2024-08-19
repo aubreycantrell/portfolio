@@ -577,4 +577,7 @@ ul {
   width: 100%; /* ensure the section takes up the full width of its container */
   margin: auto; /* center the section on the page */
 }
+  .port {
+    display: none;
+  }
 }
