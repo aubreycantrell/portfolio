@@ -474,6 +474,18 @@ ul {
   overflow-y: auto;
 }
 
+.crop {
+  width: 100%;
+  height: 60vh; /* Display 60% of the original image height */
+  overflow: hidden;
+  position: relative;
+}
+.crop img {
+  width: 100%;
+  position: absolute;
+  top: -20%; /* Move the image up by 20% */
+}
+
 
 @media (max-width: 768px) {
   body {
@@ -573,4 +585,7 @@ ul {
   width: 100%; /* ensure the section takes up the full width of its container */
   margin: auto; /* center the section on the page */
 }
+  .crop {
+    width: 100%;
+    height: 60vh;}
 }
