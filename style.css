@@ -530,6 +530,14 @@ ul {
   object-position: center; /* Centers the image within the container */
 }
 
+.nav{
+  --bs-nav-link-color: #2E3191 !important;
+--bs-nav-link-hover-color: #212529 !important;
+}
+.nav-tabs{
+      --bs-nav-tabs-link-active-bg: #f8f8f8 !important;
+
+}
 
 
 @media (max-width: 768px) {
