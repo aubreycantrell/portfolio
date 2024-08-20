@@ -488,6 +488,48 @@ ul {
   object-position: center; /* Centers the image within the container */
 }
 
+.crop-event {
+  width: 100%;
+  height: 27%; /* Adjust this to control the height of the visible area */
+  overflow: hidden;
+  position: relative;
+}
+
+.crop-event img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container without stretching */
+  object-position: center; /* Centers the image within the container */
+}
+
+.crop-ig {
+  width: 100%;
+  height: 30%; /* Adjust this to control the height of the visible area */
+  overflow: hidden;
+  position: relative;
+}
+
+.crop-ig img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container without stretching */
+  object-position: center; /* Centers the image within the container */
+}
+
+.crop-sb {
+  width: 100%;
+  height: 32%; /* Adjust this to control the height of the visible area */
+  overflow: hidden;
+  position: relative;
+}
+
+.crop-sb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container without stretching */
+  object-position: center; /* Centers the image within the container */
+}
+
 
 
 @media (max-width: 768px) {
