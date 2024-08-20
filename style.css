@@ -476,7 +476,7 @@ ul {
 
 .crop {
   width: 100%;
-  height: 45%; /* Adjust this to control the height of the visible area */
+  height: 68%; /* Adjust this to control the height of the visible area */
   overflow: hidden;
   position: relative;
 }
