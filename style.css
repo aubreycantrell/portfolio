@@ -574,12 +574,17 @@ ul {
 .color-row {
   display: flex;
   justify-content: center;
-padding: 20px  
+padding: 20px;  
   list-style: none;
 }
 
 .color-row li {
   margin-right: 10px; /* Reduce space between squares */
+}
+.col-md-4 p,
+.col-md-4 small {
+  display: block; /* Ensures each element starts on a new line */
+  margin-bottom: 10px; /* Adjusts space between lines */
 }
 
 
