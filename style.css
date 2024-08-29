@@ -581,10 +581,17 @@ padding: 20px;
 .color-row li {
   margin-right: 10px; /* Reduce space between squares */
 }
+
 .col-md-4 p,
 .col-md-4 small {
   display: block; /* Ensures each element starts on a new line */
   margin-bottom: 10px; /* Adjusts space between lines */
+}
+.col-md-6 p,
+.col-md-6 small {
+  display: block; /* Ensures each element starts on a new line */
+  margin-bottom: 10px; /* Adjusts space between lines */
+  text-align:center;
 }
 
 
