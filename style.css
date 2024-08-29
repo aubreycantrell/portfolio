@@ -538,6 +538,11 @@ ul {
       --bs-nav-tabs-link-active-bg: #f8f8f8 !important;
 
 }
+.color-square {
+            width: 50px;    /* Width of the square */
+            height: 50px;   /* Height of the square */
+        }
+    </style
 
 
 @media (max-width: 768px) {
