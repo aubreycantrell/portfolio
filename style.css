@@ -490,7 +490,7 @@ ul {
 
 .crop-event {
   width: 100%;
-  height: 26%; /* Adjust this to control the height of the visible area */
+  height: 30%; /* Adjust this to control the height of the visible area */
   overflow: hidden;
   position: relative;
 }
@@ -504,7 +504,7 @@ ul {
 
 .crop-ig {
   width: 100%;
-  height: 30%; /* Adjust this to control the height of the visible area */
+  height: 65%; /* Adjust this to control the height of the visible area */
   overflow: hidden;
   position: relative;
 }
@@ -518,7 +518,7 @@ ul {
 
 .crop-sb {
   width: 100%;
-  height: 32%; /* Adjust this to control the height of the visible area */
+  height: 65%; /* Adjust this to control the height of the visible area */
   overflow: hidden;
   position: relative;
 }
