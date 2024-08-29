@@ -561,7 +561,7 @@ ul {
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  color: #fff;
+  color: #ffffff;
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 0;
   border-radius: 4px;
@@ -570,6 +570,17 @@ ul {
 
 .color-square-container:hover .hex-code {
   opacity: 1;
+}
+.color-row {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  
+  list-style: none;
+}
+
+.color-row li {
+  margin-right: 10px; /* Reduce space between squares */
 }
 
 
