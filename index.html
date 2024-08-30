@@ -63,6 +63,35 @@
         height: 50%;
         z-index: 1; /* Lowest z-index */
       }
+      
+      .section1 {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Adjust spacing between items as needed */
+}
+
+.imageWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.illustration {
+  display: block;
+}
+
+.design-code {
+  position: absolute;
+  bottom: 10px; /* Adjust as needed */
+  left: 10px; /* Adjust as needed */
+  background: rgba(0, 0, 0, 0.3); /* Dark semi-transparent background */
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 14px; /* Adjust font size as needed */
+  line-height: 1.4;
+  text-transform: none; /* Ensures text is not in all caps */
+}
+
     </style>
   </head>
   <body>
@@ -396,32 +425,34 @@
                   With my use of clean lines, blocking and contrasting colors, I hope to create an experience that immerses you in my art, but also helps you better understand by eye for interface design. 
                 </p>
                 
-                 <section class = "section1 cont2">
-                      <div class="imageWrapper levitating">
-                        <img
-                          class="illustration column reveal text-center"
-                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020011.jpg?v=1723688458408
-"
-                          alt="Half Moon Bay"
-                        />
-                      </div>
-                      <div class="imageWrapper levitating">
-                        <img
-                          class="illustration column reveal text-center"
-                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142
-"
-                          alt="Big Sur"
-                        />
-                      </div>
-                      <div class="imageWrapper levitating">
-                        <img
-                          class="illustration column reveal text-center"
-                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608010032.jpg?v=1723688457209
-"
-                          alt="Pleasure Point in Santa Cruz"
-                        />
-                      </div>
-                    </section>
+             <section class="section1 cont2">
+  <div class="imageWrapper levitating">
+    <img
+      class="illustration column reveal text-center"
+      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+      alt="Glass Dolphin"
+    />
+    <div class="design-code">Used as site logo</div>
+  </div>
+  <div class="imageWrapper levitating">
+    <img
+      class="illustration column reveal text-center"
+      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
+      alt="Rendered water"
+    />
+    <div class="design-code">Projected onto water grid rendering</div>
+  </div>
+  <div class="imageWrapper levitating">
+    <img
+      class="illustration column reveal text-center"
+      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_0643.png?v=1719356130724"
+      alt="blue crane"
+    />
+    <div class="design-code">Used as tabs on homepage selections</div>
+  </div>
+</section>
+
+
                 
                 <div style="margin-bottom: 0px !important; text-align: center">
                   <h1>
