@@ -565,7 +565,7 @@ ul {
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 0;
   border-radius: 4px;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.1s ease;
 }
 
 .color-square-container:hover .hex-code {
