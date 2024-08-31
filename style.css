@@ -596,6 +596,18 @@ padding: 20px;
   padding-right: 10%;
 }
 
+.btn-outline-primary {
+  color: #4d7471 !important;
+  border-color: #4d7471 !important;
+}
+
+.btn-outline-primary:hover {
+  color: #ffffff !important;
+  background-color: #4d7471 !important;
+  border-color: #4d7471 !important;
+}
+
+
 
 
 
