@@ -63,35 +63,34 @@
         height: 50%;
         z-index: 1; /* Lowest z-index */
       }
-      
+
       .section1 {
-  display: flex;
-  flex-direction: row;
-  gap: 20px; /* Adjust spacing between items as needed */
-}
+        display: flex;
+        flex-direction: row;
+        gap: 20px; /* Adjust spacing between items as needed */
+      }
 
-.imageWrapper {
-  position: relative;
-  display: inline-block;
-}
+      .imageWrapper {
+        position: relative;
+        display: inline-block;
+      }
 
-.illustration {
-  display: block;
-}
+      .illustration {
+        display: block;
+      }
 
-.design-code {
-  position: absolute;
-  bottom: 10px; /* Adjust as needed */
-  left: 10px; /* Adjust as needed */
-  background: rgba(0, 0, 0, 0.3); /* Dark semi-transparent background */
-  color: white;
-  padding: 5px;
-  border-radius: 3px;
-  font-size: 14px; /* Adjust font size as needed */
-  line-height: 1.4;
-  text-transform: none; /* Ensures text is not in all caps */
-}
-
+      .design-code {
+        position: absolute;
+        bottom: 10px; /* Adjust as needed */
+        left: 10px; /* Adjust as needed */
+        background: rgba(0, 0, 0, 0.3); /* Dark semi-transparent background */
+        color: white;
+        padding: 5px;
+        border-radius: 3px;
+        font-size: 14px; /* Adjust font size as needed */
+        line-height: 1.4;
+        text-transform: none; /* Ensures text is not in all caps */
+      }
     </style>
   </head>
   <body>
@@ -253,100 +252,41 @@
             <!-- about me -->
             <div id="about-show" class="cont" data-point="about-data">
               <!-- First row with text and image -->
-              <div class="half-width-container">
-                <div class="row">
-                  <h2 style="text-align: center">Hi, I'm Aubrey!</h2>
-                  <div class="col-12 cont1">
-                    <!--
-                    <section id="imageSection">
-                      <div class="imageWrapper levitating">
-                        <img
-                          class="illustration column reveal text-center"
-                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1269%202.jpeg?v=1723600471690
-"
-                          alt="Turtle figurine"
-                        />
-                      </div>
-                      <div class="imageWrapper levitating">
-                        <img
-                          class="illustration column reveal text-center"
-                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1260.jpeg?v=1723600470208
-"
-                          alt="California Sticker"
-                        />
-                      </div>
-                      <div class="imageWrapper levitating">
-                        <img
-                          class="illustration column reveal text-center"
-                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1266.jpeg?v=1723600545620
-"
-                          alt="Shell from Half Moon Bay"
-                        />
-                      </div>
-                    </section>
-
--->
-                    <div class="col-4">
-                      <img
-                        class="illustration column reveal text-center levitating fit-img"
-                        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/theRedString?v=1719334311172"
-                        alt="the red string"
-                      />
-                    </div>
+              <div class="half-width-container"
+                   style = "align-items: center">
+                <div
+                  class="row"
+                  style="display: flex; align-items: center; gap: 20px"
+                >
+                  <!-- Left column: Text -->
+                  <div class="col-6" style="flex: 1">
+                    <h2 style="text-align: center">Hi, I'm Aubrey!</h2>
                     <p class="column text-center lead">
                       I am a junior at Wellesley College, double majoring in
-                      Computer Science and Studio Arts, and am proud to call the
-                      Bay Area, CA home. I love to be outdoors; you can find me
-                      surfing, rockclimbing, cycling or hiking!
-                    </p>
-                    <img
-                      class="illustration column reveal text-center levitating fit-img"
-                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/aubrey?v=1719332533080"
-                      alt="Aubrey Cantrell"
-                    />
-                  </div>
-                </div>
-                <div class="row cont1">
-                  <div class="col-8 cont1 text">
-                    <p class="column text-center lead">
-                      I am passionate about finding the balance between artistic
+                      Computer Science and Studio Arts, and I am passionate about finding the balance between artistic
                       and purposeful designs, to better user interaction and
                       creating memorable interface experiences.
                     </p>
+                    <p class="column text-center lead">
+                      
+                      am proud to call the
+                      Bay Area, CA home. I love to be outdoors; you can find me
+                      surfing, rockclimbing, cycling, or hiking!
+                    </p>
                   </div>
-                </div>
-                <div class="row">
-                  <!--
-                    <section id="imageSection1">
-                      <div class="imageWrapper levitating">
-                        <img
-                          class="illustration column reveal text-center"
-                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1265.jpeg?v=1723600471275
-"
-                          alt="Surf wax"
-                        />
-                      </div>
-                      <div class="imageWrapper levitating">
-                        <img
-                          class="illustration column reveal text-center"
-                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1264.jpeg?v=1723600672802
-"
-                          alt="Camera"
-                        />
-                      </div>
-                      <div class="imageWrapper levitating">
-                        <img
-                          class="illustration column reveal text-center"
-                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_1262.jpeg?v=1723600617711
-"
-                          alt="Shell from Half Moon Bay"
-                        />
-                      </div>
-                    </section>
--->
+                  <!-- Right column: Image -->
+                  <div class="col-6" style="flex: 1; text-align: center">
+                    <img
+                      class="illustration column reveal levitating fit-img"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/aubrey?v=1719332533080"
+                      alt="Aubrey Cantrell"
+                      style="max-width: 100%; height: auto; border-radius: 8px"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
+
             <!-- coursework -->
             <div
               id="course-show"
@@ -415,142 +355,125 @@
               <div class="col-md-8">
                 <p class="lead">
                   Through my portfolio I hope to convey both my passions for
-                  interface interactions and artistic inquiries, and how they can
-                  be combined to support intruiging design concepts. With these
-                  goals, I incorporated a few of my art pieces
-                  into the website, to use both for functionality and aesthetic
-                  purposes.
+                  interface interactions and artistic inquiries, and how they
+                  can be combined to support intruiging design concepts. With
+                  these goals, I incorporated a few of my art pieces into the
+                  website, to use both for functionality and aesthetic purposes.
                 </p>
                 <p class="lead">
-                  With my use of clean lines, blocking and contrasting colors, I hope to create an experience that immerses you in my art, but also helps you better understand my eye for interface design. 
+                  With my use of clean lines, blocking and contrasting colors, I
+                  hope to create an experience that immerses you in my art, but
+                  also helps you better understand my eye for interface design.
                 </p>
-                
-                
-                
-          
-               
-                
-             <section class=" col-md-8 section1 cont2">
-  <div class="imageWrapper levitating">
-    <img
-      class="illustration column reveal text-center"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
-      alt="Glass Dolphin"
-    />
-    <div class="design-code">Used as site logo</div>
-  </div>
-  <div class="imageWrapper levitating">
-    <img
-      class="illustration column reveal text-center"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
-      alt="Rendered water"
-    />
-    <div class="design-code">Projected onto water grid rendering</div>
-  </div>
-  <div class="imageWrapper levitating">
-    <img
-      class="illustration column reveal text-center"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_0643.png?v=1719356130724"
-      alt="blue crane"
-    />
-    <div class="design-code">Used as tabs on homepage selections</div>
-  </div>
-</section>
-                
-                
-                
-                <div class="row" style = "padding-top: 10%;">
-                <div class="col-md-6">
-                 
-                <ul class="color-row">
-                 
-                  <li class="color-item">
-                    <div class="color-square-container">
-                      <div
-                        class="color-square"
-                        style="background-color: #4d7471"
-                      ></div>
-                      <div class="hex-code">#4d7471</div>
+
+                <section class="col-md-8 section1 cont2">
+                  <div class="imageWrapper levitating">
+                    <img
+                      class="illustration column reveal text-center"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+                      alt="Glass Dolphin"
+                    />
+                    <div class="design-code">Used as site logo</div>
+                  </div>
+                  <div class="imageWrapper levitating">
+                    <img
+                      class="illustration column reveal text-center"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
+                      alt="Rendered water"
+                    />
+                    <div class="design-code">
+                      Projected onto water grid rendering
                     </div>
-                  </li>
-                  <li class="color-item">
-                    <div class="color-square-container">
-                      <div
-                        class="color-square"
-                        style="background-color: #789c9d"
-                      ></div>
-                      <div class="hex-code">#789c9d</div>
+                  </div>
+                  <div class="imageWrapper levitating">
+                    <img
+                      class="illustration column reveal text-center"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_0643.png?v=1719356130724"
+                      alt="blue crane"
+                    />
+                    <div class="design-code">
+                      Used as tabs on homepage selections
                     </div>
-                  </li>
-                  <li class="color-item">
-                    <div class="color-square-container">
-                      <div
-                        class="color-square"
-                        style="background-color: #fffcfc"
-                      ></div>
-                      <div class="hex-code">#fffcfc</div>
+                  </div>
+                </section>
+
+                <div class="row" style="padding-top: 10%">
+                  <div class="col-md-6">
+                    <ul class="color-row">
+                      <li class="color-item">
+                        <div class="color-square-container">
+                          <div
+                            class="color-square"
+                            style="background-color: #4d7471"
+                          ></div>
+                          <div class="hex-code">#4d7471</div>
+                        </div>
+                      </li>
+                      <li class="color-item">
+                        <div class="color-square-container">
+                          <div
+                            class="color-square"
+                            style="background-color: #789c9d"
+                          ></div>
+                          <div class="hex-code">#789c9d</div>
+                        </div>
+                      </li>
+                      <li class="color-item">
+                        <div class="color-square-container">
+                          <div
+                            class="color-square"
+                            style="background-color: #fffcfc"
+                          ></div>
+                          <div class="hex-code">#fffcfc</div>
+                        </div>
+                      </li>
+                      <li class="color-item">
+                        <div class="color-square-container">
+                          <div
+                            class="color-square"
+                            style="background-color: #ffffff"
+                          ></div>
+                          <div class="hex-code">#ffffff</div>
+                        </div>
+                      </li>
+                    </ul>
+                    <p>
+                      Site colors adopted from landing page background, creating
+                      a neutral yet contrasting color palate that unifies the
+                      appearance of the site
+                    </p>
+                    <p>
+                      Hanken Grotesk as font for a clean look that emphasizes
+                      readability and creates structure with the bold lines
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <div
+                      style="margin-bottom: 0px !important; text-align: center"
+                    >
+                      <h1>
+                        H1 Heading example, <strong>bold</strong> and
+                        <em>italic</em>
+                      </h1>
+                      <h2>
+                        H2 Heading example, <strong>bold</strong> and
+                        <em>italic</em>
+                      </h2>
+                      <p class="lead">
+                        Lead text example, <strong>bold</strong> and
+                        <em>italic</em>
+                      </p>
+                      <p>
+                        Text example, <strong>bold</strong> and <em>italic</em>
+                      </p>
+                      <small>
+                        Small example, <strong>bold</strong> and <em>italic</em>
+                      </small>
                     </div>
-                  </li>
-                  <li class="color-item">
-                    <div class="color-square-container">
-                      <div
-                        class="color-square"
-                        style="background-color: #ffffff"
-                      ></div>
-                      <div class="hex-code">#ffffff</div>
-                    </div>
-                  </li>
-                </ul>
-                  <p>
-                    Site colors adopted from landing page background, creating a neutral yet contrasting color palate that unifies the appearance of the site
-                  </p>
-                  <p>
-Hanken Grotesk as font for a clean look that emphasizes readability and creates structure with the bold lines                    </p>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <div style="margin-bottom: 0px !important; text-align: center">
-                  <h1>
-                    H1 Heading example, <strong>bold</strong> and
-                    <em>italic</em>
-                  </h1>
-                  <h2>
-                    H2 Heading example, <strong>bold</strong> and
-                    <em>italic</em>
-                  </h2>
-                  <p class="lead">
-                    Lead text example, <strong>bold</strong> and <em>italic</em>
-                  </p>
-                  <p>Text example, <strong>bold</strong> and <em>italic</em></p>
-                  <small>
-                    Small example, <strong>bold</strong> and <em>italic</em>
-                  </small>
-                </div>
-              </div>
-              </div> 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
- 
-              
-                  
 
-                
-                
-
-             
-
-              <!--
+                <!--
               <strong>Coming soon...</strong> This is where I will show the design
               aspects of my portfolio. For now, here is some of my recent film!
                <section class = "section1 cont2">
@@ -580,8 +503,8 @@ Hanken Grotesk as font for a clean look that emphasizes readability and creates 
                       </div>
                     </section>
 -->
+              </div>
             </div>
-          </div>
           </div>
         </main>
       </div>
