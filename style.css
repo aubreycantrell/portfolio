@@ -235,6 +235,23 @@ p {
   border-radius: 20px;
 }
 
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+  .backgr {
+    background-attachment: scroll; /* Avoid fixed attachment on smaller devices */
+    height: 70vh; /* Adjust height for smaller screens */
+    padding: 3%; /* Reduce padding for compact view */
+  }
+}
+
+@media (max-width: 480px) {
+  .backgr {
+    height: 68vh; /* Further reduce height for very small screens */
+    border-radius: 3%; /* Adjust border-radius for smaller visuals */
+  }
+}
+
 .album {
   border-radius: 20px;
   
@@ -628,15 +645,16 @@ padding: 20px;
     height: auto; /* Adjust height for smaller screens */
     overflow-y: visible; /* Allow content to be fully visible */
   }
-  .backgr {
-    background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-15%20at%201.38.24%20PM.png?v=1723754310414");
-    background-size: cover;
-  }
+  
   
   .backgr-design{
     background-size: cover;
     
   }
+  
+  .contain {
+  padding-top: 30%;
+}
 
   .container {
     height: auto; /* Adjust container height for smaller screens */
