@@ -743,3 +743,14 @@ padding: 20px;
 }
  
 }
+
+.content-container {
+  width: 60%; /* Takes up 60% of the parent's width */
+  margin: 0 auto; /* Centers the container horizontally */
+  padding: 20px; /* Adds spacing inside the container */
+  line-height: 1.6; /* Improves readability by increasing line spacing */
+  font-family: 'Hanken Grotesk', sans-serif; /* Sets the font */
+  background-color: white; /* Light background for contrast */
+  border-radius: 10px; /* Adds rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
