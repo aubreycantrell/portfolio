@@ -215,3 +215,31 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     });
+
+const fonts = [
+  'Arial, sans-serif',
+  'Georgia, serif',
+  'Courier New, monospace',
+  'Times New Roman, serif',
+  'Comic Sans MS, cursive',
+  'Verdana, sans-serif',
+  'Trebuchet MS, sans-serif',
+  'Impact, sans-serif'
+];
+
+const textElement = document.getElementById('dynamicText');
+const text = textElement.textContent;
+
+// Wrap each letter in a span
+textElement.innerHTML = text.split('').map(letter => `<span>${letter}</span>`).join('');
+
+const spans = textElement.querySelectorAll('span');
+
+function randomFontChange() {
+  spans.forEach(span => {
+    const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+    span.style.fontFamily = randomFont;
+  });
+}
+
+setInterval(randomFontChange, 500); // Change font every 0.5 seconds
