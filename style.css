@@ -774,3 +774,16 @@ padding: 20px;
   left: 0;
   border: none;
 }
+
+.centered-list {
+  display: inline-block; /* Makes the list behave like inline content */
+  text-align: left; /* Ensures bullet points align properly within the block */
+  padding: 0; /* Removes default padding if needed */
+  margin: 0; /* Adjust margin for centering */
+  list-style-position: inside; /* Keeps bullet points aligned with text */
+}
+
+p {
+  text-align: center; /* Centers the paragraph content */
+}
+
