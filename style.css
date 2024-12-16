@@ -787,3 +787,22 @@ p {
   text-align: center; /* Centers the paragraph content */
 }
 
+.image-label {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.d-flex > .position-relative:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
