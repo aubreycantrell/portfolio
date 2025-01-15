@@ -3,199 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Origami Fortune Teller</title>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/controls/OrbitControls.js"></script>
-    <!-- Correctly import FontLoader and TextGeometry -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/FontLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/geometries/TextGeometry.js"></script>
+    <title>Interactive 3D Cootie Catcher</title>
+    <!-- Load Three.js (latest stable version) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
+    <h1 style="position: absolute; z-index: 10; top: 20px; left: 20px; color: white;">Interactive 3D Cootie Catcher</h1>
+    
+    <div id="fortune-display" style="position: absolute; z-index: 10; top: 80px; left: 20px; color: white; display: none;">
+        <h2>Your Fortune:</h2>
+        <p id="fortune-text"></p>
+    </div>
+
     <script>
-        // Scene setup
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xf0f0f0);
+        // Check if Three.js has been loaded
+        if (typeof THREE === 'undefined') {
+            console.error("Three.js is not loaded correctly!");
+        } else {
+            console.log("Three.js loaded successfully!");
 
-        // Camera setup
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(3, 3, 6);
-        camera.lookAt(0, 0, 0);
+            // 1. Set up Three.js scene, camera, and renderer
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
 
-        // Renderer setup
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        document.body.appendChild(renderer.domElement);
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0x888888);
+            scene.add(ambientLight);
 
-        // Lighting setup
-        const ambientLight = new THREE.AmbientLight(0x888888);
-        scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(3, 3, 3);
-        scene.add(directionalLight);
+            // 2. Fortune data
+            const fortunes = {
+                "Red": ["You will soon have a great opportunity!", "Beware of making hasty decisions."],
+                "Blue": ["A new adventure is on the horizon.", "Take time to reflect before making any changes."],
+                "Green": ["Good fortune will follow you this week.", "A challenge is ahead, but you are prepared."],
+                "Yellow": ["You will receive good news very soon.", "An old friend will come back into your life."]
+            };
 
-        // Add OrbitControls to allow user interaction
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.25;
-        controls.enableZoom = true;
-
-        // Create the base square geometry
-        const planeGeometry = new THREE.PlaneGeometry(2, 2, 8, 8);
-        const material = new THREE.MeshStandardMaterial({
-            color: 0xeeeeee, // Temporarily use a solid color
-            emissive: 0xcccccc,
-            emissiveIntensity: 0.5,
-            roughness: 0.8,
-            metalness: 0.2,
-            side: THREE.DoubleSide
-        });
-
-        const cootieCatcher = new THREE.Mesh(planeGeometry, material);
-        cootieCatcher.rotation.x = -Math.PI / 2;
-
-        // Fold the paper: simulate creases for the cootie catcher
-        const foldAmount = 0.3;  // How far the fold goes
-        const positions = planeGeometry.attributes.position.array;  // Access the position attribute directly
-
-        // Fold the corners towards the center to form the first fold
-        for (let i = 0; i < positions.length; i += 3) {
-            const x = positions[i];
-            const y = positions[i + 1];
-
-            // Check position and simulate fold based on quadrants
-            if (x > 0 && y > 0) {
-                positions[i + 2] = foldAmount;  // Upper right corner folds up
-            } else if (x < 0 && y > 0) {
-                positions[i + 2] = foldAmount;  // Upper left corner folds up
-            } else if (x < 0 && y < 0) {
-                positions[i + 2] = foldAmount;  // Lower left corner folds up
-            } else if (x > 0 && y < 0) {
-                positions[i + 2] = foldAmount;  // Lower right corner folds up
-            }
-        }
-
-        // Fold inward again to create a smaller square with creases
-        for (let i = 0; i < positions.length; i += 3) {
-            const x = positions[i];
-            const y = positions[i + 1];
-
-            // Fold inward further to form the second fold
-            if (Math.abs(x) < 1 && Math.abs(y) < 1) {
-                positions[i + 2] = foldAmount * 2;  // Folded further
-            }
-        }
-
-        planeGeometry.attributes.position.needsUpdate = true;  // Flag to update the geometry
-
-        scene.add(cootieCatcher);
-
-        // Load the font and create tabs with text
-        const fontLoader = new THREE.FontLoader();
-        let font;
-
-        fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (loadedFont) => {
-            font = loadedFont;
-
-            // Create tabs (flaps) as separate geometries
-            const tabGeometry = new THREE.PlaneGeometry(0.5, 0.5);
-            const tabMaterial = new THREE.MeshStandardMaterial({
-                color: 0xfff,
-                emissive: 0xcccccc,
-                emissiveIntensity: 0.3,
-                roughness: 0.8,
-                metalness: 0.2,
-                side: THREE.DoubleSide
-            });
-
+            // 3. Create the cootie catcher (folded paper)
+            const cootieCatcher = new THREE.Group();
+            const geometry = new THREE.PlaneGeometry(2, 2, 1, 1); // A simple square plane for the cootie catcher
+            const material = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, wireframe: true });
+            
+            // Create and fold the tabs (this will simulate the folding of the paper)
             const tabs = [];
-            const tabPositions = [
-                { x: 1, y: 1, rotation: 0, text: '1' },
-                { x: -1, y: 1, rotation: Math.PI, text: '2' },
-                { x: 1, y: -1, rotation: Math.PI / 2, text: '3' },
-                { x: -1, y: -1, rotation: -Math.PI / 2, text: '4' }
-            ];
-
-            // Create the tabs and position them accordingly
-            tabPositions.forEach((pos) => {
-                const tab = new THREE.Mesh(tabGeometry, tabMaterial);
-                tab.position.set(pos.x, pos.y, 0.5);  // Position the tab in front of the cootie catcher
-                tab.rotation.z = pos.rotation;
-
-                // Create 3D text and add it to the tab
-                const textGeometry = new THREE.TextGeometry(pos.text, {
-                    font: font,
-                    size: 0.1,
-                    height: 0.02
-                });
-
-                const textMesh = new THREE.Mesh(textGeometry, new THREE.MeshBasicMaterial({ color: 0x000000 }));
-                textMesh.position.set(pos.x - 0.1, pos.y - 0.1, 0.55);
-                scene.add(textMesh);
-
+            const tabColors = ["Red", "Blue", "Green", "Yellow"];
+            
+            for (let i = 0; i < 4; i++) {
+                const tab = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color: 0xffffff }));
+                tab.position.set((i % 2 === 0 ? 1 : -1) * 0.8, (i < 2 ? 1 : -1) * 0.8, 0.1);
+                tab.rotation.set(0, 0, Math.PI / 4);
+                cootieCatcher.add(tab);
                 tabs.push(tab);
-                scene.add(tab);
-            });
+                
+                // Add text to each tab
+                const textGeometry = new THREE.TextGeometry(tabColors[i], {
+                    font: new THREE.FontLoader().parse(fontJSON),
+                    size: 0.2,
+                    height: 0.05
+                });
+                const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+                textMesh.position.set(tab.position.x - 0.3, tab.position.y - 0.3, tab.position.z);
+                cootieCatcher.add(textMesh);
+            }
 
-            // Raycasting for detecting clicks
+            scene.add(cootieCatcher);
+            camera.position.z = 5;
+
+            // 4. Raycaster for detecting clicks on tabs
             const raycaster = new THREE.Raycaster();
             const mouse = new THREE.Vector2();
-            let clickedTab = null;
 
-            function onMouseClick(event) {
+            // Update mouse position when clicked
+            window.addEventListener('click', (event) => {
                 mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
                 mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-                raycaster.setFromCamera(mouse, camera);
-
+                raycaster.updateMatrixWorld();
                 const intersects = raycaster.intersectObjects(tabs);
+
                 if (intersects.length > 0) {
-                    clickedTab = intersects[0].object;
-                    toggleTab(clickedTab);
+                    const tab = intersects[0].object;
+                    const index = tabs.indexOf(tab);
+                    displayFortune(tabColors[index]);
                 }
-            }
-
-            // Function to simulate tab opening/closing
-            function toggleTab(tab) {
-                const targetRotation = tab.rotation.x === 0 ? Math.PI / 2 : 0; // Toggle between closed and open states
-                const duration = 1; // Duration of the animation in seconds
-                const startRotation = tab.rotation.x;
-
-                const startTime = Date.now();
-                const animateTab = function () {
-                    const elapsed = (Date.now() - startTime) / 1000;
-                    if (elapsed < duration) {
-                        const progress = elapsed / duration;
-                        tab.rotation.x = THREE.MathUtils.lerp(startRotation, targetRotation, progress);
-                        requestAnimationFrame(animateTab);
-                    } else {
-                        tab.rotation.x = targetRotation;
-                    }
-                };
-
-                animateTab();
-            }
-
-            // Add event listener for mouse click
-            window.addEventListener('click', onMouseClick, false);
-
-            // Handle resizing
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
             });
 
-            // Animation loop
+            // 5. Show the fortune for the clicked tab
+            function displayFortune(color) {
+                const fortune = fortunes[color];
+                const randomFortune = fortune[Math.floor(Math.random() * fortune.length)];
+                document.getElementById('fortune-text').textContent = randomFortune;
+                document.getElementById('fortune-display').style.display = 'block';
+            }
+
+            // 6. Animate the scene
             function animate() {
                 requestAnimationFrame(animate);
-                controls.update(); // Only required if controls.enableDamping is enabled
+                cootieCatcher.rotation.x += 0.01;
+                cootieCatcher.rotation.y += 0.01;
+                raycaster.updateMatrixWorld();
                 renderer.render(scene, camera);
             }
 
             animate();
-        });
+            
+            // Resize the renderer when window size changes
+            window.addEventListener('resize', () => {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+            });
+
+            // Mock font data (you would need to load an actual font file)
+            const fontJSON = { "type": "Font", "data": { /* Add font data here */ } };
+        }
     </script>
 </body>
 </html>
