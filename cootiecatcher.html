@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cootie Catcher</title>
+    <title>Interactive 3D Cootie Catcher</title>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/controls/OrbitControls.js"></script>
-    <link rel="icon" href="data:,">
 </head>
 <body style="margin: 0; overflow: hidden;">
     <script>
@@ -22,9 +21,10 @@
         // Renderer setup
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
         document.body.appendChild(renderer.domElement);
 
-        // Lighting
+        // Lighting setup
         const ambientLight = new THREE.AmbientLight(0x888888);
         scene.add(ambientLight);
 
@@ -32,56 +32,96 @@
         directionalLight.position.set(3, 3, 3);
         scene.add(directionalLight);
 
-        // Create geometry and material
-        const planeGeometry = new THREE.PlaneGeometry(2, 2, 10, 10); // Subdivided plane
+        // Add OrbitControls to allow user interaction
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.25;
+        controls.enableZoom = true;
+
+        // Function to create tabs
+        const createTab = (x, y, rotation) => {
+            const tabGeometry = new THREE.PlaneGeometry(0.5, 0.5);
+            const tabMaterial = new THREE.MeshStandardMaterial({ color: 0x4d7471, side: THREE.DoubleSide });
+
+            const tab = new THREE.Mesh(tabGeometry, tabMaterial);
+            tab.position.set(x, y, 0.5);  // Position the tab in front of the cootie catcher
+            tab.rotation.z = rotation;
+            return tab;
+        };
+
+        // Geometry for the Cootie Catcher (a square with tabs)
+        const planeGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
         const material = new THREE.MeshStandardMaterial({
-            color: 0xffffff,
+            color: 0xeeeeee,
+            emissive: 0xcccccc,
+            emissiveIntensity: 0.5,
             roughness: 0.8,
             metalness: 0.2,
             side: THREE.DoubleSide,
-            flatShading: true, // Enhance the appearance of creases
         });
 
-        // Adjust vertices for folds
-        const positionAttribute = planeGeometry.attributes.position;
-        const positions = positionAttribute.array;
-        for (let i = 0; i < positions.length; i += 3) {
-            const x = positions[i];
-            const y = positions[i + 1];
-
-            // Simulate the inward folds
-            if (Math.abs(x) === 1 && Math.abs(y) === 1) {
-                positions[i + 2] = 0.5; // Outer corners fold inward
-            } else if (Math.abs(x) === 0 && Math.abs(y) === 0) {
-                positions[i + 2] = 1.0; // Center point raised
-            } else if (Math.abs(x) < 1 && Math.abs(y) < 1) {
-                positions[i + 2] = 0.5 - Math.abs(x + y) / 2; // Intermediate folds
-            }
-        }
-        positionAttribute.needsUpdate = true;
-
-        // Create the mesh
         const cootieCatcher = new THREE.Mesh(planeGeometry, material);
         cootieCatcher.rotation.x = -Math.PI / 2;
         scene.add(cootieCatcher);
 
-        // Initialize OrbitControls
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.minPolarAngle = 0; // Minimum vertical angle (0 radians)
-        controls.maxPolarAngle = Math.PI; // Maximum vertical angle (π radians)
-        controls.minAzimuthAngle = -Infinity; // No minimum horizontal angle
-        controls.maxAzimuthAngle = Infinity; // No maximum horizontal angle
-        controls.enableDamping = true; // Enable inertia
-        controls.dampingFactor = 0.25; // Damping inertia
-        controls.screenSpacePanning = false; // Disable panning in screen space
+        // Create tabs as separate objects
+        const tabs = [];
+        const tabPositions = [
+            { x: 1, y: 1, rotation: 0 },
+            { x: -1, y: 1, rotation: Math.PI },
+            { x: 1, y: -1, rotation: Math.PI / 2 },
+            { x: -1, y: -1, rotation: -Math.PI / 2 }
+        ];
 
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update(); // Only required if controls.enableDamping or controls.auto-rotation are enabled
-            renderer.render(scene, camera);
+        tabPositions.forEach((pos) => {
+            const tab = createTab(pos.x, pos.y, pos.rotation);
+            tabs.push(tab);
+            scene.add(tab);
+        });
+
+        // Raycasting for detecting clicks
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let clickedTab = null;
+
+        function onMouseClick(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.updateMatrixWorld();
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObjects(tabs);
+            if (intersects.length > 0) {
+                clickedTab = intersects[0].object;
+                toggleTab(clickedTab);
+            }
         }
-        animate();
+
+        // Function to simulate the tab opening/closing
+        function toggleTab(tab) {
+            const targetRotation = tab.rotation.x === 0 ? Math.PI / 2 : 0; // Toggle between closed and open states
+            const duration = 1; // Duration of the animation in seconds
+            const startRotation = tab.rotation.x;
+
+            // Animate the tab
+            const startTime = Date.now();
+            const animateTab = function () {
+                const elapsed = (Date.now() - startTime) / 1000;
+                if (elapsed < duration) {
+                    const progress = elapsed / duration;
+                    tab.rotation.x = THREE.MathUtils.lerp(startRotation, targetRotation, progress);
+                    requestAnimationFrame(animateTab);
+                } else {
+                    tab.rotation.x = targetRotation;
+                }
+            };
+
+            animateTab();
+        }
+
+        // Add event listener for mouse click
+        window.addEventListener('click', onMouseClick, false);
 
         // Handle resizing
         window.addEventListener('resize', () => {
@@ -89,6 +129,14 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); // Only required if controls.enableDamping is enabled
+            renderer.render(scene, camera);
+        }
+        animate();
     </script>
 </body>
 </html>
