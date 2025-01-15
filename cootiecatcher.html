@@ -41,7 +41,7 @@
         controls.dampingFactor = 0.25;
         controls.enableZoom = true;
 
-        // Create the base square geometry
+        // Create the base square geometry (flat paper)
         const planeGeometry = new THREE.PlaneGeometry(2, 2, 8, 8);
         const material = new THREE.MeshStandardMaterial({
             color: 0xeeeeee, // Temporarily use a solid color
@@ -55,41 +55,63 @@
         const cootieCatcher = new THREE.Mesh(planeGeometry, material);
         cootieCatcher.rotation.x = -Math.PI / 2;
 
-        // Fold the paper: simulate creases for the cootie catcher
-        const foldAmount = 0.3;  // How far the fold goes
-        const positions = planeGeometry.attributes.position.array;  // Access the position attribute directly
-
-        // Fold the corners towards the center to form the first fold
-        for (let i = 0; i < positions.length; i += 3) {
-            const x = positions[i];
-            const y = positions[i + 1];
-
-            // Check position and simulate fold based on quadrants
-            if (x > 0 && y > 0) {
-                positions[i + 2] = foldAmount;  // Upper right corner folds up
-            } else if (x < 0 && y > 0) {
-                positions[i + 2] = foldAmount;  // Upper left corner folds up
-            } else if (x < 0 && y < 0) {
-                positions[i + 2] = foldAmount;  // Lower left corner folds up
-            } else if (x > 0 && y < 0) {
-                positions[i + 2] = foldAmount;  // Lower right corner folds up
-            }
-        }
-
-        // Fold inward again to create a smaller square with creases
-        for (let i = 0; i < positions.length; i += 3) {
-            const x = positions[i];
-            const y = positions[i + 1];
-
-            // Fold inward further to form the second fold
-            if (Math.abs(x) < 1 && Math.abs(y) < 1) {
-                positions[i + 2] = foldAmount * 2;  // Folded further
-            }
-        }
-
-        planeGeometry.attributes.position.needsUpdate = true;  // Flag to update the geometry
-
         scene.add(cootieCatcher);
+
+        // Fold the paper: simulate creases for the cootie catcher
+        let foldAmount = 0.3;  // How far the fold goes
+        let positions = planeGeometry.attributes.position.array;  // Access the position attribute directly
+
+        // Animation variables
+        let foldStage = 0;
+
+        // Function to animate the folding process
+        function foldPaper() {
+            if (foldStage === 0) {
+                // First fold: move the corners toward the center
+                for (let i = 0; i < positions.length; i += 3) {
+                    const x = positions[i];
+                    const y = positions[i + 1];
+
+                    // Fold the corners inward
+                    if (x > 0 && y > 0) {
+                        positions[i + 2] = foldAmount;
+                    } else if (x < 0 && y > 0) {
+                        positions[i + 2] = foldAmount;
+                    } else if (x < 0 && y < 0) {
+                        positions[i + 2] = foldAmount;
+                    } else if (x > 0 && y < 0) {
+                        positions[i + 2] = foldAmount;
+                    }
+                }
+                foldStage = 1;
+            } else if (foldStage === 1) {
+                // Second fold: further fold inward to create the smaller square
+                for (let i = 0; i < positions.length; i += 3) {
+                    const x = positions[i];
+                    const y = positions[i + 1];
+
+                    if (Math.abs(x) < 1 && Math.abs(y) < 1) {
+                        positions[i + 2] = foldAmount * 2;
+                    }
+                }
+                foldStage = 2;
+            } else if (foldStage === 2) {
+                // Final folding, adjust position for the last creases
+                foldAmount = 0.1; // Smaller fold for final stage
+                for (let i = 0; i < positions.length; i += 3) {
+                    const x = positions[i];
+                    const y = positions[i + 1];
+
+                    if (Math.abs(x) < 0.5 && Math.abs(y) < 0.5) {
+                        positions[i + 2] = foldAmount;
+                    }
+                }
+                foldStage = 3;  // Finished folding
+            }
+
+            // Update the geometry after folding
+            planeGeometry.attributes.position.needsUpdate = true;
+        }
 
         // Load the font and create tabs with text
         const fontLoader = new THREE.FontLoader();
@@ -138,64 +160,28 @@
                 scene.add(tab);
             });
 
-            // Raycasting for detecting clicks
-            const raycaster = new THREE.Raycaster();
-            const mouse = new THREE.Vector2();
-            let clickedTab = null;
-
-            function onMouseClick(event) {
-                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-                mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-                raycaster.setFromCamera(mouse, camera);
-
-                const intersects = raycaster.intersectObjects(tabs);
-                if (intersects.length > 0) {
-                    clickedTab = intersects[0].object;
-                    toggleTab(clickedTab);
-                }
-            }
-
-            // Function to simulate tab opening/closing
-            function toggleTab(tab) {
-                const targetRotation = tab.rotation.x === 0 ? Math.PI / 2 : 0; // Toggle between closed and open states
-                const duration = 1; // Duration of the animation in seconds
-                const startRotation = tab.rotation.x;
-
-                const startTime = Date.now();
-                const animateTab = function () {
-                    const elapsed = (Date.now() - startTime) / 1000;
-                    if (elapsed < duration) {
-                        const progress = elapsed / duration;
-                        tab.rotation.x = THREE.MathUtils.lerp(startRotation, targetRotation, progress);
-                        requestAnimationFrame(animateTab);
-                    } else {
-                        tab.rotation.x = targetRotation;
-                    }
-                };
-
-                animateTab();
-            }
-
-            // Add event listener for mouse click
-            window.addEventListener('click', onMouseClick, false);
-
-            // Handle resizing
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-
             // Animation loop
             function animate() {
                 requestAnimationFrame(animate);
+
+                if (foldStage < 3) {
+                    foldPaper();
+                }
+
                 controls.update(); // Only required if controls.enableDamping is enabled
                 renderer.render(scene, camera);
             }
 
             animate();
         });
+
+        // Handle resizing
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
     </script>
 </body>
 </html>
+
