@@ -14,8 +14,6 @@
       rel="icon"
       href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
     />
-    <link rel="stylesheet" href="clockstyle.css" />
-
     <script src="/script.js" defer></script>
     <style>
       body {
@@ -56,7 +54,7 @@
         top: 10%; /* Vertically centered on the screen */
         width: 58%; /* Occupies a third of the screen's width */
         padding: 20px; /* Adds padding inside the section */
-        border-radius: 1 0px; /* Rounded corners */
+        border-radius: 10px; /* Rounded corners */
         margin: 20px auto; /* Adds vertical spacing if needed */
         background-color: rgba(
           0,
@@ -227,8 +225,8 @@
 
       .responsive-gif {
         width: 100%; /* Ensures the GIF fits the container width */
-        height: 50%; /* Maintains the aspect ratio */
-        border-radius: 0px; /* Optional: Add rounded corners */
+        height: auto; /* Maintains the aspect ratio */
+        border-radius: 10px; /* Optional: Add rounded corners */
       }
 
       .embed-container {
@@ -236,20 +234,11 @@
         margin: auto;
         padding-top: 0;
       }
-      .embed-container img {
-        width: 100%; /* Set the desired width */
-        height: 200px; /* Set the desired height */
-        object-fit: contain; /* Ensures the image is cropped to fit the container */
-      }
 
       ul {
         list-style-type: none; /* Removes bullet points */
         margin: 0; /* Removes default margin */
         padding: 0; /* Removes default padding */
-      }
-      .arrow {
-        font-size: 0.6rem; /* Smaller font size for the arrow */
-        transition: transform 0.3s ease;
       }
     </style>
   </head>
@@ -353,60 +342,79 @@
     </div>
 
     <section class="right-text">
-      <h2>RGB Clock</h2>
-
+      <h2>BakeBot</h2>
+      <small>
+        <p>
+          Resources:
+          <a
+            href="https://creator.voiceflow.com/dashboard?import=67328fed02f867cb4c491b5f"
+            >VoiceFlow</a
+          >
+          |
+          <a
+            href="https://docs.google.com/document/d/1IQVtFRvpOTC2cQWP-sWg-_ffgkV8T5ejB_Ew3BExuIw/edit?tab=t.0"
+            >Usability Testing Round 1</a
+          >
+          |
+          <a
+            href="https://docs.google.com/document/d/1NzAQHA-miOI5hsof5nbH3rOOe5BJbroSoB-PdrNGsl4/edit?tab=t.0"
+            >Usability Testing Round 2</a
+          >
+        </p>
+      </small>
       <p>
+        Your new Baking Assistant:
         <small
-          >A piece in response to the iconic saying "a broken clock is correct
-          twice a day", where each day a color palette at any given time will
-          only be shown once more. The seconds hand is represented by yellow,
-          minutes by pink, hours by blue.
+          >An Interactive Voice Skill intergrated with AI making the baking
+          process easier and more efficient
         </small>
       </p>
-      <div id="digital-clock" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
-  <!-- Digital clock content here -->
-</div>
+      <p>
+        <small
+          >The baking recommendation tool and assistant is designed to simplify
+          the baking process by enable people to bake dishes more efficiently
+          and effectively without significant concern for complex details and
+          messes. Using a voice system, it allows users to find, customize, and
+          follow recipes based on dietary needs, time limits, and available
+          ingredients, all without touching a device. The system offers tailored
+          recipe recommendations, with the flexibility to adjust for ingredient
+          substitutions, and provides step-by-step guidance that users can
+          follow at their own pace. Built-in timers, the option to ask
+          clarifying questions, and the ability to go back to previous steps
+          further enhance the user experience, making baking easier and more
+          intuitive.
+        </small>
+      </p>
 
-<div
-  id="analog-clock"
-  class="d-flex justify-content-center align-items-center"
-  style="display: flex; justify-content: center; align-items: center; transform: translateX(160%) translateY(10%);"
->
-  <div id="hour-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/hour-hand.png?v=1723522040968"
-      alt="Hour Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover
-             "
-         
-    />
-  </div>
-  <div id="minute-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/minute-hand.png?v=1723522055420"
-      alt="Minute Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover"
-    />
-  </div>
-  <div id="second-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/second-hand.png?v=1723522065432"
-      alt="Second Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover"
-    />
-  </div>
-</div>
+      <div class="row">
+        <div class="col-md-6" style="padding-top: 3%">
+          <div class="embed-container">
+            <iframe
+              loading="lazy"
+              src="https://www.canva.com/design/DAGXmUHySN8/ypbK_rnaHThz8T8Qyga6rA/view?embed"
+              title="Canva Design"
+              class="responsive-gif"
+              allow="fullscreen"
+            ></iframe>
+            <p>Deliverable</p>
+          </div>
+        </div>
 
+        <!-- Second GIF -->
+        <div class="col-md-6" style="padding-top: 3%">
+          <div class="embed-container">
+            <iframe
+              src="https://www.youtube.com/embed/VsD_vdAdedA?si=uOCQD7fOHBie5_eR"
+              title="YouTube video player"
+              class="responsive-gif"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+
+            <p>Application</p>
+          </div>
+        </div>
+      </div>
     </section>
-    <script src="Clock.js"></script>
   </body>
 </html>

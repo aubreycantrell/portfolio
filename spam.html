@@ -14,8 +14,6 @@
       rel="icon"
       href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
     />
-    <link rel="stylesheet" href="clockstyle.css" />
-
     <script src="/script.js" defer></script>
     <style>
       body {
@@ -56,7 +54,7 @@
         top: 10%; /* Vertically centered on the screen */
         width: 58%; /* Occupies a third of the screen's width */
         padding: 20px; /* Adds padding inside the section */
-        border-radius: 1 0px; /* Rounded corners */
+        border-radius: 10px; /* Rounded corners */
         margin: 20px auto; /* Adds vertical spacing if needed */
         background-color: rgba(
           0,
@@ -228,7 +226,7 @@
       .responsive-gif {
         width: 100%; /* Ensures the GIF fits the container width */
         height: 50%; /* Maintains the aspect ratio */
-        border-radius: 0px; /* Optional: Add rounded corners */
+        border-radius: 10px; /* Optional: Add rounded corners */
       }
 
       .embed-container {
@@ -237,9 +235,9 @@
         padding-top: 0;
       }
       .embed-container img {
-        width: 100%; /* Set the desired width */
+        width: 300px; /* Set the desired width */
         height: 200px; /* Set the desired height */
-        object-fit: contain; /* Ensures the image is cropped to fit the container */
+        object-fit: cover; /* Ensures the image is cropped to fit the container */
       }
 
       ul {
@@ -247,7 +245,7 @@
         margin: 0; /* Removes default margin */
         padding: 0; /* Removes default padding */
       }
-      .arrow {
+       .arrow {
         font-size: 0.6rem; /* Smaller font size for the arrow */
         transition: transform 0.3s ease;
       }
@@ -353,60 +351,70 @@
     </div>
 
     <section class="right-text">
-      <h2>RGB Clock</h2>
+      <h2>Spam!</h2>
+      <small>
+        <p>
+          View our Website:
+          <a href="https://fortune-square-goat.glitch.me/">
+            App Design to Increase and Incentivize Civic Engagement and
+            Activism</a
+          >
+        </p>
+      </small>
 
       <p>
         <small
-          >A piece in response to the iconic saying "a broken clock is correct
-          twice a day", where each day a color palette at any given time will
-          only be shown once more. The seconds hand is represented by yellow,
-          minutes by pink, hours by blue.
+          >We want to drive student interest in civic engagement on campus
+          through making the activity of student government and org eboards more
+          transparent. Our design will allow all students on campus to gain easy
+          access to voting on important matters on campus and notify them when
+          there are issues that may affect them. Our app will also feature a
+          wide selection of badges that students can earn for engaging in
+          various activities on the app (including voting for the first time,
+          attending an event in person, etc.).
         </small>
       </p>
-      <div id="digital-clock" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
-  <!-- Digital clock content here -->
-</div>
 
-<div
-  id="analog-clock"
-  class="d-flex justify-content-center align-items-center"
-  style="display: flex; justify-content: center; align-items: center; transform: translateX(160%) translateY(10%);"
->
-  <div id="hour-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/hour-hand.png?v=1723522040968"
-      alt="Hour Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover
-             "
-         
-    />
-  </div>
-  <div id="minute-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/minute-hand.png?v=1723522055420"
-      alt="Minute Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover"
-    />
-  </div>
-  <div id="second-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/second-hand.png?v=1723522065432"
-      alt="Second Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover"
-    />
-  </div>
-</div>
+      <p>
+        <small
+          >The development of this app concept and development included
+          researching needs, creating personas, task analysis, multiple
+          wireframe ideation and designs, and prototyping. We used trained AI
+          models developed to help us analyze our data along the way, and
+          exercized different methods of executing our idea using the platforms
+          Figma, Balsalmiq, and coding languages HTML, CSS and Javascript.
+        </small>
+      </p>
 
+      <div class="row">
+        <div class="col-md-6" style="padding-top: 3%">
+          <div class="embed-container">
+            <a href="https://balsamiq.cloud/skdx7zh/peun37c" style="text-decoration: none; color:black;">
+            <img
+              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-06-25%20at%206.30.06%20PM.png?v=1719365409462"
+              alt="Balsamiq"
+              class="responsive-gif"
+            />
+            <p>Balsalmiq Wireframe <span class="arrow">▶</span></p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Second GIF -->
+        <div class="col-md-6" style="padding-top: 3%">
+          <div class="embed-container">
+            <a href="https://www.figma.com/proto/HXwxA0l1LalGGDlRpDEQQm/SPAM!?node-id=0-1&t=bhnvsCfsx5SV4COx-1" style="text-decoration: none; color:black;">
+            <img
+              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119"
+              alt="Figma"
+              class="responsive-gif"
+            />
+
+            <p>Figma Wireframe <span class="arrow">▶</span></p>
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
-    <script src="Clock.js"></script>
   </body>
 </html>

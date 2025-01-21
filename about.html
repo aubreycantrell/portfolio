@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aubrey Cantrell</title>
+    <title>About</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -32,7 +32,6 @@
         position: absolute;
         top: 20px;
         left: 20px;
-        
       }
       .logo img {
         max-width: 100px; /* Adjust size as needed */
@@ -61,6 +60,16 @@
 
       .menu a:hover {
         color: #4d7471;
+      }
+
+      .about-me {
+        position: absolute;
+        left: 3%;
+        top: 60%;
+        transform: translateY(-50%); /* Centers vertically */
+        width: 28%; /* Left third of the screen */
+        padding: 20px;
+        border-radius: 10px;
       }
 
       .stack {
@@ -95,26 +104,31 @@
         background-repeat: no-repeat; /* Prevents tiling */
       }
 
-      .card:nth-child(1) {
+      .card:nth-child(4) {
+        /*studio art*/
         transform: rotate(-22deg) translateY(-5%) translateX(-7%);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");
       }
 
-      .card:nth-child(2) {
+      .card:nth-child(3) {
+        /*research*/
         transform: rotate(20deg) translateY(-10%) translateX(6%);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142");
       }
 
-      .card:nth-child(3) {
+      .card:nth-child(5) {
+        /*about*/
         transform: rotate(-40deg) translateY(-10%) translateX(-10%);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172");
       }
-      .card:nth-child(4) {
+      .card:nth-child(1) {
+        /*design*/
         transform: scale(1.05);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235");
       }
-      .card:nth-child(5) {
+      .card:nth-child(2) {
+        /*home*/
         transform: scale(1.05) rotate(10deg) translateY(-3%) translateX(4%);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354");
@@ -163,62 +177,119 @@
     <div class="logo">
       <a href="https://aubreycantrell.glitch.me/index.html"
         ><img
-        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
-        alt="Logo"
-      /></a
-      >
-      
+          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+          alt="Logo"
+      /></a>
     </div>
 
     <div class="menu">
-      <a href="https://aubreycantrell.glitch.me/design.html"
-        >UX Design</a
-      >
+      <a href="https://aubreycantrell.glitch.me/design.html">UX Design</a>
       <a href="https://aubreycantrell.glitch.me/arts.html">Studio Arts</a>
       <a href="https://aubreycantrell.glitch.me/researching.html">Research</a>
     </div>
+
+    <!-- About Me Blurb -->
+    <div class="about-me">
+      <h2>Welcome!</h2>
+      <p>
+        I am a junior at Wellesley College, double majoring in Computer Science
+        and Studio Arts, and I am passionate about finding the balance between
+        artistic and purposeful designs, to better user interaction and creating
+        memorable interface experiences.
+      </p>
+      <p>
+        Designed and coded with love, I hope you enjoy the creative visions and
+        processes shared in my portfolio.
+      </p>
+     <div style="position: relative; width: max-content; margin: auto;">
+  <img
+    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/aubrey?v=1719332533080"
+    style="
+      max-width: 35%;
+      height: auto;
+      border: 10px solid white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 2;
+      transform: rotate(-10deg) translateX(20%) translateY(10%);
+    "
+  />
+  <img
+    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSC01993.JPG?v=1737467503170"
+    style="
+      max-width: 35%;
+      height: auto;
+      border: 10px solid white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: absolute;
+      top: 40px; /* Adjust as needed */
+      left: 20px; /* Adjust as needed */
+      z-index: 1;
+      transform: rotate(10deg) translateX(100%) translateY(-5%);
+    "
+  />
+</div>
+
+      <ul style="padding-top: 12%; list-style-type: none">
+        <li>
+          <a
+            style="
+              color: black;
+              text-decoration: none;
+              padding-bottom: 0;
+              color: grey;
+            "
+            href="mailto:aubrey.cantrell@wellesley.com"
+          >
+            <small>aubrey.cantrell@wellesley.edu</small>
+          </a>
+          <a
+            style="
+              color: black;
+              text-decoration: none;
+              padding-bottom: 0;
+              color: #f0f0f0;
+            "
+            href=""
+            >.
+          </a>
+          <a
+            style="color: black; text-decoration: none; color: grey"
+            href="https://www.linkedin.com/in/aubrey-cantrell/"
+            target="_blank"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+              alt="LinkedIn"
+              style="width: 20px; height: 20px"
+            />
+          </a>
+           <a
+            style="
+              color: black;
+              text-decoration: none;
+              padding-bottom: 0;
+              color: #f0f0f0;
+            "
+            href=""
+            >.
+          </a>
+
+          <a
+            style="color: black; text-decoration: none; color: grey"
+            href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Aubrey%20Cantrell%20Resume%20Design.pdf?v=1737166425218"
+          >
+           <small> Resume</small>
+          </a>
+          
+          
+        
+        </li>
+      </ul>
+    </div>
+
     <div class="stack">
       <!-- Card 1 -->
-      <a
-        href="https://aubreycantrell.glitch.me/arts.html"
-        class="card"
-        style="background-color: #d9e4f7"
-      >
-        <div class="corner top-left">Studio Arts</div>
-        <div class="corner bottom-right">Explore</div>
-        <div class="card-content">
-          <h2>Studio Arts</h2>
-          <p>Artistic Problem Solving and Storytelling</p>
-        </div>
-      </a>
-
-      <!-- Card 2 -->
-      <a
-        href="https://aubreycantrell.glitch.me/researching.html"
-        class="card"
-        style="background-color: #f7efd9"
-      >
-        <div class="corner top-left">Research</div>
-        <div class="corner bottom-right">Dive In</div>
-        <div class="card-content">
-          <h2>Research</h2>
-          <p>Application of technological investigations and artistic queries</p>
-        </div>
-      </a>
-      <!-- Card 3: About -->
-      <a
-        href="https://aubreycantrell.glitch.me/about.html"
-        class="card"
-        style="background-color: #f7e6d7"
-      >
-        <div class="corner top-left">About</div>
-        <div class="corner bottom-right">Learn More</div>
-        <div class="card-content">
-          <h2>About</h2>
-          <p>More than just code and art</p>
-        </div>
-      </a>
-      <!-- Card 4 -->
       <a
         href="https://aubreycantrell.glitch.me/design.html"
         class="card"
@@ -231,19 +302,60 @@
           <p>App, Brand, and Web Design Concepts demonstrating UI/UX Skill</p>
         </div>
       </a>
-      <!-- Card 5 -->
+      <!-- Card 2 -->
       <a
         href="https://aubreycantrell.glitch.me/"
         class="card"
-        style="style=color: white; text-decoration: none"
+        style="text-decoration: none"
       >
         <div class="corner top-left">Home</div>
         <div class="card-content">
+          <h1>Aubrey Cantrell</h1>
+          <p>CS and Studio Arts @ Wellesley College</p>
+        </div>
+      </a>
+      <!-- Card 3 -->
+      <a
+        href="https://aubreycantrell.glitch.me/researching.html"
+        class="card"
+        style="background-color: #f7efd9 color: white; text-decoration: none"
+      >
+        <div class="corner top-left">Research</div>
+        <div class="corner bottom-right">Dive In</div>
+        <div class="card-content">
+          <h1>Research</h1>
+          <p>
+            Application of technological investigations and artistic queries
+          </p>
+        </div>
+      </a>
+      <!-- Card 4 -->
+      <a
+        href="https://aubreycantrell.glitch.me/arts.html"
+        class="card"
+        style="background-color: #f7efd9 color: white; text-decoration: none"
+      >
+        <div class="corner top-left">Studio Arts</div>
+        <div class="corner bottom-right">Explore</div>
+        <div class="card-content">
+          <h1>Studio Arts</h1>
+          <p>Artistic Problem Solving and Storytelling</p>
+        </div>
+      </a>
+      <!-- Card 5: About -->
+      <a
+        href="https://aubreycantrell.glitch.me/about.html"
+        class="card"
+        style="background-color: #f7efd9 color: white; text-decoration: none"
+      >
+        <div class="corner top-left">About</div>
+        <div class="corner bottom-right">Learn More</div>
+        <div class="card-content">
           <h1 id="dynamicText" style="color: white; text-decoration: none">
-            Aubrey Cantrell
+            About
           </h1>
           <p style="color: white; text-decoration: none">
-            CS and Studio Arts @ Wellesley College
+            More than just code and art
           </p>
         </div>
       </a>

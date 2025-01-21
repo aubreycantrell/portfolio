@@ -14,8 +14,6 @@
       rel="icon"
       href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
     />
-    <link rel="stylesheet" href="clockstyle.css" />
-
     <script src="/script.js" defer></script>
     <style>
       body {
@@ -50,24 +48,6 @@
         border-radius: 10px;
         margin: 20px auto;
       }
-      .right-text {
-        position: absolute;
-        right: 6%; /* Distance from the right edge of the screen */
-        top: 10%; /* Vertically centered on the screen */
-        width: 58%; /* Occupies a third of the screen's width */
-        padding: 20px; /* Adds padding inside the section */
-        border-radius: 1 0px; /* Rounded corners */
-        margin: 20px auto; /* Adds vertical spacing if needed */
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0
-        ); /* Background color for readability */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Adds a subtle shadow */
-        text-align: left; /* Aligns text to the left */
-        font-family: Arial, sans-serif; /* Ensures consistent font styling */
-      }
 
       /* Menu Style */
       .menu {
@@ -100,7 +80,9 @@
         perspective: 1000px;
         transform: translateX(13%) translateY(-9%);
       }
-
+      h4 {
+        font-weight: bold;
+      }
       .card {
         position: absolute;
         width: 220%;
@@ -224,33 +206,6 @@
         margin: 0;
         color: black; /* Title text color */
       }
-
-      .responsive-gif {
-        width: 100%; /* Ensures the GIF fits the container width */
-        height: 50%; /* Maintains the aspect ratio */
-        border-radius: 0px; /* Optional: Add rounded corners */
-      }
-
-      .embed-container {
-        text-align: center; /* Centers the content, if needed */
-        margin: auto;
-        padding-top: 0;
-      }
-      .embed-container img {
-        width: 100%; /* Set the desired width */
-        height: 200px; /* Set the desired height */
-        object-fit: contain; /* Ensures the image is cropped to fit the container */
-      }
-
-      ul {
-        list-style-type: none; /* Removes bullet points */
-        margin: 0; /* Removes default margin */
-        padding: 0; /* Removes default padding */
-      }
-      .arrow {
-        font-size: 0.6rem; /* Smaller font size for the arrow */
-        transition: transform 0.3s ease;
-      }
     </style>
   </head>
   <body>
@@ -269,7 +224,7 @@
     </div>
 
     <div class="left-text polaroid-container">
-      <!-- Row 1 -->
+       <!-- Row 1 -->
       <div class="polaroid">
         <a
           href="https://aubreycantrell.glitch.me/workorder.html"
@@ -351,62 +306,77 @@
         </a>
       </div>
     </div>
-
-    <section class="right-text">
-      <h2>RGB Clock</h2>
-
-      <p>
-        <small
-          >A piece in response to the iconic saying "a broken clock is correct
-          twice a day", where each day a color palette at any given time will
-          only be shown once more. The seconds hand is represented by yellow,
-          minutes by pink, hours by blue.
-        </small>
-      </p>
-      <div id="digital-clock" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
-  <!-- Digital clock content here -->
-</div>
-
-<div
-  id="analog-clock"
-  class="d-flex justify-content-center align-items-center"
-  style="display: flex; justify-content: center; align-items: center; transform: translateX(160%) translateY(10%);"
->
-  <div id="hour-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/hour-hand.png?v=1723522040968"
-      alt="Hour Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover
-             "
-         
-    />
-  </div>
-  <div id="minute-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/minute-hand.png?v=1723522055420"
-      alt="Minute Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover"
-    />
-  </div>
-  <div id="second-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/second-hand.png?v=1723522065432"
-      alt="Second Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover"
-    />
-  </div>
-</div>
-
-    </section>
-    <script src="Clock.js"></script>
+    <div class="stack">
+      <!-- Card 1 -->
+      <a
+        href="https://aubreycantrell.glitch.me/"
+        class="card"
+        style="text-decoration: none"
+      >
+        <div class="corner top-left">Home</div>
+        <div class="card-content">
+          <h1>Aubrey Cantrell</h1>
+          <p>CS and Studio Arts @ Wellesley College</p>
+        </div>
+      </a>
+      <!-- Card 2 -->
+      <a
+        href="https://aubreycantrell.glitch.me/researching.html"
+        class="card"
+        style="background-color: #f7efd9 color: white; text-decoration: none"
+      >
+        <div class="corner top-left">Research</div>
+        <div class="corner bottom-right">Dive In</div>
+        <div class="card-content">
+          <h1>Research</h1>
+          <p>
+            Application of technological investigations and artistic queries
+          </p>
+        </div>
+      </a>
+      <!-- Card 3 -->
+      <a
+        href="https://aubreycantrell.glitch.me/arts.html"
+        class="card"
+        style="background-color: #f7efd9 color: white; text-decoration: none"
+      >
+        <div class="corner top-left">Studio Arts</div>
+        <div class="corner bottom-right">Explore</div>
+        <div class="card-content">
+          <h1>Studio Arts</h1>
+          <p>Artistic Problem Solving and Storytelling</p>
+        </div>
+      </a>
+      <!-- Card 4: About -->
+      <a
+        href="https://aubreycantrell.glitch.me/about.html"
+        class="card"
+        style="background-color: #f7efd9 color: white; text-decoration: none"
+      >
+        <div class="corner top-left">About</div>
+        <div class="corner bottom-right">Learn More</div>
+        <div class="card-content">
+          <h1>About</h1>
+          <p>More than just code and art</p>
+        </div>
+      </a>
+      <!-- Card 5 -->
+      <a
+        href="https://aubreycantrell.glitch.me/design.html"
+        class="card"
+        style="background-color: #f7efd9 color: white; text-decoration: none"
+      >
+        <div class="corner top-left">UI/UX</div>
+        <div class="corner bottom-right">Design</div>
+        <div class="card-content">
+          <h1 id="dynamicText" style="color: white; text-decoration: none">
+            Design Concepts
+          </h1>
+          <p style="color: white; text-decoration: none">
+            App, Brand, and Web Design Concepts demonstrating UI/UX Skill
+          </p>
+        </div>
+      </a>
+    </div>
   </body>
 </html>

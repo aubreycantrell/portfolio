@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+    />
+
+    <title>Aubrey Cantrell</title>
+
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <script src="/script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+      .section1 {
+        position: relative;
+        width: 100%;
+        height: 20%; /* Adjust height if necessary */
+        display: flex;
+        align-items: center; /* Vertically center the content */
+        justify-content: center; /* Horizontally center the content */
+        overflow: hidden;
+      }
+
+      /* Element 1 */
+      .element1 {
+        position: absolute;
+        top: 20%;
+        width: 70%;
+        height: auto;
+        z-index: 3; /* Adjust z-index to be higher than element2 and element3 */
+      }
+
+      /* Element 2 */
+      .element2 {
+        top: 0px;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        z-index: 2; /* Lower z-index */
+      }
+
+      .element3 {
+        padding-top: 5%;
+        padding: 5%;
+        top: -260px;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        z-index: 1; /* Lowest z-index */
+      }
+
+      .section1 {
+        display: flex;
+        flex-direction: row;
+        gap: 20px; /* Adjust spacing between items as needed */
+      }
+
+      .imageWrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .illustration {
+        display: block;
+      }
+
+      .design-code {
+        position: absolute;
+        bottom: 10px; /* Adjust as needed */
+        left: 10px; /* Adjust as needed */
+        background: rgba(0, 0, 0, 0.3); /* Dark semi-transparent background */
+        color: white;
+        padding: 5px;
+        border-radius: 3px;
+        font-size: 14px; /* Adjust font size as needed */
+        line-height: 1.4;
+        text-transform: none; /* Ensures text is not in all caps */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content" role="main">
+      <div class="wrapper">
+        <div class="container">
+          <header class="d-flex justify-content-center py-3">
+            <!-- <div id="logoContainer">
+               <a href="https://aubreycantrell.glitch.me/"
+        ><img
+          class="logo levitating "
+          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+      /></a>
+       
+    </div> -->
+
+            <!-- nav bar -->
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a
+                  href="https://aubreycantrell.glitch.me/"
+                  class="nav-link active"
+                  aria-current="page"
+                  >Aubrey Cantrell</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://aubreycantrell.glitch.me/designConcepts.html"
+                  class="nav-link"
+                  >UI/UX Design</a
+                >
+              </li>
+              <li class="nav-item">
+                <div class="dropdown">
+                  <a
+                    href="https://aubreycantrell.glitch.me/studioArts.html"
+                    class="nav-link dropdown-toggle"
+                    id="studioArtsDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Studio Arts
+                  </a>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="studioArtsDropdown"
+                  >
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://aubreycantrell.glitch.me/printmaking.html"
+                        >Printmaking</a
+                      >
+                    </li>
+
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://aubreycantrell.glitch.me/mixedMedia.html"
+                        >Mixed Media</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="https://aubreycantrell.glitch.me/photography.html"
+                        >Photography</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  href="https://aubreycantrell.glitch.me/research.html"
+                  class="nav-link"
+                  >Research</a
+                >
+              </li>
+            </ul>
+          </header>
+        </div>
+
+        <main class="px-3">
+          <!-- background image -->
+          <section class="backgr contain">
+            <div>
+              <h1 id="dynamicText" >Aubrey Cantrell</h1>
+            </div>
+
+            <p class="lead">
+              Computer Science and Studio Arts @ Wellesley College
+            </p>
+
+            <div class="arrow levitating">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-arrow-down-short"
+                viewbox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"
+                />
+              </svg>
+            </div>
+          </section>
+
+          <!-- floating cranes and water -->
+          <div id="homepage-select" class="section1">
+            <div class="imageSection2 col-8 element1">
+              <div class="imageWrapper levitating">
+                <img
+                  id="about-me"
+                  data-selected="yes"
+                  data-point="about-data"
+                  class="illustration column text-center selected-pink-crane"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/pink%20crane.png?v=1723749768213"
+                  alt="crane pink"
+                />
+              </div>
+              <div class="imageWrapper levitating">
+                <img
+                  id="coursework"
+                  data-selected="no"
+                  data-point="course-data"
+                  class="illustration column text-center selected-orange-crane"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/yellow%20crane%20.png?v=1723749769275"
+                  alt="crane orange"
+                />
+              </div>
+              <div class="imageWrapper levitating">
+                <img
+                  id="site-design"
+                  data-selected="no"
+                  data-point="design-data"
+                  class="illustration column text-center selected-green-crane"
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/green%20crane.png?v=1723749767057"
+                  alt="crane green"
+                />
+              </div>
+            </div>
+
+            <div
+              id="threejs-container"
+              style="width: 100%; height: 500px"
+              class="element2"
+            ></div>
+          </div>
+
+          <!-- each page (3) -->
+          <div id="homepage-show" class="element3 background1 section1">
+            <!-- about me -->
+            <div id="about-show" class="cont" data-point="about-data">
+              <!-- First row with text and image -->
+             
+          
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="lead"> Welcome to my portfolio! I am a junior at Wellesley College, double majoring in
+                      Computer Science and Studio Arts, and I am passionate about finding the balance between artistic
+                      and purposeful designs, to better user interaction and
+                      creating memorable interface experiences.</p>
+                   <p class="lead">Originally from the Bay Area, CA, as well as living in Hong Kong and Nanjing, I have found value in diverse approaches to concepts and ideas, and always look to incorporate them in my work. I love to be outdoors; you can find me
+                      surfing, rockclimbing, cycling, or hiking!</p>
+                  
+                 
+                </div>
+                <div class="col-md-6">
+                 
+
+                  <img
+                      class="illustration column reveal levitating fit-img"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screenshot%202024-11-18%20at%2010.11.54%E2%80%AFAM.png?v=1731942904621"
+                      alt="Aubrey Cantrell"
+                      style="max-width: 100%; height: auto; border-radius: 8px"
+                    />
+                </div>
+              </div>
+              
+              
+              
+            </div>
+
+            <!-- coursework -->
+            <div
+              id="course-show"
+              class="homepage-hide cont"
+              data-point="course-data"
+            >
+              <h2>Coursework</h2>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="lead">Computer Science</p>
+                  <ul>
+                    <li>
+                      CS 111 Comp Program and Prob Solving <em>Python</em>
+                    </li>
+                    <li>
+                      CS 204 Intro to Web Development
+                      <em>Javascript, HTML, CSS, Unix</em>
+                    </li>
+                    <li>
+                      CS 220 Human Computer Interactions
+                      <em>Figma, HTML, CSS</em>
+                    </li>
+                    <li>CS 230 Data Structures <em> Java</em></li>
+                    <li>CS 231 Fundamental Algorithms <em>Python</em></li>
+                    <li>CS 235 Theory of Computation</li>
+                    <li>CS 240 Foundations of Computer Systems <em>C++</em></li>
+                    <li>MATH 225 Combinatorics and Graph Theory</li>
+                  </ul>
+                  <img
+                    class="illustration column text-center"
+                    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/surBlues_collection%20cropped.png?v=1723599563824"
+                    alt="Aubrey Cantrell"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <p class="lead">Studio Arts</p>
+
+                  <ul>
+                    <li>ARTS 105 Drawing I</li>
+                    <li>ARTS 216 Spacial Investigations</li>
+                    <li>
+                      ARTS 221 Digital Imaging
+                      <em>Photoshop, Illustrator, InDesign, Firefly</em>
+                    </li>
+                    <li>ARTS 223 Alternative Print Methods</li>
+                    <li>ARTS 322 Advanced Print Concepts</li>
+                    <li>ARTS 365 Advanced Projects in Lens Media</li>
+                    <li>ARTH 100 Art and its Histories</li>
+                    <li>ARTH 248 Chinese Painting</li>
+                  </ul>
+                  <img
+                    class="illustration column text-center"
+                    src="
+                     https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/unflossed_collection%20cropped.png?v=1723599618433"
+                    alt="Aubrey Cantrell"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- site design -->
+            <div
+              id="design-show"
+              class="homepage-hide cont"
+              data-point="design-data"
+            >
+              <h2>Behind the Design</h2>
+
+              <div class="col-md-8">
+                <p class="lead">
+                  Through my portfolio I hope to convey both my passions for
+                  interface interactions and artistic inquiries, and how they
+                  can be combined to support intruiging design concepts. With
+                  these goals, I incorporated a few of my art pieces into the
+                  website, to use both for functionality and aesthetic purposes.
+                </p>
+                <p class="lead">
+                  With my use of clean lines, blocking and contrasting colors, I
+                  hope to create an experience that immerses you in my art, but
+                  also helps you better understand my eye for interface design.
+                </p>
+
+                <section class="col-md-8 section1 cont2">
+                  <div class="imageWrapper levitating">
+                    <img
+                      class="illustration column reveal text-center"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+                      alt="Glass Dolphin"
+                    />
+                    <div class="design-code">Used as site logo</div>
+                  </div>
+                  <div class="imageWrapper levitating">
+                    <img
+                      class="illustration column reveal text-center"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
+                      alt="Rendered water"
+                    />
+                    <div class="design-code">
+                      Projected onto water grid rendering
+                    </div>
+                  </div>
+                  <div class="imageWrapper levitating">
+                    <img
+                      class="illustration column reveal text-center"
+                      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_0643.png?v=1719356130724"
+                      alt="blue crane"
+                    />
+                    <div class="design-code">
+                      Used as tabs on homepage selections
+                    </div>
+                  </div>
+                </section>
+
+                <div class="row" style="padding-top: 10%">
+                  <div class="col-md-6">
+                    <ul class="color-row">
+                      <li class="color-item">
+                        <div class="color-square-container">
+                          <div
+                            class="color-square"
+                            style="background-color: #4d7471"
+                          ></div>
+                          <div class="hex-code">#4d7471</div>
+                        </div>
+                      </li>
+                      <li class="color-item">
+                        <div class="color-square-container">
+                          <div
+                            class="color-square"
+                            style="background-color: #789c9d"
+                          ></div>
+                          <div class="hex-code">#789c9d</div>
+                        </div>
+                      </li>
+                      <li class="color-item">
+                        <div class="color-square-container">
+                          <div
+                            class="color-square"
+                            style="background-color: #fffcfc"
+                          ></div>
+                          <div class="hex-code">#fffcfc</div>
+                        </div>
+                      </li>
+                      <li class="color-item">
+                        <div class="color-square-container">
+                          <div
+                            class="color-square"
+                            style="background-color: #ffffff"
+                          ></div>
+                          <div class="hex-code">#ffffff</div>
+                        </div>
+                      </li>
+                    </ul>
+                    <p>
+                      Site colors adopted from landing page background, creating
+                      a neutral yet contrasting color palate that unifies the
+                      appearance of the site
+                    </p>
+                    <p>
+                      Hanken Grotesk as font for a clean look that emphasizes
+                      readability and creates structure with the bold lines
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <div
+                      style="margin-bottom: 0px !important; text-align: center"
+                    >
+                      <h1>
+                        H1 Heading example, <strong>bold</strong> and
+                        <em>italic</em>
+                      </h1>
+                      <h2>
+                        H2 Heading example, <strong>bold</strong> and
+                        <em>italic</em>
+                      </h2>
+                      <p class="lead">
+                        Lead text example, <strong>bold</strong> and
+                        <em>italic</em>
+                      </p>
+                      <p>
+                        Text example, <strong>bold</strong> and <em>italic</em>
+                      </p>
+                      <small>
+                        Small example, <strong>bold</strong> and <em>italic</em>
+                      </small>
+                    </div>
+                  </div>
+                </div>
+
+                <!--
+              <strong>Coming soon...</strong> This is where I will show the design
+              aspects of my portfolio. For now, here is some of my recent film!
+               <section class = "section1 cont2">
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020011.jpg?v=1723688458408
+"
+                          alt="Half Moon Bay"
+                        />
+                      </div>
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142
+"
+                          alt="Big Sur"
+                        />
+                      </div>
+                      <div class="imageWrapper levitating">
+                        <img
+                          class="illustration column reveal text-center"
+                          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608010032.jpg?v=1723688457209
+"
+                          alt="Pleasure Point in Santa Cruz"
+                        />
+                      </div>
+                    </section>
+-->
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- The footer  -->
+    <div class="container">
+      <footer
+        style="position: relative"
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top last-element footer1"
+      >
+        <p>
+          email me @
+          <a
+            class="col-md-4 mb-0 text-body-secondary"
+            href="mailto:aubrey.cantrell@wellesley.com"
+            >aubrey.cantrell@wellesley.edu
+          </a>
+        </p>
+
+        <!-- <a href = "https://www.linkedin.com/in/aubrey-cantrell/"> linkedin </a> -->
+
+        <svg class="bi me-2" width="5" height="5">
+          <img
+            class="illustration column text-center imageWrapper"
+            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+            alt="Glass Dolphin"
+          />
+        </svg>
+
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/designConcepts.html"
+              class="nav-link px-2 text-body-secondary"
+              >UI/UX Design</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/studioArts.html"
+              class="nav-link px-2 text-body-secondary"
+              >Studio Art</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://aubreycantrell.glitch.me/research.html"
+              class="nav-link px-2 text-body-secondary"
+              >Research</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Aubrey%20Cantrell%20Resume%20Design.pdf?v=1734384595787"
+              class="nav-link px-2 text-body-secondary"
+              >Resume</a
+            >
+          </li>
+        </ul>
+      </footer>
+    </div>
+
+    <script
+      src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Step 2: Set up Three.js environment
+        const container = document.getElementById("threejs-container");
+
+        // Create Scene
+        const scene = new THREE.Scene();
+
+        // Create Camera
+        const camera = new THREE.PerspectiveCamera(
+          75,
+          container.clientWidth / container.clientHeight,
+          0.1,
+          1000
+        );
+
+        // Create Renderer
+        const renderer = new THREE.WebGLRenderer({
+          antialias: true,
+          alpha: true,
+        });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // Set Renderer Background Color
+
+        renderer.setClearColor(0xffffff, 0); // Light sky blue
+
+        // Load Texture Image
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load(
+          "https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/water%20crop.jpg?v=1723657578424"
+        ); // Replace with your image URL
+
+        // Create Material with Texture
+        const material = new THREE.MeshBasicMaterial({ map: texture });
+
+        // Create Plane Geometry for the Waves
+        const geometry = new THREE.PlaneGeometry(20, 20, 50, 50);
+
+        // Create Mesh
+        const plane = new THREE.Mesh(geometry, material);
+        scene.add(plane);
+
+        // Position the Camera
+        camera.position.z = 0;
+        camera.position.y = 13;
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        // Animation Function
+        function animate() {
+          requestAnimationFrame(animate);
+
+          // Animate the wave
+          const positionAttribute = geometry.attributes.position;
+          const time = performance.now() / 1000;
+          for (let i = 0; i < positionAttribute.count; i++) {
+            const x = positionAttribute.getX(i);
+            const y = positionAttribute.getY(i);
+            const z = Math.sin(x * 0.5 + time) * Math.cos(y * 0.5 + time) * 0.5;
+            positionAttribute.setZ(i, z);
+          }
+          positionAttribute.needsUpdate = true;
+
+          renderer.render(scene, camera);
+        }
+
+        // Start the Animation
+        animate();
+
+        // Handle Resize Events
+        window.addEventListener("resize", onWindowResize, false);
+
+        function onWindowResize() {
+          camera.aspect = container.clientWidth / container.clientHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        if (document.body.id === "home-page") {
+          document.querySelector("header").classList.add("sticky-navbar");
+        }
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

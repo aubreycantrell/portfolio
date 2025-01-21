@@ -14,7 +14,7 @@ body {
 #analog-clock {
     width: 200px;
     height: 200px;
-    border: 2px solid #ffffff;
+    border: 0px solid #ffffff;
     border-radius: 50%;
     position: relative;
 }

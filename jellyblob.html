@@ -14,7 +14,8 @@
       rel="icon"
       href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
     />
-    <link rel="stylesheet" href="clockstyle.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="jBlobs.css" />
 
     <script src="/script.js" defer></script>
     <style>
@@ -268,145 +269,28 @@
       <a href="https://aubreycantrell.glitch.me/researching.html">Research</a>
     </div>
 
-    <div class="left-text polaroid-container">
-      <!-- Row 1 -->
-      <div class="polaroid">
-        <a
-          href="https://aubreycantrell.glitch.me/workorder.html"
-          style="color: black; text-decoration: none"
-        >
-          <img
-            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731"
-            alt="Wellesley Work Order Website"
-          />
-          <h4 style="font-weight: bold">Wellesley Work Order</h4>
-          <small>Design Concept</small>
-        </a>
-      </div>
-      <div class="polaroid">
-        <a
-          href="https://aubreycantrell.glitch.me/bakebot.html"
-          style="color: black; text-decoration: none"
-        >
-          <img
-            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223"
-            alt="BakeBot"
-          />
-          <h4 style="font-weight: bold">BakeBot</h4>
-          <small>AI Voice Recognition Software</small>
-        </a>
-      </div>
-      <div class="polaroid">
-        <a
-          href="https://aubreycantrell.glitch.me/spam.html"
-          style="color: black; text-decoration: none"
-        >
-          <img
-            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119"
-            alt="Spam!"
-          />
-          <h4 style="font-weight: bold">Spam!</h4>
-          <small>App Design for Civic Engagement</small>
-        </a>
-      </div>
-      <div class="polaroid">
-        <a
-          href="https://aubreycantrell.glitch.me/isca.html"
-          style="color: black; text-decoration: none"
-        >
-          <img
-            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725"
-            alt="International Swim Coaches Association"
-          />
-          <h4 style="font-weight: bold">
-            International Swim Coaches Association
-          </h4>
-          <small>Website Design and Development</small>
-        </a>
-      </div>
-      <div class="polaroid">
-        <a
-          href="https://aubreycantrell.glitch.me/jellyblob.html"
-          style="color: black; text-decoration: none"
-        >
-          <img
-            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/jellyblob.gif?v=1723593182887"
-            alt="Jelly Blobs"
-          />
-          <h4 style="font-weight: bold">Jelly Blobs</h4>
-          <small>Interactive Game</small>
-        </a>
-      </div>
-      <div class="polaroid">
-        <a
-          href="https://aubreycantrell.glitch.me/clock.html"
-          style="color: black; text-decoration: none"
-        >
-          <img
-            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/clock.gif?v=1723593456336"
-            alt="Primary Clock"
-          />
-          <h4 style="font-weight: bold">Primary Clock</h4>
-          <small>Digital Artwork</small>
-        </a>
-      </div>
-    </div>
-
-    <section class="right-text">
-      <h2>RGB Clock</h2>
+    <div id="intro">
+      <h1>Jelly Blob Game</h1>
+      <ul>
+        <li>Move the mouse to control the blue blob.</li>
+        <li>Eat blobs that are smaller than you in order to grow.</li>
+        <li>Avoid bigger blobs or you will shrink.</li>
+      </ul>
 
       <p>
-        <small
-          >A piece in response to the iconic saying "a broken clock is correct
-          twice a day", where each day a color palette at any given time will
-          only be shown once more. The seconds hand is represented by yellow,
-          minutes by pink, hours by blue.
-        </small>
+        <button id="start" class="button" type="button">Start Game</button>
       </p>
-      <div id="digital-clock" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
-  <!-- Digital clock content here -->
-</div>
+    </div>
 
-<div
-  id="analog-clock"
-  class="d-flex justify-content-center align-items-center"
-  style="display: flex; justify-content: center; align-items: center; transform: translateX(160%) translateY(10%);"
->
-  <div id="hour-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/hour-hand.png?v=1723522040968"
-      alt="Hour Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover
-             "
-         
-    />
-  </div>
-  <div id="minute-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/minute-hand.png?v=1723522055420"
-      alt="Minute Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover"
-    />
-  </div>
-  <div id="second-hand" class="hand">
-    <img
-      class="bd-placeholder-img card-img-top"
-      src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/second-hand.png?v=1723522065432"
-      alt="Second Hand"
-      width="100%"
-      height="100%"
-      style="object-fit: cover"
-    />
-  </div>
-</div>
+    <div id="winOrLose"></div>
 
-    </section>
-    <script src="Clock.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cs.wellesley.edu/~anderson/js/bounds/bounds-plugin.js"></script>
+    <script src="https://cs.wellesley.edu/~cs204/assignments/jelly/random.js"></script>
+    <script src="https://cs.wellesley.edu/~cs204/assignments/jelly/random.js"></script>
+    <script src="Blob.js"></script>
+    <script src="Player.js"></script>
+    <script src="Enemy.js"></script>
+    <script src="game.js"></script>
   </body>
 </html>

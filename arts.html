@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aubrey Cantrell</title>
+    <title>Studio Art</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -32,7 +32,6 @@
         position: absolute;
         top: 20px;
         left: 20px;
-        
       }
       .logo img {
         max-width: 100px; /* Adjust size as needed */
@@ -61,6 +60,47 @@
 
       .menu a:hover {
         color: #4d7471;
+      }
+
+      .dropdown {
+        position: absolute;
+        left: 3%;
+        top: 40%;
+        transform: translateY(-50%); /* Centers vertically */
+        width: 28%; /* Left third of the screen */
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px auto;
+      }
+
+      .dropdown-item {
+        margin-bottom: 15px;
+      }
+      .arrow {
+        font-size: 0.8rem; /* Smaller font size for the arrow */
+        transition: transform 0.3s ease;
+      }
+
+      h4 {
+        margin: 0;
+        cursor: pointer;
+        color: black;
+        transition: color 0.3s;
+      }
+
+      h4:hover {
+        color: #789c9d;
+      }
+
+      ul {
+        list-style-type: none; /* Removes bullet points */
+        margin: 5px 20px;
+        padding: 0;
+        display: none; /* Initially hidden */
+      }
+
+      li {
+        margin: 5px 0;
       }
 
       .stack {
@@ -95,26 +135,31 @@
         background-repeat: no-repeat; /* Prevents tiling */
       }
 
-      .card:nth-child(1) {
+      .card:nth-child(5) {
+        /*studio art*/
         transform: rotate(-22deg) translateY(-5%) translateX(-7%);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");
       }
 
-      .card:nth-child(2) {
+      .card:nth-child(4) {
+        /*research*/
         transform: rotate(20deg) translateY(-10%) translateX(6%);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142");
       }
 
-      .card:nth-child(3) {
+      .card:nth-child(1) {
+        /*about*/
         transform: rotate(-40deg) translateY(-10%) translateX(-10%);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172");
       }
-      .card:nth-child(4) {
+      .card:nth-child(2) {
+        /*design*/
         transform: scale(1.05);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235");
       }
-      .card:nth-child(5) {
+      .card:nth-child(3) {
+        /*home*/
         transform: scale(1.05) rotate(10deg) translateY(-3%) translateX(4%);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354");
@@ -163,49 +208,52 @@
     <div class="logo">
       <a href="https://aubreycantrell.glitch.me/index.html"
         ><img
-        src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
-        alt="Logo"
-      /></a
-      >
-      
+          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+          alt="Logo"
+      /></a>
     </div>
 
     <div class="menu">
-      <a href="https://aubreycantrell.glitch.me/design.html"
-        >UX Design</a
-      >
+      <a href="https://aubreycantrell.glitch.me/design.html">UX Design</a>
       <a href="https://aubreycantrell.glitch.me/arts.html">Studio Arts</a>
       <a href="https://aubreycantrell.glitch.me/researching.html">Research</a>
     </div>
-    <div class="stack">
-      <!-- Card 1 -->
-      <a
-        href="https://aubreycantrell.glitch.me/arts.html"
-        class="card"
-        style="background-color: #d9e4f7"
-      >
-        <div class="corner top-left">Studio Arts</div>
-        <div class="corner bottom-right">Explore</div>
-        <div class="card-content">
-          <h2>Studio Arts</h2>
-          <p>Artistic Problem Solving and Storytelling</p>
-        </div>
-      </a>
 
-      <!-- Card 2 -->
-      <a
-        href="https://aubreycantrell.glitch.me/researching.html"
-        class="card"
-        style="background-color: #f7efd9"
-      >
-        <div class="corner top-left">Research</div>
-        <div class="corner bottom-right">Dive In</div>
-        <div class="card-content">
-          <h2>Research</h2>
-          <p>Application of technological investigations and artistic queries</p>
-        </div>
-      </a>
-      <!-- Card 3: About -->
+    <!-- About Me Blurb -->
+    <div class="dropdown">
+      <div class="dropdown-item">
+        <h4 onclick="toggleDropdown(this)">
+          Printmaking <span class="arrow">▶</span>
+        </h4>
+        <ul class="dropdown-content">
+          <li><a href="https://aubreycantrell.glitch.me/redstring.html" style="color: black; text-decoration: none">The Red String</a></li>
+          <li><a href="https://aubreycantrell.glitch.me/expressions.html" style="color: black; text-decoration: none">Idioms and Expressions</a></li>
+          <li><a href="https://aubreycantrell.glitch.me/flossed.html" style="color: black; text-decoration: none">Unflossed</a></li>
+          <li><a href="https://aubreycantrell.glitch.me/blues.html" style="color: black; text-decoration: none">Sur Blues</a></li>
+          <li><a href="https://aubreycantrell.glitch.me/cranes.html" style="color: black; text-decoration: none">100 Days of School, Revisited</a></li>
+        </ul>
+      </div>
+      <div class="dropdown-item">
+        <h4 onclick="toggleDropdown(this)">
+          Mixed Media <span class="arrow">▶</span>
+        </h4>
+        <ul class="dropdown-content">
+          <li><a href="https://aubreycantrell.glitch.me/paintedparasol.html" style="color: black; text-decoration: none">Painted Parasols</a></li>
+          <li><a href="https://aubreycantrell.glitch.me/wovensolice.html" style="color: black; text-decoration: none">Woven in Solice</a></li>
+          <li><a href="https://aubreycantrell.glitch.me/cube.html" style="color: black; text-decoration: none">Rubik's Cube, Solved</a></li>
+          <li><a href="https://aubreycantrell.glitch.me/where.html" style="color: black; text-decoration: none">Whereabouts</a></li>
+        </ul>
+      </div>
+      <div class="dropdown-item">
+        <h4 onclick="toggleDropdown(this)">
+          <a href="https://aubreycantrell.glitch.me/photographs.html" style="color: black; text-decoration: none">Photography </a><span class="arrow">▶</span>
+        </h4>
+      </div>
+    </div>
+
+
+    <div class="stack">
+      <!-- Card 1: About -->
       <a
         href="https://aubreycantrell.glitch.me/about.html"
         class="card"
@@ -218,7 +266,7 @@
           <p>More than just code and art</p>
         </div>
       </a>
-      <!-- Card 4 -->
+      <!-- Card 2 -->
       <a
         href="https://aubreycantrell.glitch.me/design.html"
         class="card"
@@ -231,22 +279,65 @@
           <p>App, Brand, and Web Design Concepts demonstrating UI/UX Skill</p>
         </div>
       </a>
-      <!-- Card 5 -->
+      <!-- Card 3 -->
       <a
         href="https://aubreycantrell.glitch.me/"
         class="card"
-        style="style=color: white; text-decoration: none"
+        style="text-decoration: none"
       >
         <div class="corner top-left">Home</div>
         <div class="card-content">
+          <h1>Aubrey Cantrell</h1>
+          <p>CS and Studio Arts @ Wellesley College</p>
+        </div>
+      </a>
+      <!-- Card 4 -->
+      <a
+        href="https://aubreycantrell.glitch.me/researching.html"
+        class="card"
+        style="background-color: #f7efd9 color: white; text-decoration: none"
+      >
+        <div class="corner top-left">Research</div>
+        <div class="corner bottom-right">Dive In</div>
+        <div class="card-content">
+          <h1>Research</h1>
+          <p>
+            Application of technological investigations and artistic queries
+          </p>
+        </div>
+      </a>
+      <!-- Card 5 -->
+      <a
+        href="https://aubreycantrell.glitch.me/arts.html"
+        class="card"
+        style="background-color: #f7efd9 color: white; text-decoration: none"
+      >
+        <div class="corner top-left">Studio Arts</div>
+        <div class="corner bottom-right">Explore</div>
+        <div class="card-content">
           <h1 id="dynamicText" style="color: white; text-decoration: none">
-            Aubrey Cantrell
+            Studio Arts
           </h1>
           <p style="color: white; text-decoration: none">
-            CS and Studio Arts @ Wellesley College
+            Artistic Problem Solving and Storytelling
           </p>
         </div>
       </a>
     </div>
+    <script>
+      function toggleDropdown(element) {
+        const content = element.nextElementSibling; // The dropdown content (ul)
+        const arrow = element.querySelector(".arrow"); // The arrow span
+
+        // Toggle the display of the list
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          arrow.textContent = "▶"; // Collapsed arrow
+        } else {
+          content.style.display = "block";
+          arrow.textContent = "▼"; // Expanded arrow
+        }
+      }
+    </script>
   </body>
 </html>
