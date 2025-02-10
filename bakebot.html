@@ -387,7 +387,12 @@
       </p>
 
       <div class="row">
-        <div class="col-md-6" style="padding-top: 3%">
+         <p>
+        <small
+          >Test it out! Click "Test Your Agent" in the bottom right hand corner and greet the BakeBot. Happy baking!
+        </small>
+      </p>
+        <div class="col-md-12" style="padding-top: 3%">
           <div class="embed-container">
             <iframe
               loading="lazy"
@@ -401,19 +406,23 @@
         </div>
 
         <!-- Second GIF -->
-        <div class="col-md-6" style="padding-top: 3%">
-          <div class="embed-container">
-            <iframe
-              src="https://www.youtube.com/embed/VsD_vdAdedA?si=uOCQD7fOHBie5_eR"
-              title="YouTube video player"
-              class="responsive-gif"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-
-            <p>Application</p>
-          </div>
-        </div>
+       
+        <script type="text/javascript">
+          (function (d, t) {
+            var v = d.createElement(t),
+              s = d.getElementsByTagName(t)[0];
+            v.onload = function () {
+              window.voiceflow.chat.load({
+                verify: { projectID: "67328fed02f867cb4c491b5f" },
+                url: "https://general-runtime.voiceflow.com",
+                versionID: "production",
+              });
+            };
+            v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
+            v.type = "text/javascript";
+            s.parentNode.insertBefore(v, s);
+          })(document, "script");
+        </script>
       </div>
     </section>
   </body>
