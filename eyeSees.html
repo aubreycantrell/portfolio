@@ -227,20 +227,21 @@
       }
 
       .embed-container {
-        position: relative;
+        /*position: relative;*/
         width: 100%;
         height: 0;
-        padding-bottom: 56.25%; /* Maintains 16:9 aspect ratio */
+        padding-bottom: 56.25%; /* This maintains the 16:9 aspect ratio */
         overflow: hidden;
       }
 
-      .embed-container img {
+      .embed-container iframe {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures the image fills the container without distortion */
+        border: none;
+        object-fit: cover; /* Ensure the iframe covers the container */
       }
     </style>
   </head>
@@ -364,20 +365,26 @@
     </div>
 
     <section class="right-text">
-      <h2>The Red String</h2>
-      <p>Lithography 2023</p>
+      <h2></h2>
+      <p></p>
       <small>
         <p></p>
       </small>
 
-      <div class="row" style="transform: translateY(-20%) translateX(0%)">
-        <div class="col-md-12" style="padding-top: 3%">
-          <div class="embed-container">
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/theRedString?v=1719334311172"
-              alt="Balsamiq"
+      <div class="row">
+      
+        <!-- Second GIF -->
+        <div class="col-md-6" style="padding-top: 20%">
+          <div class="embed-container"
+              >
+            <iframe
+              src="https://www.youtube.com/embed/nAUgL6fvDYM?si=mYS5w-nggYLTUFWD"
+              title="YouTube video player"
               class="responsive-gif"
-            />
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+                     style="transform: ]translateY(-100%);"
+            ></iframe>
           </div>
         </div>
       </div>
