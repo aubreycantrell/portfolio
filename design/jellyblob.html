@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Concepts</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="jBlobs.css" />
+
+    <script src="/script.js" defer></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow-y: auto; /* Allows vertical scrolling */
+      }
+
+      /* Logo Style */
+      .logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+      .logo img {
+        max-width: 100px; /* Adjust size as needed */
+        height: auto; /* Maintains aspect ratio */
+      }
+
+      .left-text {
+        position: absolute;
+        left: 3%;
+        top: 50%;
+        transform: translateY(-50%); /* Centers vertically */
+        width: 35%; /* Left third of the screen */
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px auto;
+      }
+      .right-text {
+        position: absolute;
+        right: 6%; /* Distance from the right edge of the screen */
+        top: 10%; /* Vertically centered on the screen */
+        width: 58%; /* Occupies a third of the screen's width */
+        padding: 20px; /* Adds padding inside the section */
+        border-radius: 1 0px; /* Rounded corners */
+        margin: 20px auto; /* Adds vertical spacing if needed */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0
+        ); /* Background color for readability */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Adds a subtle shadow */
+        text-align: left; /* Aligns text to the left */
+        font-family: Arial, sans-serif; /* Ensures consistent font styling */
+      }
+
+      /* Menu Style */
+      .menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 15px;
+        font-size: 0.95rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px 15px;
+        border-radius: 25px;
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        padding: 5px;
+      }
+
+      .menu a:hover {
+        color: #4d7471;
+      }
+
+      .stack {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        perspective: 1000px;
+        transform: translateX(13%) translateY(-9%);
+      }
+
+      .card {
+        position: absolute;
+        width: 220%;
+        height: 120%;
+        background-color: #fff;
+        border: 10px solid white; /* White border around images */
+        border-radius: 0px; /* Adjusted for the card itself, not the image */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transform-origin: center;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .card img {
+        border: 5px solid white; /* White border around images */
+        border-radius: 0; /* Ensures images have no rounded corners */
+        display: block;
+        max-width: 100%;
+        height: auto;
+        background-size: contain; /* Ensures the entire image is visible */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents tiling */
+      }
+
+      .card:nth-child(3) {
+        /*studio art*/
+        transform: rotate(-22deg) translateY(-5%) translateX(-7%);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");
+      }
+
+      .card:nth-child(2) {
+        /*research*/
+        transform: rotate(20deg) translateY(-10%) translateX(6%);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142");
+      }
+
+      .card:nth-child(4) {
+        /*about*/
+        transform: rotate(-40deg) translateY(-10%) translateX(-10%);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172");
+      }
+      .card:nth-child(5) {
+        /*design*/
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235");
+      }
+      .card:nth-child(1) {
+        /*home*/
+        transform: scale(1.05) rotate(10deg) translateY(-3%) translateX(4%);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354");
+      }
+
+      .card .corner {
+        position: absolute;
+        font-size: 0.8rem;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 5px;
+      }
+
+      .corner.top-left {
+        top: 10px;
+        left: 10px;
+      }
+
+      .corner.top-right {
+        top: 10px;
+        right: 10px;
+      }
+
+      .corner.bottom-left {
+        bottom: 10px;
+        left: 10px;
+      }
+
+      .corner.bottom-right {
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .polaroid-container {
+        display: flex;
+        flex-wrap: wrap; /* Allows wrapping to create rows */
+        gap: 20px; /* Space between polaroids */
+        margin: 20px;
+      }
+
+      .polaroid {
+        width: 200px; /* Fixed width for consistency */
+        background: white;
+        border: 10px solid white; /* Simulates Polaroid border */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
+        text-align: center;
+        padding-bottom: 5px 0; /* Adds spacing inside the polaroid */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .polaroid img {
+        width: 100%; /* Make image fit within polaroid width */
+        height: auto;
+        display: block;
+        margin-bottom: 10px; /* Space between image and text */
+      }
+
+      .polaroid h4 {
+        font-size: 1rem;
+        margin: 0;
+        color: black; /* Title text color */
+      }
+
+      .responsive-gif {
+        width: 100%; /* Ensures the GIF fits the container width */
+        height: 50%; /* Maintains the aspect ratio */
+        border-radius: 0px; /* Optional: Add rounded corners */
+      }
+
+      .embed-container {
+        text-align: center; /* Centers the content, if needed */
+        margin: auto;
+        padding-top: 0;
+      }
+      .embed-container img {
+        width: 100%; /* Set the desired width */
+        height: 200px; /* Set the desired height */
+        object-fit: contain; /* Ensures the image is cropped to fit the container */
+      }
+
+      ul {
+        list-style-type: none; /* Removes bullet points */
+        margin: 0; /* Removes default margin */
+        padding: 0; /* Removes default padding */
+      }
+      .arrow {
+        font-size: 0.6rem; /* Smaller font size for the arrow */
+        transition: transform 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <a href="https://aubreycantrell.glitch.me/index.html"
+        ><img
+          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/dolphin.png?v=1723594550126"
+          alt="Logo"
+      /></a>
+    </div>
+
+    <div class="menu">
+      <a href="https://aubreycantrell.glitch.me/design.html">UX Design</a>
+      <a href="https://aubreycantrell.glitch.me/arts.html">Studio Arts</a>
+      <a href="https://aubreycantrell.glitch.me/researching.html">Research</a>
+    </div>
+
+    <div id="intro">
+      <h1>Jelly Blob Game</h1>
+      <ul>
+        <li>Move the mouse to control the blue blob.</li>
+        <li>Eat blobs that are smaller than you in order to grow.</li>
+        <li>Avoid bigger blobs or you will shrink.</li>
+      </ul>
+
+      <p>
+        <button id="start" class="button" type="button">Start Game</button>
+      </p>
+    </div>
+
+    <div id="winOrLose"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cs.wellesley.edu/~anderson/js/bounds/bounds-plugin.js"></script>
+    <script src="https://cs.wellesley.edu/~cs204/assignments/jelly/random.js"></script>
+    <script src="https://cs.wellesley.edu/~cs204/assignments/jelly/random.js"></script>
+    <script src="Blob.js"></script>
+    <script src="Player.js"></script>
+    <script src="Enemy.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>

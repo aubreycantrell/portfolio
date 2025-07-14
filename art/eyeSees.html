@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio Art</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="icon"
+      href="../img/dolphin.png"
+    />
+    <script src="./script/script.js" defer></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow-y: auto; /* Allows vertical scrolling */
+      }
+
+      /* Logo Style */
+      .logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+      .logo img {
+        max-width: 100px; /* Adjust size as needed */
+        height: auto; /* Maintains aspect ratio */
+      }
+
+      /* Menu Style */
+      .menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 15px;
+        font-size: 0.95rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px 15px;
+        border-radius: 25px;
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        padding: 5px;
+      }
+
+      .menu a:hover {
+        color: #4d7471;
+      }
+
+      .dropdown {
+        position: absolute;
+        left: 3%;
+        top: 40%;
+        transform: translateY(-50%); /* Centers vertically */
+        width: 28%; /* Left third of the screen */
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px auto;
+      }
+
+      .dropdown-item {
+        margin-bottom: 15px;
+      }
+      .arrow {
+        font-size: 0.8rem; /* Smaller font size for the arrow */
+        transition: transform 0.3s ease;
+      }
+
+      h4 {
+        margin: 0;
+        cursor: pointer;
+        color: black;
+        transition: color 0.3s;
+      }
+
+      h4:hover {
+        color: #789c9d;
+      }
+
+      ul {
+        list-style-type: none; /* Removes bullet points */
+        margin: 5px 20px;
+        padding: 0;
+        display: none; /* Initially hidden */
+      }
+
+      li {
+        margin: 5px 0;
+      }
+
+      .stack {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        perspective: 1000px;
+        transform: translateX(13%) translateY(-9%);
+      }
+
+      .card {
+        position: absolute;
+        width: 220%;
+        height: 120%;
+        background-color: #fff;
+        border: 10px solid white; /* White border around images */
+        border-radius: 0px; /* Adjusted for the card itself, not the image */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transform-origin: center;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .card img {
+        border: 5px solid white; /* White border around images */
+        border-radius: 0; /* Ensures images have no rounded corners */
+        display: block;
+        max-width: 100%;
+        height: auto;
+        background-size: contain; /* Ensures the entire image is visible */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents tiling */
+      }
+
+      .card:nth-child(5) {
+        /*studio art*/
+        transform: rotate(-22deg) translateY(-5%) translateX(-7%);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");
+      }
+
+      .card:nth-child(4) {
+        /*research*/
+        transform: rotate(20deg) translateY(-10%) translateX(6%);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142");
+      }
+
+      .card:nth-child(1) {
+        /*about*/
+        transform: rotate(-40deg) translateY(-10%) translateX(-10%);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172");
+      }
+      .card:nth-child(2) {
+        /*design*/
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235");
+      }
+      .card:nth-child(3) {
+        /*home*/
+        transform: scale(1.05) rotate(10deg) translateY(-3%) translateX(4%);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354");
+      }
+
+      .card .corner {
+        position: absolute;
+        font-size: 0.8rem;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 5px;
+      }
+
+      .corner.top-left {
+        top: 10px;
+        left: 10px;
+      }
+
+      .corner.top-right {
+        top: 10px;
+        right: 10px;
+      }
+
+      .corner.bottom-left {
+        bottom: 10px;
+        left: 10px;
+      }
+
+      .corner.bottom-right {
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-align: center;
+        padding: 20px;
+      }
+      .right-text {
+        position: absolute;
+        right: 6%; /* Distance from the right edge of the screen */
+        top: 10%; /* Vertically centered on the screen */
+        width: 70%; /* Occupies a third of the screen's width */
+        padding: 20px; /* Adds padding inside the section */
+        border-radius: 10px; /* Rounded corners */
+        margin: 20px auto; /* Adds vertical spacing if needed */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0
+        ); /* Background color for readability */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Adds a subtle shadow */
+        text-align: left; /* Aligns text to the left */
+        font-family: Arial, sans-serif; /* Ensures consistent font styling */
+      }
+      .responsive-gif {
+        width: 100%; /* Ensures the GIF fits the container width */
+        height: 50%; /* Maintains the aspect ratio */
+        border-radius: 10px; /* Optional: Add rounded corners */
+      }
+
+      .embed-container {
+        /*position: relative;*/
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%; /* This maintains the 16:9 aspect ratio */
+        overflow: hidden;
+      }
+
+      .embed-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        object-fit: cover; /* Ensure the iframe covers the container */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <a href="../index.html"
+        ><img
+          src="../img/dolphin.png"
+          alt="Logo"
+      /></a>
+    </div>
+
+    <div class="menu">
+      <a href="../home/design.html">UX Design</a>
+      <a href="../home/arts.html">Studio Arts</a>
+      <a href="../home/researching.html">Research</a>
+    </div>
+
+    <!-- About Me Blurb -->
+    <div class="dropdown">
+      <div class="dropdown-item">
+        <h4 onclick="toggleDropdown(this)">
+          Printmaking <span class="arrow">▶</span>
+        </h4>
+        <ul class="dropdown-content">
+          <li>
+            <a
+              href="highTide.html"
+              style="color: black; text-decoration: none"
+              >High Tide</a
+            >
+          </li>
+          <li>
+            <a
+              href="redstring.html"
+              style="color: black; text-decoration: none"
+              >The Red String</a
+            >
+          </li>
+          <li>
+            <a
+              href="expressions.html"
+              style="color: black; text-decoration: none"
+              >Idioms and Expressions</a
+            >
+          </li>
+          <li>
+            <a
+              href="flossed.html"
+              style="color: black; text-decoration: none"
+              >Unflossed</a
+            >
+          </li>
+          <li>
+            <a
+              href="blues.html"
+              style="color: black; text-decoration: none"
+              >Sur Blues</a
+            >
+          </li>
+          <li>
+            <a
+              href="cranes.html"
+              style="color: black; text-decoration: none"
+              >100 Days of School, Revisited</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="dropdown-item">
+        <h4 onclick="toggleDropdown(this)">
+          Mixed Media <span class="arrow">▶</span>
+        </h4>
+        <ul class="dropdown-content">
+          <li>
+            <a
+              href="eyeSees.html"
+              style="color: black; text-decoration: none"
+              >What the Eye Sees</a
+            >
+          </li>
+          <li>
+            <a
+              href="paintedparasol.html"
+              style="color: black; text-decoration: none"
+              >Painted Parasols</a
+            >
+          </li>
+          <li>
+            <a
+              href="wovensolice.html"
+              style="color: black; text-decoration: none"
+              >Woven in Solice</a
+            >
+          </li>
+          <li>
+            <a
+              href="cube.html"
+              style="color: black; text-decoration: none"
+              >Rubik's Cube, Solved</a
+            >
+          </li>
+          <li>
+            <a
+              href="where.html"
+              style="color: black; text-decoration: none"
+              >Whereabouts</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="dropdown-item">
+        <h4 onclick="toggleDropdown(this)">
+          <a
+            href="photographs.html"
+            style="color: black; text-decoration: none"
+            >Photography </a
+          ><span class="arrow">▶</span>
+        </h4>
+      </div>
+    </div>
+
+    <section class="right-text">
+      <h2></h2>
+      <p></p>
+      <small>
+        <p></p>
+      </small>
+
+      <div class="row">
+      
+        <!-- Second GIF -->
+        <div class="col-md-6" style="padding-top: 20%">
+          <div class="embed-container"
+              >
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/N30NxxYFymA?si=H794LkuALve3IgbN"
+              title="YouTube video player"
+              class="responsive-gif"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+                     style="transform: ]translateY(-100%);"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function toggleDropdown(element) {
+        const content = element.nextElementSibling; // The dropdown content (ul)
+        const arrow = element.querySelector(".arrow"); // The arrow span
+
+        // Toggle the display of the list
+        if (content.style.display === "block") {
+          content.style.display = "none";
+          arrow.textContent = "▶"; // Collapsed arrow
+        } else {
+          content.style.display = "block";
+          arrow.textContent = "▼"; // Expanded arrow
+        }
+      }
+    </script>
+  </body>
+</html>
