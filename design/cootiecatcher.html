@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Origami Fortune Teller</title>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Correctly import FontLoader and TextGeometry -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/geometries/TextGeometry.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <script>
+        // Scene setup
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xf0f0f0);
+
+        // Camera setup
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(3, 3, 6);
+        camera.lookAt(0, 0, 0);
+
+        // Renderer setup
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.body.appendChild(renderer.domElement);
+
+        // Lighting setup
+        const ambientLight = new THREE.AmbientLight(0x888888);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(3, 3, 3);
+        scene.add(directionalLight);
+
+        // Add OrbitControls to allow user interaction
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.25;
+        controls.enableZoom = true;
+
+        // Create the base square geometry (flat paper)
+        const planeGeometry = new THREE.PlaneGeometry(2, 2, 8, 8);
+        const material = new THREE.MeshStandardMaterial({
+            color: 0xeeeeee, // Temporarily use a solid color
+            emissive: 0xcccccc,
+            emissiveIntensity: 0.5,
+            roughness: 0.8,
+            metalness: 0.2,
+            side: THREE.DoubleSide
+        });
+
+        const cootieCatcher = new THREE.Mesh(planeGeometry, material);
+        cootieCatcher.rotation.x = -Math.PI / 2;
+
+        scene.add(cootieCatcher);
+
+        // Fold the paper: simulate creases for the cootie catcher
+        let foldAmount = 0.3;  // How far the fold goes
+        let positions = planeGeometry.attributes.position.array;  // Access the position attribute directly
+
+        // Animation variables
+        let foldStage = 0;
+
+        // Function to animate the folding process
+        function foldPaper() {
+            if (foldStage === 0) {
+                // First fold: move the corners toward the center
+                for (let i = 0; i < positions.length; i += 3) {
+                    const x = positions[i];
+                    const y = positions[i + 1];
+
+                    // Fold the corners inward
+                    if (x > 0 && y > 0) {
+                        positions[i + 2] = foldAmount;
+                    } else if (x < 0 && y > 0) {
+                        positions[i + 2] = foldAmount;
+                    } else if (x < 0 && y < 0) {
+                        positions[i + 2] = foldAmount;
+                    } else if (x > 0 && y < 0) {
+                        positions[i + 2] = foldAmount;
+                    }
+                }
+                foldStage = 1;
+            } else if (foldStage === 1) {
+                // Second fold: further fold inward to create the smaller square
+                for (let i = 0; i < positions.length; i += 3) {
+                    const x = positions[i];
+                    const y = positions[i + 1];
+
+                    if (Math.abs(x) < 1 && Math.abs(y) < 1) {
+                        positions[i + 2] = foldAmount * 2;
+                    }
+                }
+                foldStage = 2;
+            } else if (foldStage === 2) {
+                // Final folding, adjust position for the last creases
+                foldAmount = 0.1; // Smaller fold for final stage
+                for (let i = 0; i < positions.length; i += 3) {
+                    const x = positions[i];
+                    const y = positions[i + 1];
+
+                    if (Math.abs(x) < 0.5 && Math.abs(y) < 0.5) {
+                        positions[i + 2] = foldAmount;
+                    }
+                }
+                foldStage = 3;  // Finished folding
+            }
+
+            // Update the geometry after folding
+            planeGeometry.attributes.position.needsUpdate = true;
+        }
+
+        // Load the font and create tabs with text
+        const fontLoader = new THREE.FontLoader();
+        let font;
+
+        fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (loadedFont) => {
+            font = loadedFont;
+
+            // Create tabs (flaps) as separate geometries
+            const tabGeometry = new THREE.PlaneGeometry(0.5, 0.5);
+            const tabMaterial = new THREE.MeshStandardMaterial({
+                color: 0xfff,
+                emissive: 0xcccccc,
+                emissiveIntensity: 0.3,
+                roughness: 0.8,
+                metalness: 0.2,
+                side: THREE.DoubleSide
+            });
+
+            const tabs = [];
+            const tabPositions = [
+                { x: 1, y: 1, rotation: 0, text: '1' },
+                { x: -1, y: 1, rotation: Math.PI, text: '2' },
+                { x: 1, y: -1, rotation: Math.PI / 2, text: '3' },
+                { x: -1, y: -1, rotation: -Math.PI / 2, text: '4' }
+            ];
+
+            // Create the tabs and position them accordingly
+            tabPositions.forEach((pos) => {
+                const tab = new THREE.Mesh(tabGeometry, tabMaterial);
+                tab.position.set(pos.x, pos.y, 0.5);  // Position the tab in front of the cootie catcher
+                tab.rotation.z = pos.rotation;
+
+                // Create 3D text and add it to the tab
+                const textGeometry = new THREE.TextGeometry(pos.text, {
+                    font: font,
+                    size: 0.1,
+                    height: 0.02
+                });
+
+                const textMesh = new THREE.Mesh(textGeometry, new THREE.MeshBasicMaterial({ color: 0x000000 }));
+                textMesh.position.set(pos.x - 0.1, pos.y - 0.1, 0.55);
+                scene.add(textMesh);
+
+                tabs.push(tab);
+                scene.add(tab);
+            });
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+
+                if (foldStage < 3) {
+                    foldPaper();
+                }
+
+                controls.update(); // Only required if controls.enableDamping is enabled
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        });
+
+        // Handle resizing
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
+
