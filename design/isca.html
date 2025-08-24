@@ -3,73 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design Concepts</title>
+    <title>Design Concepts — ISCA</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <link
-      rel="icon"
-      href="../img/dolphin.png"
-    />
-    <script src="../script/script.js" defer></script>
+    <link rel="icon" href="../img/dolphin.png" />
     <style>
+      /* Base */
       body {
         margin: 0;
         font-family: Arial, sans-serif;
         background-color: #f0f0f0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow-y: auto; /* Allows vertical scrolling */
+        min-height: 100vh;
       }
 
-      /* Logo Style */
+      /* Top logo & top-right site menu */
       .logo {
-        position: absolute;
+        position: fixed;
         top: 20px;
         left: 20px;
+        z-index: 20;
       }
-      .logo img {
-        max-width: 100px; /* Adjust size as needed */
-        height: auto; /* Maintains aspect ratio */
-      }
+      .logo img { max-width: 100px; height: auto; }
 
-      .left-text {
-        position: absolute;
-        left: 3%;
-        top: 50%;
-        transform: translateY(-50%); /* Centers vertically */
-        width: 35%; /* Left third of the screen */
-        padding: 20px;
-        border-radius: 10px;
-        margin: 20px auto;
-      }
-      .right-text {
-        position: absolute;
-        right: 6%; /* Distance from the right edge of the screen */
-        top: 10%; /* Vertically centered on the screen */
-        width: 58%; /* Occupies a third of the screen's width */
-        padding: 20px; /* Adds padding inside the section */
-        border-radius: 1 0px; /* Rounded corners */
-        margin: 20px auto; /* Adds vertical spacing if needed */
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0
-        ); /* Background color for readability */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Adds a subtle shadow */
-        text-align: left; /* Aligns text to the left */
-        font-family: Arial, sans-serif; /* Ensures consistent font styling */
-      }
-
-      /* Menu Style */
       .menu {
-        position: absolute;
+        position: fixed;
         top: 20px;
         right: 20px;
         display: flex;
@@ -78,571 +39,492 @@
         background-color: rgba(255, 255, 255, 0.8);
         padding: 5px 15px;
         border-radius: 25px;
+        z-index: 20;
+      }
+      .menu a { text-decoration: none; color: black; font-weight: bold; padding: 5px; }
+      .menu a:hover { color: #4d7471; }
+
+      /* Page layout: left menu (15%) + right content */
+      .page {
+        display: grid;
+        grid-template-columns: 20% 1fr;
+        gap: 24px;
+        align-items: start;
+        padding: 110px 6% 40px; /* room for fixed header elements */
       }
 
-      .menu a {
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
-        padding: 5px;
-      }
-
-      .menu a:hover {
-        color: #4d7471;
-      }
-
-      .stack {
+      /* Left column (nav) */
+      .left-text {
         position: relative;
-        width: 300px;
-        height: 400px;
-        perspective: 1000px;
-        transform: translateX(13%) translateY(-9%);
+        width: 100%;
+        transform: none;
+        left: auto; top: auto; margin: 0; padding: 0 4px;
       }
 
-      .card {
-        position: absolute;
-        width: 220%;
-        height: 120%;
-        background-color: #fff;
-        border: 10px solid white; /* White border around images */
-        border-radius: 0px; /* Adjusted for the card itself, not the image */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transform-origin: center;
-        cursor: pointer;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .card img {
-        border: 5px solid white; /* White border around images */
-        border-radius: 0; /* Ensures images have no rounded corners */
-        display: block;
-        max-width: 100%;
-        height: auto;
-        background-size: contain; /* Ensures the entire image is visible */
-        background-position: center; /* Centers the image */
-        background-repeat: no-repeat; /* Prevents tiling */
-      }
-
-      .card:nth-child(3) {
-        /*studio art*/
-        transform: rotate(-22deg) translateY(-5%) translateX(-7%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");
-      }
-
-      .card:nth-child(2) {
-        /*research*/
-        transform: rotate(20deg) translateY(-10%) translateX(6%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142");
-      }
-
-      .card:nth-child(4) {
-        /*about*/
-        transform: rotate(-40deg) translateY(-10%) translateX(-10%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172");
-      }
-      .card:nth-child(5) {
-        /*design*/
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235");
-      }
-      .card:nth-child(1) {
-        /*home*/
-        transform: scale(1.05) rotate(10deg) translateY(-3%) translateX(4%);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354");
-      }
-
-      .card .corner {
-        position: absolute;
-        font-size: 0.8rem;
-        font-weight: bold;
-        background-color: rgba(255, 255, 255, 0.6);
-        padding: 5px;
-      }
-
-      .corner.top-left {
-        top: 10px;
-        left: 10px;
-      }
-
-      .corner.top-right {
-        top: 10px;
-        right: 10px;
-      }
-
-      .corner.bottom-left {
-        bottom: 10px;
-        left: 10px;
-      }
-
-      .corner.bottom-right {
-        bottom: 10px;
-        right: 10px;
-      }
-
-      .card-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        text-align: center;
+      /* Right column (content) */
+      .right-text {
+        position: relative;
+        right: auto; top: auto;
+        width: 100%;
         padding: 20px;
+        border-radius: 10px;
+        margin: 0;
+        background-color: rgba(0,0,0,0);
+        box-shadow: none;
+        text-align: left;
+        font-family: Arial, sans-serif;
       }
 
-      .polaroid-container {
-        display: flex;
-        flex-wrap: wrap; /* Allows wrapping to create rows */
-        gap: 20px; /* Space between polaroids */
-        margin: 20px;
+      /* Hide/Show left menu button */
+      .toggle-menu {
+        position: fixed;
+        left: 18px;
+        top: 90px;
+        z-index: 25;
+        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 0;
+        background: #4d7471;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,.15);
       }
 
-      .polaroid {
-        width: 200px; /* Fixed width for consistency */
-        background: white;
-        border: 10px solid white; /* Simulates Polaroid border */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
-        text-align: center;
-        padding-bottom: 5px 0; /* Adds spacing inside the polaroid */
+      /* COLLAPSED STATE — FULL-WIDTH CONTENT */
+      body.menu-collapsed .left-text { display: none; }
+      body.menu-collapsed .page { grid-template-columns: 1fr; }
+      body.menu-collapsed .right-text { grid-column: 1 / -1; width: 100%; }
+
+      /* Left vertical project menu */
+      .design-menu {
         display: flex;
         flex-direction: column;
+        gap: 10px;
+      }
+      .menu-item {
+        display: flex;
         align-items: center;
+        gap: 12px;
+        background: #ffffff;
+        border: 1px solid #e6e6e6;
+        border-radius: 12px;
+        padding: 10px 12px;
+        text-decoration: none;
+        color: #111;
+        box-shadow: 0 1px 4px rgba(0,0,0,.06);
+        transition: box-shadow .2s ease, border-color .2s ease, transform .08s ease;
+      }
+      .menu-item:hover {
+        border-color: #cfe3df;
+        box-shadow: 0 2px 8px rgba(0,0,0,.08);
+        transform: translateY(-1px);
+      }
+      .menu-item:focus { outline: 2px solid #4d7471; outline-offset: 2px; }
+      .menu-thumb {
+        width: 54px; height: 54px; border-radius: 8px; object-fit: cover; background: #f5f5f5; flex: 0 0 auto;
+      }
+      .menu-body { display: flex; flex-direction: column; min-width: 0; }
+      .menu-title {
+        font-weight: 700; font-size: 14px; line-height: 1.1;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .menu-sub { font-size: 12px; color: #666; }
+      .menu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+      .menu-tags .tag {
+        font-size: 10px; padding: 4px 6px; border-radius: 999px;
+        background: #e8f1ef; border: 1px solid #cfe3df; color: #143b37; font-weight: 600;
       }
 
-      .polaroid img {
-        width: 100%; /* Make image fit within polaroid width */
-        height: auto;
-        display: block;
-        margin-bottom: 10px; /* Space between image and text */
+      /* Reusable helpers to match Spam/BakeBot */
+      .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 14px; }
+      .pill {
+        display: inline-block; padding: 6px 10px; border-radius: 999px;
+        background: #e8f1ef; color: #143b37; border: 1px solid #cfe3df;
+        font-size: 12px; font-weight: 600; line-height: 1;
+      }
+      .h5ish { font-weight: 700; margin-top: 10px; margin-bottom: 6px; }
+      .section-muted { margin-top: 22px; }
+
+      .responsive-gif { width: 100%; height: auto; border-radius: 10px; }
+      .embed-container { text-align: center; margin: auto; padding-top: 0; }
+
+      /* Media cards with consistent height */
+      .media-box{
+        position: relative;
+        width: 100%;
+        height: 260px;            /* equal visual weight */
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 1px 6px rgba(0,0,0,.08);
+      }
+      .media-box img{
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
 
-      .polaroid h4 {
-        font-size: 1rem;
-        margin: 0;
-        color: black; /* Title text color */
+      /* Two-column explainer layout (text + media) */
+      .explain-row{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:18px; align-items:start;
+      }
+      @media (max-width: 992px){
+        .explain-row{ grid-template-columns:1fr; }
+        .media-box{ height: 200px; }
       }
 
-      .responsive-gif {
-        width: 100%; /* Ensures the GIF fits the container width */
-        height: 50%; /* Maintains the aspect ratio */
-        border-radius: 0px; /* Optional: Add rounded corners */
-      }
-
-      .embed-container {
-        text-align: center; /* Centers the content, if needed */
-        margin: auto;
-        padding-top: 0;
-      }
-      .embed-container img {
-        width: 100%; /* Set the desired width */
-        height: 200px; /* Set the desired height */
-        object-fit: contain; /* Ensures the image is cropped to fit the container */
-      }
-
-      ul {
-        list-style-type: none; /* Removes bullet points */
-        margin: 0; /* Removes default margin */
-        padding: 0; /* Removes default padding */
-      }
-      .arrow {
-        font-size: 0.6rem; /* Smaller font size for the arrow */
-        transition: transform 0.3s ease;
-      }
+      .arrow { font-size: 0.6rem; transition: transform 0.3s ease; }
+      .inline-link { color:#0d6efd; text-decoration:none; font-weight:700; }
+      .inline-link:hover { text-decoration:underline; }
     </style>
   </head>
   <body>
+    <!-- Logo -->
     <div class="logo">
-      <a href="../index.html"
-        ><img
-          src="../img/dolphin.png"
-          alt="Logo"
-      /></a>
+      <a href="../index.html"><img src="../img/dolphin.png" alt="Logo" /></a>
     </div>
 
+    <!-- Site sections -->
     <div class="menu">
       <a href="../home/design.html">UX Design</a>
       <a href="../home/arts.html">Studio Arts</a>
       <a href="../home/researching.html">Research</a>
     </div>
 
-    <div class="left-text polaroid-container">
-      <!-- Row 1 -->
+    <!-- Hide/Show toggle -->
+    <button id="toggleMenuBtn" class="toggle-menu" type="button" aria-expanded="true" aria-controls="leftNav">
+      Hide menu
+    </button>
 
-      <div class="polaroid">
-       <a
-         href="../design/genAI.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="../img/grid.gif"
-           alt="Wellesley Work Order Website"
-         />
-         <h4 style="font-weight: bold">GenAI Personalized Animations</h4>
-         <small>Affective Computing Group @ MIT Media Lab</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/workorder.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="../img/hand_warp.png"
-           alt="Wellesley Work Order Website"
-         />
-         <h4 style="font-weight: bold">Hand Warp</h4>
-         <small>Artistic Application</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/workorder.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731"
-           alt="Wellesley Work Order Website"
-         />
-         <h4 style="font-weight: bold">Wellesley Work Order</h4>
-         <small>Design Concept</small>
-       </a>
-     </div>
-      
-     <div class="polaroid">
-       <a
-         href="../design/bakebot.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223"
-           alt="BakeBot"
-         />
-         <h4 style="font-weight: bold">BakeBot</h4>
-         <small>AI Voice Recognition Software</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/spam.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119"
-           alt="Spam!"
-         />
-         <h4 style="font-weight: bold">Spam!</h4>
-         <small>App Design for Civic Engagement</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/isca.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725"
-           alt="International Swim Coaches Association"
-         />
-         <h4 style="font-weight: bold">
-           International Swim Coaches Association
-         </h4>
-         <small>Website Design and Development</small>
-       </a>
-     </div>
-     
-   </div>
-
-    <section class="right-text">
-      <h2>ISCA Website Redesign</h2>
-      <small>
-        <p>
-          Design aspects and content for homepage and event pages of
-          International Swim Coaches Association
-        </p>
-      </small>
-
-      <p>
-        <small
-          >Through ISCA's mission to educate and unite the global swim coach
-          community, the main task in the redesign of the website was to make
-          valubale coaching resources more accessible, as well as advertise
-          ISCA's meets and workshops more broadly. We aimed to streamline
-          registration processes by condensing steps and conveying necessary
-          information in concise ways, and advertising ISCA's socials for
-          swimmers, coaches and parents to easily access.
-        </small>
-      </p>
-
-      <p>
-        <small
-          >We started off by establishing a brand wide font and company colors
-          to create a cohesive and consistent appearance. This allowed for a
-          more minimalistic look with fewer, but highly contrasting colors. We
-          established a sans serif typeface, Hanken Grotesk, to be the main font
-          used to create a clean look that conveys a smart, bold brand. These
-          new colors and fonts created the base of the website redesign and were
-          implemented into the logo.
-        </small>
-      </p>
-
-      <div class="row">
-        <div class="col-md-6" style="padding-top: 3%">
-          <div class="embed-container">
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/typography.png?v=1724189324031"
-              alt="text"
-              class="responsive-gif"
-            />
-          </div>
-        </div>
-
-        <!-- Second GIF -->
-        <div class="col-md-6" style="padding-top: 3%">
-          <div class="embed-container">
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/logos.png?v=1724189270430"
-              alt="logo"
-              class="responsive-gif"
-            />
-          </div>
-        </div>
-      </div>
-      <p>
-        <small
-          >We then focused in on three main goals within the website: we wanted
-          to streamline the navigation for accessibility purposes, prioritize
-          advertizing events and workshops, and increase visability of their
-          socials and subscriptions.
-        </small>
-      </p>
-      <!-- Navigation -->
-      <div>
-        <h5>Navigation</h5>
-        <div class="row" >
-          <div class="col-md-6">
-            <div class="embed-container" style="padding: 0; margin: 0">
-              <img
-                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/nav%20bar.gif?v=1724183502112"
-                alt="header"
-                class="responsive-gif"
-                style="
-                  width: 100%;
-                  height: 200px;
-                  object-fit: cover;
-                  object-position: center center;
-                  clip-path: inset(28% 0 28% 0);
-                  border-radius: 0px;
-                "
-              />
-              <img
-                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/footer.png?v=1724183517150"
-                alt="footer"
-                class="responsive-gif"
-                style="width: 100%; height: auto"
-              />
+    <main class="page">
+      <!-- LEFT: vertical project menu (same pattern as Spam/BakeBot) -->
+      <aside id="leftNav" class="left-text">
+        <nav class="design-menu" aria-label="Design projects">
+          <a class="menu-item" href="../design/manifest.html">
+            <img class="menu-thumb" src="../img/manifest_cover.png" alt="Manifest cover" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Manifest</div>
+              <div class="menu-sub">Kid-friendly 2D → 3D</div>
+              <div class="menu-tags">
+                <span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Education</span>
+              </div>
             </div>
-          </div>
+          </a>
 
-          <!-- Second GIF -->
-          <div class="col-md-6" style="padding-top: 5%">
-            <div class="embed-container" style="padding: 0; margin: 0">
-              <h6>Header</h6>
-
-              <small
-                >Focusing on demonstrating the range of services and resources
-                through strategic groupings of categories Using contrasting
-                branding colors to emphasize selections</small
-              >
-
-              <h6 style="padding-top: 14%">Footer</h6>
-
-              <small>
-                Extended layout out the header, emphasizing a communication
-                point and ISCA's main brand offerings</small
-              >
+          <a class="menu-item" href="../design/hand_warp.html">
+            <img class="menu-thumb" src="../img/hand_warp.png" alt="Hand Warp" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Hand Warp</div>
+              <div class="menu-sub">Gesture camera framing</div>
+              <div class="menu-tags">
+                <span class="tag">MediaPipe</span><span class="tag">CV</span><span class="tag">Art</span>
+              </div>
             </div>
-          </div>
+          </a>
+
+          <a class="menu-item" href="../design/genAI.html">
+            <img class="menu-thumb" src="../img/grid.gif" alt="GenAI Personalized Animations" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">GenAI Personalized Animations</div>
+              <div class="menu-sub">Affective Computing @ MIT</div>
+              <div class="menu-tags">
+                <span class="tag">GenAI</span><span class="tag">Biosignals</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/bakebot.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223" alt="BakeBot" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">BakeBot</div>
+              <div class="menu-sub">AI voice assistant</div>
+              <div class="menu-tags">
+                <span class="tag">ASR</span><span class="tag">NLP</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/spam.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119" alt="Spam!" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Spam!</div>
+              <div class="menu-sub">Civic engagement app</div>
+              <div class="menu-tags">
+                <span class="tag">UX</span><span class="tag">Mobile</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/isca.html" aria-current="page">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725" alt="ISCA" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">ISCA</div>
+              <div class="menu-sub">Website design &amp; dev</div>
+              <div class="menu-tags">
+                <span class="tag">Frontend</span><span class="tag">CMS</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/workorder.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731" alt="Wellesley Work Order" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Wellesley Work Order</div>
+              <div class="menu-sub">Service ticket concept</div>
+              <div class="menu-tags">
+                <span class="tag">Product</span><span class="tag">Prototype</span>
+              </div>
+            </div>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- RIGHT: ISCA case study -->
+      <section class="right-text">
+        <h2>ISCA Website Redesign</h2>
+
+        <!-- Top tags (pills) to match other pages -->
+        <div class="pill-row" aria-label="tags">
+          <span class="pill">Frontend</span>
+          <span class="pill">Brand System</span>
+          <span class="pill">Navigation</span>
+          <span class="pill">Events</span>
+          <span class="pill">Subscriptions</span>
         </div>
-      </div>
-      <!-- Events and Workshops -->
-      <div style="padding-top: 5%">
-        <div>
-          <h5>Advertising Events</h5>
+
+        <small>
+          <p>
+            Design aspects and content for homepage and event pages of
+            International Swim Coaches Association
+          </p>
+        </small>
+
+        <!-- Overview / Problem -->
+        <section class="section-muted">
+          <div class="h5ish">Overview &amp; Goals</div>
+          <small>
+            <p>
+              Through ISCA's mission to educate and unite the global swim coach community, the main task in the redesign of the website was to make valuable coaching resources more accessible, as well as advertise ISCA's meets and workshops more broadly. We aimed to streamline registration processes by condensing steps and conveying necessary information in concise ways, and advertise ISCA's socials for swimmers, coaches and parents to easily access.
+            </p>
+          </small>
+        </section>
+
+        <!-- Brand System -->
+        <section class="section-muted">
+          <h3>Brand System</h3>
+          <small>
+            <p>
+              We started by establishing a brand-wide font and company colors to create a cohesive, minimal system with high contrast. We chose the sans serif typeface <strong>Hanken Grotesk</strong> to convey a smart, bold tone. These choices informed the UI components and refreshed logo.
+            </p>
+          </small>
           <div class="row">
-            <div class="col-md-6">
-              <div class="embed-container" style="padding: 0; margin: 0">
+            <div class="col-md-6" style="padding-top: 3%">
+              <div class="media-box">
+                <img
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/typography.png?v=1724189324031"
+                  alt="ISCA Typography"
+                />
+              </div>
+            </div>
+            <div class="col-md-6" style="padding-top: 3%">
+              <div class="media-box">
+                <img
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/logos.png?v=1724189270430"
+                  alt="ISCA Logos"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Navigation section (like Spam/BakeBot flow: text + visuals) -->
+        <section class="section-muted">
+          <h3>Navigation</h3>
+          <div class="explain-row">
+            <div>
+              <div class="h5ish">Header</div>
+              <small>
+                <p>
+                  The header groups core resources into clear clusters and uses contrasting brand colors to emphasize selections. This improves first-click discoverability and helps new visitors form a quick mental model.
+                </p>
+              </small>
+
+              <div class="h5ish" style="margin-top:14px;">Footer</div>
+              <small>
+                <p>
+                  The footer extends the header’s structure and surfaces a clear communication channel and ISCA’s primary offerings for dependable wayfinding.
+                </p>
+              </small>
+            </div>
+            <div>
+              <div class="media-box">
+                <img
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/nav%20bar.gif?v=1724183502112"
+                  alt="Header navigation demo"
+                  style="object-fit: cover;"
+                />
+              </div>
+              <div class="media-box" style="margin-top:12px; height:200px;">
+                <img
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/footer.png?v=1724183517150"
+                  alt="Footer layout"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Advertising Events -->
+        <section class="section-muted">
+          <h3>Advertising Events</h3>
+          <div class="explain-row">
+            <div>
+              <div class="h5ish">Landing</div>
+              <small>
+                <p>
+                  A dynamic carousel showcases upcoming events using AI-generated backgrounds paired with pre-existing event logos. This creates an immediate, branded focal point for visitors.
+                </p>
+              </small>
+
+              <div class="h5ish" style="margin-top:18px;">Testimonials</div>
+              <small>
+                <p>
+                  A simple, linear layout for testimonials increases credibility and reduces cognitive load for scanning.
+                </p>
+              </small>
+
+              <div class="h5ish" style="margin-top:18px;">Events Bar</div>
+              <small>
+                <p>
+                  Bright, contrasting tiles with subtle shadows encourage interaction. A hover-zoom affordance previews details without a click.
+                </p>
+              </small>
+            </div>
+            <div>
+              <div class="media-box" style="height:200px;">
                 <img
                   src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/isca%20carosel.gif?v=1724183513325"
-                  alt="header"
-                  class="responsive-gif"
-                  style="
-                    width: 100%;
-                    height: 200px;
-                    object-fit: cover;
-                    object-position: center center;
-                    border-radius: 0px;
-                  "
+                  alt="Events carousel"
+                  style="object-fit: cover;"
                 />
+              </div>
+              <div class="media-box" style="margin-top:12px; height:auto; min-height:200px;">
                 <img
                   src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/testimonials.png?v=1724183514398"
-                  alt="footer"
-                  class="responsive-gif"
-                  style="width: 100%; height: auto; padding-top: 3%"
+                  alt="Testimonials section"
+                  style="object-fit: contain;"
                 />
+              </div>
+              <div class="media-box" style="margin-top:12px; height:200px;">
                 <img
                   src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/events%20white.gif?v=1724183494198"
-                  alt="footer"
-                  class="responsive-gif"
-                  style="
-                    width: 100%;
-                    clip-path: inset(24% 0 24% 0);
-                    height: 200px;
-                    object-fit: cover;
-                    object-position: center center;
-                    border-radius: 0px;
-                    padding-top: 3%;
-                  "
+                  alt="Events bar"
+                  style="object-fit: cover;"
                 />
               </div>
             </div>
-
-            <!-- Second GIF -->
-            <div class="col-md-6" style="padding-top: 5%">
-              <div class="embed-container" style="padding: 0; margin: 0">
-                <h6>Landing Page</h6>
-
-                <small>
-                  A carosel exhibiting ISCA's upcoming events, using AI to
-                  create backgrounds for premade logos. Initial section seen by
-                  site visitors, showcasing the events in an intriguing and
-                  dynamic way</small
-                >
-
-                <h6 style="padding-top: 18%">Testimonials</h6>
-
-                <small>
-                  Using a clean linear layout to display company testimonials,
-                  enhancing credibility and user engagement</small
-                >
-                <h6 style="padding-top: 24%">Bar of Events</h6>
-
-                <small>
-                  Using bright contrasting colors and shadows to assist an
-                  intruiging display of ISCA's upcoming events, and a hovering
-                  zoom feature for interactive engagement</small
-                >
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
-      <!-- Socials and Subscriptions -->
-      <div>
-        <div>
-          <h5>Navigation</h5>
-          <div class="row" style="padding-top:5%;">
-            <div class="col-md-6">
-              <div class="embed-container" style="padding: 0; margin: 0">
+        </section>
+
+        <!-- Socials & Subscriptions -->
+        <section class="section-muted">
+          <h3>Socials &amp; Subscriptions</h3>
+          <div class="explain-row">
+            <div>
+              <div class="h5ish">Newsletter Pop-up</div>
+              <small>
+                <p>
+                  A lightweight modal focuses attention on joining the newsletter without obstructing browsing for long.
+                </p>
+              </small>
+
+              <div class="h5ish" style="margin-top:18px;">Email &amp; YouTube</div>
+              <small>
+                <p>
+                  One-click subscription paths lower friction and increase repeat engagement across channels.
+                </p>
+              </small>
+
+              <div class="h5ish" style="margin-top:18px;">Services</div>
+              <small>
+                <p>
+                  Prominent service cards with hover zoom help coaches quickly find relevant offerings.
+                </p>
+              </small>
+
+              <div class="h5ish" style="margin-top:18px;">Instagram Feed</div>
+              <small>
+                <p>
+                  A live feed provides social proof and current activity; tiles link directly to Instagram.
+                </p>
+              </small>
+
+              <div class="h5ish" style="margin-top:18px;">Membership</div>
+              <small>
+                <p>
+                  A concise value summary with a real photo and clear CTA increases conversion to join.
+                </p>
+              </small>
+            </div>
+
+            <div>
+              <div class="media-box" style="height:200px;">
                 <img
                   src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/popup.gif?v=1724183680957"
-                  alt="header"
-                  class="responsive-gif"
-                  style="
-                    width: 100%;
-                    height: 200px;
-                    object-fit: cover;
-                    object-position: center center;
-                    border-radius: 0px;
-                  "
-                />
-                <img
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/email%20and%20youtube.png?v=1724183515280"
-                  alt="footer"
-                  class="responsive-gif"
-                  style="width: 100%; height: auto; padding-top: 9%"
-                />
-                <img
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/services.gif?v=1724183482342"
-                  alt="header"
-                  class="responsive-gif"
-                  style="
-                    width: 100%;
-                    height: 200px;
-                    object-fit: cover;
-                    object-position: center center;
-                    clip-path: inset(28% 0 28% 0);
-                    border-radius: 0px;
-                  "
-                />
-                <img
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/instagram.gif?v=1724183480360"
-                  alt="footer"
-                  class="responsive-gif"
-                  style="
-                    width: 100%;
-                    height: auto;
-                    clip-path: inset(20% 0 20% 0);
-                  "
-                />
-                <img
-                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/join.gif?v=1724183485243"
-                  alt="header"
-                  class="responsive-gif"
-                  style="
-                    width: 100%;
-                    height: 200px;
-                    object-fit: cover;
-                    object-position: center center;
-                    clip-path: inset(9% 0 9% 0);
-                    border-radius: 0px;
-                  "
+                  alt="Newsletter popup"
+                  style="object-fit: cover;"
                 />
               </div>
-            </div>
-
-            <!-- Second GIF -->
-            <div class="col-md-6" style="padding-top: 5%">
-              <div class="embed-container" style="padding: 0; margin: 0">
-                <h6>Pop up</h6>
-
-                <small>
-                  A dynamic feature that draws the attention of the user towards
-                  ISCA'S newsletter, giving them the oppurtunity to sign
-                  up</small
-                >
-
-                <h6 style="padding-top: 30%">Email and Youtube Subscription</h6>
-
-                <small>
-                  Accessibility to ISCA's newsletter and Youtube channel, both
-                  offering one-click subscription models</small
-                >
-                <h6 style="padding-top: 19%">Avalible Services</h6>
-
-                <small>
-                  Easy clickable access to ISCA's services, with a hover zoom
-                  feature for interactive engagement</small
-                >
-
-                <h6 style="padding-top: 25%">Instagram Feed</h6>
-
-                <small>
-                  A live display of ISCA's instagram feed, that also allows
-                  access to the instagram account directly
-                </small>
-                <h6 style="padding-top: 25%">Join Membership</h6>
-
-                <small>
-                  A short blurb on the perks of joining ISCA's membership and an
-                  image of current members, as well as quick accessibility to
-                  find out more</small
-                >
+              <div class="media-box" style="margin-top:12px; height:auto; min-height:200px;">
+                <img
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/email%20and%20youtube.png?v=1724183515280"
+                  alt="Email and YouTube"
+                  style="object-fit: contain;"
+                />
+              </div>
+              <div class="media-box" style="margin-top:12px; height:200px;">
+                <img
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/services.gif?v=1724183482342"
+                  alt="Services"
+                  style="object-fit: cover;"
+                />
+              </div>
+              <div class="media-box" style="margin-top:12px; height:auto; min-height:200px;">
+                <img
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/instagram.gif?v=1724183480360"
+                  alt="Instagram feed"
+                  style="object-fit: contain;"
+                />
+              </div>
+              <div class="media-box" style="margin-top:12px; height:200px;">
+                <img
+                  src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/join.gif?v=1724183485243"
+                  alt="Join membership"
+                  style="object-fit: cover;"
+                />
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+
+      </section>
+    </main>
+
+    <script>
+      // Hide/Show left menu (same behavior as other pages)
+      (function () {
+        const btn = document.getElementById('toggleMenuBtn');
+        btn.addEventListener('click', () => {
+          const collapsed = document.body.classList.toggle('menu-collapsed');
+          btn.textContent = collapsed ? 'Show menu' : 'Hide menu';
+          btn.setAttribute('aria-expanded', String(!collapsed));
+        });
+      })();
+    </script>
   </body>
 </html>

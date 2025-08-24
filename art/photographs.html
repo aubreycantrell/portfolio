@@ -10,279 +10,85 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <link
-      rel="icon"
-      href="../img/dolphin.png"
-    />
+    <link rel="icon" href="../img/dolphin.png" />
     <script src="../script/script.js" defer></script>
     <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow-y: auto; /* Allows vertical scrolling */
-      }
-      
-     
-
-      /* Logo Style */
-      .logo {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-      }
-      .logo img {
-        max-width: 100px; /* Adjust size as needed */
-        height: auto; /* Maintains aspect ratio */
+      body{
+        margin:0; font-family:Arial,sans-serif; background:#f0f0f0;
+        display:flex; justify-content:center; align-items:center;
+        height:100vh; overflow-y:auto;
       }
 
-      /* Menu Style */
-      .menu {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        display: flex;
-        gap: 15px;
-        font-size: 0.95rem;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 5px 15px;
-        border-radius: 25px;
+      .logo{position:absolute; top:20px; left:20px;}
+      .logo img{max-width:100px; height:auto;}
+
+      .menu{
+        position:absolute; top:20px; right:20px; display:flex; gap:15px;
+        font-size:0.95rem; background:rgba(255,255,255,.8);
+        padding:5px 15px; border-radius:25px;
+      }
+      .menu a{ text-decoration:none; color:black; font-weight:bold; padding:5px;}
+      .menu a:hover{ color:#4d7471;}
+
+      .dropdown{
+        position:absolute; left:3%; top:40%; transform:translateY(-50%);
+        width:28%; padding:20px; border-radius:10px; margin:20px auto;
+      }
+      .dropdown-item{ margin-bottom:15px;}
+      .arrow{ font-size:0.8rem; transition:transform .3s ease;}
+      h4{ margin:0; cursor:pointer; color:black; transition:color .3s;}
+      h4:hover{ color:#789c9d;}
+      ul{ list-style-type:none; margin:5px 20px; padding:0; display:none;}
+      li{ margin:5px 0;}
+
+      .stack{ position:relative; width:300px; height:400px; perspective:1000px; transform:translateX(13%) translateY(-9%);}
+      .card{
+        position:absolute; width:220%; height:120%; background:#fff; border:10px solid #fff;
+        border-radius:0; box-shadow:0 4px 6px rgba(0,0,0,.1); transform-origin:center;
+        cursor:pointer; transition:transform .3s, box-shadow .3s;
+      }
+      .card img{ border:5px solid #fff; border-radius:0; display:block; max-width:100%; height:auto; background-size:contain; background-position:center; background-repeat:no-repeat;}
+      .card:nth-child(5){ transform:rotate(-22deg) translateY(-5%) translateX(-7%); background-image:url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");}
+      .card:nth-child(4){ transform:rotate(20deg) translateY(-10%) translateX(6%); background-image:url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142");}
+      .card:nth-child(1){ transform:rotate(-40deg) translateY(-10%) translateX(-10%); background-image:url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172");}
+      .card:nth-child(2){ transform:scale(1.05); box-shadow:0 8px 16px rgba(0,0,0,.2); background-image:url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235");}
+      .card:nth-child(3){ transform:scale(1.05) rotate(10deg) translateY(-3%) translateX(4%); box-shadow:0 8px 16px rgba(0,0,0,.2); background-image:url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354");}
+      .card .corner{ position:absolute; font-size:0.8rem; font-weight:bold; background:rgba(255,255,255,.6); padding:5px;}
+      .corner.top-left{top:10px; left:10px;} .corner.top-right{top:10px; right:10px;}
+      .corner.bottom-left{bottom:10px; left:10px;} .corner.bottom-right{bottom:10px; right:10px;}
+
+      .card-content{ display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; text-align:center; padding:20px;}
+
+      .right-text{
+        position:absolute; right:6%; top:10%; width:70%; padding:20px; border-radius:10px;
+        margin:20px auto; background:rgba(0,0,0,0); box-shadow:0 4px 8px rgba(0,0,0,0);
+        text-align:left; font-family:Arial,sans-serif;
       }
 
-      .menu a {
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
-        padding: 5px;
-      }
+      .responsive-gif{ width:100%; height:auto; border-radius:10px;}
+      .embed-container{ text-align:center; margin:auto; padding-top:0;}
 
-      .menu a:hover {
-        color: #4d7471;
-      }
+      /* Modal */
+      .modal{ display:none; position:fixed; z-index:1000; top:0; width:auto; height:100%; overflow:auto; background:rgba(0,0,0,0);}
+      .modal-content{ margin:auto; display:block; max-width:80%; max-height:80%; top:10%; border:0 solid #fff; border-radius:10px;}
+      .close{ position:absolute; top:10px; left:25px; color:grey; font-size:35px; cursor:pointer;}
+      .close:hover,.close:focus{ color:#bbb; text-decoration:none; cursor:pointer;}
+      .responsive-gif:hover{ cursor:pointer;}
 
-      .dropdown {
-        position: absolute;
-        left: 3%;
-        top: 40%;
-        transform: translateY(-50%); /* Centers vertically */
-        width: 28%; /* Left third of the screen */
-        padding: 20px;
-        border-radius: 10px;
-        margin: 20px auto;
+      /* Fourth column under the dropdown (width synced in JS) */
+      .left-column-gallery{
+        position:absolute; left:3%;
+        top:calc(40% + 260px); /* tweak as needed to sit under the dropdown */
+        width:auto;
       }
-
-      .dropdown-item {
-        margin-bottom: 15px;
-      }
-      .arrow {
-        font-size: 0.8rem; /* Smaller font size for the arrow */
-        transition: transform 0.3s ease;
-      }
-
-      h4 {
-        margin: 0;
-        cursor: pointer;
-        color: black;
-        transition: color 0.3s;
-      }
-
-      h4:hover {
-        color: #789c9d;
-      }
-
-      ul {
-        list-style-type: none; /* Removes bullet points */
-        margin: 5px 20px;
-        padding: 0;
-        display: none; /* Initially hidden */
-      }
-
-      li {
-        margin: 5px 0;
-      }
-
-      .stack {
-        position: relative;
-        width: 300px;
-        height: 400px;
-        perspective: 1000px;
-        transform: translateX(13%) translateY(-9%);
-      }
-
-      .card {
-        position: absolute;
-        width: 220%;
-        height: 120%;
-        background-color: #fff;
-        border: 10px solid white; /* White border around images */
-        border-radius: 0px; /* Adjusted for the card itself, not the image */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transform-origin: center;
-        cursor: pointer;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .card img {
-        border: 5px solid white; /* White border around images */
-        border-radius: 0; /* Ensures images have no rounded corners */
-        display: block;
-        max-width: 100%;
-        height: auto;
-        background-size: contain; /* Ensures the entire image is visible */
-        background-position: center; /* Centers the image */
-        background-repeat: no-repeat; /* Prevents tiling */
-      }
-
-      .card:nth-child(5) {
-        /*studio art*/
-        transform: rotate(-22deg) translateY(-5%) translateX(-7%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");
-      }
-
-      .card:nth-child(4) {
-        /*research*/
-        transform: rotate(20deg) translateY(-10%) translateX(6%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142");
-      }
-
-      .card:nth-child(1) {
-        /*about*/
-        transform: rotate(-40deg) translateY(-10%) translateX(-10%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172");
-      }
-      .card:nth-child(2) {
-        /*design*/
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235");
-      }
-      .card:nth-child(3) {
-        /*home*/
-        transform: scale(1.05) rotate(10deg) translateY(-3%) translateX(4%);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354");
-      }
-
-      .card .corner {
-        position: absolute;
-        font-size: 0.8rem;
-        font-weight: bold;
-        background-color: rgba(255, 255, 255, 0.6);
-        padding: 5px;
-      }
-
-      .corner.top-left {
-        top: 10px;
-        left: 10px;
-      }
-
-      .corner.top-right {
-        top: 10px;
-        right: 10px;
-      }
-
-      .corner.bottom-left {
-        bottom: 10px;
-        left: 10px;
-      }
-
-      .corner.bottom-right {
-        bottom: 10px;
-        right: 10px;
-      }
-
-      .card-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        text-align: center;
-        padding: 20px;
-      }
-      .right-text {
-        position: absolute;
-        right: 6%; /* Distance from the right edge of the screen */
-        top: 10%; /* Vertically centered on the screen */
-        width: 70%; /* Occupies a third of the screen's width */
-        padding: 20px; /* Adds padding inside the section */
-        border-radius: 10px; /* Rounded corners */
-        margin: 20px auto; /* Adds vertical spacing if needed */
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0
-        ); /* Background color for readability */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Adds a subtle shadow */
-        text-align: left; /* Aligns text to the left */
-        font-family: Arial, sans-serif; /* Ensures consistent font styling */
-      }
-      .responsive-gif {
-        width: 100%; /* Ensures the GIF fits the container width */
-        height: auto; /* Maintains the aspect ratio */
-        border-radius: 10px; /* Optional: Add rounded corners */
-      }
-
-      .embed-container {
-        text-align: center; /* Centers the content, if needed */
-        margin: auto;
-        padding-top: 0;
-      }
-      /* Modal styles */
-      .modal {
-        display: none; /* Hidden by default */
-        position: fixed;
-        z-index: 1000;
-        top: 0;
-        width: auto;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0);
-      }
-
-      .modal-content {
-        margin: auto;
-        display: block;
-        max-width: 80%;
-        max-height: 80%;
-        top: 10%;
-        border: 0px solid white;
-        border-radius: 10px;
-      }
-
-      .close {
-        position: absolute;
-        top: 10px;
-        left: 25px;
-        color: grey;
-        font-size: 35px;
-        font-weight: none;
-        cursor: pointer;
-      }
-
-      .close:hover,
-      .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-      }
-      .responsive-gif:hover {
-        cursor: pointer;
+      @media (max-width: 992px){
+        .left-column-gallery{ position:static; width:100%; padding:0 16px; margin-top:12px; }
       }
     </style>
   </head>
   <body>
     <div class="logo">
-      <a href="../index.html"
-        ><img
-          src="../img/dolphin.png"
-          alt="Logo"
-      /></a>
+      <a href="../index.html"><img src="../img/dolphin.png" alt="Logo" /></a>
     </div>
 
     <div class="menu">
@@ -291,347 +97,202 @@
       <a href="../home/researching.html">Research</a>
     </div>
 
-    <!-- About Me Blurb -->
-     <div class="dropdown">
+    
+
+    <!-- Left dropdowns -->
+    <div class="dropdown">
       <div class="dropdown-item">
-        <h4 onclick="toggleDropdown(this)">
-          Printmaking <span class="arrow">▶</span>
-        </h4>
+        <h4 onclick="toggleDropdown(this)">Printmaking <span class="arrow">▶</span></h4>
         <ul class="dropdown-content">
-          <li>
-            <a
-              href="highTide.html"
-              style="color: black; text-decoration: none"
-              >High Tide</a
-            >
-          </li>
-          <li>
-            <a
-              href="redstring.html"
-              style="color: black; text-decoration: none"
-              >The Red String</a
-            >
-          </li>
-          <li>
-            <a
-              href="expressions.html"
-              style="color: black; text-decoration: none"
-              >Idioms and Expressions</a
-            >
-          </li>
-          <li>
-            <a
-              href="flossed.html"
-              style="color: black; text-decoration: none"
-              >Unflossed</a
-            >
-          </li>
-          <li>
-            <a
-              href="blues.html"
-              style="color: black; text-decoration: none"
-              >Sur Blues</a
-            >
-          </li>
-          <li>
-            <a
-              href="cranes.html"
-              style="color: black; text-decoration: none"
-              >100 Days of School, Revisited</a
-            >
-          </li>
+          <li><a href="highTide.html" style="color:black;text-decoration:none">High Tide</a></li>
+          <li><a href="redstring.html" style="color:black;text-decoration:none">The Red String</a></li>
+          <li><a href="expressions.html" style="color:black;text-decoration:none">Idioms and Expressions</a></li>
+          <li><a href="flossed.html" style="color:black;text-decoration:none">Unflossed</a></li>
+          <li><a href="blues.html" style="color:black;text-decoration:none">Sur Blues</a></li>
+          <li><a href="cranes.html" style="color:black;text-decoration:none">100 Days of School, Revisited</a></li>
+        </ul>
+      </div>
+      <div class="dropdown-item">
+        <h4 onclick="toggleDropdown(this)">Mixed Media <span class="arrow">▶</span></h4>
+        <ul class="dropdown-content">
+          <li><a href="https://aubreycantrell.glitch.me/eyeSees.html" style="color:black;text-decoration:none">What the Eye Sees</a></li>
+          <li><a href="paintedparasol.html" style="color:black;text-decoration:none">Painted Parasols</a></li>
+          <li><a href="wovensolice.html" style="color:black;text-decoration:none">Woven in Solice</a></li>
+          <li><a href="cube.html" style="color:black;text-decoration:none">Rubik's Cube, Solved</a></li>
+          <li><a href="where.html" style="color:black;text-decoration:none">Whereabouts</a></li>
         </ul>
       </div>
       <div class="dropdown-item">
         <h4 onclick="toggleDropdown(this)">
-          Mixed Media <span class="arrow">▶</span>
-        </h4>
-        <ul class="dropdown-content">
-          <li>
-            <a
-              href="https://aubreycantrell.glitch.me/eyeSees.html"
-              style="color: black; text-decoration: none"
-              >What the Eye Sees</a
-            >
-          </li>
-          <li>
-            <a
-              href="paintedparasol.html"
-              style="color: black; text-decoration: none"
-              >Painted Parasols</a
-            >
-          </li>
-          <li>
-            <a
-              href="wovensolice.html"
-              style="color: black; text-decoration: none"
-              >Woven in Solice</a
-            >
-          </li>
-          <li>
-            <a
-              href="cube.html"
-              style="color: black; text-decoration: none"
-              >Rubik's Cube, Solved</a
-            >
-          </li>
-          <li>
-            <a
-              href="where.html"
-              style="color: black; text-decoration: none"
-              >Whereabouts</a
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="dropdown-item">
-        <h4 onclick="toggleDropdown(this)">
-          <a
-            href="photographs.html"
-            style="color: black; text-decoration: none"
-            >Photography </a
-          ><span class="arrow">▶</span>
+          <a href="photographs.html" style="color:black;text-decoration:none">Everything Else</a>
+          <span class="arrow">▶</span>
         </h4>
       </div>
     </div>
 
+
+    <!-- NEW fourth column under the dropdown -->
+    <aside id="leftColumn" class="left-column-gallery">
+      
+      <div id="leftColumnInner" class="embed-container">
+        <!-- JS will fill images here and keep width equal to .col-md-4 columns -->
+      </div>
+    </aside>
+
+    <!-- RIGHT: Gallery -->
     <section class="right-text">
-      <h2>Gallery</h2>
-      <p></p>
-      <small>
-        <p></p>
-      </small>
 
-      <div class="row">
-        <!-- first row -->
-
+      <div class="row" id="galleryGrid">
+        <!-- first column -->
         <div class="col-md-4" style="padding-top: 3%">
           <div class="embed-container">
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_0196.jpeg?v=1719357694035"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2033.jpeg?v=1719357704511"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/waterThumb?v=1719336750170"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/camelThumb?v=1719336823505"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_9933%202.jpeg?v=1719361816275"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020011.jpg?v=1723688458408"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608010006.jpg?v=1737240454460"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608010032.jpg?v=1723688457209"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_0196.jpeg?v=1719357694035" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2033.jpeg?v=1719357704511" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/waterThumb?v=1719336750170" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/camelThumb?v=1719336823505" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_9933%202.jpeg?v=1719361816275" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020011.jpg?v=1723688458408" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608010006.jpg?v=1737240454460" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608010032.jpg?v=1723688457209" alt="" class="responsive-gif" style="margin:3%"/>
           </div>
         </div>
 
-        <!-- second row -->
-
+        <!-- second column -->
         <div class="col-md-4" style="padding-top: 3%">
           <div class="embed-container">
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2021.jpeg?v=1719357698028"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/4_2_2021%20-%2016264102%20-%20Film%5C162641020011.jpeg?v=1719357693065"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020003.jpg?v=1737240460856"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5655.JPG?v=1737240272676"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5640.jpg?v=1737240275555"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5652.JPG?v=1737240281119"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2021.jpeg?v=1719357698028" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/4_2_2021%20-%2016264102%20-%20Film%5C162641020011.jpeg?v=1719357693065" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020003.jpg?v=1737240460856" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5655.JPG?v=1737240272676" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5640.jpg?v=1737240275555" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5652.JPG?v=1737240281119" alt="" class="responsive-gif" style="margin:3%"/>
           </div>
         </div>
 
-        <!-- thrid row -->
-
+        <!-- third column -->
         <div class="col-md-4" style="padding-top: 3%">
           <div class="embed-container">
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2026.jpeg?v=1719357702054"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/silvia?v=1719336889925"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_9931%202.jpeg?v=1719361815557"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5650.JPG?v=1737240242710"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5647.JPG?v=1737240252489"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5648.JPG?v=1737240258918"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5645.JPG?v=1737240267165"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608010018.JPG?v=1737240457570"
-              alt="Design GIF"
-              class="responsive-gif"
-              style="margin: 3%"
-            />
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2026.jpeg?v=1719357702054" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/silvia?v=1719336889925" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_9931%202.jpeg?v=1719361815557" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5650.JPG?v=1737240242710" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5647.JPG?v=1737240252489" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5648.JPG?v=1737240258918" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_5645.JPG?v=1737240267165" alt="" class="responsive-gif" style="margin:3%"/>
+            <img src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608010018.JPG?v=1737240457570" alt="" class="responsive-gif" style="margin:3%"/>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Modal -->
     <div id="photoModal" class="modal">
       <span class="close">&times;</span>
       <img class="modal-content" id="modalImage" />
     </div>
 
     <script>
-      function toggleDropdown(element) {
-        const content = element.nextElementSibling; // The dropdown content (ul)
-        const arrow = element.querySelector(".arrow"); // The arrow span
-
-        // Toggle the display of the list
-        if (content.style.display === "block") {
-          content.style.display = "none";
-          arrow.textContent = "▶"; // Collapsed arrow
-        } else {
-          content.style.display = "block";
-          arrow.textContent = "▼"; // Expanded arrow
+      // Dropdown show/hide
+      function toggleDropdown(element){
+        const content = element.nextElementSibling;
+        const arrow = element.querySelector(".arrow");
+        if (content && content.style.display === "block"){
+          content.style.display = "none"; if (arrow) arrow.textContent = "▶";
+        } else if (content){
+          content.style.display = "block"; if (arrow) arrow.textContent = "▼";
         }
       }
 
-      // Get modal elements
-      const modal = document.getElementById("photoModal");
-      const modalImg = document.getElementById("modalImage");
-      const closeBtn = document.querySelector(".close");
+      // -------- Gallery randomizer & extra images (4 columns including the new left one) --------
+      (function(){
+        const leftCol = document.getElementById("leftColumnInner");
+        const rightCols = document.querySelectorAll("#galleryGrid .embed-container");
 
-      // Add click event to each image
-      document.querySelectorAll(".responsive-gif").forEach((img) => {
-        img.addEventListener("click", () => {
-          modal.style.display = "block";
-          modalImg.src = img.src;
+        // Collect any images already in the right grid
+        const existingImgs = Array.from(document.querySelectorAll("#galleryGrid img"));
+        const existingSrcs = existingImgs.map(img => img.src);
+
+        // Extra images you listed (place files in ../img/)
+        const extraSrcs = [
+          "../img/IMG_5255.JPG","../img/IMG_5187.JPG","../img/IMG_1738.jpg","../img/IMG_1734.jpg",
+          "../img/IMG_1733.jpg","../img/IMG_1728.jpg","../img/IMG_1441.JPG","../img/IMG_6436.JPG",
+          "../img/IMG_6430.JPG","../img/IMG_6363.JPG","../img/IMG_6290.JPG","../img/IMG_6270.JPG",
+          "../img/003111870009.jpg","../img/003111870025.JPG","../img/003111870003.JPG","../img/003111870015.JPG",
+          "../img/IMG_6243.JPG","../img/IMG_5835.JPG","../img/IMG_5833.JPG",
+          "../img/IMG_6609.jpg","../img/IMG_6608.jpg","../img/IMG_6607.jpg","../img/IMG_6606.jpg",
+          "../img/IMG_6604.jpg","../img/003111870009%202.jpg","../img/IMG_6612.jpg", "../img/IMG_6611.jpg", "../img/IMG_6610.jpg",
+          "../img/185823010007 2.jpg", "../img/185823020003 2.jpg"
+        ];
+
+        const allSrcs = existingSrcs.concat(extraSrcs);
+        shuffle(allSrcs);
+
+        // Clear existing DOM (we'll refill all four columns)
+        leftCol.innerHTML = "";
+        rightCols.forEach(col => col.innerHTML = "");
+
+        const allCols = [leftCol, ...rightCols];
+
+        // Helper to create <img>
+        const makeImg = (src) => {
+          const img = document.createElement("img");
+          img.src = src; img.loading = "lazy"; img.alt = "";
+          img.className = "responsive-gif gallery-photo"; img.style.margin = "3%";
+          img.onerror = () => img.remove(); // drop missing files silently
+          return img;
+        };
+
+        // Round-robin distribute across the 4 columns
+        allSrcs.forEach((src, i) => {
+          allCols[i % allCols.length].appendChild(makeImg(src));
         });
-      });
 
-      // Close the modal when clicking on the close button
-      closeBtn.addEventListener("click", () => {
-        modal.style.display = "none";
-      });
-
-      // Close the modal when clicking outside the image
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          modal.style.display = "none";
+        function shuffle(a){
+          for (let i = a.length - 1; i > 0; i--){
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
         }
-      });
+      })();
+
+      // -------- Keep left column the same width as a .col-md-4 column --------
+      (function syncLeftColumnWidth(){
+        const left = document.getElementById('leftColumn');
+        function setWidth(){
+          const firstCol = document.querySelector('#galleryGrid .col-md-4');
+          if (!left || !firstCol) return;
+          const w = firstCol.getBoundingClientRect().width;
+          // if columns have stacked (mobile), let CSS handle width
+          if (w < 50){ left.style.width = ''; }
+          else {  left.style.width = (w * 0.90) + 'px'; }
+        }
+        setWidth();
+        window.addEventListener('resize', setWidth);
+      })();
+
+      // -------- Modal (delegated) --------
+      (function(){
+        const modal = document.getElementById("photoModal");
+        const modalImg = document.getElementById("modalImage");
+        const closeBtn = document.querySelector(".close");
+
+        document.addEventListener("click", (e) => {
+          const img = e.target.closest("img.gallery-photo, img.responsive-gif");
+          if (img){
+            modal.style.display = "block";
+            modalImg.src = img.src;
+          }
+        });
+
+        closeBtn.addEventListener("click", () => modal.style.display = "none");
+        modal.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
+      })();
     </script>
   </body>
 </html>

@@ -10,66 +10,28 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <link
-      rel="icon"
-      href="../img/dolphin.png"
-    />
+    <link rel="icon" href="../img/dolphin.png" />
     <script src="../script/script.js" defer></script>
     <style>
+      /* Base */
       body {
         margin: 0;
         font-family: Arial, sans-serif;
         background-color: #f0f0f0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow-y: auto; /* Allows vertical scrolling */
+        min-height: 100vh;
       }
 
-      /* Logo Style */
+      /* Top logo & top-right site menu */
       .logo {
-        position: absolute;
+        position: fixed;
         top: 20px;
         left: 20px;
+        z-index: 20;
       }
-      .logo img {
-        max-width: 100px; /* Adjust size as needed */
-        height: auto; /* Maintains aspect ratio */
-      }
+      .logo img { max-width: 100px; height: auto; }
 
-      .left-text {
-        position: absolute;
-        left: 3%;
-        top: 50%;
-        transform: translateY(-50%); /* Centers vertically */
-        width: 35%; /* Left third of the screen */
-        padding: 20px;
-        border-radius: 10px;
-        margin: 20px auto;
-      }
-      .right-text {
-        position: absolute;
-        right: 6%; /* Distance from the right edge of the screen */
-        top: 10%; /* Vertically centered on the screen */
-        width: 58%; /* Occupies a third of the screen's width */
-        padding: 20px; /* Adds padding inside the section */
-        border-radius: 10px; /* Rounded corners */
-        margin: 20px auto; /* Adds vertical spacing if needed */
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0
-        ); /* Background color for readability */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Adds a subtle shadow */
-        text-align: left; /* Aligns text to the left */
-        font-family: Arial, sans-serif; /* Ensures consistent font styling */
-      }
-
-      /* Menu Style */
       .menu {
-        position: absolute;
+        position: fixed;
         top: 20px;
         right: 20px;
         display: flex;
@@ -78,177 +40,115 @@
         background-color: rgba(255, 255, 255, 0.8);
         padding: 5px 15px;
         border-radius: 25px;
+        z-index: 20;
+      }
+      .menu a { text-decoration: none; color: black; font-weight: bold; padding: 5px; }
+      .menu a:hover { color: #4d7471; }
+
+      /* Page layout: left menu (15%) + right content */
+      .page {
+        display: grid;
+        grid-template-columns: 20% 1fr; /* same split as Manifest */
+        gap: 24px;
+        align-items: start;
+        padding: 110px 6% 40px; /* space for fixed header elements */
       }
 
-      .menu a {
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
-        padding: 5px;
-      }
-
-      .menu a:hover {
-        color: #4d7471;
-      }
-
-      .stack {
+      /* Left column */
+      .left-text {
         position: relative;
-        width: 300px;
-        height: 400px;
-        perspective: 1000px;
-        transform: translateX(13%) translateY(-9%);
+        width: 100%;
+        transform: none;
+        left: auto; top: auto; margin: 0; padding: 0 4px;
       }
 
-      .card {
-        position: absolute;
-        width: 220%;
-        height: 120%;
-        background-color: #fff;
-        border: 10px solid white; /* White border around images */
-        border-radius: 0px; /* Adjusted for the card itself, not the image */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transform-origin: center;
-        cursor: pointer;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .card img {
-        border: 5px solid white; /* White border around images */
-        border-radius: 0; /* Ensures images have no rounded corners */
-        display: block;
-        max-width: 100%;
-        height: auto;
-        background-size: contain; /* Ensures the entire image is visible */
-        background-position: center; /* Centers the image */
-        background-repeat: no-repeat; /* Prevents tiling */
-      }
-
-      .card:nth-child(3) {
-        /*studio art*/
-        transform: rotate(-22deg) translateY(-5%) translateX(-7%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");
-      }
-
-      .card:nth-child(2) {
-        /*research*/
-        transform: rotate(20deg) translateY(-10%) translateX(6%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142");
-      }
-
-      .card:nth-child(4) {
-        /*about*/
-        transform: rotate(-40deg) translateY(-10%) translateX(-10%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172");
-      }
-      .card:nth-child(5) {
-        /*design*/
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235");
-      }
-      .card:nth-child(1) {
-        /*home*/
-        transform: scale(1.05) rotate(10deg) translateY(-3%) translateX(4%);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354");
-      }
-
-      .card .corner {
-        position: absolute;
-        font-size: 0.8rem;
-        font-weight: bold;
-        background-color: rgba(255, 255, 255, 0.6);
-        padding: 5px;
-      }
-
-      .corner.top-left {
-        top: 10px;
-        left: 10px;
-      }
-
-      .corner.top-right {
-        top: 10px;
-        right: 10px;
-      }
-
-      .corner.bottom-left {
-        bottom: 10px;
-        left: 10px;
-      }
-
-      .corner.bottom-right {
-        bottom: 10px;
-        right: 10px;
-      }
-
-      .card-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        text-align: center;
+      /* Right column */
+      .right-text {
+        position: relative;
+        right: auto; top: auto;
+        width: 100%;
         padding: 20px;
+        border-radius: 10px;
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0);
+        box-shadow: none;
+        text-align: left;
+        font-family: Arial, sans-serif;
       }
 
-      .polaroid-container {
-        display: flex;
-        flex-wrap: wrap; /* Allows wrapping to create rows */
-        gap: 20px; /* Space between polaroids */
-        margin: 20px;
+      /* Hide/Show left menu button */
+      .toggle-menu {
+        position: fixed;
+        left: 18px;
+        top: 90px;
+        z-index: 25;
+        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 0;
+        background: #4d7471;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,.15);
       }
 
-      .polaroid {
-        width: 200px; /* Fixed width for consistency */
-        background: white;
-        border: 10px solid white; /* Simulates Polaroid border */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
-        text-align: center;
-        padding-bottom: 5px 0; /* Adds spacing inside the polaroid */
+      /* COLLAPSED STATE — FULL-WIDTH CONTENT */
+      body.menu-collapsed .left-text { display: none; }
+      body.menu-collapsed .page { grid-template-columns: 1fr; }
+      body.menu-collapsed .right-text { grid-column: 1 / -1; width: 100%; }
+
+      /* Left vertical project menu */
+      .design-menu {
         display: flex;
         flex-direction: column;
+        gap: 10px;
+      }
+      .menu-item {
+        display: flex;
         align-items: center;
+        gap: 12px;
+        background: #ffffff;
+        border: 1px solid #e6e6e6;
+        border-radius: 12px;
+        padding: 10px 12px;
+        text-decoration: none;
+        color: #111;
+        box-shadow: 0 1px 4px rgba(0,0,0,.06);
+        transition: box-shadow .2s ease, border-color .2s ease, transform .08s ease;
+      }
+      .menu-item:hover {
+        border-color: #cfe3df;
+        box-shadow: 0 2px 8px rgba(0,0,0,.08);
+        transform: translateY(-1px);
+      }
+      .menu-item:focus { outline: 2px solid #4d7471; outline-offset: 2px; }
+      .menu-thumb {
+        width: 54px; height: 54px; border-radius: 8px; object-fit: cover; background: #f5f5f5; flex: 0 0 auto;
+      }
+      .menu-body { display: flex; flex-direction: column; min-width: 0; }
+      .menu-title {
+        font-weight: 700; font-size: 14px; line-height: 1.1;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .menu-sub { font-size: 12px; color: #666; }
+      .menu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+      .menu-tags .tag {
+        font-size: 10px; padding: 4px 6px; border-radius: 999px;
+        background: #e8f1ef; border: 1px solid #cfe3df; color: #143b37; font-weight: 600;
       }
 
-      .polaroid img {
-        width: 100%; /* Make image fit within polaroid width */
-        height: auto;
-        display: block;
-        margin-bottom: 10px; /* Space between image and text */
-      }
+      .responsive-gif { width: 100%; height: auto; border-radius: 10px; }
+      ul { list-style-type: none; margin: 0; padding: 0; } /* from your base */
 
-      .polaroid h4 {
-        font-size: 1rem;
-        margin: 0;
-        color: black; /* Title text color */
-      }
-
-      .responsive-gif {
-        width: 100%; /* Ensures the GIF fits the container width */
-        height: auto; /* Maintains the aspect ratio */
-        border-radius: 10px; /* Optional: Add rounded corners */
-      }
-
-      .embed-container {
-        text-align: center; /* Centers the content, if needed */
-        margin: auto;
-        padding-top: 0;
-      }
-
-      ul {
-        list-style-type: none; /* Removes bullet points */
-        margin: 0; /* Removes default margin */
-        padding: 0; /* Removes default padding */
-      }
+      /* Optional tiny helpers for section spacing */
+      .section { margin-top: 20px; }
+      .section h3 { margin-bottom: 6px; }
+      .section small p { margin-bottom: 8px; }
     </style>
   </head>
   <body>
     <div class="logo">
-      <a href="../index.html"
-        ><img
-          src="../img/dolphin.png"
-          alt="Logo"
-      /></a>
+      <a href="../index.html"><img src="../img/dolphin.png" alt="Logo" /></a>
     </div>
 
     <div class="menu">
@@ -257,135 +157,193 @@
       <a href="../home/researching.html">Research</a>
     </div>
 
-    <div class="left-text polaroid-container">
-      <!-- Row 1 -->
+    <!-- Hide/Show toggle -->
+    <button id="toggleMenuBtn" class="toggle-menu" type="button" aria-expanded="true" aria-controls="leftNav">
+      Hide menu
+    </button>
 
-      <div class="polaroid">
-       <a
-         href="../design/genAI.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="../img/grid.gif"
-           alt="Wellesley Work Order Website"
-         />
-         <h4 style="font-weight: bold">GenAI Personalized Animations</h4>
-         <small>Affective Computing Group @ MIT Media Lab</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/hand_warp.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="../img/hand_warp.png"
-           alt="Wellesley Work Order Website"
-         />
-         <h4 style="font-weight: bold">Hand Warp</h4>
-         <small>Artistic Application</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/workorder.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731"
-           alt="Wellesley Work Order Website"
-         />
-         <h4 style="font-weight: bold">Wellesley Work Order</h4>
-         <small>Design Concept</small>
-       </a>
-     </div>
-      
-     <div class="polaroid">
-       <a
-         href="../design/bakebot.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223"
-           alt="BakeBot"
-         />
-         <h4 style="font-weight: bold">BakeBot</h4>
-         <small>AI Voice Recognition Software</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/spam.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119"
-           alt="Spam!"
-         />
-         <h4 style="font-weight: bold">Spam!</h4>
-         <small>App Design for Civic Engagement</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/isca.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725"
-           alt="International Swim Coaches Association"
-         />
-         <h4 style="font-weight: bold">
-           International Swim Coaches Association
-         </h4>
-         <small>Website Design and Development</small>
-       </a>
-     </div>
-     
-   </div>
+    <main class="page">
+      <!-- LEFT: redesigned vertical project menu -->
+      <aside id="leftNav" class="left-text">
+        <nav class="design-menu" aria-label="Design projects">
+          <a class="menu-item" href="../design/manifest.html">
+            <img class="menu-thumb" src="../img/manifest_cover.png" alt="Manifest cover" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Manifest</div>
+              <div class="menu-sub">Kid-friendly 2D → 3D</div>
+              <div class="menu-tags">
+                <span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Education</span>
+              </div>
+            </div>
+          </a>
 
-    <section class="right-text">
-      <h2>GenAI for Custom Animations</h2>
-      <small>
+          <a class="menu-item" href="../design/hand_warp.html">
+            <img class="menu-thumb" src="../img/hand_warp.png" alt="Hand Warp" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Hand Warp</div>
+              <div class="menu-sub">Gesture camera framing</div>
+              <div class="menu-tags">
+                <span class="tag">MediaPipe</span><span class="tag">CV</span><span class="tag">Art</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/genAI.html">
+            <img class="menu-thumb" src="../img/grid.gif" alt="GenAI Personalized Animations" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">GenAI Personalized Animations</div>
+              <div class="menu-sub">Affective Computing @ MIT</div>
+              <div class="menu-tags">
+                <span class="tag">GenAI</span><span class="tag">Biosignals</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/bakebot.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223" alt="BakeBot" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">BakeBot</div>
+              <div class="menu-sub">AI voice assistant</div>
+              <div class="menu-tags">
+                <span class="tag">ASR</span><span class="tag">NLP</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/spam.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119" alt="Spam!" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Spam!</div>
+              <div class="menu-sub">Civic engagement app</div>
+              <div class="menu-tags">
+                <span class="tag">UX</span><span class="tag">Mobile</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/isca.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725" alt="ISCA" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">ISCA</div>
+              <div class="menu-sub">Website design &amp; dev</div>
+              <div class="menu-tags">
+                <span class="tag">Frontend</span><span class="tag">CMS</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/workorder.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731" alt="Wellesley Work Order" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Wellesley Work Order</div>
+              <div class="menu-sub">Service ticket concept</div>
+              <div class="menu-tags">
+                <span class="tag">Product</span><span class="tag">Prototype</span>
+              </div>
+            </div>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- RIGHT: GenAI case study (original content preserved + expanded) -->
+      <section class="right-text">
+        <h2>GenAI for Custom Animations</h2>
+
+        <small>
+          <p>Affective Computing Group @ MIT Media Lab</p>
+        </small>
         <p>
-          Affective Computing Group @ MIT Media Lab
-        
-      </p>
-      <p>
           Developing a LLM that translates the naive coder into an animation developer using Processing code and biosensor signals. Contributions include training and refining the model, creating demonstrations of the live animations, creating the project site, contributing to academic papers, analyzing data and overseeing user testing.
-      </p>
-        
-      </div>
-      <div class="row">
-        <div class="col-md-6" style="padding-top: 3%">
-          <div class="embed-container">
-            <a href="https://aubreycantrell.github.io/live_signals/" style="text-decoration: none; color:black;">
-            <img
-              src="../img/grid.gif"
-              alt="live"
-              class="responsive-gif"
-            />
-            <p>Live Demo <span class="arrow">▶</span></p>
-            </a>
+        </p>
+
+        <div class="row">
+          <div class="col-md-6" style="padding-top: 3%">
+            <div class="embed-container">
+              <a href="https://aubreycantrell.github.io/live_signals/" style="text-decoration: none; color:black;">
+                <img src="../img/grid.gif" alt="Live demo" class="responsive-gif" />
+                <p>Live Demo <span class="arrow">▶</span></p>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-6" style="padding-top: 3%">
+            <div class="embed-container">
+              <a href="https://aubreycantrell.github.io/genAI-Animation/" style="text-decoration: none; color:black;">
+                <img src="../img/media_site.png" alt="Project site" class="responsive-gif" />
+                <p>Project Site <span class="arrow">▶</span></p>
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Second GIF -->
-        <div class="col-md-6" style="padding-top: 3%">
-          <div class="embed-container">
-            <a href="https://aubreycantrell.github.io/genAI-Animation/" style="text-decoration: none; color:black;">
-            <img
-              src="../img/media_site.png"
-              alt="site"
-              class="responsive-gif"
-            />
-
-            <p>Project Site <span class="arrow">▶</span></p>
-            </a>
-          </div>
+        <!-- NEW: Summer 2024 details -->
+        <div class="section">
+          <h3>Summer 2025 — What I Built</h3>
+          <ul>
+            <li><strong>Model training &amp; refinement:</strong> crafted prompt templates for animation tasks, tuned outputs toward <em>valid, runnable Processing</em>, and added auto-fixes plus quick tests to catch errors.</li>
+            <li><strong>Biosignal → animation mapping:</strong> pipelined live sensor features into visual parameters (e.g., palette, motion speed, particle density), enabling affective, responsive sketches.</li>
+            <li><strong>Live demos &amp; tooling:</strong> produced a gallery of Processing sketches that respond to signals in real time; built small utilities to preview/record runs and swap mappings quickly.</li>
+            <li><strong>Data analysis &amp; user testing:</strong> set up lightweight logging, analyzed session data to find failure modes (syntax, long outputs, noisy signals), iterated prompts and safeguards; helped plan and conduct user tests.</li>
+            <li><strong>Docs &amp; site:</strong> wrote contributor-facing guides and built a public-facing site to showcase interactive examples.</li>
+            <li><strong>Writing:</strong> contributed figures and method sections for in-progress publications.</li>
+          </ul>
         </div>
-      </div>
-    </section>
-    
+
+        <div class="section">
+          <h3>System Overview</h3>
+          <small>
+            <p>
+              The system pairs a code-generating LLM with a live animation runtime. Users describe the effect they want in natural language; the model proposes Processing code; a thin runtime executes and binds code variables to incoming biosignal features so visuals adapt in real time.
+            </p>
+          </small>
+          <ul>
+            <li><strong>Inputs:</strong> natural-language intent; streaming biosignal features.</li>
+            <li><strong>LLM stage:</strong> prompt scaffolds + guardrails to yield concise, idiomatic Processing code.</li>
+            <li><strong>Runtime:</strong> executes sketch; safely hot-reloads; exposes signal features to the sketch.</li>
+            <li><strong>Adaptation:</strong> mapping layer normalizes features and routes them to visual params.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>My Contributions (by area)</h3>
+          <ul>
+            <li><strong>Modeling:</strong> prompt library; style hints for draw()/setup(); safe utility stubs; auto-retry on compile/runtime errors.</li>
+            <li><strong>Signals:</strong> feature normalization and simple smoothing so visuals don’t “flicker” with noise.</li>
+            <li><strong>Demos:</strong> parameterized sketches (particles, waves, fields, typography) that clearly show the effect of each feature.</li>
+            <li><strong>Documentation:</strong> setup guides, mapping examples, troubleshooting tips for new contributors.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>User Testing — Key Findings</h3>
+          <ul>
+            <li>Shorter prompts with <em>explicit visual goals</em> produce more reliable code.</li>
+            <li>Users value a <em>parameter “cheat sheet”</em> (which features map to which effects) while iterating.</li>
+            <li>Most failures clustered around abstract concepts and vague descriptions → fixed via guardrail templates and auto-includes.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Impact</h3>
+          <ul>
+            <li>Reduced turnaround from idea → running sketch; increased proportion of <em>first-try runnable</em> generations.</li>
+            <li>Made live signal demos stable enough for instalations and user sessions.</li>
+            <li>Shipped a publicly viewable site with examples and documentation.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Hide/Show left menu (matches Manifest page behavior)
+      (function () {
+        const btn = document.getElementById('toggleMenuBtn');
+        btn.addEventListener('click', () => {
+          const collapsed = document.body.classList.toggle('menu-collapsed');
+          btn.textContent = collapsed ? 'Show menu' : 'Hide menu';
+          btn.setAttribute('aria-expanded', String(!collapsed));
+        });
+      })();
+    </script>
   </body>
 </html>

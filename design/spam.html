@@ -3,73 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design Concepts</title>
+    <title>Design Concepts — Spam!</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <link
-      rel="icon"
-      href="../img/dolphin.png"
-    />
-    <script src="../script/script.js" defer></script>
+    <link rel="icon" href="../img/dolphin.png" />
     <style>
+      /* Base */
       body {
         margin: 0;
         font-family: Arial, sans-serif;
         background-color: #f0f0f0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow-y: auto; /* Allows vertical scrolling */
+        min-height: 100vh;
       }
 
-      /* Logo Style */
+      /* Top logo & top-right site menu */
       .logo {
-        position: absolute;
+        position: fixed;
         top: 20px;
         left: 20px;
+        z-index: 20;
       }
-      .logo img {
-        max-width: 100px; /* Adjust size as needed */
-        height: auto; /* Maintains aspect ratio */
-      }
+      .logo img { max-width: 100px; height: auto; }
 
-      .left-text {
-        position: absolute;
-        left: 3%;
-        top: 50%;
-        transform: translateY(-50%); /* Centers vertically */
-        width: 35%; /* Left third of the screen */
-        padding: 20px;
-        border-radius: 10px;
-        margin: 20px auto;
-      }
-      .right-text {
-        position: absolute;
-        right: 6%; /* Distance from the right edge of the screen */
-        top: 10%; /* Vertically centered on the screen */
-        width: 58%; /* Occupies a third of the screen's width */
-        padding: 20px; /* Adds padding inside the section */
-        border-radius: 10px; /* Rounded corners */
-        margin: 20px auto; /* Adds vertical spacing if needed */
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0
-        ); /* Background color for readability */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Adds a subtle shadow */
-        text-align: left; /* Aligns text to the left */
-        font-family: Arial, sans-serif; /* Ensures consistent font styling */
-      }
-
-      /* Menu Style */
       .menu {
-        position: absolute;
+        position: fixed;
         top: 20px;
         right: 20px;
         display: flex;
@@ -78,342 +39,477 @@
         background-color: rgba(255, 255, 255, 0.8);
         padding: 5px 15px;
         border-radius: 25px;
+        z-index: 20;
+      }
+      .menu a { text-decoration: none; color: black; font-weight: bold; padding: 5px; }
+      .menu a:hover { color: #4d7471; }
+
+      /* Page layout: left menu (15%) + right content */
+      .page {
+        display: grid;
+        grid-template-columns: 20% 1fr;
+        gap: 24px;
+        align-items: start;
+        padding: 110px 6% 40px; /* room for fixed header elements */
       }
 
-      .menu a {
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
-        padding: 5px;
-      }
-
-      .menu a:hover {
-        color: #4d7471;
-      }
-
-      .stack {
+      /* Left column */
+      .left-text {
         position: relative;
-        width: 300px;
-        height: 400px;
-        perspective: 1000px;
-        transform: translateX(13%) translateY(-9%);
+        width: 100%;
+        transform: none;
+        left: auto; top: auto; margin: 0; padding: 0 4px;
       }
 
-      .card {
-        position: absolute;
-        width: 220%;
-        height: 120%;
-        background-color: #fff;
-        border: 10px solid white; /* White border around images */
-        border-radius: 0px; /* Adjusted for the card itself, not the image */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transform-origin: center;
-        cursor: pointer;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .card img {
-        border: 5px solid white; /* White border around images */
-        border-radius: 0; /* Ensures images have no rounded corners */
-        display: block;
-        max-width: 100%;
-        height: auto;
-        background-size: contain; /* Ensures the entire image is visible */
-        background-position: center; /* Centers the image */
-        background-repeat: no-repeat; /* Prevents tiling */
-      }
-
-      .card:nth-child(3) {
-        /*studio art*/
-        transform: rotate(-22deg) translateY(-5%) translateX(-7%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/DSCF0358%20Large.jpeg?v=1719362256659");
-      }
-
-      .card:nth-child(2) {
-        /*research*/
-        transform: rotate(20deg) translateY(-10%) translateX(6%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/151608020019.jpg?v=1723688459142");
-      }
-
-      .card:nth-child(4) {
-        /*about*/
-        transform: rotate(-40deg) translateY(-10%) translateX(-10%);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2757%20Large.jpeg?v=1719362257172");
-      }
-      .card:nth-child(5) {
-        /*design*/
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2027.jpeg?v=1719357703235");
-      }
-      .card:nth-child(1) {
-        /*home*/
-        transform: scale(1.05) rotate(10deg) translateY(-3%) translateX(4%);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        background-image: url("https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/IMG_2010.jpeg?v=1719357695354");
-      }
-
-      .card .corner {
-        position: absolute;
-        font-size: 0.8rem;
-        font-weight: bold;
-        background-color: rgba(255, 255, 255, 0.6);
-        padding: 5px;
-      }
-
-      .corner.top-left {
-        top: 10px;
-        left: 10px;
-      }
-
-      .corner.top-right {
-        top: 10px;
-        right: 10px;
-      }
-
-      .corner.bottom-left {
-        bottom: 10px;
-        left: 10px;
-      }
-
-      .corner.bottom-right {
-        bottom: 10px;
-        right: 10px;
-      }
-
-      .card-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        text-align: center;
+      /* Right column */
+      .right-text {
+        position: relative;
+        right: auto; top: auto;
+        width: 100%;
         padding: 20px;
+        border-radius: 10px;
+        margin: 0;
+        background-color: rgba(0,0,0,0);
+        box-shadow: none;
+        text-align: left;
+        font-family: Arial, sans-serif;
       }
 
-      .polaroid-container {
-        display: flex;
-        flex-wrap: wrap; /* Allows wrapping to create rows */
-        gap: 20px; /* Space between polaroids */
-        margin: 20px;
-      }
-
-      .polaroid {
-        width: 200px; /* Fixed width for consistency */
-        background: white;
-        border: 10px solid white; /* Simulates Polaroid border */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
-        text-align: center;
-        padding-bottom: 5px 0; /* Adds spacing inside the polaroid */
+      /* Design project list items */
+      .design-menu {
         display: flex;
         flex-direction: column;
+        gap: 10px;
+      }
+      .menu-item {
+        display: flex;
         align-items: center;
+        gap: 10px;
+        background: #ffffff;
+        border: 1px solid #e6e6e6;
+        border-radius: 12px;
+        padding: 8px 10px;
+        text-decoration: none;
+        color: #111;
+        box-shadow: 0 1px 4px rgba(0,0,0,.06);
+        transition: box-shadow .2s ease, border-color .2s ease, transform .08s ease;
+      }
+      .menu-item:hover {
+        border-color: #cfe3df;
+        box-shadow: 0 2px 8px rgba(0,0,0,.08);
+        transform: translateY(-1px);
+      }
+      .menu-item:focus { outline: 2px solid #4d7471; outline-offset: 2px; }
+
+      .menu-thumb {
+        width: 54px; height: 54px; border-radius: 8px;
+        object-fit: cover; background: #f5f5f5; flex: 0 0 auto;
+      }
+      .menu-body { display: flex; flex-direction: column; min-width: 0; }
+      .menu-title {
+        font-weight: 700; font-size: 14px; line-height: 1.1;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .menu-sub { font-size: 12px; color: #666; }
+      .menu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+      .tag {
+        font-size: 10px; padding: 4px 6px; border-radius: 999px;
+        background: #e8f1ef; border: 1px solid #cfe3df; color: #143b37; font-weight: 600;
       }
 
-      .polaroid img {
-        width: 100%; /* Make image fit within polaroid width */
-        height: auto;
-        display: block;
-        margin-bottom: 10px; /* Space between image and text */
+      /* Hide/Show left menu button */
+      .toggle-menu {
+        position: fixed;
+        left: 18px;
+        top: 90px;
+        z-index: 25;
+        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 0;
+        background: #4d7471;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,.15);
       }
 
-      .polaroid h4 {
-        font-size: 1rem;
-        margin: 0;
-        color: black; /* Title text color */
+      /* COLLAPSED STATE — FULL-WIDTH CONTENT */
+      body.menu-collapsed .left-text { display: none; }
+      body.menu-collapsed .page { grid-template-columns: 1fr; }
+      body.menu-collapsed .right-text { grid-column: 1 / -1; width: 100%; }
+
+      /* Right panel helpers */
+      .right-text a.inline-link { color: #0d6efd; text-decoration: none; font-weight: bold; }
+      .right-text a.inline-link:hover { text-decoration: underline; }
+      .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 14px; }
+      .pill {
+        display: inline-block; padding: 6px 10px; border-radius: 999px;
+        background: #e8f1ef; color: #143b37; border: 1px solid #cfe3df;
+        font-size: 12px; font-weight: 600; line-height: 1;
+      }
+      .responsive-gif { width: 100%; height: auto; border-radius: 10px; }
+      .arrow { font-size: 0.6rem; transition: transform .3s ease; }
+
+      /* Equal-height wireframe embeds */
+      .wireframe-box{
+        position: relative;
+        width: 100%;
+        height: 260px;            /* adjust if you want taller/shorter */
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 1px 6px rgba(0,0,0,.08);
+      }
+      .wireframe-img{
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
 
-      .responsive-gif {
-        width: 100%; /* Ensures the GIF fits the container width */
-        height: 50%; /* Maintains the aspect ratio */
-        border-radius: 10px; /* Optional: Add rounded corners */
+     
+      /* Slide toggles */
+      .slides-area { margin-top: 18px; }
+      .slide-block { margin-bottom: 10px; }
+      .slide-toggle {
+        width: 100%;
+        text-align: left;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #cfe3df;
+        background: #e8f1ef;
+        color: #143b37;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex; align-items: center; gap: 8px;
       }
+      .slide-toggle .arrow { display: inline-block; transition: transform .2s ease; }
+      .slide-toggle[aria-expanded="true"] .arrow { transform: rotate(90deg); }
 
-      .embed-container {
-        text-align: center; /* Centers the content, if needed */
-        margin: auto;
-        padding-top: 0;
+      .slide-panel { margin-top: 10px; }
+      .slides-embed {
+        position: relative;
+        width: 100%;
+        /* 16:9 responsive frame */
+        padding-top: 56.25%;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 1px 6px rgba(0,0,0,.08);
       }
-      .embed-container img {
-        width: 300px; /* Set the desired width */
-        height: 200px; /* Set the desired height */
-        object-fit: cover; /* Ensures the image is cropped to fit the container */
+      .slides-embed iframe {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        border: 0;
       }
-
-      ul {
-        list-style-type: none; /* Removes bullet points */
-        margin: 0; /* Removes default margin */
-        padding: 0; /* Removes default padding */
-      }
-       .arrow {
-        font-size: 0.6rem; /* Smaller font size for the arrow */
-        transition: transform 0.3s ease;
-      }
+      .slides-links { margin-top: 6px; }
     </style>
   </head>
   <body>
+    <!-- Logo -->
     <div class="logo">
-      <a href="../index.html"
-        ><img
-          src="../img/dolphin.png"
-          alt="Logo"
-      /></a>
+      <a href="../index.html"><img src="../img/dolphin.png" alt="Logo" /></a>
     </div>
 
+    <!-- Site sections -->
     <div class="menu">
       <a href="../home/design.html">UX Design</a>
       <a href="../home/arts.html">Studio Arts</a>
       <a href="../home/researching.html">Research</a>
     </div>
 
-    <div class="left-text polaroid-container">
-      <!-- Row 1 -->
+    <!-- Hide/Show toggle -->
+    <button id="toggleMenuBtn" class="toggle-menu" type="button" aria-expanded="true" aria-controls="leftNav">
+      Hide menu
+    </button>
 
-      <div class="polaroid">
-       <a
-         href="../design/genAI.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="../img/grid.gif"
-           alt="Wellesley Work Order Website"
-         />
-         <h4 style="font-weight: bold">GenAI Personalized Animations</h4>
-         <small>Affective Computing Group @ MIT Media Lab</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/hand_warp.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="../img/hand_warp.png"
-           alt="Wellesley Work Order Website"
-         />
-         <h4 style="font-weight: bold">Hand Warp</h4>
-         <small>Artistic Application</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/workorder.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731"
-           alt="Wellesley Work Order Website"
-         />
-         <h4 style="font-weight: bold">Wellesley Work Order</h4>
-         <small>Design Concept</small>
-       </a>
-     </div>
-      
-     <div class="polaroid">
-       <a
-         href="../design/bakebot.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223"
-           alt="BakeBot"
-         />
-         <h4 style="font-weight: bold">BakeBot</h4>
-         <small>AI Voice Recognition Software</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/spam.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119"
-           alt="Spam!"
-         />
-         <h4 style="font-weight: bold">Spam!</h4>
-         <small>App Design for Civic Engagement</small>
-       </a>
-     </div>
-     <div class="polaroid">
-       <a
-         href="../design/isca.html"
-         style="color: black; text-decoration: none"
-       >
-         <img
-           src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725"
-           alt="International Swim Coaches Association"
-         />
-         <h4 style="font-weight: bold">
-           International Swim Coaches Association
-         </h4>
-         <small>Website Design and Development</small>
-       </a>
-     </div>
-     
-   </div>
+    <main class="page">
+      <!-- LEFT: project list -->
+      <aside id="leftNav" class="left-text">
+        <nav class="design-menu" aria-label="Design projects">
+          <a class="menu-item" href="../design/manifest.html">
+            <img class="menu-thumb" src="../img/manifest_cover.png" alt="Manifest cover" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Manifest</div>
+              <div class="menu-sub">Kid-friendly 2D → 3D</div>
+              <div class="menu-tags">
+                <span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Education</span>
+              </div>
+            </div>
+          </a>
 
-    <section class="right-text">
-      <h2>Spam!</h2>
-      <small>
+          <a class="menu-item" href="../design/hand_warp.html">
+            <img class="menu-thumb" src="../img/hand_warp.png" alt="Hand Warp" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Hand Warp</div>
+              <div class="menu-sub">Gesture camera framing</div>
+              <div class="menu-tags">
+                <span class="tag">MediaPipe</span><span class="tag">CV</span><span class="tag">Art</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/genAI.html">
+            <img class="menu-thumb" src="../img/grid.gif" alt="GenAI Personalized Animations" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">GenAI Personalized Animations</div>
+              <div class="menu-sub">Affective Computing Group @ MIT</div>
+              <div class="menu-tags">
+                <span class="tag">Affective</span><span class="tag">GenAI</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/bakebot.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223" alt="BakeBot" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">BakeBot</div>
+              <div class="menu-sub">AI voice assistant</div>
+              <div class="menu-tags">
+                <span class="tag">ASR</span><span class="tag">NLP</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/spam.html" aria-current="page">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119" alt="Spam!" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Spam!</div>
+              <div class="menu-sub">Civic engagement app</div>
+              <div class="menu-tags">
+                <span class="tag">HCI</span><span class="tag">Mobile UX</span><span class="tag">Gamification</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/isca.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725" alt="ISCA" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">ISCA</div>
+              <div class="menu-sub">Website design & dev</div>
+              <div class="menu-tags">
+                <span class="tag">Frontend</span><span class="tag">CMS</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="menu-item" href="../design/workorder.html">
+            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731" alt="Wellesley Work Order" onerror="this.style.display='none'">
+            <div class="menu-body">
+              <div class="menu-title">Wellesley Work Order</div>
+              <div class="menu-sub">Service ticket concept</div>
+              <div class="menu-tags">
+                <span class="tag">Product</span><span class="tag">Prototype</span>
+              </div>
+            </div>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- RIGHT: Spam! case study -->
+      <section class="right-text">
+        <h2>Spam!</h2>
+
+        <div class="pill-row" aria-label="tags">
+          <span class="pill">HCI</span>
+          <span class="pill">Civic Engagement</span>
+          <span class="pill">Mobile UX</span>
+          <span class="pill">Badges</span>
+          <span class="pill">Prototyping</span>
+        </div>
+
+        <small><p>CS 220: Human Computer Interaction</p></small>
+
         <p>
-         CS 220: Human Computer Interaction
+          <small>
+            We want to drive student interest in civic engagement on campus through making the activity of student government and org eboards more transparent. Our design will allow all students on campus to gain easy access to voting on important matters on campus and notify them when there are issues that may affect them. Our app will also feature a wide selection of badges that students can earn for engaging in various activities on the app (including voting for the first time, attending an event in person, etc.).
+          </small>
         </p>
-      </small>
 
-      <p>
-        <small
-          >We want to drive student interest in civic engagement on campus
-          through making the activity of student government and org eboards more
-          transparent. Our design will allow all students on campus to gain easy
-          access to voting on important matters on campus and notify them when
-          there are issues that may affect them. Our app will also feature a
-          wide selection of badges that students can earn for engaging in
-          various activities on the app (including voting for the first time,
-          attending an event in person, etc.).
-        </small>
-      </p>
+        <p>
+          <small>
+            The development of this app concept and development included researching needs, creating personas, task analysis, multiple wireframe ideation and designs, and prototyping. We used trained AI models developed to help us analyze our data along the way, and exercised different methods of executing our idea using the platforms Figma, Balsamiq, and coding languages HTML, CSS and JavaScript.
+          </small>
+        </p>
 
-      <p>
-        <small
-          >The development of this app concept and development included
-          researching needs, creating personas, task analysis, multiple
-          wireframe ideation and designs, and prototyping. We used trained AI
-          models developed to help us analyze our data along the way, and
-          exercized different methods of executing our idea using the platforms
-          Figma, Balsalmiq, and coding languages HTML, CSS and Javascript.
-        </small>
-      </p>
+        <!-- Wireframes (equal height) -->
+        <div class="row">
+          <div class="col-md-6" style="padding-top: 3%">
+            <div class="embed-container">
+              <a href="https://balsamiq.cloud/skdx7zh/peun37c" style="text-decoration: none; color:black;">
+                <div class="wireframe-box">
+                  <img
+                    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-06-25%20at%206.30.06%20PM.png?v=1719365409462"
+                    alt="Balsamiq"
+                    class="wireframe-img"
+                  />
+                </div>
+                <p>Balsamiq Wireframe <span class="arrow">▶</span></p>
+              </a>
+            </div>
+          </div>
 
-      <div class="row">
-        <div class="col-md-6" style="padding-top: 3%">
-          <div class="embed-container">
-            <a href="https://balsamiq.cloud/skdx7zh/peun37c" style="text-decoration: none; color:black;">
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-06-25%20at%206.30.06%20PM.png?v=1719365409462"
-              alt="Balsamiq"
-              class="responsive-gif"
-            />
-            <p>Balsalmiq Wireframe <span class="arrow">▶</span></p>
-            </a>
+          <div class="col-md-6" style="padding-top: 3%">
+            <div class="embed-container">
+              <a href="https://www.figma.com/proto/HXwxA0l1LalGGDlRpDEQQm/SPAM!?node-id=0-1&t=bhnvsCfsx5SV4COx-1" style="text-decoration: none; color:black;">
+                <div class="wireframe-box">
+                  <img
+                    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119"
+                    alt="Figma"
+                    class="wireframe-img"
+                  />
+                </div>
+                <p>Figma Prototype <span class="arrow">▶</span></p>
+              </a>
+            </div>
           </div>
         </div>
+   <!-- Research & Process -->
+   <section style="margin-top: 22px;" class="section-muted">
+    <h3>Research &amp; Process</h3>
 
-        <!-- Second GIF -->
-        <div class="col-md-6" style="padding-top: 3%">
-          <div class="embed-container">
-            <a href="https://www.figma.com/proto/HXwxA0l1LalGGDlRpDEQQm/SPAM!?node-id=0-1&t=bhnvsCfsx5SV4COx-1" style="text-decoration: none; color:black;">
-            <img
-              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119"
-              alt="Figma"
-              class="responsive-gif"
-            />
+    <div class="h5ish">Introduction / Problem</div>
+    <small>
+      <p>
+        Spam! addresses low visibility into student government &amp; org activity and the friction to act.
+        The app makes <strong>voting</strong> and <strong>issue awareness</strong> accessible, and motivates participation with <strong>badges</strong> for actions like first vote, event attendance, etc.
+      </p>
+    </small>
 
-            <p>Figma Wireframe <span class="arrow">▶</span></p>
-            </a>
-          </div>
+    <div class="h5ish">User Analysis — Interview Takeaways</div>
+    <ul>
+      <li>Students forget events and attend only a few; they feel overwhelmed by org participation.</li>
+      <li>Traditional promo (e.g., posters) is time-consuming; digital comms can feel spammy.</li>
+      <li>Opportunity: app can organize events, facilitate comms, and be social/personalized.</li>
+    </ul>
+
+    <div class="h5ish">Personas</div>
+    <ul>
+      <li><strong>Wendy</strong> — Busy junior &amp; org president who needs better event organization, promotion, and leadership recruiting beyond email lists.</li>
+      <li><strong>Emily</strong> — First-year exploring campus, wants low-friction ways to discover orgs and manage stress while finding “her place.”</li>
+      <li><strong>Sofia</strong> — Sophomore leader pursuing more eboard roles and greater campus impact while picking up knowledge from graduating leaders.</li>
+    </ul>
+
+    <div class="h5ish">Domain Analysis</div>
+    <small>
+      <p>
+        Stakeholders include students, faculty, alumni; tools include RSVP platforms, org sites, 25Live, WeEngage, Google Calendar/Forms, Apple Reminders; and physical resources like campus spaces and org positions.
+      </p>
+    </small>
+
+    <div class="h5ish">Scenarios</div>
+    <ul>
+      <li><strong>Event Searching:</strong> Filter for civic events and perks (e.g., free food), RSVP, and attend with friends.</li>
+      <li><strong>Org Follow-up:</strong> Find club pages, read/ask FAQs, and contact members.</li>
+      <li><strong>Eboard &amp; Elections:</strong> Discover elections, upload SOIs, and cast votes.</li>
+    </ul>
+
+    <div class="h5ish">Design Directions &amp; Review Takeaways</div>
+    <ul>
+      <li>Voting tab with current/past elections; results revealed after voting (with organizer discretion).</li>
+      <li>Events tab filters for civic engagement; sort by date/time and audience scope.</li>
+      <li>Helpful resources (e.g., voter registration); profile badges for engagement; easy sharing.</li>
+    </ul>
+
+    <div class="h5ish">Wireframe Rationale &amp; Risky Interactions</div>
+    <ul>
+      <li>Keep layouts block-based and consistent; isolate complex flows on their own pages.</li>
+      <li><strong>Badges:</strong> Earned for actions; sash UI with “pin top badge.”</li>
+      <li><strong>Voting Confirmation:</strong> Explicit “Vote Send” action and clear feedback; separate tallies for parallel elections.</li>
+    </ul>
+
+    <div class="h5ish">Final Prototype &amp; Visual System</div>
+    <ul>
+      <li>Color system derived from the Spam can (contrasting yellows/blues), used to guide navigation and support accessibility.</li>
+      <li>White space creates clear borders for dense information.</li>
+    </ul>
+  </section>
+
+  <!-- Interactive slide toggles -->
+  <section class="slides-area" aria-label="Slides">
+    <!-- Final Slides -->
+    <div class="slide-block">
+      <button
+        class="slide-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="finalSlidesPanel"
+        data-target="finalSlidesPanel"
+      >
+        <span class="arrow">▶</span> Final Slides (interactive)
+      </button>
+      <div id="finalSlidesPanel" class="slide-panel" hidden>
+        <div class="slides-embed">
+          <iframe
+            src="https://docs.google.com/presentation/d/1LpM6QxNxLAu2RKiu482dEwVMVzArtBc8PEjZdsTdpzg/embed?start=false&loop=false&delayms=3000"
+            allowfullscreen
+            mozallowfullscreen
+            webkitallowfullscreen
+            title="Final Slides"
+          ></iframe>
         </div>
+        <p class="slides-links">
+          <a class="inline-link" href="https://docs.google.com/presentation/d/1LpM6QxNxLAu2RKiu482dEwVMVzArtBc8PEjZdsTdpzg/edit#slide=id.gcf8e290db5_0_1554" target="_blank" rel="noreferrer">Open in new tab</a>
+        </p>
       </div>
-    </section>
-  </body>
+    </div>
+<!-- Design Directions Slides -->
+<div class="slide-block">
+  <button
+    class="slide-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="designSlidesPanel"
+    data-target="designSlidesPanel"
+  >
+    <span class="arrow">▶</span> Design Directions (interactive)
+  </button>
+  <div id="designSlidesPanel" class="slide-panel" hidden>
+    <div class="slides-embed">
+      <iframe
+        src="https://docs.google.com/presentation/d/1IXahRBOwmmdSr8aMbxePbtYNfl7ifklhxMX5hMMzxEg/embed?start=false&loop=false&delayms=3000"
+        allowfullscreen
+        mozallowfullscreen
+        webkitallowfullscreen
+        title="Design Directions Slides"
+      ></iframe>
+    </div>
+    <p class="slides-links">
+      <a class="inline-link" href="https://docs.google.com/presentation/d/1IXahRBOwmmdSr8aMbxePbtYNfl7ifklhxMX5hMMzxEg/edit?usp=sharing" target="_blank" rel="noreferrer">Open in new tab</a>
+    </p>
+  </div>
+</div>
+</section>
+</section>
+</main>
+
+<script>
+// Hide/Show left menu (expands content to full width like Manifest page)
+(function () {
+  const btn = document.getElementById('toggleMenuBtn');
+  btn.addEventListener('click', () => {
+    const collapsed = document.body.classList.toggle('menu-collapsed');
+    btn.textContent = collapsed ? 'Show menu' : 'Hide menu';
+    btn.setAttribute('aria-expanded', String(!collapsed));
+  });
+})();
+
+// Slide toggles (accessible)
+(function () {
+  function togglePanel(btn) {
+    const id = btn.getAttribute('data-target');
+    const panel = document.getElementById(id);
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    panel.hidden = isOpen;
+  }
+
+  document.querySelectorAll('.slide-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => togglePanel(btn));
+    // Keyboard accessibility already covered since it's a <button>
+  });
+})();
+</script>
+</body>
 </html>
+
