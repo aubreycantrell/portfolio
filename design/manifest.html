@@ -2,16 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Design Concepts</title>
+
+    <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+
     <link rel="icon" href="../img/dolphin.png" />
     <script src="../script/script.js" defer></script>
+
     <style>
       /* Base */
       body {
@@ -28,7 +35,10 @@
         left: 20px;
         z-index: 20;
       }
-      .logo img { max-width: 100px; height: auto; }
+      .logo img {
+        max-width: 100px;
+        height: auto;
+      }
 
       .menu {
         position: fixed;
@@ -42,10 +52,17 @@
         border-radius: 25px;
         z-index: 20;
       }
-      .menu a { text-decoration: none; color: black; font-weight: bold; padding: 5px; }
-      .menu a:hover { color: #4d7471; }
+      .menu a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        padding: 5px;
+      }
+      .menu a:hover {
+        color: #4d7471;
+      }
 
-      /* Page layout: left menu (15%) + right content */
+      /* Page layout: left menu + right content */
       .page {
         display: grid;
         grid-template-columns: 20% 1fr;
@@ -59,18 +76,22 @@
         position: relative;
         width: 100%;
         transform: none;
-        left: auto; top: auto; margin: 0; padding: 0 4px;
+        left: auto;
+        top: auto;
+        margin: 0;
+        padding: 0 4px;
       }
 
       /* Right column */
       .right-text {
         position: relative;
-        right: auto; top: auto;
+        right: auto;
+        top: auto;
         width: 100%;
         padding: 20px;
         border-radius: 10px;
         margin: 0;
-        background-color: rgba(0,0,0,0);
+        background-color: rgba(0, 0, 0, 0);
         box-shadow: none;
         text-align: left;
         font-family: Arial, sans-serif;
@@ -92,30 +113,59 @@
         padding: 8px 10px;
         text-decoration: none;
         color: #111;
-        box-shadow: 0 1px 4px rgba(0,0,0,.06);
-        transition: box-shadow .2s ease, border-color .2s ease, transform .08s ease;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        transition: box-shadow 0.2s ease, border-color 0.2s ease,
+          transform 0.08s ease;
       }
       .menu-item:hover {
         border-color: #cfe3df;
-        box-shadow: 0 2px 8px rgba(0,0,0,.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         transform: translateY(-1px);
       }
-      .menu-item:focus { outline: 2px solid #4d7471; outline-offset: 2px; }
+      .menu-item:focus {
+        outline: 2px solid #4d7471;
+        outline-offset: 2px;
+      }
 
       .menu-thumb {
-        width: 54px; height: 54px; border-radius: 8px;
-        object-fit: cover; background: #f5f5f5; flex: 0 0 auto;
+        width: 54px;
+        height: 54px;
+        border-radius: 8px;
+        object-fit: cover;
+        background: #f5f5f5;
+        flex: 0 0 auto;
       }
-      .menu-body { display: flex; flex-direction: column; min-width: 0; }
+      .menu-body {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
       .menu-title {
-        font-weight: 700; font-size: 14px; line-height: 1.1;
-        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
-      .menu-sub { font-size: 12px; color: #666; }
-      .menu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+      .menu-sub {
+        font-size: 12px;
+        color: #666;
+      }
+      .menu-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 6px;
+      }
       .tag {
-        font-size: 10px; padding: 4px 6px; border-radius: 999px;
-        background: #e8f1ef; border: 1px solid #cfe3df; color: #143b37; font-weight: 600;
+        font-size: 10px;
+        padding: 4px 6px;
+        border-radius: 999px;
+        background: #e8f1ef;
+        border: 1px solid #cfe3df;
+        color: #143b37;
+        font-weight: 600;
       }
 
       /* Hide/Show left menu button */
@@ -131,36 +181,62 @@
         background: #4d7471;
         color: white;
         cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0,0,0,.15);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       }
 
       /* COLLAPSED STATE — FULL-WIDTH CONTENT */
-      body.menu-collapsed .left-text { display: none; }
-      /* Key fix: use a single column when collapsed so right content fills the page */
-      body.menu-collapsed .page { grid-template-columns: 1fr; }
-      body.menu-collapsed .right-text { grid-column: 1 / -1; width: 100%; }
+      body.menu-collapsed .left-text {
+        display: none;
+      }
+      body.menu-collapsed .page {
+        grid-template-columns: 1fr;
+      }
+      body.menu-collapsed .right-text {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
 
       /* Right panel helpers */
-      .right-text a.inline-link { color: #0d6efd; text-decoration: none; font-weight: bold; }
-      .right-text a.inline-link:hover { text-decoration: underline; }
-      .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
-      .pill {
-        display: inline-block; padding: 6px 10px; border-radius: 999px;
-        background: #e8f1ef; color: #143b37; border: 1px solid #cfe3df;
-        font-size: 12px; font-weight: 600;
+      .right-text a.inline-link {
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: bold;
       }
-      .responsive-gif { width: 100%; height: auto; border-radius: 10px; }
+      .right-text a.inline-link:hover {
+        text-decoration: underline;
+      }
+      .pill-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #e8f1ef;
+        color: #143b37;
+        border: 1px solid #cfe3df;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .responsive-gif {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
 
-      /* ONLY NEW STYLES (for the How it Works side image) */
-      .how-side-img{
+      /* Side image in “How it Works” */
+      .how-side-img {
         float: right;
         max-width: 40%;
-        margin: 2px 0 12px 16px; /* space from the text */
+        margin: 2px 0 12px 16px;
         border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,.12);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
       }
-      @media (max-width: 900px){
-        .how-side-img{
+      @media (max-width: 900px) {
+        .how-side-img {
           float: none;
           display: block;
           max-width: 100%;
@@ -169,29 +245,40 @@
         }
       }
 
-      /* NEW: hero image for Manifest */
-      .manifest-hero{
+      /* Manifest hero (if used elsewhere) */
+      .manifest-hero {
         width: 100%;
         height: auto;
         border-radius: 10px;
         margin: 8px 0 16px;
-        box-shadow: 0 2px 10px rgba(0,0,0,.12);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
       }
     </style>
   </head>
+
   <body>
+    <!-- Logo -->
     <div class="logo">
-      <a href="../index.html"><img src="../img/dolphin.png" alt="Logo" /></a>
+      <a href="../index.html">
+        <img src="../img/dolphin.png" alt="Logo" />
+      </a>
     </div>
 
-    <div class="menu">
+    <!-- Top menu -->
+    <nav class="menu" aria-label="Site">
       <a href="../home/design.html">UX Design</a>
       <a href="../home/arts.html">Studio Arts</a>
       <a href="../home/researching.html">Research</a>
-    </div>
+    </nav>
 
     <!-- Hide/Show toggle -->
-    <button id="toggleMenuBtn" class="toggle-menu" type="button" aria-expanded="true" aria-controls="leftNav">
+    <button
+      id="toggleMenuBtn"
+      class="toggle-menu"
+      type="button"
+      aria-expanded="true"
+      aria-controls="leftNav"
+    >
       Hide menu
     </button>
 
@@ -200,78 +287,122 @@
       <aside id="leftNav" class="left-text">
         <nav class="design-menu" aria-label="Design projects">
           <a class="menu-item" href="../design/manifest.html">
-            <img class="menu-thumb" src="../img/manifest_cover.png" alt="Manifest cover" onerror="this.style.display='none'">
+            <img
+              class="menu-thumb"
+              src="../img/manifest_cover.png"
+              alt="Manifest cover"
+              onerror="this.style.display='none'"
+            />
             <div class="menu-body">
               <div class="menu-title">Manifest</div>
               <div class="menu-sub">Kid-friendly 2D → 3D</div>
               <div class="menu-tags">
-                <span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Education</span>
+                <span class="tag">Three.js</span>
+                <span class="tag">WebGL</span>
+                <span class="tag">Education</span>
               </div>
             </div>
           </a>
 
           <a class="menu-item" href="../design/hand_warp.html">
-            <img class="menu-thumb" src="../img/hand_warp.png" alt="Hand Warp" onerror="this.style.display='none'">
+            <img
+              class="menu-thumb"
+              src="../img/hand_warp.png"
+              alt="Hand Warp"
+              onerror="this.style.display='none'"
+            />
             <div class="menu-body">
               <div class="menu-title">Hand Warp</div>
               <div class="menu-sub">Gesture camera framing</div>
               <div class="menu-tags">
-                <span class="tag">MediaPipe</span><span class="tag">CV</span><span class="tag">Art</span>
+                <span class="tag">MediaPipe</span>
+                <span class="tag">CV</span>
+                <span class="tag">Art</span>
               </div>
             </div>
           </a>
 
           <a class="menu-item" href="../design/genAI.html">
-            <img class="menu-thumb" src="../img/grid.gif" alt="GenAI Personalized Animations" onerror="this.style.display='none'">
+            <img
+              class="menu-thumb"
+              src="../img/grid.gif"
+              alt="GenAI Personalized Animations"
+              onerror="this.style.display='none'"
+            />
             <div class="menu-body">
               <div class="menu-title">GenAI Personalized Animations</div>
               <div class="menu-sub">Affective Computing Group @ MIT</div>
               <div class="menu-tags">
-                <span class="tag">Affective</span><span class="tag">GenAI</span>
+                <span class="tag">Affective</span>
+                <span class="tag">GenAI</span>
               </div>
             </div>
           </a>
 
           <a class="menu-item" href="../design/bakebot.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223" alt="BakeBot" onerror="this.style.display='none'">
+            <img
+              class="menu-thumb"
+              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223"
+              alt="BakeBot"
+              onerror="this.style.display='none'"
+            />
             <div class="menu-body">
               <div class="menu-title">BakeBot</div>
               <div class="menu-sub">AI voice assistant</div>
               <div class="menu-tags">
-                <span class="tag">ASR</span><span class="tag">NLP</span>
+                <span class="tag">ASR</span>
+                <span class="tag">NLP</span>
               </div>
             </div>
           </a>
 
           <a class="menu-item" href="../design/spam.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119" alt="Spam!" onerror="this.style.display='none'">
+            <img
+              class="menu-thumb"
+              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119"
+              alt="Spam!"
+              onerror="this.style.display='none'"
+            />
             <div class="menu-body">
               <div class="menu-title">Spam!</div>
               <div class="menu-sub">Civic engagement app</div>
               <div class="menu-tags">
-                <span class="tag">UX</span><span class="tag">Mobile</span>
+                <span class="tag">UX</span>
+                <span class="tag">Mobile</span>
               </div>
             </div>
           </a>
 
           <a class="menu-item" href="../design/isca.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725" alt="ISCA" onerror="this.style.display='none'">
+            <img
+              class="menu-thumb"
+              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725"
+              alt="ISCA"
+              onerror="this.style.display='none'"
+            />
             <div class="menu-body">
               <div class="menu-title">ISCA</div>
-              <div class="menu-sub">Website design & dev</div>
+              <div class="menu-sub">Website design &amp; dev</div>
               <div class="menu-tags">
-                <span class="tag">Frontend</span><span class="tag">CMS</span>
+                <span class="tag">Frontend</span>
+                <span class="tag">CMS</span>
               </div>
             </div>
           </a>
 
           <a class="menu-item" href="../design/workorder.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731" alt="Wellesley Work Order" onerror="this.style.display='none'">
+            <img
+              class="menu-thumb"
+              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731"
+              alt="Wellesley Work Order"
+              onerror="this.style.display='none'"
+            />
             <div class="menu-body">
               <div class="menu-title">Wellesley Work Order</div>
               <div class="menu-sub">Service ticket concept</div>
               <div class="menu-tags">
-                <span class="tag">Product</span><span class="tag">Prototype</span>
+                <span class="tag">Product</span>
+                <span class="tag">Prototype</span>
               </div>
             </div>
           </a>
@@ -291,122 +422,204 @@
         </div>
 
         <p style="margin-top: 8px;">
-          <a class="inline-link" href="https://github.com/aubreycantrell/Manifest" target="_blank" rel="noreferrer">💻 Source on GitHub</a>
+          <a
+            class="inline-link"
+            href="https://github.com/aubreycantrell/Manifest"
+            target="_blank"
+            rel="noreferrer"
+          >💻 Source on GitHub</a>
         </p>
 
-        <small>
-          <p>
-            Manifest is a touch-first 3D tool where kids can <strong>draw a shape to make a solid</strong>, then
-            <strong>sketch directly on the model</strong> to grow new parts. It exports clean <strong>GLB/GLTF/OBJ/STL</strong>
-            so creations open in Blender or head to a 3D printer. The goal: an <strong>accessible, intuitive</strong> path
-            from finger drawing to real 3D.
-          </p>
-        </small>
-
-        <!-- NEW: Manifest hero image -->
-     
+        <p class="small">
+          Manifest is a touch-first 3D tool where kids can
+          <strong>draw a shape to make a solid</strong>, then
+          <strong>sketch directly on the model</strong> to grow new parts. It
+          exports clean <strong>GLB/GLTF/OBJ/STL</strong> so creations open in
+          Blender or head to a 3D printer. The goal: an
+          <strong>accessible, intuitive</strong> path from finger drawing to
+          real 3D.
+        </p>
 
         <div class="row">
           <div class="col-md-6">
-<!-- Embedded YouTube (replace the <img> block with this) -->
-<div style="position:relative;padding-top:56.25%;border-radius:10px;overflow:hidden;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/95gByyMtrWs?si=sbq1Yi3Tz4L2cvTP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-
+            <!-- Responsive, rounded YouTube embed -->
+            <div
+              style="position:relative;padding-top:56.25%;border-radius:10px;overflow:hidden;"
+            >
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/95gByyMtrWs?rel=0&modestbranding=1"
+                title="Manifest demo video"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                style="position:absolute;inset:0;width:100%;height:100%;border:0;"
+              ></iframe>
+            </div>
           </div>
+
           <div class="col-md-6">
-            <img class="responsive-gif" src="../img/blender.png" alt="Manifest UI preview" />
+            <img
+              class="responsive-gif"
+              src="../img/blender.png"
+              alt="Manifest UI preview"
+              loading="lazy"
+            />
           </div>
         </div>
 
-        <section aria-labelledby="idea" style="margin-top: 18px;">
-          <h3 id="idea">Idea</h3>
+        <section id="idea" aria-labelledby="idea">
+          <h3>Idea</h3>
           <p>
-            I wanted to build a <strong>playful 3D tool</strong> where kids make shapes the way they naturally think—by drawing.
-            Instead of juggling menus, you draw a 2D outline to create a base, then tap the model and draw again to add
-            <strong>perpendicular patches</strong> that stick out from the surface. It encourages curiosity and
-            gives a path to <strong>real 3D</strong> that works in Blender.
+            I wanted to build a <strong>playful 3D tool</strong> where kids make
+            shapes the way they naturally think—by drawing. Instead of juggling
+            menus, you draw a 2D outline to create a base, then tap the model
+            and draw again to add
+            <strong>perpendicular patches</strong> that stick out from the
+            surface. It encourages curiosity and gives a path to
+            <strong>real 3D</strong> that works in Blender.
           </p>
         </section>
 
-        <section aria-labelledby="process">
-          <h3 id="process">Process &amp; Design</h3>
+        <section id="process" aria-labelledby="process">
+          <h3>Process &amp; Design</h3>
           <p>
-            I studied beginner-friendly 3D tools and focused on <strong>freehand input</strong> that still maps to
-            <strong>solid geometry</strong>. A transparent draw canvas sits above the WebGL view:
+            I studied beginner-friendly 3D tools and focused on
+            <strong>freehand input</strong> that still maps to
+            <strong>solid geometry</strong>. A transparent draw canvas sits
+            above the WebGL view:
           </p>
           <ul>
-            <li><strong>Touch-first</strong>: big buttons, simple <em>Draw / Orbit</em>, and a <em>Reset View</em> if you get lost.</li>
-            <li><strong>No surprise camera moves</strong>: the view recenters only for the first object; later edits don’t jump.</li>
-            <li><strong>Must-touch rule</strong>: new parts only add if the stroke starts on the model (no floating bits).</li>
-            <li><strong>Perpendicular by construction</strong>: a local paint plane is built at your tap; extrusion follows its outward normal.</li>
-            <li><strong>Cross-sections &amp; loft</strong> for curvier forms; section outlines remain visible and deletable.</li>
-            <li><strong>Export</strong>: GLB/GLTF/OBJ/STL for Blender and printing.</li>
+            <li>
+              <strong>Touch-first</strong>: big buttons, simple
+              <em>Draw / Orbit</em>, and a <em>Reset View</em> if you get lost.
+            </li>
+            <li>
+              <strong>No surprise camera moves</strong>: the view recenters only
+              for the first object; later edits don’t jump.
+            </li>
+            <li>
+              <strong>Must-touch rule</strong>: new parts only add if the stroke
+              starts on the model (no floating bits).
+            </li>
+            <li>
+              <strong>Perpendicular by construction</strong>: a local paint
+              plane is built at your tap; extrusion follows its outward normal.
+            </li>
+            <li>
+              <strong>Cross-sections &amp; loft</strong> for curvier forms;
+              section outlines remain visible and deletable.
+            </li>
+            <li>
+              <strong>Export</strong>: GLB/GLTF/OBJ/STL for Blender and
+              printing.
+            </li>
           </ul>
         </section>
 
-        <section aria-labelledby="testing">
-          <h3 id="testing">Testing &amp; Play</h3>
+        <section id="testing" aria-labelledby="testing">
+          <h3>Testing &amp; Play</h3>
           <p>
-            Friends (and kids) figured it out quickly—draw a cookie outline, orbit, then tap the side to <strong>grow a fin</strong> or handle.
-            The must-touch rule kept builds coherent. Kids loved changing colors and using Undo to try variations.
+            Friends (and kids) figured it out quickly—draw a cookie outline,
+            orbit, then tap the side to <strong>grow a fin</strong> or handle.
+            The must-touch rule kept builds coherent. Kids loved changing colors
+            and using Undo to try variations.
           </p>
           <p><strong>What I learned:</strong></p>
           <ul>
-            <li>Being <strong>forgiving</strong> matters—wobbly strokes should still create confident forms.</li>
-            <li><strong>Diagonal/curved surfaces</strong> are common; a robust local-plane normal plus a tiny offset prevents “absorbed” patches.</li>
-            <li>A short <strong>onboarding card</strong> (“draw to make a shape, tap the model to add more”) speeds first-time success.</li>
+            <li>
+              Being <strong>forgiving</strong> matters—wobbly strokes should
+              still create confident forms.
+            </li>
+            <li>
+              <strong>Diagonal/curved surfaces</strong> are common; a robust
+              local-plane normal plus a tiny offset prevents “absorbed” patches.
+            </li>
+            <li>
+              A short <strong>onboarding card</strong> (“draw to make a shape,
+              tap the model to add more”) speeds first-time success.
+            </li>
           </ul>
         </section>
 
-        <section aria-labelledby="how">
-          <h3 id="how">How it Works</h3>
+        <section id="how" aria-labelledby="how">
+          <h3>How it Works</h3>
 
           <!-- Side image next to this text block -->
           <img
             class="how-side-img"
             src="../img/manifest_ex.png"
-            alt="Diagram showing stroke capture projected to a local plane and extruded perpendicularly into a 3D patch"
+            alt="Diagram: stroke projected to a local plane and extruded perpendicularly into a 3D patch"
+            loading="lazy"
           />
 
           <ul>
-            <li><strong>Stroke capture</strong>: a top canvas records your path and shows it immediately.</li>
-            <li><strong>Raycasting</strong> on first tap:
+            <li>
+              <strong>Stroke capture</strong>: a top canvas records your path
+              and shows it immediately.
+            </li>
+            <li>
+              <strong>Raycasting</strong> on first tap:
               <ul>
-                <li>Hit the model → build a local <em>paint plane</em> (Z = outward normal; flipped by view if needed).</li>
-                <li>No hit &amp; first object → project to the <em>floor</em> under your stroke and make the base there.</li>
+                <li>
+                  Hit the model → build a local <em>paint plane</em> (Z =
+                  outward normal; flipped by view if needed).
+                </li>
+                <li>
+                  No hit &amp; first object → project to the <em>floor</em>
+                  under your stroke and make the base there.
+                </li>
               </ul>
             </li>
-            <li><strong>Geometry</strong>:
+            <li>
+              <strong>Geometry</strong>:
               <ul>
-                <li><em>Extrude/Lathe</em> for bases (auto-close if endpoints are near).</li>
-                <li><em>Perpendicular patches</em> extrude along plane +Z with a tiny epsilon offset (no z-fighting).</li>
-                <li><em>Loft</em> resamples section loops and stitches them with caps.</li>
+                <li>
+                  <em>Extrude/Lathe</em> for bases (auto-close if endpoints are
+                  near).
+                </li>
+                <li>
+                  <em>Perpendicular patches</em> extrude along plane +Z with a
+                  tiny epsilon offset (no z-fighting).
+                </li>
+                <li>
+                  <em>Loft</em> resamples section loops and stitches them with
+                  caps.
+                </li>
               </ul>
             </li>
-            <li><strong>Camera</strong>: OrbitControls; inputs route to drawing in Draw mode. <em>Reset View</em> frames the build.</li>
-            <li><strong>Selection</strong>: In Orbit mode, tap a part/section outline to select &amp; delete.</li>
+            <li>
+              <strong>Camera</strong>: OrbitControls; inputs route to drawing in
+              Draw mode. <em>Reset View</em> frames the build.
+            </li>
+            <li>
+              <strong>Selection</strong>: In Orbit mode, tap a part/section
+              outline to select &amp; delete.
+            </li>
           </ul>
         </section>
 
-        <section aria-labelledby="next">
-          <h3 id="next">What’s Next</h3>
+        <section id="next" aria-labelledby="next">
+          <h3>What’s Next</h3>
           <ul>
             <li>Smoother stroke cleanup and optional rounded bevels.</li>
             <li>Simple booleans (cut/union) for advanced edits.</li>
             <li>Save/load projects and a kid-friendly gallery.</li>
-            <li>Guided builds (“Make a mug,” “Make a rocket”) for classrooms.</li>
+            <li>
+              Guided builds (“Make a mug,” “Make a rocket”) for classrooms.
+            </li>
             <li>Teacher mode for sharing prompts and collecting results.</li>
           </ul>
         </section>
 
-        <section aria-labelledby="why">
-          <h3 id="why">Why this project</h3>
+        <section id="why" aria-labelledby="why">
+          <h3>Why this project</h3>
           <p>
-            I want to build <strong>educational tools</strong> that turn playful gestures into real creative power.
-            Manifest explores how to make 3D feel as natural as drawing—while keeping an on-ramp to professional workflows
-            like <strong>Blender</strong>. If you’re building learning platforms, kids’ creativity tools, or beginner-friendly
-            graphics UX, I’d love to collaborate.
+            I want to build <strong>educational tools</strong> that turn
+            playful gestures into real creative power. Manifest explores how to
+            make 3D feel as natural as drawing—while keeping an on-ramp to
+            professional workflows like <strong>Blender</strong>. If you’re
+            building learning platforms, kids’ creativity tools, or
+            beginner-friendly graphics UX, I’d love to collaborate.
           </p>
         </section>
       </section>
