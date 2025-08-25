@@ -1,416 +1,514 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design Concepts</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <link rel="icon" href="../img/dolphin.png" />
-    <script src="../script/script.js" defer></script>
-    <style>
-      /* Base */
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        min-height: 100vh;
-      }
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wellesley Work Order — Service Ticket Redesign</title>
+  <link rel="icon" href="../img/dolphin.png"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
 
-      /* Top logo & top-right site menu */
-      .logo {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 20;
-      }
-      .logo img { max-width: 100px; height: auto; }
+  <style>
+    :root{
+      --brand:#4d7471;
+      --ink:#111;
+      --muted:#666;
+      --bg:#f0f0f0;
+      --card:#fff;
+      --line:#e9ecef;
+      --pill-bg:#e8f1ef;
+      --pill-bd:#cfe3df;
+      --pill-ink:#143b37;
+    }
 
-      .menu {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        display: flex;
-        gap: 15px;
-        font-size: 0.95rem;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 5px 15px;
-        border-radius: 25px;
-        z-index: 20;
-      }
-      .menu a { text-decoration: none; color: black; font-weight: bold; padding: 5px; }
-      .menu a:hover { color: #4d7471; }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-      /* Page layout: left menu (15%) + right content */
-      .page {
-        display: grid;
-        grid-template-columns: 20% 1fr;
-        gap: 24px;
-        align-items: start;
-        padding: 110px 6% 40px; /* room for fixed header elements */
-      }
+    /* Global portfolio header (consistent with rest of site) */
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 20;
+    }
+    .logo img { height: 40px; width: auto; }
 
-      /* Left column (nav) */
-      .left-text {
-        position: relative;
-        width: 100%;
-        transform: none;
-        left: auto; top: auto; margin: 0; padding: 0 4px;
-      }
+    .menu {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+      font-size: 0.95rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 6px 16px;
+      border-radius: 25px;
+      z-index: 20;
+    }
+    .menu a { text-decoration: none; color: black; font-weight: 700; padding: 5px 6px; }
+    .menu a:hover { color: var(--brand); }
 
-      /* Right column (content) */
-      .right-text {
-        position: relative;
-        right: auto; top: auto;
-        width: 100%;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 0;
-        background-color: rgba(0,0,0,0);
-        box-shadow: none;
-        text-align: left;
-        font-family: Arial, sans-serif;
-      }
+    /* Hero */
+    .hero{
+      padding:110px 20px 24px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,#ffffff 0%, #ffffff 60%, transparent 100%);
+    }
+    .hero-wrap{ max-width:1120px; margin:0 auto;}
+    .eyebrow{color:var(--brand); font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size:.78rem;}
+    .title{font-weight:800; font-size:clamp(28px, 4vw, 44px); line-height:1.08; margin:.35rem 0 .5rem;}
+    .subtitle{color:#2a2a2a; font-size:1.05rem; max-width:70ch;}
 
-      /* Hide/Show left menu button */
-      .toggle-menu {
-        position: fixed;
-        left: 18px;
-        top: 90px;
-        z-index: 25;
-        font-size: 14px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 0;
-        background: #4d7471;
-        color: white;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0,0,0,.15);
-      }
+    .hero-topline{
+      display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px;
+    }
+    .pills{display:flex; flex-wrap:wrap; gap:8px;}
+    .pill{
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--pill-bg); color:var(--pill-ink); border:1px solid var(--pill-bd);
+      font-size:.78rem; font-weight:700; padding:6px 10px; border-radius:999px;
+    }
+    .btn-ghost{
+      display:inline-block; font-weight:800; text-decoration:none;
+      border:1px solid var(--line); border-radius:999px; padding:8px 12px; color:#2a2a2a;
+      background:#fff;
+    }
+    .btn-ghost:hover{ background:#fafafa; }
+    .visit-btn{
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--brand); color:#fff; text-decoration:none; font-weight:800;
+      padding:8px 12px; border-radius:999px;
+    }
+    .visit-btn:hover{ color:#fff; opacity:.92; }
 
-      /* COLLAPSED STATE — FULL-WIDTH CONTENT */
-      body.menu-collapsed .left-text { display: none; }
-      body.menu-collapsed .page { grid-template-columns: 1fr; }
-      body.menu-collapsed .right-text { grid-column: 1 / -1; width: 100%; }
+    .hero-media{ margin-top:14px; overflow:hidden; border-radius:14px; background:#fff; }
+    .hero-media img{ width:100%; height:auto; display:block; }
 
-      /* Left vertical project menu */
-      .design-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .menu-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        background: #ffffff;
-        border: 1px solid #e6e6e6;
-        border-radius: 12px;
-        padding: 10px 12px;
-        text-decoration: none;
-        color: #111;
-        box-shadow: 0 1px 4px rgba(0,0,0,.06);
-        transition: box-shadow .2s ease, border-color .2s ease, transform .08s ease;
-      }
-      .menu-item:hover {
-        border-color: #cfe3df;
-        box-shadow: 0 2px 8px rgba(0,0,0,.08);
-        transform: translateY(-1px);
-      }
-      .menu-item:focus { outline: 2px solid #4d7471; outline-offset: 2px; }
-      .menu-thumb {
-        width: 54px; height: 54px; border-radius: 8px; object-fit: cover; background: #f5f5f5; flex: 0 0 auto;
-      }
-      .menu-body { display: flex; flex-direction: column; min-width: 0; }
-      .menu-title {
-        font-weight: 700; font-size: 14px; line-height: 1.1;
-        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      }
-      .menu-sub { font-size: 12px; color: #666; }
-      .menu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-      .menu-tags .tag {
-        font-size: 10px; padding: 4px 6px; border-radius: 999px;
-        background: #e8f1ef; border: 1px solid #cfe3df; color: #143b37; font-weight: 600;
-      }
+    /* Case layout */
+    .case{
+      max-width:1120px; margin:24px auto; padding:0 20px;
+      display:grid; grid-template-columns: 300px 1fr; gap:28px;
+    }
+    @media (max-width: 992px){ .case{ grid-template-columns: 1fr; } }
 
-      /* Media helpers */
-      .responsive-gif { width: 100%; height: auto; border-radius: 10px; }
-      .embed-container { text-align: center; margin: auto; padding-top: 0; }
+    .meta{
+      position:sticky; top:100px; align-self:start;
+      background:var(--card); border:1px solid var(--line); border-radius:14px;
+      padding:16px;
+    }
+    .meta h4{ font-size:1rem; font-weight:800; margin:0 0 10px; }
+    .meta .meta-row{ margin-bottom:12px; }
+    .meta .label{ font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; font-weight:800; }
+    .meta .value{ font-size:.95rem; font-weight:600; margin-top:4px; }
+    .toc a{ display:block; color:var(--ink); text-decoration:none; font-weight:700; font-size:.95rem; padding:6px 0; }
+    .toc a:hover{ color:var(--brand); }
 
-      ul { list-style-type: none; margin: 0; padding: 0; }
-    </style>
-  </head>
-  <body>
-    <div class="logo">
-      <a href="../index.html"><img src="../img/dolphin.png" alt="Logo" /></a>
+    /* Content */
+    .content section{
+      background:var(--card); border:1px solid var(--line); border-radius:14px;
+      padding:22px 22px; margin-bottom:18px;
+    }
+    .content h2{ font-size:1.35rem; font-weight:900; margin:0 0 8px; }
+    .content h3{ font-size:1.1rem; font-weight:800; margin:14px 0 6px; }
+    .content p{ color:#222; line-height:1.55; }
+    .content small p{ color:#333; }
+
+    /* Problem callout */
+    .problem-callout{
+      background:#fff;
+      border:1px solid var(--line);
+      border-left:4px solid var(--brand);
+      border-radius:10px;
+      padding:12px 14px;
+      margin-top:10px;
+    }
+    .problem-callout strong{ font-weight:900; }
+
+    /* Media */
+    .media{ position:relative; border-radius:12px; overflow:hidden; background:#fff; border:1px solid var(--line); }
+    .media img{ position:relative; width:100%; height:auto; object-fit:contain; display:block; }
+    .media.fit-cover img{ object-fit:cover; width:100%; height:100%; }
+
+    /* Explain row */
+    .explain{ display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+    @media (max-width: 992px){ .explain{ grid-template-columns:1fr; } }
+
+    /* CTA */
+    .cta{ text-align:center; padding:28px 0 40px; color:#333; }
+    .btn-brand{
+      background:var(--brand); color:#fff; border:0; border-radius:999px;
+      padding:10px 16px; font-weight:800; text-decoration:none; display:inline-block;
+    }
+    .btn-brand:hover{ opacity:.92; color:#fff; }
+  </style>
+</head>
+<body>
+
+  <!-- Global header -->
+  <div class="logo">
+    <a href="../index.html" aria-label="Home">
+      <img src="../img/dolphin.png" alt="Logo">
+    </a>
+  </div>
+  <div class="menu" aria-label="Site">
+    <a href="../home/design.html">UX Design</a>
+    <a href="../home/arts.html">Studio Arts</a>
+    <a href="../home/researching.html">Research</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-wrap">
+      <div class="eyebrow">Case Study</div>
+      <h1 class="title">Wellesley Work Order — Service Ticket Redesign</h1>
+      <p class="subtitle">
+        Tackling the core problem: <strong>low usability and poor transparency</strong> in the work-order process—
+        and aligning the new experience with <strong>Wellesley’s current web branding</strong> so it feels native and trustworthy.
+      </p>
+
+      <div class="hero-topline">
+        <div class="pills" aria-label="tags">
+          <span class="pill">Product</span>
+          <span class="pill">Mobile-first</span>
+          <span class="pill">Accessibility</span>
+          <span class="pill">Rapid Prototyping</span>
+          <span class="pill">Brand Alignment</span>
+        </div>
+        <a class="btn-ghost" href="https://github.com/tenzee01/work-order" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="visit-btn" href="https://tenzee01.github.io/work-order/" target="_blank" rel="noreferrer">Visit Website</a>
+      </div>
+
+      <div class="hero-media">
+        <img
+          src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Copy%20of%20Untitled%20Design.gif?v=1737143476930"
+          alt="Our redesigned Work Order interface demo"
+        />
+      </div>
     </div>
+  </section>
 
-    <div class="menu">
-      <a href="../home/design.html">UX Design</a>
-      <a href="../home/arts.html">Studio Arts</a>
-      <a href="../home/researching.html">Research</a>
-    </div>
+  <!-- Case body -->
+  <main class="case" role="main">
+    <!-- Sticky meta -->
+    <aside class="meta" aria-labelledby="project-info">
+      <h4 id="project-info">Project Info</h4>
 
-    <!-- Hide/Show toggle -->
-    <button id="toggleMenuBtn" class="toggle-menu" type="button" aria-expanded="true" aria-controls="leftNav">
-      Hide menu
-    </button>
+  
+      <div class="meta-row">
+        <div class="label">Role</div>
+        <div class="value">Frontend & UX in a team of 4</div>
+      </div>
 
-    <main class="page">
-      <!-- LEFT: redesigned vertical project menu -->
-      <aside id="leftNav" class="left-text">
-        <nav class="design-menu" aria-label="Design projects">
-          <a class="menu-item" href="../design/manifest.html">
-            <img class="menu-thumb" src="../img/manifest_cover.png" alt="Manifest cover" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Manifest</div>
-              <div class="menu-sub">Kid-friendly 2D → 3D</div>
-              <div class="menu-tags">
-                <span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Education</span>
-              </div>
-            </div>
-          </a>
+      <div class="meta-row">
+        <div class="label">Timeline</div>
+        <div class="value">Jan 13–20 (Career Education Coding Track)</div>
+      </div>
 
-          <a class="menu-item" href="../design/hand_warp.html">
-            <img class="menu-thumb" src="../img/hand_warp.png" alt="Hand Warp" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Hand Warp</div>
-              <div class="menu-sub">Gesture camera framing</div>
-              <div class="menu-tags">
-                <span class="tag">MediaPipe</span><span class="tag">CV</span><span class="tag">Art</span>
-              </div>
-            </div>
-          </a>
+      <div class="meta-row">
+        <div class="label">Focus</div>
+        <div class="value">Request submission, tracking, responsive access, clearer contacts</div>
+      </div>
 
-          <a class="menu-item" href="../design/genAI.html">
-            <img class="menu-thumb" src="../img/grid.gif" alt="GenAI Personalized Animations" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">GenAI Personalized Animations</div>
-              <div class="menu-sub">Affective Computing @ MIT</div>
-              <div class="menu-tags">
-                <span class="tag">GenAI</span><span class="tag">Biosignals</span>
-              </div>
-            </div>
-          </a>
+      <div class="meta-row">
+        <div class="label">Stack</div>
+        <div class="value">HTML, CSS, JavaScript</div>
+      </div>
 
-          <a class="menu-item" href="../design/bakebot.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223" alt="BakeBot" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">BakeBot</div>
-              <div class="menu-sub">AI voice assistant</div>
-              <div class="menu-tags">
-                <span class="tag">ASR</span><span class="tag">NLP</span>
-              </div>
-            </div>
-          </a>
+      <hr class="my-2"/>
 
-          <a class="menu-item" href="../design/spam.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119" alt="Spam!" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Spam!</div>
-              <div class="menu-sub">Civic engagement app</div>
-              <div class="menu-tags">
-                <span class="tag">UX</span><span class="tag">Mobile</span>
-              </div>
-            </div>
-          </a>
+      <nav class="toc" aria-label="On this page">
+        <a href="#overview">Overview & Problem</a>
+        <a href="#goals">Goals</a>
+        <a href="#brand">Brand Alignment (Wellesley)</a>
+        <a href="#process">Process & Milestones</a>
+        <a href="#features">Key Features</a>
+        <a href="#wireframe">Wireframe</a>
+        <a href="#components">Key Components</a> <!-- moved below wireframe -->
+        <a href="#compare">Before vs After</a>
+        <a href="#learnings">What We Learned</a>
+      </nav>
+    </aside>
 
-          <a class="menu-item" href="../design/isca.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725" alt="ISCA" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">ISCA</div>
-              <div class="menu-sub">Website design &amp; dev</div>
-              <div class="menu-tags">
-                <span class="tag">Frontend</span><span class="tag">CMS</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="menu-item" href="../design/workorder.html" aria-current="page">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731" alt="Wellesley Work Order" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Wellesley Work Order</div>
-              <div class="menu-sub">Service ticket concept</div>
-              <div class="menu-tags">
-                <span class="tag">Product</span><span class="tag">Prototype</span>
-              </div>
-            </div>
-          </a>
-        </nav>
-      </aside>
-
-      <!-- RIGHT: Work Order content (kept intact) -->
-      <section class="right-text">
-        <h2>Work Order Website Redesign</h2>
+    <!-- Content -->
+    <div class="content">
+      <!-- Overview -->
+      <section id="overview">
+        <h2>Overview &amp; Problem</h2>
+        <div class="problem-callout">
+          <p>
+            <strong>Problem Statement:</strong> Students faced <em>low usability</em> and <em>poor transparency</em> when
+            addressing work orders—fragmented submission paths, unclear status/ownership, and weak mobile support.
+          </p>
+        </div>
         <small>
           <p>
-            <a
-              href="https://github.com/tenzee01/work-order"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/github.svg"
-                alt="GitHub Logo"
-                style="width: 30px; height: 30px"
-              />
-            </a>
-            <a href="https://tenzee01.github.io/work-order/">Visit Website</a>
+            The existing Work Orders site made it hard to know <em>where</em> to file a request, <em>what</em> information
+            was needed, and <em>what happens next</em>. Limited mobile usability also slowed urgent reporting (e.g., heating issues).
+          </p>
+          <p>
+            We redesigned the experience to centralize request entry, clarify categories and contacts, and expose status and next steps—
+            while matching Wellesley’s existing web look-and-feel for a seamless, credible experience.
           </p>
         </small>
-        <p>By: Aubrey Cantrell, Adriana Castillo, Sheker Atayeva, Tenzin Yangchen</p>
-        <p>
-          <small>
-            Our project aims to address the issue of the inaccessibility of
-            Wellesley's work orders website for students. Currently, the platform
-            lacks a cohesive way to submit work orders and does not support access
-            from mobile devices. This creates significant challenges for students,
-            particularly in urgent situations such as dorm heating issues in cold
-            MA winters. We developed an intuitive Wellesley work orders webpage
-            with CSS, and HTML. The platform offers effective communication with
-            maintenance staff and is accessible on both mobile devices and PCs.
-          </small>
-        </p>
+      </section>
 
-        <p>
-          <small>
-            This project was created through Wellesley's Career Education Program
-            in the Coding Track, where students aim to pursue leadership,
-            teamwork, professional and career development, and learning git and
-            GitHub to better prepare themselves for their ideal careers. The
-            program runs from Jan 13 - 20 as an intensive combination of courses
-            and workshops on project development, coding skills refinement and
-            networking. I collaborated with 3 three group members to redesign the
-            Wellesley work order platform to consider user needs and develop
-            solutions to imporver the user experience.
-          </small>
-        </p>
+      <!-- Goals -->
+      <section id="goals">
+        <h2>Goals</h2>
+        <ul>
+          <li><strong>Improve usability:</strong> clear entry points, concise forms, and obvious next steps.</li>
+          <li><strong>Increase transparency:</strong> visible status, confirmation, ownership, and timelines.</li>
+          <li><strong>Work anywhere:</strong> responsive, mobile-first layouts for fast submission on the go.</li>
+          <li><strong>Align with Wellesley:</strong> follow patterns and styling from current Wellesley sites to build trust and continuity.</li>
+        </ul>
+      </section>
 
-        <div class="row">
-          <div class="col-md-6" style="padding-top: 3%">
-            <div class="embed-container">
+      <!-- Brand Alignment -->
+      <section id="brand">
+        <h2>Brand Alignment (Wellesley)</h2>
+        <div class="explain">
+          <div>
+            <h3>What we studied</h3>
+            <small>
+              <p>
+                We reviewed Wellesley’s existing web properties (navigation structure, spacing, color usage, and component styles)
+                to understand established patterns and tone. The redesign borrows these conventions so the Work Order experience
+                feels <em>native</em> within the broader Wellesley ecosystem.
+              </p>
+            </small>
+            <h3 class="mt-2">How we applied it</h3>
+            <ul>
+              <li>Color usage that harmonizes with current Wellesley sites while maintaining WCAG-compliant contrast.</li>
+              <li>Type scale and spacing that mirror common page templates for familiarity and scannability.</li>
+              <li>Nav and footer structures consistent with institutional patterns to reduce relearning.</li>
+              <li>Button, card, and form styles adapted for clarity, readability, and quick completion.</li>
+            </ul>
+          </div>
+          <div class="media">
+            <img
+              src="../img/Wellesley ex1.png"
+              alt="Screens illustrating brand-aligned components and layout"
+            />
+            <img
+            src="../img/Wellesley ex2.png"
+            alt="Screens illustrating brand-aligned components and layout"
+          />
+          <img
+          src="../img/Wellesley ex3.png"
+          alt="Screens illustrating brand-aligned components and layout"
+        />
+          </div>
+        </div>
+      </section>
+
+      <!-- Process & Milestones -->
+      <section id="process">
+        <h2>Process &amp; Milestones</h2>
+        <div class="explain">
+          <div>
+            <h3>Milestones</h3>
+            <ul>
+              <li><strong>Day 1:</strong> Repo setup, base HTML/CSS templates.</li>
+              <li><strong>Day 2:</strong> Front page, sign-in, three service categories, key contacts.</li>
+              <li><strong>Day 3:</strong> Add request tracking and refine visual design.</li>
+              <li><strong>Presentation:</strong> Troubleshoot and polish for delivery.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features">
+        <h2>Key Features</h2>
+        <div class="explain">
+          <div>
+            <h3>Core</h3>
+            <ul>
+              <li>Create Request</li>
+              <li>See Past Requests</li>
+              <li>See Pending Requests</li>
+              <li>Secure Log In</li>
+            </ul>
+            <h3 class="mt-2">Support</h3>
+            <ul>
+              <li>FAQ Section</li>
+              <li>Feedback Form</li>
+              <li>Facility Contact Info (CDs, Maintenance, Campus Police)</li>
+            </ul>
+          </div>
+          <div class="media">
+            <img
+              src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Untitled%20design.gif?v=1737143332128"
+              alt="Legacy design interaction demo"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Wireframe -->
+      <section id="wireframe">
+        <h2>Low-Fidelity Wireframe</h2>
+        <div class="media">
+          <img
+            src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/wireframe.jpeg?v=1737145157261"
+            alt="Low-fidelity wireframe for key pages"
+          />
+        </div>
+      </section>
+
+      <!-- Key Components (moved here, with image inserts for each) -->
+      <section id="components">
+        <h2>Key Components</h2>
+
+        <div class="explain">
+          <div>
+            <h3>Create Request</h3>
+            <small><p>Create a new request through a concise, guided form.</p></small>
+          </div>
+          <div class="media">
+            <img src="../img/workorder_create_request.png" alt="Create Request screen">
+          </div>
+        </div>
+
+        <div class="explain" style="margin-top:12px;">
+          <div>
+            <h3>My Requests</h3>
+            <small><p>Search and view your submitted requests with status and updates.</p></small>
+          </div>
+          <div class="media">
+            <img src="../img/workorder_my_requests.png" alt="My Requests list view">
+          </div>
+        </div>
+
+        <div class="explain" style="margin-top:12px;">
+          <div>
+            <h3>Search Requests</h3>
+            <small><p>Search all requests (permissions-aware) for transparency and coordination.</p></small>
+          </div>
+          <div class="media">
+            <img src="../img/workorder_search_requests.png" alt="Global search across requests">
+          </div>
+        </div>
+
+        <div class="explain" style="margin-top:12px;">
+          <div>
+            <h3>Video Tutorial</h3>
+            <small><p>Quick walkthrough on how to submit and track a request.</p></small>
+          </div>
+          <div class="media">
+            <img src="../img/workorder_video_tutorial.png" alt="Video tutorial thumbnail or player UI">
+          </div>
+        </div>
+
+        <div class="explain" style="margin-top:12px;">
+          <div>
+            <h3>Contacts &amp; Triage</h3>
+            <small><p>Immediate contacts for emergency and non-emergency cases are surfaced on the landing page.</p></small>
+          </div>
+          <div class="media">
+            <img src="../img/workorder_contacts.png" alt="Emergency and non-emergency contact card UI">
+          </div>
+        </div>
+
+        <div class="explain" style="margin-top:12px;">
+          <div>
+            <h3>FAQ</h3>
+            <small>
+              <p>Answers to common questions (what counts as emergency, timelines, access rules, hours, support).</p>
+            </small>
+          </div>
+          <div class="media">
+            <img src="../img/workorder_faq.png" alt="FAQ section with expandable questions">
+          </div>
+        </div>
+
+        <div class="explain" style="margin-top:12px;">
+          <div>
+            <h3>Feedback &amp; Iteration</h3>
+            <small><p>Lightweight form for ongoing improvements and user suggestions.</p></small>
+          </div>
+          <div class="media">
+            <img src="../img/workorder_feedback.png" alt="Feedback form UI">
+          </div>
+        </div>
+
+        <div class="explain" style="margin-top:12px;">
+          <div>
+            <h3>Authentication &amp; Security</h3>
+            <small><p>Login gates sensitive data and enables secure submissions.</p></small>
+          </div>
+          <div class="media">
+            <img src="../img/workorder_auth.png" alt="Login screen and authenticated dashboard">
+          </div>
+        </div>
+
+        
+      </section>
+
+      <!-- Compare Before / After -->
+      <section id="compare">
+        <h2>Before vs After</h2>
+        <div class="explain">
+          <div>
+            <h3>Before</h3>
+            <small><p>Fragmented flows, unclear ownership/status, and weak mobile support increased friction.</p></small>
+            <div class="media">
               <img
                 src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Untitled%20design.gif?v=1737143332128"
-                alt="Design GIF"
-                class="responsive-gif"
+                alt="Current (before) design demo"
               />
-              <p>Current Design</p>
             </div>
           </div>
-
-          <div class="col-md-6" style="padding-top: 3%">
-            <div class="embed-container">
+          <div>
+            <h3>After</h3>
+            <small><p>Clear entry points, visible status, and responsive layouts reduce time to submit and track.</p></small>
+            <div class="media">
               <img
                 src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Copy%20of%20Untitled%20Design.gif?v=1737143476930"
-                alt="Design GIF"
-                class="responsive-gif"
+                alt="Our redesigned (after) interaction demo"
               />
-              <p>Our Design</p>
-            </div>
-          </div>
-
-          <div class="row">
-            <!-- First column -->
-            <div class="col-md-6" style="padding: 3%">
-              <h4 class="emoji" style="padding-top: 0%">📐 Milestones</h4>
-              <ul>
-                <li>
-                  <strong>Milestone 1 (End of Day 1):</strong> Get base files onto
-                  GitHub and start base HTML/CSS templates.
-                </li>
-                <li>
-                  <strong>Milestone 2 (End of Day 2):</strong> Edit and refine the
-                  code for the website, including:
-                  <ul style="list-style-type: circle; padding-left: 20px">
-                    <li>Front home page</li>
-                    <li>Sign in</li>
-                    <li>Three categories of services with images</li>
-                    <li>
-                      Faces of people to reach out to (CDs, Head of Maintenance,
-                      Campus Police)
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <strong>Milestone 3 (End of Day 3):</strong>
-                  Implement tracking work order feature and enhance visual design.
-                </li>
-                <li>
-                  <strong>Milestone 4 (Presendation Day):</strong>
-                  Troubleshoot and polish the website.
-                </li>
-              </ul>
-
-              <img
-                src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/wireframe.jpeg?v=1737145157261"
-                alt="Design GIF"
-                class="responsive-gif"
-                style="padding-top: 5%"
-              />
-              <small>Low Fidelity Wireframe</small>
-            </div>
-
-            <!-- Second column -->
-            <div class="col-md-6" style="padding: 3%">
-              <section>
-                <h4 class="emoji">🛠️ Project Goals</h4>
-                <ul>
-                  <li>
-                    <strong>Create a User-Friendly Interface:</strong>
-                    Design an intuitive and streamlined webpage for Wellesley work
-                    orders.
-                  </li>
-                  <li>
-                    <strong>Seamless Staff Communication:</strong> Enable users to
-                    connect with staff quickly and efficiently.
-                  </li>
-                  <li>
-                    <strong>Accessibility Across Devices (Optional):</strong>
-                    Ensure the platform is accessible and responsive on both
-                    phones and PCs.
-                  </li>
-                </ul>
-              </section>
-              <section>
-                <h4 class="emoji" style="padding-top: 5%">🤹‍♀️ Features</h4>
-                <ul style="list-style-type: circle; padding-left: 20px">
-                  <li>Create Request</li>
-                  <li>See Past Requests</li>
-                  <li>See Pending Requests</li>
-                  <li>Feedback Form</li>
-                  <li>Secure Log In</li>
-                  <li>FAQ Section</li>
-                  <li>Facility Contact Info</li>
-                </ul>
-              </section>
-              <section>
-                <h4 class="emoji" style="padding-top: 5%">🧰 Tools and Technologies</h4>
-                <ul style="list-style-type: circle; padding-left: 20px ">
-                  <li>Javascript</li>
-                  <li>HTML</li>
-                  <li>CSS</li>
-                </ul>
-              </section>
             </div>
           </div>
         </div>
       </section>
-    </main>
 
-    <script>
-      // Hide/Show left menu (same behavior/coverage as other pages)
-      (function () {
-        const btn = document.getElementById('toggleMenuBtn');
-        btn.addEventListener('click', () => {
-          const collapsed = document.body.classList.toggle('menu-collapsed');
-          btn.textContent = collapsed ? 'Show menu' : 'Hide menu';
-          btn.setAttribute('aria-expanded', String(!collapsed));
-        });
-      })();
-    </script>
-  </body>
+      <!-- Learnings -->
+      <section id="learnings">
+        <h2>What We Learned</h2>
+        <ul>
+          <li><strong>Mobile reality:</strong> Students file requests on the go; responsive layouts are table stakes.</li>
+          <li><strong>Clarity builds trust:</strong> Confirmations, ownership, and status reduce anxiety and duplicate tickets.</li>
+          <li><strong>Use patterns to move fast:</strong> Reusable components accelerate delivery without hurting UX.</li>
+          <li><strong>Surface contacts early:</strong> Clear escalation paths minimize confusion in urgent cases.</li>
+          <li><strong>Brand continuity matters:</strong> Aligning with Wellesley’s current sites improves credibility and adoption.</li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // Smooth scroll for in-page TOC links
+    document.querySelectorAll('.toc a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if(id && id.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(id);
+          if(el){
+            const y = el.getBoundingClientRect().top + window.scrollY - 84;
+            window.scrollTo({ top:y, behavior:'smooth' });
+            history.replaceState(null, '', id);
+          }
+        }
+      });
+    });
+  </script>
+</body>
 </html>

@@ -1,515 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design Concepts — Spam!</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <link rel="icon" href="../img/dolphin.png" />
-    <style>
-      /* Base */
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        min-height: 100vh;
-      }
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spam! — Student Civic Engagement</title>
+  <link rel="icon" href="../img/dolphin.png"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
 
-      /* Top logo & top-right site menu */
-      .logo {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 20;
-      }
-      .logo img { max-width: 100px; height: auto; }
+  <style>
+    :root{
+      /* Page brand (Spam can colors) */
+      --brand:#2E3191;   /* blue */
+      --accent:#FBCD0D;  /* yellow */
 
-      .menu {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        display: flex;
-        gap: 15px;
-        font-size: 0.95rem;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 5px 15px;
-        border-radius: 25px;
-        z-index: 20;
-      }
-      .menu a { text-decoration: none; color: black; font-weight: bold; padding: 5px; }
-      .menu a:hover { color: #4d7471; }
+      /* Portfolio globals (kept consistent) */
+      --ink:#111;
+      --muted:#666;
+      --bg:#f0f0f0;      /* matches rest of site */
+      --card:#fff;
+      --line:#e9ecef;
 
-      /* Page layout: left menu (15%) + right content */
-      .page {
-        display: grid;
-        grid-template-columns: 20% 1fr;
-        gap: 24px;
-        align-items: start;
-        padding: 110px 6% 40px; /* room for fixed header elements */
-      }
+      /* Pills tuned toward blue */
+      --pill-bg:#EEF1FB;
+      --pill-bd:#D9E0FB;
+      --pill-ink:#1d255a;
+    }
 
-      /* Left column */
-      .left-text {
-        position: relative;
-        width: 100%;
-        transform: none;
-        left: auto; top: auto; margin: 0; padding: 0 4px;
-      }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-      /* Right column */
-      .right-text {
-        position: relative;
-        right: auto; top: auto;
-        width: 100%;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 0;
-        background-color: rgba(0,0,0,0);
-        box-shadow: none;
-        text-align: left;
-        font-family: Arial, sans-serif;
-      }
+    /* === Portfolio header (same as other pages) === */
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 20;
+    }
+    .logo img { height: 40px; width: auto; }
 
-      /* Design project list items */
-      .design-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .menu-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: #ffffff;
-        border: 1px solid #e6e6e6;
-        border-radius: 12px;
-        padding: 8px 10px;
-        text-decoration: none;
-        color: #111;
-        box-shadow: 0 1px 4px rgba(0,0,0,.06);
-        transition: box-shadow .2s ease, border-color .2s ease, transform .08s ease;
-      }
-      .menu-item:hover {
-        border-color: #cfe3df;
-        box-shadow: 0 2px 8px rgba(0,0,0,.08);
-        transform: translateY(-1px);
-      }
-      .menu-item:focus { outline: 2px solid #4d7471; outline-offset: 2px; }
+    .menu {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+      font-size: 0.95rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 6px 16px;
+      border-radius: 25px;
+      z-index: 20;
+    }
+    .menu a { text-decoration: none; color: black; font-weight: 700; padding: 5px 6px; }
+    .menu a:hover { color: #4d7471; } /* your portfolio hover */
 
-      .menu-thumb {
-        width: 54px; height: 54px; border-radius: 8px;
-        object-fit: cover; background: #f5f5f5; flex: 0 0 auto;
-      }
-      .menu-body { display: flex; flex-direction: column; min-width: 0; }
-      .menu-title {
-        font-weight: 700; font-size: 14px; line-height: 1.1;
-        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      }
-      .menu-sub { font-size: 12px; color: #666; }
-      .menu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-      .tag {
-        font-size: 10px; padding: 4px 6px; border-radius: 999px;
-        background: #e8f1ef; border: 1px solid #cfe3df; color: #143b37; font-weight: 600;
-      }
+    /* Hero (ISCA layout) */
+    .hero{
+      padding:110px 20px 24px; /* clear fixed header */
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,#ffffff 0%, #ffffff 60%, transparent 100%);
+    }
+    .hero-wrap{ max-width:1120px; margin:0 auto;}
+    .eyebrow{color:var(--brand); font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size:.78rem;}
+    .title{font-weight:800; font-size:clamp(28px, 4vw, 44px); line-height:1.08; margin:.35rem 0 .5rem;}
+    .subtitle{color:#2a2a2a; font-size:1.05rem; max-width:70ch;}
 
-      /* Hide/Show left menu button */
-      .toggle-menu {
-        position: fixed;
-        left: 18px;
-        top: 90px;
-        z-index: 25;
-        font-size: 14px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 0;
-        background: #4d7471;
-        color: white;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0,0,0,.15);
-      }
+    .hero-topline{
+      display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px;
+    }
+    .pills{display:flex; flex-wrap:wrap; gap:8px;}
+    .pill{
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--pill-bg); color:var(--pill-ink); border:1px solid var(--pill-bd);
+      font-size:.78rem; font-weight:700; padding:6px 10px; border-radius:999px;
+    }
 
-      /* COLLAPSED STATE — FULL-WIDTH CONTENT */
-      body.menu-collapsed .left-text { display: none; }
-      body.menu-collapsed .page { grid-template-columns: 1fr; }
-      body.menu-collapsed .right-text { grid-column: 1 / -1; width: 100%; }
+    .visit-btn{
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--brand); color:#fff; text-decoration:none; font-weight:800;
+      padding:8px 12px; border-radius:999px;
+    }
+    .visit-btn:hover{ color:#fff; opacity:.92; }
+    .visit-dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); }
 
-      /* Right panel helpers */
-      .right-text a.inline-link { color: #0d6efd; text-decoration: none; font-weight: bold; }
-      .right-text a.inline-link:hover { text-decoration: underline; }
-      .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 14px; }
-      .pill {
-        display: inline-block; padding: 6px 10px; border-radius: 999px;
-        background: #e8f1ef; color: #143b37; border: 1px solid #cfe3df;
-        font-size: 12px; font-weight: 600; line-height: 1;
-      }
-      .responsive-gif { width: 100%; height: auto; border-radius: 10px; }
-      .arrow { font-size: 0.6rem; transition: transform .3s ease; }
+    .hero-media{ margin-top:14px; overflow:hidden; border-radius:14px; background:#fff; }
+    .hero-media img{ width:100%; height:auto; display:block; }
 
-      /* Equal-height wireframe embeds */
-      .wireframe-box{
-        position: relative;
-        width: 100%;
-        height: 260px;            /* adjust if you want taller/shorter */
-        border-radius: 10px;
-        overflow: hidden;
-        background: #fff;
-        box-shadow: 0 1px 6px rgba(0,0,0,.08);
-      }
-      .wireframe-img{
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
+    /* Case layout: sticky left meta + content (ISCA structure) */
+    .case{
+      max-width:1120px; margin:24px auto; padding:0 20px;
+      display:grid; grid-template-columns: 300px 1fr; gap:28px;
+    }
+    @media (max-width: 992px){ .case{ grid-template-columns: 1fr; } }
 
-     
-      /* Slide toggles */
-      .slides-area { margin-top: 18px; }
-      .slide-block { margin-bottom: 10px; }
-      .slide-toggle {
-        width: 100%;
-        text-align: left;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid #cfe3df;
-        background: #e8f1ef;
-        color: #143b37;
-        font-weight: 700;
-        cursor: pointer;
-        display: flex; align-items: center; gap: 8px;
-      }
-      .slide-toggle .arrow { display: inline-block; transition: transform .2s ease; }
-      .slide-toggle[aria-expanded="true"] .arrow { transform: rotate(90deg); }
+    .meta{
+      position:sticky; top:100px; align-self:start;
+      background:var(--card);
+      border:none;           /* no outline */
+      border-radius:14px;
+      padding:16px;
+      box-shadow:none;       /* no shadow */
+    }
+    .meta h4{ font-size:1rem; font-weight:800; margin:0 0 10px; }
+    .meta .meta-row{ margin-bottom:12px; }
+    .meta .label{ font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; font-weight:800; }
+    .meta .value{ font-size:.95rem; font-weight:600; margin-top:4px; }
+    .toc a{ display:block; color:var(--ink); text-decoration:none; font-weight:700; font-size:.95rem; padding:6px 0; }
+    .toc a:hover{ color:#4d7471; }
 
-      .slide-panel { margin-top: 10px; }
-      .slides-embed {
-        position: relative;
-        width: 100%;
-        /* 16:9 responsive frame */
-        padding-top: 56.25%;
-        border-radius: 10px;
-        overflow: hidden;
-        background: #fff;
-        box-shadow: 0 1px 6px rgba(0,0,0,.08);
-      }
-      .slides-embed iframe {
-        position: absolute; inset: 0; width: 100%; height: 100%;
-        border: 0;
-      }
-      .slides-links { margin-top: 6px; }
-    </style>
-  </head>
-  <body>
-    <!-- Logo -->
-    <div class="logo">
-      <a href="../index.html"><img src="../img/dolphin.png" alt="Logo" /></a>
-    </div>
+    /* Content cards (no borders/shadows to match your request) */
+    .content section{
+      background:var(--card);
+      border:none;           /* remove outline */
+      border-radius:14px;
+      padding:22px 22px; margin-bottom:18px;
+      box-shadow:none;       /* remove shadow */
+    }
+    .content h2{ font-size:1.35rem; font-weight:900; margin:0 0 8px; }
+    .content h3{ font-size:1.1rem; font-weight:800; margin:14px 0 6px; }
+    .content p{ color:#222; line-height:1.55; }
+    .content small p{ color:#333; }
 
-    <!-- Site sections -->
-    <div class="menu">
-      <a href="../home/design.html">UX Design</a>
-      <a href="../home/arts.html">Studio Arts</a>
-      <a href="../home/researching.html">Research</a>
-    </div>
+    /* Media (no borders/shadows) */
+    .media{ position:relative; border-radius:12px; overflow:hidden; background:#fff; border:none; box-shadow:none; }
+    .media img{ position:relative; width:100%; height:auto; object-fit:contain; display:block; }
+    .media.fit-cover img{ object-fit:cover; width:100%; height:100%; }
 
-    <!-- Hide/Show toggle -->
-    <button id="toggleMenuBtn" class="toggle-menu" type="button" aria-expanded="true" aria-controls="leftNav">
-      Hide menu
-    </button>
+    /* Explain row = text beside image */
+    .explain{ display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+    @media (max-width: 992px){ .explain{ grid-template-columns:1fr; } }
 
-    <main class="page">
-      <!-- LEFT: project list -->
-      <aside id="leftNav" class="left-text">
-        <nav class="design-menu" aria-label="Design projects">
-          <a class="menu-item" href="../design/manifest.html">
-            <img class="menu-thumb" src="../img/manifest_cover.png" alt="Manifest cover" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Manifest</div>
-              <div class="menu-sub">Kid-friendly 2D → 3D</div>
-              <div class="menu-tags">
-                <span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Education</span>
-              </div>
-            </div>
-          </a>
+    /* CTA */
+    .cta{ text-align:center; padding:28px 0 40px; color:#333; }
+    .btn-brand{
+      background:#4d7471; color:#fff; border:0; border-radius:999px;
+      padding:10px 16px; font-weight:800; text-decoration:none; display:inline-block;
+    }
+    .btn-brand:hover{ opacity:.92; color:#fff; }
+  </style>
+</head>
+<body>
 
-          <a class="menu-item" href="../design/hand_warp.html">
-            <img class="menu-thumb" src="../img/hand_warp.png" alt="Hand Warp" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Hand Warp</div>
-              <div class="menu-sub">Gesture camera framing</div>
-              <div class="menu-tags">
-                <span class="tag">MediaPipe</span><span class="tag">CV</span><span class="tag">Art</span>
-              </div>
-            </div>
-          </a>
+  <!-- Global portfolio header -->
+  <div class="logo">
+    <a href="../index.html" aria-label="Home">
+      <img src="../img/dolphin.png" alt="Logo">
+    </a>
+  </div>
+  <div class="menu" aria-label="Site">
+    <a href="../home/design.html">UX Design</a>
+    <a href="../home/arts.html">Studio Arts</a>
+    <a href="../home/researching.html">Research</a>
+  </div>
 
-          <a class="menu-item" href="../design/genAI.html">
-            <img class="menu-thumb" src="../img/grid.gif" alt="GenAI Personalized Animations" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">GenAI Personalized Animations</div>
-              <div class="menu-sub">Affective Computing Group @ MIT</div>
-              <div class="menu-tags">
-                <span class="tag">Affective</span><span class="tag">GenAI</span>
-              </div>
-            </div>
-          </a>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-wrap">
+      <div class="eyebrow">Case Study: Prototype</div>
+      <h1 class="title">Spam! — Student Civic Engagement</h1>
+      <p class="subtitle">
+        A mobile web app that makes on-campus civic life visible and actionable:
+        simpler voting, clearer org info, and easier discovery of events.
+      </p>
 
-          <a class="menu-item" href="../design/bakebot.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223" alt="BakeBot" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">BakeBot</div>
-              <div class="menu-sub">AI voice assistant</div>
-              <div class="menu-tags">
-                <span class="tag">ASR</span><span class="tag">NLP</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="menu-item" href="../design/spam.html" aria-current="page">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119" alt="Spam!" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Spam!</div>
-              <div class="menu-sub">Civic engagement app</div>
-              <div class="menu-tags">
-                <span class="tag">HCI</span><span class="tag">Mobile UX</span><span class="tag">Gamification</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="menu-item" href="../design/isca.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725" alt="ISCA" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">ISCA</div>
-              <div class="menu-sub">Website design & dev</div>
-              <div class="menu-tags">
-                <span class="tag">Frontend</span><span class="tag">CMS</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="menu-item" href="../design/workorder.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731" alt="Wellesley Work Order" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Wellesley Work Order</div>
-              <div class="menu-sub">Service ticket concept</div>
-              <div class="menu-tags">
-                <span class="tag">Product</span><span class="tag">Prototype</span>
-              </div>
-            </div>
-          </a>
-        </nav>
-      </aside>
-
-      <!-- RIGHT: Spam! case study -->
-      <section class="right-text">
-        <h2>Spam!</h2>
-
-        <div class="pill-row" aria-label="tags">
+      <!-- Tags + prototype buttons (placed above header media, like ISCA visit button) -->
+      <div class="hero-topline">
+        <div class="pills" aria-label="tags">
           <span class="pill">HCI</span>
-          <span class="pill">Civic Engagement</span>
           <span class="pill">Mobile UX</span>
-          <span class="pill">Badges</span>
+          <span class="pill">Civic Engagement</span>
           <span class="pill">Prototyping</span>
+          <span class="pill">Badges</span>
         </div>
+        <a class="visit-btn" href="https://balsamiq.cloud/skdx7zh/peun37c" target="_blank" rel="noopener">
+          <span class="visit-dot" aria-hidden="true"></span> Balsamiq Wireframe
+        </a>
+        <a class="visit-btn" href="https://www.figma.com/proto/HXwxA0l1LalGGDlRpDEQQm/SPAM!?node-id=0-1" target="_blank" rel="noopener">
+          <span class="visit-dot" aria-hidden="true"></span> Figma Prototype
+        </a>
+      </div>
 
-        <small><p>CS 220: Human Computer Interaction</p></small>
-
-        <p>
-          <small>
-            We want to drive student interest in civic engagement on campus through making the activity of student government and org eboards more transparent. Our design will allow all students on campus to gain easy access to voting on important matters on campus and notify them when there are issues that may affect them. Our app will also feature a wide selection of badges that students can earn for engaging in various activities on the app (including voting for the first time, attending an event in person, etc.).
-          </small>
-        </p>
-
-        <p>
-          <small>
-            The development of this app concept and development included researching needs, creating personas, task analysis, multiple wireframe ideation and designs, and prototyping. We used trained AI models developed to help us analyze our data along the way, and exercised different methods of executing our idea using the platforms Figma, Balsamiq, and coding languages HTML, CSS and JavaScript.
-          </small>
-        </p>
-
-        <!-- Wireframes (equal height) -->
-        <div class="row">
-          <div class="col-md-6" style="padding-top: 3%">
-            <div class="embed-container">
-              <a href="https://balsamiq.cloud/skdx7zh/peun37c" style="text-decoration: none; color:black;">
-                <div class="wireframe-box">
-                  <img
-                    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-06-25%20at%206.30.06%20PM.png?v=1719365409462"
-                    alt="Balsamiq"
-                    class="wireframe-img"
-                  />
-                </div>
-                <p>Balsamiq Wireframe <span class="arrow">▶</span></p>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-md-6" style="padding-top: 3%">
-            <div class="embed-container">
-              <a href="https://www.figma.com/proto/HXwxA0l1LalGGDlRpDEQQm/SPAM!?node-id=0-1&t=bhnvsCfsx5SV4COx-1" style="text-decoration: none; color:black;">
-                <div class="wireframe-box">
-                  <img
-                    src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119"
-                    alt="Figma"
-                    class="wireframe-img"
-                  />
-                </div>
-                <p>Figma Prototype <span class="arrow">▶</span></p>
-              </a>
-            </div>
-          </div>
-        </div>
-   <!-- Research & Process -->
-   <section style="margin-top: 22px;" class="section-muted">
-    <h3>Research &amp; Process</h3>
-
-    <div class="h5ish">Introduction / Problem</div>
-    <small>
-      <p>
-        Spam! addresses low visibility into student government &amp; org activity and the friction to act.
-        The app makes <strong>voting</strong> and <strong>issue awareness</strong> accessible, and motivates participation with <strong>badges</strong> for actions like first vote, event attendance, etc.
-      </p>
-    </small>
-
-    <div class="h5ish">User Analysis — Interview Takeaways</div>
-    <ul>
-      <li>Students forget events and attend only a few; they feel overwhelmed by org participation.</li>
-      <li>Traditional promo (e.g., posters) is time-consuming; digital comms can feel spammy.</li>
-      <li>Opportunity: app can organize events, facilitate comms, and be social/personalized.</li>
-    </ul>
-
-    <div class="h5ish">Personas</div>
-    <ul>
-      <li><strong>Wendy</strong> — Busy junior &amp; org president who needs better event organization, promotion, and leadership recruiting beyond email lists.</li>
-      <li><strong>Emily</strong> — First-year exploring campus, wants low-friction ways to discover orgs and manage stress while finding “her place.”</li>
-      <li><strong>Sofia</strong> — Sophomore leader pursuing more eboard roles and greater campus impact while picking up knowledge from graduating leaders.</li>
-    </ul>
-
-    <div class="h5ish">Domain Analysis</div>
-    <small>
-      <p>
-        Stakeholders include students, faculty, alumni; tools include RSVP platforms, org sites, 25Live, WeEngage, Google Calendar/Forms, Apple Reminders; and physical resources like campus spaces and org positions.
-      </p>
-    </small>
-
-    <div class="h5ish">Scenarios</div>
-    <ul>
-      <li><strong>Event Searching:</strong> Filter for civic events and perks (e.g., free food), RSVP, and attend with friends.</li>
-      <li><strong>Org Follow-up:</strong> Find club pages, read/ask FAQs, and contact members.</li>
-      <li><strong>Eboard &amp; Elections:</strong> Discover elections, upload SOIs, and cast votes.</li>
-    </ul>
-
-    <div class="h5ish">Design Directions &amp; Review Takeaways</div>
-    <ul>
-      <li>Voting tab with current/past elections; results revealed after voting (with organizer discretion).</li>
-      <li>Events tab filters for civic engagement; sort by date/time and audience scope.</li>
-      <li>Helpful resources (e.g., voter registration); profile badges for engagement; easy sharing.</li>
-    </ul>
-
-    <div class="h5ish">Wireframe Rationale &amp; Risky Interactions</div>
-    <ul>
-      <li>Keep layouts block-based and consistent; isolate complex flows on their own pages.</li>
-      <li><strong>Badges:</strong> Earned for actions; sash UI with “pin top badge.”</li>
-      <li><strong>Voting Confirmation:</strong> Explicit “Vote Send” action and clear feedback; separate tallies for parallel elections.</li>
-    </ul>
-
-    <div class="h5ish">Final Prototype &amp; Visual System</div>
-    <ul>
-      <li>Color system derived from the Spam can (contrasting yellows/blues), used to guide navigation and support accessibility.</li>
-      <li>White space creates clear borders for dense information.</li>
-    </ul>
-  </section>
-
-  <!-- Interactive slide toggles -->
-  <section class="slides-area" aria-label="Slides">
-    <!-- Final Slides -->
-    <div class="slide-block">
-      <button
-        class="slide-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="finalSlidesPanel"
-        data-target="finalSlidesPanel"
-      >
-        <span class="arrow">▶</span> Final Slides (interactive)
-      </button>
-      <div id="finalSlidesPanel" class="slide-panel" hidden>
-        <div class="slides-embed">
-          <iframe
-            src="https://docs.google.com/presentation/d/1LpM6QxNxLAu2RKiu482dEwVMVzArtBc8PEjZdsTdpzg/embed?start=false&loop=false&delayms=3000"
-            allowfullscreen
-            mozallowfullscreen
-            webkitallowfullscreen
-            title="Final Slides"
-          ></iframe>
-        </div>
-        <p class="slides-links">
-          <a class="inline-link" href="https://docs.google.com/presentation/d/1LpM6QxNxLAu2RKiu482dEwVMVzArtBc8PEjZdsTdpzg/edit#slide=id.gcf8e290db5_0_1554" target="_blank" rel="noreferrer">Open in new tab</a>
-        </p>
+      <div class="hero-media">
+        <img src="../img/spam_login.png" alt="Spam! branding preview">
       </div>
     </div>
-<!-- Design Directions Slides -->
-<div class="slide-block">
-  <button
-    class="slide-toggle"
-    type="button"
-    aria-expanded="false"
-    aria-controls="designSlidesPanel"
-    data-target="designSlidesPanel"
-  >
-    <span class="arrow">▶</span> Design Directions (interactive)
-  </button>
-  <div id="designSlidesPanel" class="slide-panel" hidden>
-    <div class="slides-embed">
-      <iframe
-        src="https://docs.google.com/presentation/d/1IXahRBOwmmdSr8aMbxePbtYNfl7ifklhxMX5hMMzxEg/embed?start=false&loop=false&delayms=3000"
-        allowfullscreen
-        mozallowfullscreen
-        webkitallowfullscreen
-        title="Design Directions Slides"
-      ></iframe>
+  </section>
+
+  <!-- Case body -->
+  <main class="case" role="main">
+    <!-- Sticky meta -->
+    <aside class="meta" aria-labelledby="project-info">
+      <h4 id="project-info">Project Info</h4>
+
+      <div class="meta-row">
+        <div class="label">Role</div>
+        <div class="value">Product designer in a team of 4</div>
+      </div>
+
+      <div class="meta-row">
+        <div class="label">Focus</div>
+        <div class="value">Civic engagement, Events, Voting, Org Discovery</div>
+      </div>
+
+      <div class="meta-row">
+        <div class="label">Contributions</div>
+        <div class="value">Research, UX, UI, Prototyping</div>
+      </div>
+
+      <div class="meta-row">
+        <div class="label">Timeline</div>
+        <div class="value">7 Weeks</div>
+      </div>
+
+
+      <hr class="my-2"/>
+
+      <nav class="toc" aria-label="On this page">
+        <a href="#overview">Overview & Problem</a>
+        <a href="#guidelines">Design Guidelines</a>
+        <a href="#research">Research</a>
+        <a href="#personas">Personas</a>
+        <a href="#tasks">Task Analysis</a>
+        <a href="#domain">Domain Analysis</a>
+        <a href="#branding">Branding</a>
+        <a href="#wireframes">Wireframes</a>
+        <a href="#iterations">Iterations</a>
+        <a href="#flows">Key Flows</a>
+        <a href="#resources">Resources</a>
+        <a href="#profile">Profile</a>
+        <a href="#risky">Risky Interactions</a>
+        <a href="#eval">Prototyping & Evaluation</a>
+        <a href="#learnings">What I Learned</a>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Overview -->
+      <section id="overview">
+        <h2>Overview &amp; Problem</h2>
+        <small>
+          <p>
+            We set out to increase student involvement in civic engagement on campus by improving transparency and
+            spreading information about activism, volunteering, and org elections—then making it easy to participate.
+            Spam! centralizes upcoming events and voting, and motivates action with badges for on-app and in-person engagement.
+          </p>
+        </small>
+        <div class="media" style="margin-top:8px;">
+          <img src="../img/spam_problem.png" alt="Problem statement screenshot: low visibility and friction to participate">
+        </div>
+      </section>
+
+      <!-- Design Guidelines -->
+      <section id="guidelines">
+        <h2>Design Guidelines</h2>
+        <ul>
+          <li>Prioritize usability & accessibility; keep the experience energetic and fresh.</li>
+          <li>Streamline access to key features; maintain feasibility within scope and timeline.</li>
+          <li>Team posting controls to prevent spam/duplication (e.g., limit one post per group per day).</li>
+          <li>Robust RSVP and powerful event filtering (time, theme, incentives).</li>
+          <li>Very low barrier to entry—no instructions required to get value.</li>
+        </ul>
+      </section>
+
+      <!-- Research -->
+      <section id="research">
+        <h2>Research (Needfinding & Interviews)</h2>
+        <small>
+          <p>
+            Interviews surfaced time pressure, forgetfulness, and “spammy” comms as barriers; students still want simple
+            ways to discover, filter, and follow up with orgs. They were receptive to an app that organizes events and
+            streamlines communication, with opportunities around personalization and cross-campus sharing.
+          </p>
+        </small>
+
+        <h3>Key Takeaways</h3>
+        <ul>
+          <li>Students forget events and attend only a few; desire quick filtering and reminders.</li>
+          <li>Traditional posters are time-consuming; digital channels must avoid feeling spammy.</li>
+          <li>Make it social and collaborative; consider future inter-campus use.</li>
+        </ul>
+      </section>
+
+      <!-- Personas -->
+      <section id="personas">
+        <h2>Personas</h2>
+        <div class="explain">
+          <div>
+            <h3>Wendy — Club President</h3>
+            <small><p>
+              Busy schedule; relies on GCal; wants better turnout; dislikes poster logistics; hopes for stronger
+              commitment mechanisms.
+            </p></small>
+          </div>
+          <div>
+            <h3>Emily — First-Year Explorer</h3>
+            <small><p>
+              New to campus; seeking belonging; balancing academics and fun; wants low-friction discovery.
+            </p></small>
+          </div>
+        </div>
+        <div class="explain" style="margin-top:10px;">
+          <div>
+            <h3>Sofia — Aspiring Leader</h3>
+            <small><p>
+              Active in orgs; aims for leadership roles and continuity in org knowledge transfer.
+            </p></small>
+          </div>
+        
+        </div>
+      </section>
+
+      <!-- Task Analysis -->
+      <section id="tasks">
+        <h2>Task Analysis</h2>
+        <ul>
+          <li><strong>Find & attend events:</strong> Filter for civic activities, RSVP, add to calendar.</li>
+          <li><strong>Follow up with orgs:</strong> Explore FAQs, ask questions, contact members.</li>
+          <li><strong>Elections:</strong> Discover active elections, upload SOIs, and vote (clear timing & accountability).</li>
+        </ul>
+      </section>
+
+      <!-- Domain Analysis -->
+      <section id="domain">
+        <h2>Domain Analysis</h2>
+        <small><p>
+          Stakeholders include students, faculty, and alumni. Key tools include org/RSVP sites, WeEngage, 25Live,
+          Google Calendar, Apple Reminders, and Google Forms. Physical resources: campus event spaces and e-board roles.
+        </p></small>
+      </section>
+
+      <!-- Branding -->
+      <section id="branding">
+        <h2>Branding</h2>
+        <div class="explain">
+          <div>
+            <small><p>
+              Visual system draws from the classic Spam can—high-contrast blue/yellow with whitespace for dense info.
+              Yellow drives progression; blue marks actions. Palette supports color-blind accessibility.
+            </p></small>
+          </div>
+          <div class="media">
+            <img src="../img/spam_branding.png" alt="Brand colors and logo (blue/yellow)">
+          </div>
+        </div>
+      </section>
+
+      <!-- Wireframes -->
+      <section id="wireframes">
+        <h2>Wireframes</h2>
+        <div class="explain">
+          <div>
+            <h3>Landing &amp; Login</h3>
+            <small><p>
+              Clear entry to discovery (Events) and participation (Voting), with friction-light auth into the core flows.
+            </p></small>
+          </div>
+          <div class="media">
+            <img src="../img/spam_login.png" alt="Landing and login wireframes">
+          </div>
+        </div>
+      </section>
+
+      <!-- Iterations -->
+      <section id="iterations">
+        <h2>Iterations</h2>
+
+        <h3>P1 → P2</h3>
+        <ul>
+          <li>Clarified problem & success metrics; tightened scope to Events + Voting as primary entry points.</li>
+          <li>Introduced <strong>badge</strong> system; checked gamification balance.</li>
+          <li>Reworked nav to reduce taps; added category filters and RSVP affordances.</li>
+          <li>Drafted posting guardrails (rate limits / duplicate checks) to avoid “spammy” feeds.</li>
+        </ul>
+
+        <h3>P2 → P3</h3>
+        <ul>
+          <li>Raised contrast & hierarchy on mobile; standardized cards and buttons.</li>
+          <li>Added error/empty states and <strong>toast confirmations</strong> for key actions.</li>
+          <li>Made voting <strong>explicitly confirmable</strong> (“Vote Send”), separated concurrent tallies, clarified timing.</li>
+          <li>Refined profile to surface badges + recent RSVPs; introduced share flows.</li>
+        </ul>
+
+        <h3>Final Prototype</h3>
+        <ul>
+          <li>Short onboarding hint (“Find events fast • Vote with confidence”).</li>
+          <li>Calendar add + notification preferences (results posted, new events by category) as planned options.</li>
+          <li>Future: evaluate SSO, privacy policy, and granular toggle settings pre-launch.</li>
+        </ul>
+      </section>
+
+      <!-- Key Flows -->
+      <section id="flows">
+        <h2>Key Flows</h2>
+
+        <!-- Voting -->
+        <div class="explain">
+          <div>
+            <h3>Voting</h3>
+            <small><p>
+              Discover open elections, read SOIs, and cast ballots. Emphasis on clear poll timing and vote accountability.
+            </p></small>
+          </div>
+          <div class="media">
+            <img src="../img/spam_voting_flow.png" alt="Voting flow screenshots (browse elections, read SOIs, cast ballot)">
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div class="explain" style="margin-top:12px;">
+          <div>
+            <h3>Events</h3>
+            <small><p>
+              Filter by interest (talks, protests, service, free food), RSVP, and share. Designed for quick scanning and
+              “don’t-miss” reminders.
+            </p></small>
+          </div>
+          <div class="media">
+            <img src="../img/spam_events_flow.png" alt="Events flow screenshots (filters, RSVP, share)">
+          </div>
+        </div>
+      </section>
+
+      <!-- Resources -->
+      <section id="resources">
+        <h2>Resources</h2>
+        <div class="explain">
+          <div>
+            <small><p>
+              Hub for staying informed about civic topics on campus and beyond (e.g., voter registration, educational links).
+            </p></small>
+          </div>
+          <div class="media">
+            <img src="../img/spam_resources.png" alt="Resources tab (voter registration, guides)">
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile -->
+      <section id="profile">
+        <h2>Profile</h2>
+        <div class="explain">
+          <div>
+            <small><p>
+              Tracks participation and badges to reinforce real-world action (first vote, event attendance). Users can review
+              RSVPs and shared items.
+            </p></small>
+          </div>
+          <div class="media">
+            <img src="../img/spam_profile.png" alt="Profile tab with badges and recent activity">
+          </div>
+        </div>
+      </section>
+
+      <!-- Risky Interactions -->
+      <section id="risky">
+        <h2>Risky Interactions</h2>
+        <h3>Badges</h3>
+        <small><p>
+          Incentivize engagement with badges; sash UI and option to pin a top badge on profile.
+        </p></small>
+        <h3>Voting Confirmation</h3>
+        <small><p>
+          Explicit “Vote Send” confirmation with clear feedback; handle multiple concurrent elections separately for accurate tallies.
+        </p></small>
+        <h3>Motivation</h3>
+        <small><p>
+          Encourage ongoing participation through visible progress, recognition, and social sharing.
+        </p></small>
+      </section>
+
+      <!-- Prototyping & Evaluation -->
+      <section id="eval">
+        <h2>Prototyping &amp; Evaluation</h2>
+        <small>
+          <p>
+            Wireframes aimed for a traversable platform with consistent block-based layouts and isolated complex interactions.
+            Open questions: preferred authentication (SSO?), notifications (e.g., results posted, new events by category),
+            privacy policy and toggle settings, and what data users share.
+          </p>
+        </small>
+      </section>
+
+      <!-- Learnings -->
+      <section id="learnings">
+        <h2>What I Learned</h2>
+        <ul>
+          <li><strong>Clarity first:</strong> Quick filters + clean hierarchy beat dense feeds under student time pressure.</li>
+          <li><strong>Motivate action:</strong> Badges and progress cues nudge real-world participation.</li>
+          <li><strong>Accessibility through constraint:</strong> A high-contrast palette + whitespace makes dense info manageable on mobile.</li>
+          <li><strong>Plan governance early:</strong> Elections need strict timing and accountability plans before UI polish.</li>
+        </ul>
+      </section>
+
+      
     </div>
-    <p class="slides-links">
-      <a class="inline-link" href="https://docs.google.com/presentation/d/1IXahRBOwmmdSr8aMbxePbtYNfl7ifklhxMX5hMMzxEg/edit?usp=sharing" target="_blank" rel="noreferrer">Open in new tab</a>
-    </p>
-  </div>
-</div>
-</section>
-</section>
-</main>
+  </main>
 
-<script>
-// Hide/Show left menu (expands content to full width like Manifest page)
-(function () {
-  const btn = document.getElementById('toggleMenuBtn');
-  btn.addEventListener('click', () => {
-    const collapsed = document.body.classList.toggle('menu-collapsed');
-    btn.textContent = collapsed ? 'Show menu' : 'Hide menu';
-    btn.setAttribute('aria-expanded', String(!collapsed));
-  });
-})();
-
-// Slide toggles (accessible)
-(function () {
-  function togglePanel(btn) {
-    const id = btn.getAttribute('data-target');
-    const panel = document.getElementById(id);
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!isOpen));
-    panel.hidden = isOpen;
-  }
-
-  document.querySelectorAll('.slide-toggle').forEach((btn) => {
-    btn.addEventListener('click', () => togglePanel(btn));
-    // Keyboard accessibility already covered since it's a <button>
-  });
-})();
-</script>
+  <script>
+    // Smooth scroll for in-page TOC links
+    document.querySelectorAll('.toc a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if(id && id.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(id);
+          if(el){
+            const y = el.getBoundingClientRect().top + window.scrollY - 84;
+            window.scrollTo({ top:y, behavior:'smooth' });
+            history.replaceState(null, '', id);
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-

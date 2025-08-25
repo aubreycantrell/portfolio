@@ -1,349 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design Concepts</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <link rel="icon" href="../img/dolphin.png" />
-    <script src="../script/script.js" defer></script>
-    <style>
-      /* Base */
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        min-height: 100vh;
-      }
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GenAI Personalized Animations — Affective Computing @ MIT</title>
+  <link rel="icon" href="../img/dolphin.png"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
 
-      /* Top logo & top-right site menu */
-      .logo {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 20;
-      }
-      .logo img { max-width: 100px; height: auto; }
+  <style>
+    :root{
+      --brand:#4d7471;
+      --ink:#111;
+      --muted:#666;
+      --bg:#f0f0f0;
+      --card:#fff;
+      --line:#e9ecef;
+      --pill-bg:#e8f1ef;
+      --pill-bd:#cfe3df;
+      --pill-ink:#143b37;
+    }
 
-      .menu {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        display: flex;
-        gap: 15px;
-        font-size: 0.95rem;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 5px 15px;
-        border-radius: 25px;
-        z-index: 20;
-      }
-      .menu a { text-decoration: none; color: black; font-weight: bold; padding: 5px; }
-      .menu a:hover { color: #4d7471; }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-      /* Page layout: left menu (15%) + right content */
-      .page {
-        display: grid;
-        grid-template-columns: 20% 1fr; /* same split as Manifest */
-        gap: 24px;
-        align-items: start;
-        padding: 110px 6% 40px; /* space for fixed header elements */
-      }
+    /* Global portfolio header */
+    .logo { position: fixed; top: 20px; left: 20px; z-index: 20; }
+    .logo img { height: 40px; width: auto; }
+    .menu {
+      position: fixed; top: 20px; right: 20px; display: flex; gap: 15px;
+      font-size: 0.95rem; background-color: rgba(255,255,255,0.85);
+      padding: 6px 16px; border-radius: 25px; z-index: 20;
+    }
+    .menu a { text-decoration: none; color: black; font-weight: 700; padding: 5px 6px; }
+    .menu a:hover { color: var(--brand); }
 
-      /* Left column */
-      .left-text {
-        position: relative;
-        width: 100%;
-        transform: none;
-        left: auto; top: auto; margin: 0; padding: 0 4px;
-      }
+    /* Hero */
+    .hero{
+      padding:110px 20px 24px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,#ffffff 0%, #ffffff 60%, transparent 100%);
+    }
+    .hero-wrap{ max-width:1120px; margin:0 auto;}
+    .eyebrow{color:var(--brand); font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size:.78rem;}
+    .title{font-weight:800; font-size:clamp(28px, 4vw, 44px); line-height:1.08; margin:.35rem 0 .5rem;}
+    .subtitle{color:#2a2a2a; font-size:1.05rem; max-width:70ch;}
+    .hero-topline{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px; }
+    .pills{display:flex; flex-wrap:wrap; gap:8px;}
+    .pill{
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--pill-bg); color:var(--pill-ink); border:1px solid var(--pill-bd);
+      font-size:.78rem; font-weight:700; padding:6px 10px; border-radius:999px;
+    }
+    .btn-ghost{
+      display:inline-block; font-weight:800; text-decoration:none;
+      border:1px solid var(--line); border-radius:999px; padding:8px 12px; color:#2a2a2a;
+      background:#fff;
+    }
+    .btn-ghost:hover{ background:#fafafa; }
 
-      /* Right column */
-      .right-text {
-        position: relative;
-        right: auto; top: auto;
-        width: 100%;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 0;
-        background-color: rgba(0, 0, 0, 0);
-        box-shadow: none;
-        text-align: left;
-        font-family: Arial, sans-serif;
-      }
+    .hero-media{ margin-top:14px; overflow:hidden; border-radius:14px; background:#fff; }
+    .hero-media img{ width:100%; height:auto; display:block; }
 
-      /* Hide/Show left menu button */
-      .toggle-menu {
-        position: fixed;
-        left: 18px;
-        top: 90px;
-        z-index: 25;
-        font-size: 14px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 0;
-        background: #4d7471;
-        color: white;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0,0,0,.15);
-      }
+    /* Case layout */
+    .case{
+      max-width:1120px; margin:24px auto; padding:0 20px;
+      display:grid; grid-template-columns: 300px 1fr; gap:28px;
+    }
+    @media (max-width: 992px){ .case{ grid-template-columns: 1fr; } }
 
-      /* COLLAPSED STATE — FULL-WIDTH CONTENT */
-      body.menu-collapsed .left-text { display: none; }
-      body.menu-collapsed .page { grid-template-columns: 1fr; }
-      body.menu-collapsed .right-text { grid-column: 1 / -1; width: 100%; }
+    .meta{
+      position:sticky; top:100px; align-self:start;
+      background:var(--card); border:1px solid var(--line); border-radius:14px;
+      padding:16px;
+    }
+    .meta h4{ font-size:1rem; font-weight:800; margin:0 0 10px; }
+    .meta .meta-row{ margin-bottom:12px; }
+    .meta .label{ font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; font-weight:800; }
+    .meta .value{ font-size:.95rem; font-weight:600; margin-top:4px; }
+    .toc a{ display:block; color:var(--ink); text-decoration:none; font-weight:700; font-size:.95rem; padding:6px 0; }
+    .toc a:hover{ color:var(--brand); }
 
-      /* Left vertical project menu */
-      .design-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .menu-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        background: #ffffff;
-        border: 1px solid #e6e6e6;
-        border-radius: 12px;
-        padding: 10px 12px;
-        text-decoration: none;
-        color: #111;
-        box-shadow: 0 1px 4px rgba(0,0,0,.06);
-        transition: box-shadow .2s ease, border-color .2s ease, transform .08s ease;
-      }
-      .menu-item:hover {
-        border-color: #cfe3df;
-        box-shadow: 0 2px 8px rgba(0,0,0,.08);
-        transform: translateY(-1px);
-      }
-      .menu-item:focus { outline: 2px solid #4d7471; outline-offset: 2px; }
-      .menu-thumb {
-        width: 54px; height: 54px; border-radius: 8px; object-fit: cover; background: #f5f5f5; flex: 0 0 auto;
-      }
-      .menu-body { display: flex; flex-direction: column; min-width: 0; }
-      .menu-title {
-        font-weight: 700; font-size: 14px; line-height: 1.1;
-        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      }
-      .menu-sub { font-size: 12px; color: #666; }
-      .menu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-      .menu-tags .tag {
-        font-size: 10px; padding: 4px 6px; border-radius: 999px;
-        background: #e8f1ef; border: 1px solid #cfe3df; color: #143b37; font-weight: 600;
-      }
+    /* Content */
+    .content section{
+      background:var(--card); border:1px solid var(--line); border-radius:14px;
+      padding:22px 22px; margin-bottom:18px;
+    }
+    .content h2{ font-size:1.35rem; font-weight:900; margin:0 0 8px; }
+    .content h3{ font-size:1.1rem; font-weight:800; margin:14px 0 6px; }
+    .content p{ color:#222; line-height:1.55; }
+    .content small p{ color:#333; }
 
-      .responsive-gif { width: 100%; height: auto; border-radius: 10px; }
-      ul { list-style-type: none; margin: 0; padding: 0; } /* from your base */
+    /* Media */
+    .media{ position:relative; border-radius:12px; overflow:hidden; background:#fff; border:1px solid var(--line); }
+    .media img{ position:relative; width:100%; height:auto; object-fit:contain; display:block; }
+    .media.fit-cover img{ object-fit:cover; width:100%; height:100%; }
 
-      /* Optional tiny helpers for section spacing */
-      .section { margin-top: 20px; }
-      .section h3 { margin-bottom: 6px; }
-      .section small p { margin-bottom: 8px; }
-    </style>
-  </head>
-  <body>
-    <div class="logo">
-      <a href="../index.html"><img src="../img/dolphin.png" alt="Logo" /></a>
+    /* Explain row */
+    .explain{ display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+    @media (max-width: 992px){ .explain{ grid-template-columns:1fr; } }
+
+    /* CTA */
+    .cta{ text-align:center; padding:28px 0 40px; color:#333; }
+    .btn-brand{
+      background:var(--brand); color:#fff; border:0; border-radius:999px;
+      padding:10px 16px; font-weight:800; text-decoration:none; display:inline-block;
+    }
+    .btn-brand:hover{ opacity:.92; color:#fff; }
+  </style>
+</head>
+<body>
+
+  <!-- Global header -->
+  <div class="logo">
+    <a href="../index.html" aria-label="Home">
+      <img src="../img/dolphin.png" alt="Logo">
+    </a>
+  </div>
+  <div class="menu" aria-label="Site">
+    <a href="../home/design.html">UX Design</a>
+    <a href="../home/arts.html">Studio Arts</a>
+    <a href="../home/researching.html">Research</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-wrap">
+      <div class="eyebrow">Research Project (Ongoing)</div>
+      <h1 class="title">GenAI Personalized Animations</h1>
+      <p class="subtitle">
+        Turning natural-language prompts and biosignals into live Processing sketches. Contributions include
+        model prompting, demo builds, site, data analysis, and user testing with the Affective Computing Group @ MIT.
+        <br/>
+      </p>
+
+      <div class="hero-topline">
+        <div class="pills" aria-label="tags">
+          <span class="pill">GenAI</span>
+          <span class="pill">Biosignals</span>
+          <span class="pill">Processing</span>
+          <span class="pill">Prototyping</span>
+          <span class="pill">Research</span>
+        </div>
+        <a class="btn-ghost" href="https://aubreycantrell.github.io/live_signals/" target="_blank" rel="noreferrer">Live Demo</a>
+        <a class="btn-ghost" href="https://aubreycantrell.github.io/genAI-Animation/" target="_blank" rel="noreferrer">Project Site</a>
+      </div>
+
+      <div class="hero-media">
+        <img src="../img/grid.gif" alt="Animated grid preview from the live signals demo"/>
+      </div>
     </div>
+  </section>
 
-    <div class="menu">
-      <a href="../home/design.html">UX Design</a>
-      <a href="../home/arts.html">Studio Arts</a>
-      <a href="../home/researching.html">Research</a>
-    </div>
+  <!-- Case body -->
+  <main class="case" role="main">
+    <!-- Sticky meta -->
+    <aside class="meta" aria-labelledby="project-info">
+      <h4 id="project-info">Project Info</h4>
 
-    <!-- Hide/Show toggle -->
-    <button id="toggleMenuBtn" class="toggle-menu" type="button" aria-expanded="true" aria-controls="leftNav">
-      Hide menu
-    </button>
+      <div class="meta-row">
+        <div class="label">Group</div>
+        <div class="value">Affective Computing Group @ MIT Media Lab</div>
+      </div>
 
-    <main class="page">
-      <!-- LEFT: redesigned vertical project menu -->
-      <aside id="leftNav" class="left-text">
-        <nav class="design-menu" aria-label="Design projects">
-          <a class="menu-item" href="../design/manifest.html">
-            <img class="menu-thumb" src="../img/manifest_cover.png" alt="Manifest cover" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Manifest</div>
-              <div class="menu-sub">Kid-friendly 2D → 3D</div>
-              <div class="menu-tags">
-                <span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Education</span>
-              </div>
-            </div>
-          </a>
+      <div class="meta-row">
+        <div class="label">Role</div>
+        <div class="value">Research, Modeling, Prototyping, UX</div>
+      </div>
 
-          <a class="menu-item" href="../design/hand_warp.html">
-            <img class="menu-thumb" src="../img/hand_warp.png" alt="Hand Warp" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Hand Warp</div>
-              <div class="menu-sub">Gesture camera framing</div>
-              <div class="menu-tags">
-                <span class="tag">MediaPipe</span><span class="tag">CV</span><span class="tag">Art</span>
-              </div>
-            </div>
-          </a>
+      <div class="meta-row">
+        <div class="label">Focus</div>
+        <div class="value">Prompting for code-gen, biosignal→visual mapping, runnable demos, testing</div>
+      </div>
 
-          <a class="menu-item" href="../design/genAI.html">
-            <img class="menu-thumb" src="../img/grid.gif" alt="GenAI Personalized Animations" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">GenAI Personalized Animations</div>
-              <div class="menu-sub">Affective Computing @ MIT</div>
-              <div class="menu-tags">
-                <span class="tag">GenAI</span><span class="tag">Biosignals</span>
-              </div>
-            </div>
-          </a>
+      <div class="meta-row">
+        <div class="label">Stack</div>
+        <div class="value">LLM prompting, Processing (Java), HTML/JS</div>
+      </div>
 
-          <a class="menu-item" href="../design/bakebot.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223" alt="BakeBot" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">BakeBot</div>
-              <div class="menu-sub">AI voice assistant</div>
-              <div class="menu-tags">
-                <span class="tag">ASR</span><span class="tag">NLP</span>
-              </div>
-            </div>
-          </a>
+      <hr class="my-2"/>
 
-          <a class="menu-item" href="../design/spam.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119" alt="Spam!" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Spam!</div>
-              <div class="menu-sub">Civic engagement app</div>
-              <div class="menu-tags">
-                <span class="tag">UX</span><span class="tag">Mobile</span>
-              </div>
-            </div>
-          </a>
+      <nav class="toc" aria-label="On this page">
+        <a href="#original">Overview</a>
+        <a href="#system">System Overview</a>
+        <a href="#contrib">My Contributions</a>
+        <a href="#summer">Summer 2025 — What I Built</a>
+        <a href="#summer-focus">This Summer Focused On</a>
+        <a href="#demos">Demos & Links</a>
+        <a href="#testing">User Testing — Key Findings</a>
+        <a href="#impact">Impact</a>
+        <a href="#whatsnext">What’s Next</a>
+      </nav>
+    </aside>
 
-          <a class="menu-item" href="../design/isca.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725" alt="ISCA" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">ISCA</div>
-              <div class="menu-sub">Website design &amp; dev</div>
-              <div class="menu-tags">
-                <span class="tag">Frontend</span><span class="tag">CMS</span>
-              </div>
-            </div>
-          </a>
+    <!-- Content -->
+    <div class="content">
+    
 
-          <a class="menu-item" href="../design/workorder.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731" alt="Wellesley Work Order" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Wellesley Work Order</div>
-              <div class="menu-sub">Service ticket concept</div>
-              <div class="menu-tags">
-                <span class="tag">Product</span><span class="tag">Prototype</span>
-              </div>
-            </div>
-          </a>
-        </nav>
-      </aside>
-
-      <!-- RIGHT: GenAI case study (original content preserved + expanded) -->
-      <section class="right-text">
-        <h2>GenAI for Custom Animations</h2>
-
+      <!-- Original summary text preserved verbatim -->
+      <section id="original">
+        <h2>Overview</h2>
         <small>
-          <p>Affective Computing Group @ MIT Media Lab</p>
+          <p><em>Affective Computing Group @ MIT Media Lab</em></p>
+          <p>
+            Developing a LLM that translates the naive coder into an animation developer using Processing code and biosensor signals.
+            Contributions include training and refining the model, creating demonstrations of the live animations, creating the project
+            site, contributing to academic papers, analyzing data and overseeing user testing.
+          </p>
         </small>
-        <p>
-          Developing a LLM that translates the naive coder into an animation developer using Processing code and biosensor signals. Contributions include training and refining the model, creating demonstrations of the live animations, creating the project site, contributing to academic papers, analyzing data and overseeing user testing.
-        </p>
+      </section>
 
-        <div class="row">
-          <div class="col-md-6" style="padding-top: 3%">
-            <div class="embed-container">
-              <a href="https://aubreycantrell.github.io/live_signals/" style="text-decoration: none; color:black;">
-                <img src="../img/grid.gif" alt="Live demo" class="responsive-gif" />
-                <p>Live Demo <span class="arrow">▶</span></p>
-              </a>
-            </div>
+      <!-- System Overview -->
+      <section id="system">
+        <h2>System Overview</h2>
+        <div class="explain">
+          <div>
+            <small>
+              <p>
+                The system pairs a code-generating LLM with a live animation runtime. Users describe the effect they want in natural
+                language; the model proposes Processing code; a thin runtime executes and binds code variables to incoming biosignal
+                features so visuals adapt in real time.
+              </p>
+            </small>
+            <ul>
+              <li><strong>Inputs:</strong> natural-language intent; streaming biosignal features.</li>
+              <li><strong>LLM stage:</strong> prompt scaffolds + guardrails to yield concise, idiomatic Processing code.</li>
+              <li><strong>Runtime:</strong> executes sketch; safely hot-reloads; exposes signal features to the sketch.</li>
+              <li><strong>Adaptation:</strong> mapping layer normalizes features and routes them to visual params.</li>
+            </ul>
           </div>
-
-          <div class="col-md-6" style="padding-top: 3%">
-            <div class="embed-container">
-              <a href="https://aubreycantrell.github.io/genAI-Animation/" style="text-decoration: none; color:black;">
-                <img src="../img/media_site.png" alt="Project site" class="responsive-gif" />
-                <p>Project Site <span class="arrow">▶</span></p>
-              </a>
-            </div>
+          <div class="media">
+            <img src="../img/media_site.png" alt="Site visuals and demo thumbnails"/>
           </div>
-        </div>
-
-        <!-- NEW: Summer 2024 details -->
-        <div class="section">
-          <h3>Summer 2025 — What I Built</h3>
-          <ul>
-            <li><strong>Model training &amp; refinement:</strong> crafted prompt templates for animation tasks, tuned outputs toward <em>valid, runnable Processing</em>, and added auto-fixes plus quick tests to catch errors.</li>
-            <li><strong>Biosignal → animation mapping:</strong> pipelined live sensor features into visual parameters (e.g., palette, motion speed, particle density), enabling affective, responsive sketches.</li>
-            <li><strong>Live demos &amp; tooling:</strong> produced a gallery of Processing sketches that respond to signals in real time; built small utilities to preview/record runs and swap mappings quickly.</li>
-            <li><strong>Data analysis &amp; user testing:</strong> set up lightweight logging, analyzed session data to find failure modes (syntax, long outputs, noisy signals), iterated prompts and safeguards; helped plan and conduct user tests.</li>
-            <li><strong>Docs &amp; site:</strong> wrote contributor-facing guides and built a public-facing site to showcase interactive examples.</li>
-            <li><strong>Writing:</strong> contributed figures and method sections for in-progress publications.</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>System Overview</h3>
-          <small>
-            <p>
-              The system pairs a code-generating LLM with a live animation runtime. Users describe the effect they want in natural language; the model proposes Processing code; a thin runtime executes and binds code variables to incoming biosignal features so visuals adapt in real time.
-            </p>
-          </small>
-          <ul>
-            <li><strong>Inputs:</strong> natural-language intent; streaming biosignal features.</li>
-            <li><strong>LLM stage:</strong> prompt scaffolds + guardrails to yield concise, idiomatic Processing code.</li>
-            <li><strong>Runtime:</strong> executes sketch; safely hot-reloads; exposes signal features to the sketch.</li>
-            <li><strong>Adaptation:</strong> mapping layer normalizes features and routes them to visual params.</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>My Contributions (by area)</h3>
-          <ul>
-            <li><strong>Modeling:</strong> prompt library; style hints for draw()/setup(); safe utility stubs; auto-retry on compile/runtime errors.</li>
-            <li><strong>Signals:</strong> feature normalization and simple smoothing so visuals don’t “flicker” with noise.</li>
-            <li><strong>Demos:</strong> parameterized sketches (particles, waves, fields, typography) that clearly show the effect of each feature.</li>
-            <li><strong>Documentation:</strong> setup guides, mapping examples, troubleshooting tips for new contributors.</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>User Testing — Key Findings</h3>
-          <ul>
-            <li>Shorter prompts with <em>explicit visual goals</em> produce more reliable code.</li>
-            <li>Users value a <em>parameter “cheat sheet”</em> (which features map to which effects) while iterating.</li>
-            <li>Most failures clustered around abstract concepts and vague descriptions → fixed via guardrail templates and auto-includes.</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>Impact</h3>
-          <ul>
-            <li>Reduced turnaround from idea → running sketch; increased proportion of <em>first-try runnable</em> generations.</li>
-            <li>Made live signal demos stable enough for instalations and user sessions.</li>
-            <li>Shipped a publicly viewable site with examples and documentation.</li>
-          </ul>
         </div>
       </section>
-    </main>
 
-    <script>
-      // Hide/Show left menu (matches Manifest page behavior)
-      (function () {
-        const btn = document.getElementById('toggleMenuBtn');
-        btn.addEventListener('click', () => {
-          const collapsed = document.body.classList.toggle('menu-collapsed');
-          btn.textContent = collapsed ? 'Show menu' : 'Hide menu';
-          btn.setAttribute('aria-expanded', String(!collapsed));
-        });
-      })();
-    </script>
-  </body>
+      <!-- Contributions by area -->
+      <section id="contrib">
+        <h2>My Contributions (by area)</h2>
+        <ul>
+          <li><strong>Modeling:</strong> prompt library; style hints for draw()/setup(); safe utility stubs; auto-retry on compile/runtime errors.</li>
+          <li><strong>Signals:</strong> feature normalization and simple smoothing so visuals don’t “flicker” with noise.</li>
+          <li><strong>Demos:</strong> parameterized sketches (particles, waves, fields, typography) that clearly show the effect of each feature.</li>
+          <li><strong>Documentation:</strong> setup guides, mapping examples, troubleshooting tips for new contributors.</li>
+        </ul>
+      </section>
+
+      <!-- Summer 2025 What I Built -->
+      <section id="summer">
+        <h2>Summer 2025 — What I Built</h2>
+        <ul>
+          <li><strong>Model training &amp; refinement:</strong> crafted prompt templates for animation tasks, tuned outputs toward <em>valid, runnable Processing</em>, and added auto-fixes plus quick tests to catch errors.</li>
+          <li><strong>Biosignal → animation mapping:</strong> pipelined live sensor features into visual parameters (e.g., palette, motion speed, particle density), enabling affective, responsive sketches.</li>
+          <li><strong>Live demos &amp; tooling:</strong> produced a gallery of Processing sketches that respond to signals in real time; built small utilities to preview/record runs and swap mappings quickly.</li>
+          <li><strong>Data analysis &amp; user testing:</strong> set up lightweight logging, analyzed session data to find failure modes (syntax, long outputs, noisy signals), iterated prompts and safeguards; helped plan and conduct user tests.</li>
+          <li><strong>Docs &amp; site:</strong> wrote contributor-facing guides and built a public-facing site to showcase interactive examples.</li>
+          <li><strong>Writing:</strong> contributed figures and method sections for in-progress publications.</li>
+        </ul>
+      </section>
+
+      
+
+      <!-- Demos & Links -->
+      <section id="demos">
+        <h2>Demos &amp; Links</h2>
+        <div class="explain">
+          <div>
+            <h3>Live Demo</h3>
+            <small><p>Processing sketches responding to streaming biosignals in real time.</p></small>
+            <p><a class="btn-ghost" href="https://aubreycantrell.github.io/live_signals/" target="_blank" rel="noreferrer">Open Live Demo</a></p>
+          </div>
+          <div class="media">
+            <img src="../img/grid.gif" alt="Animated live signals grid demo"/>
+          </div>
+        </div>
+
+        <div class="explain" style="margin-top:12px;">
+          <div>
+            <h3>Project Site</h3>
+            <small><p>Public page showcasing examples and documentation for contributors.</p></small>
+            <p><a class="btn-ghost" href="https://aubreycantrell.github.io/genAI-Animation/" target="_blank" rel="noreferrer">Open Project Site</a></p>
+          </div>
+          <div class="media">
+            <img src="../img/media_site.png" alt="Project site preview"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testing -->
+      <section id="testing">
+        <h2>User Testing — Key Findings</h2>
+        <ul>
+          <li>Shorter prompts with <em>explicit visual goals</em> produce more reliable code.</li>
+          <li>Users value a <em>parameter “cheat sheet”</em> (which features map to which effects) while iterating.</li>
+          <li>Most failures clustered around abstract concepts and vague descriptions → fixed via guardrail templates and auto-includes.</li>
+        </ul>
+      </section>
+
+      <!-- Impact -->
+      <section id="impact">
+        <h2>Impact</h2>
+        <ul>
+          <li>Reduced turnaround from idea → running sketch; increased proportion of <em>first-try runnable</em> generations.</li>
+          <li>Made live signal demos stable enough for instalations and user sessions.</li>
+          <li>Shipped a publicly viewable site with examples and documentation.</li>
+        </ul>
+      </section>
+
+      <!-- NEW: What’s Next (your provided copy) -->
+      <section id="whatsnext">
+        <h2>What’s Next <small> ➡️ Fall 2025 </small></h2>
+        <small>
+          <p><strong>Interoception Improvement</strong></p>
+          <p>
+            For those with Autism Spectrum Disorder (ASD), the ability to understand, name, or recognize the sensations signifying different emotional states is often impaired.  More granularly, the ability to recognize internal states such as hunger, a fast heartbeat, or the need to use the bathroom may be diminished as well.  This project proposes that these abilities can be increased in those with ASD by teaching them to recognize the feeling of their internal stress response (as measured by electrodermal activity) when it is coupled with a bespoke visualization specific to their areas of comfort and interest. 
+          </p>
+        </small>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Smooth scroll for in-page TOC links
+    document.querySelectorAll('.toc a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if(id && id.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(id);
+          if(el){
+            const y = el.getBoundingClientRect().top + window.scrollY - 84;
+            window.scrollTo({ top:y, behavior:'smooth' });
+            history.replaceState(null, '', id);
+          }
+        }
+      });
+    });
+  </script>
+</body>
 </html>

@@ -1,367 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Design Concepts</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <link rel="icon" href="../img/dolphin.png" />
-    <script src="../script/script.js" defer></script>
-    <style>
-      /* Base */
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        min-height: 100vh;
-      }
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hand Warp — Gesture Camera Framing</title>
+  <link rel="icon" href="../img/dolphin.png"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
 
-      /* Top logo & top-right site menu */
-      .logo {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 20;
-      }
-      .logo img { max-width: 100px; height: auto; }
+  <style>
+    :root{
+      --brand:#4d7471;
+      --ink:#111;
+      --muted:#666;
+      --bg:#f0f0f0;
+      --card:#fff;
+      --line:#e9ecef;
+      --pill-bg:#e8f1ef;
+      --pill-bd:#cfe3df;
+      --pill-ink:#143b37;
+    }
 
-      .menu {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        display: flex;
-        gap: 15px;
-        font-size: 0.95rem;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 5px 15px;
-        border-radius: 25px;
-        z-index: 20;
-      }
-      .menu a { text-decoration: none; color: black; font-weight: bold; padding: 5px; }
-      .menu a:hover { color: #4d7471; }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-      /* Page layout: left menu (15%) + right content */
-      .page {
-        display: grid;
-        grid-template-columns: 20% 1fr; /* same percentage coverage as Manifest page */
-        gap: 24px;
-        align-items: start;
-        padding: 110px 6% 40px; /* room for fixed header elements */
-      }
+    /* Global portfolio header */
+    .logo { position: fixed; top: 20px; left: 20px; z-index: 20; }
+    .logo img { height: 40px; width: auto; }
+    .menu {
+      position: fixed; top: 20px; right: 20px; display: flex; gap: 15px;
+      font-size: 0.95rem; background-color: rgba(255,255,255,0.85);
+      padding: 6px 16px; border-radius: 25px; z-index: 20;
+    }
+    .menu a { text-decoration: none; color: black; font-weight: 700; padding: 5px 6px; }
+    .menu a:hover { color: var(--brand); }
 
-      /* Left column */
-      .left-text {
-        position: relative;
-        width: 100%;
-        transform: none;
-        left: auto; top: auto; margin: 0; padding: 0 4px;
-      }
+    /* Hero */
+    .hero{
+      padding:110px 20px 24px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,#ffffff 0%, #ffffff 60%, transparent 100%);
+    }
+    .hero-wrap{ max-width:1120px; margin:0 auto;}
+    .eyebrow{color:var(--brand); font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size:.78rem;}
+    .title{font-weight:800; font-size:clamp(28px, 4vw, 44px); line-height:1.08; margin:.35rem 0 .5rem;}
+    .subtitle{color:#2a2a2a; font-size:1.05rem; max-width:70ch;}
+    .hero-topline{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px; }
+    .pills{display:flex; flex-wrap:wrap; gap:8px;}
+    .pill{
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--pill-bg); color:var(--pill-ink); border:1px solid var(--pill-bd);
+      font-size:.78rem; font-weight:700; padding:6px 10px; border-radius:999px;
+    }
+    .btn-ghost{
+      display:inline-block; font-weight:800; text-decoration:none;
+      border:1px solid var(--line); border-radius:999px; padding:8px 12px; color:#2a2a2a;
+      background:#fff;
+    }
+    .btn-ghost:hover{ background:#fafafa; }
 
-      /* Right column */
-      .right-text {
-        position: relative;
-        right: auto; top: auto;
-        width: 100%;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 0;
-        background-color: rgba(0,0,0,0);
-        box-shadow: none;
-        text-align: left;
-        font-family: Arial, sans-serif;
-      }
+    .hero-media{ margin-top:14px; overflow:hidden; border-radius:14px; background:#fff; }
+    .hero-media img{ width:100%; height:auto; display:block; }
 
-      /* Hide/Show left menu button */
-      .toggle-menu {
-        position: fixed;
-        left: 18px;
-        top: 90px;
-        z-index: 25;
-        font-size: 14px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 0;
-        background: #4d7471;
-        color: white;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0,0,0,.15);
-      }
+    /* Case layout */
+    .case{
+      max-width:1120px; margin:24px auto; padding:0 20px;
+      display:grid; grid-template-columns: 300px 1fr; gap:28px;
+    }
+    @media (max-width: 992px){ .case{ grid-template-columns: 1fr; } }
 
-      /* COLLAPSED STATE — FULL-WIDTH CONTENT */
-      body.menu-collapsed .left-text { display: none; }
-      body.menu-collapsed .page { grid-template-columns: 1fr; }
-      body.menu-collapsed .right-text { grid-column: 1 / -1; width: 100%; }
+    .meta{
+      position:sticky; top:100px; align-self:start;
+      background:var(--card); border:1px solid var(--line); border-radius:14px;
+      padding:16px;
+    }
+    .meta h4{ font-size:1rem; font-weight:800; margin:0 0 10px; }
+    .meta .meta-row{ margin-bottom:12px; }
+    .meta .label{ font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; font-weight:800; }
+    .meta .value{ font-size:.95rem; font-weight:600; margin-top:4px; }
+    .toc a{ display:block; color:var(--ink); text-decoration:none; font-weight:700; font-size:.95rem; padding:6px 0; }
+    .toc a:hover{ color:var(--brand); }
 
-      /* Left vertical project menu */
-      .design-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .menu-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        background: #ffffff;
-        border: 1px solid #e6e6e6;
-        border-radius: 12px;
-        padding: 10px 12px;
-        text-decoration: none;
-        color: #111;
-        box-shadow: 0 1px 4px rgba(0,0,0,.06);
-        transition: box-shadow .2s ease, border-color .2s ease, transform .08s ease;
-      }
-      .menu-item:hover {
-        border-color: #cfe3df;
-        box-shadow: 0 2px 8px rgba(0,0,0,.08);
-        transform: translateY(-1px);
-      }
-      .menu-item:focus { outline: 2px solid #4d7471; outline-offset: 2px; }
-      .menu-thumb {
-        width: 54px; height: 54px; border-radius: 8px; object-fit: cover; background: #f5f5f5; flex: 0 0 auto;
-      }
-      .menu-body { display: flex; flex-direction: column; min-width: 0; }
-      .menu-title {
-        font-weight: 700; font-size: 14px; line-height: 1.1;
-        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      }
-      .menu-sub { font-size: 12px; color: #666; }
-      .menu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-      .menu-tags .tag {
-        font-size: 10px; padding: 4px 6px; border-radius: 999px;
-        background: #e8f1ef; border: 1px solid #cfe3df; color: #143b37; font-weight: 600;
-      }
+    /* Content */
+    .content section{
+      background:var(--card); border:1px solid var(--line); border-radius:14px;
+      padding:22px 22px; margin-bottom:18px;
+    }
+    .content h2{ font-size:1.35rem; font-weight:900; margin:0 0 8px; }
+    .content h3{ font-size:1.1rem; font-weight:800; margin:14px 0 6px; }
+    .content p{ color:#222; line-height:1.55; }
+    .content small p{ color:#333; }
 
-      /* Tag pills (used on the right) */
-      .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 14px; }
-      .pill {
-        display: inline-block;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: #e8f1ef;
-        color: #143b37;
-        border: 1px solid #cfe3df;
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 1;
-      }
+    /* Media */
+    .media{ position:relative; border-radius:12px; overflow:hidden; background:#fff; border:1px solid var(--line); }
+    .media img{ position:relative; width:100%; height:auto; object-fit:contain; display:block; }
+    .media.fit-cover img{ object-fit:cover; width:100%; height:100%; }
 
-      .responsive-gif { width: 100%; height: auto; border-radius: 10px; }
-    </style>
-  </head>
-  <body>
-    <div class="logo">
-      <a href="../index.html"><img src="../img/dolphin.png" alt="Logo" /></a>
-    </div>
+    /* Explain row */
+    .explain{ display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+    @media (max-width: 992px){ .explain{ grid-template-columns:1fr; } }
 
-    <div class="menu">
-      <a href="../home/design.html">UX Design</a>
-      <a href="../home/arts.html">Studio Arts</a>
-      <a href="../home/researching.html">Research</a>
-    </div>
+    /* Two-up media grid */
+    .media-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; }
+    @media (max-width: 992px){ .media-grid{ grid-template-columns:1fr; } }
 
-    <!-- Hide/Show toggle -->
-    <button id="toggleMenuBtn" class="toggle-menu" type="button" aria-expanded="true" aria-controls="leftNav">
-      Hide menu
-    </button>
+    /* CTA */
+    .cta{ text-align:center; padding:28px 0 40px; color:#333; }
+    .btn-brand{
+      background:var(--brand); color:#fff; border:0; border-radius:999px;
+      padding:10px 16px; font-weight:800; text-decoration:none; display:inline-block;
+    }
+    .btn-brand:hover{ opacity:.92; color:#fff; }
+  </style>
+</head>
+<body>
 
-    <main class="page">
-      <!-- LEFT: redesigned vertical project menu -->
-      <aside id="leftNav" class="left-text">
-        <nav class="design-menu" aria-label="Design projects">
-          <a class="menu-item" href="../design/manifest.html">
-            <img class="menu-thumb" src="../img/manifest_cover.png" alt="Manifest cover" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Manifest</div>
-              <div class="menu-sub">Kid-friendly 2D → 3D</div>
-              <div class="menu-tags">
-                <span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">Education</span>
-              </div>
-            </div>
-          </a>
+  <!-- Global header -->
+  <div class="logo">
+    <a href="../index.html" aria-label="Home">
+      <img src="../img/dolphin.png" alt="Logo">
+    </a>
+  </div>
+  <div class="menu" aria-label="Site">
+    <a href="../home/design.html">UX Design</a>
+    <a href="../home/arts.html">Studio Arts</a>
+    <a href="../home/researching.html">Research</a>
+  </div>
 
-          <a class="menu-item" href="../design/hand_warp.html">
-            <img class="menu-thumb" src="../img/hand_warp.png" alt="Hand Warp" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Hand Warp</div>
-              <div class="menu-sub">Gesture camera framing</div>
-              <div class="menu-tags">
-                <span class="tag">MediaPipe</span><span class="tag">CV</span><span class="tag">Art</span>
-              </div>
-            </div>
-          </a>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-wrap">
+      <div class="eyebrow">Interactive Installation</div>
+      <h1 class="title">Hand Warp — Gesture Camera Framing</h1>
+      <p class="subtitle">
+        A playful CV experiment where your <strong>hands become the frame</strong>. Move your hands to warp
+        the camera view in real time—encouraging curiosity, perspective-shifting, and collaborative play.
+      </p>
 
-          <a class="menu-item" href="../design/genAI.html">
-            <img class="menu-thumb" src="../img/grid.gif" alt="GenAI Personalized Animations" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">GenAI Personalized Animations</div>
-              <div class="menu-sub">Affective Computing @ MIT</div>
-              <div class="menu-tags">
-                <span class="tag">GenAI</span><span class="tag">Affective</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="menu-item" href="../design/bakebot.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Image_12-18-24_at_6.52%E2%80%AFPM.png?v=1734566401223" alt="BakeBot" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">BakeBot</div>
-              <div class="menu-sub">AI voice assistant</div>
-              <div class="menu-tags">
-                <span class="tag">ASR</span><span class="tag">NLP</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="menu-item" href="../design/spam.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-07-01%20at%204.24.43%20PM.png?v=1719876290119" alt="Spam!" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Spam!</div>
-              <div class="menu-sub">Civic engagement app</div>
-              <div class="menu-tags">
-                <span class="tag">UX</span><span class="tag">Mobile</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="menu-item" href="../design/isca.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/Screen%20Shot%202024-08-12%20at%208.59.57%20PM.png?v=1723521606725" alt="ISCA" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">ISCA</div>
-              <div class="menu-sub">Website design &amp; dev</div>
-              <div class="menu-tags">
-                <span class="tag">Frontend</span><span class="tag">CMS</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="menu-item" href="../design/workorder.html">
-            <img class="menu-thumb" src="https://cdn.glitch.global/83d90878-4027-4d56-8a10-777c0c5b9b69/macbook-pro-mockup-with-a-white-iphone-6-in-front-view-a11923.png?v=1737141517731" alt="Wellesley Work Order" onerror="this.style.display='none'">
-            <div class="menu-body">
-              <div class="menu-title">Wellesley Work Order</div>
-              <div class="menu-sub">Service ticket concept</div>
-              <div class="menu-tags">
-                <span class="tag">Product</span><span class="tag">Prototype</span>
-              </div>
-            </div>
-          </a>
-        </nav>
-      </aside>
-
-      <!-- RIGHT: Hand Warp case study (unchanged) -->
-      <section class="right-text">
-        <h2>Hand Warp</h2>
-
-        <!-- Tags -->
-        <div class="pill-row" aria-label="tags">
+      <div class="hero-topline">
+        <div class="pills" aria-label="tags">
           <span class="pill">Computer Vision</span>
           <span class="pill">MediaPipe</span>
           <span class="pill">Webcam</span>
           <span class="pill">Interactive Art</span>
-          <span class="pill">Real-time Warping</span>
           <span class="pill">Gesture UX</span>
         </div>
+        <a class="btn-ghost" href="https://github.com/aubreycantrell/handwarp_app" target="_blank" rel="noreferrer">GitHub Code</a>
+      </div>
 
-        <a href="https://github.com/aubreycantrell/handwarp_app" style="color: black; text-decoration: none">
-          <p>GitHub Code</p>
-        </a>
+      <div class="hero-media">
+        <img
+          src="../img/handwarp.gif"
+          alt="Hand Warp demo showing hands framing and warping the camera feed"
+        />
+      </div>
+    </div>
+  </section>
 
+  <!-- Case body -->
+  <main class="case" role="main">
+    <!-- Sticky meta -->
+    <aside class="meta" aria-labelledby="project-info">
+      <h4 id="project-info">Project Info</h4>
+
+      <div class="meta-row">
+        <div class="label">Role</div>
+        <div class="value">Concept, CV prototyping, Interaction design</div>
+      </div>
+
+      <div class="meta-row">
+        <div class="label">Focus</div>
+        <div class="value">Real-time warping, gesture framing, playful feedback</div>
+      </div>
+
+      <div class="meta-row">
+        <div class="label">Stack</div>
+        <div class="value">MediaPipe (hands), Webcam, JS/CV pipeline</div>
+      </div>
+
+      <hr class="my-2"/>
+
+      <nav class="toc" aria-label="On this page">
+        <a href="#overview">Overview</a>
+        <a href="#goals">Goals</a>
+        <a href="#demo">Demo</a>
+        <a href="#process">Process & Design</a>
+        <a href="#testing">Testing & Play</a>
+        <a href="#next">What’s Next</a>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Overview -->
+      <section id="overview">
+        <h2>Overview</h2>
         <small>
           <p>
-            A playful application that lets users reframe the camera’s angle with their hands, encouraging exploration and real-time manipulation of moving images. By shifting perspective and using physical embodiment within the rendering, users can frame their own “reality,” zoom into detail-driven views, and collaborate with others to capture shared imagery. Originally developed as an interactive installation.
+            Hand Warp lets users reframe the camera’s angle with their hands, encouraging exploration and real-time manipulation
+            of moving images. By shifting perspective and using physical embodiment within the rendering, users can frame
+            their own “reality,” zoom into detail-driven views, and collaborate with others to capture shared imagery.
+            The goal was to make the <em>hands themselves</em> the control surface—no mouse drags or keyboard presses.
           </p>
         </small>
+      </section>
 
-        <div class="row">
-          <div class="col-md-6">
-            <img
-              src="../img/handwarp.gif"
-              alt="Handwarp demo"
-              style="width: 100%; border-radius: 10px; display:block"
-              loading="lazy"
-            />
+      <!-- Goals -->
+      <section id="goals">
+        <h2>Goals</h2>
+        <ul>
+          <li><strong>Direct embodiment:</strong> hands behave like a live camera frame/lens.</li>
+          <li><strong>Instant legibility:</strong> visible landmarks/outlines show what the system is reading.</li>
+          <li><strong>Natural feel:</strong> mirrored view so movement feels intuitive.</li>
+          <li><strong>Play & collaboration:</strong> invite multiple people to co-frame scenes together.</li>
+        </ul>
+      </section>
+
+      <!-- Demo -->
+      <section id="demo">
+        <h2>Demo</h2>
+        <div class="media-grid">
+          <div class="media">
+            <img src="../img/handwarp.gif" alt="Live demo of Hand Warp — baseline warp behavior">
           </div>
-          <div class="col-md-6">
-            <img
-              src="../img/handwarp_demo.gif"
-              alt="Handwarp demo (annotated)"
-              style="width: 100%; border-radius: 10px; display:block"
-              loading="lazy"
-            />
+          <div class="media">
+            <img src="../img/handwarp_demo.gif" alt="Annotated demo showing landmarks and rectangular frame">
           </div>
         </div>
-        
-        <section id="hand-frame-case-study" class="case-study">
-          <section aria-labelledby="idea">
-            <h3 id="idea">Concept</h3>
-            <p>
-              I wanted to build a playful camera tool where your <strong>hands become the frame</strong>. 
-              Instead of dragging with a mouse or pressing buttons, you move your hands in front of the webcam and the image zooms, stretches, or shifts in real time. 
-              This project conceptually encourages curiosity, perspective-shifting, and collaboration with friends, peers and strangers.
-            </p>
-          </section>
-
-          <section aria-labelledby="process">
-            <h3 id="process">Process &amp; Design</h3>
-            <p>
-              I started by looking at gesture-controlled projects. Most use simple hand signs (like pinching to “click”), 
-              but few let your hands directly shape the image. I liked the idea of hands acting as the <em>camera lens</em>.
-            </p>
-            <p>
-              Using <strong>MediaPipe</strong>, the program tracks both hands and connects them with a rectangle. 
-              That rectangle gets <strong>warped to full screen</strong> so whatever you’re framing fills the entire view. 
-              For feedback, I keep the landmarks and a green outline visible so users see what the system is reading.
-            </p>
-            <ul>
-              <li>Flip the camera like a mirror so movement feels natural.</li>
-              <li>Use wrists as anchor points for stability (thumb/index framing is a next step).</li>
-              <li>Start simple with a rectangle warp; build toward rotation, filters, and easing.</li>
-            </ul>
-          </section>
-
-          <section aria-labelledby="testing">
-            <h3 id="testing">Testing &amp; Play</h3>
-            <p>
-              When I put it in front of friends, most figured it out within seconds. 
-              They experimented—making tiny boxes, zooming close, or framing a friend beside them. 
-              People often ended up playing together, which made it feel less like a tech demo and more like a shared activity.
-            </p>
-            <p>
-              Next steps focus on smoothness and guidance: on-screen prompts (“show both hands”), 
-              <strong>smoother transitions</strong> to reduce jitter, and playful extras like filters or a “lock frame” option.
-            </p>
-          </section>
-
-          <section aria-labelledby="next">
-            <h3 id="next">What’s Next</h3>
-            <p>
-              The current version is an <strong>installation-style prototype</strong>, but it can grow into a toolkit:
-            </p>
-            <ul>
-              <li>Multiple gestures: rotate, zoom, lock/unlock frames.</li>
-              <li>Creative effects layered inside the warped region.</li>
-              <li>A web version so anyone can try it in the browser.</li>
-            </ul>
-          </section>
-        </section>
+        <p class="mt-2">
+          <a class="btn-ghost" href="https://github.com/aubreycantrell/handwarp_app" target="_blank" rel="noreferrer">View on GitHub</a>
+        </p>
       </section>
-    </main>
 
-    <script>
-      // Hide/Show left menu (same logic as Manifest page)
-      (function () {
-        const btn = document.getElementById('toggleMenuBtn');
-        btn.addEventListener('click', () => {
-          const collapsed = document.body.classList.toggle('menu-collapsed');
-          btn.textContent = collapsed ? 'Show menu' : 'Hide menu';
-          btn.setAttribute('aria-expanded', String(!collapsed));
-        });
-      })();
-    </script>
-  </body>
+      <!-- Process & Design -->
+      <section id="process">
+        <h2>Process &amp; Design</h2>
+        <div class="explain">
+          <div>
+            <small>
+              <p>
+                I surveyed gesture-controlled projects: most use simple hand signs (e.g., pinching to click) but few let your
+                <em>hands directly shape the image</em>. Using <strong>MediaPipe</strong>, the program tracks both hands and
+                connects them with a rectangle. That rectangle is <strong>warped to full screen</strong> so whatever you frame
+                fills the entire view. Landmarks and a green outline remain visible for feedback.
+              </p>
+            </small>
+            <ul>
+              <li>Mirror the camera so movement feels natural.</li>
+              <li>Use wrists as anchor points for stability (thumb/index framing is a next step).</li>
+              <li>Start with a rectangle warp; build toward rotation, filters, and easing.</li>
+            </ul>
+          </div>
+          <div class="media">
+            <img src="../img/hand_warp.png" alt="Static capture of the hand landmarks and warp rectangle">
+          </div>
+        </div>
+      </section>
+
+      <!-- Testing & Play -->
+      <section id="testing">
+        <h2>Testing &amp; Play</h2>
+        <small>
+          <p>
+            When I put it in front of friends, most figured it out within seconds. They experimented—making tiny boxes,
+            zooming close, or framing a friend beside them. People often ended up playing together, which made it feel
+            less like a tech demo and more like a shared activity.
+          </p>
+          <p>
+            Next steps focus on smoothness and guidance: on-screen prompts (“show both hands”), <strong>smoother transitions</strong>
+            to reduce jitter, and playful extras like filters or a “lock frame” option.
+          </p>
+        </small>
+      </section>
+
+      <!-- What's Next -->
+      <section id="next">
+        <h2>What’s Next</h2>
+        <ul>
+          <li>Multiple gestures: rotate, zoom, lock/unlock frames.</li>
+          <li>Creative effects layered inside the warped region.</li>
+          <li>Browser-first version so anyone can try it without installs.</li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // Smooth scroll for in-page TOC links
+    document.querySelectorAll('.toc a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if(id && id.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(id);
+          if(el){
+            const y = el.getBoundingClientRect().top + window.scrollY - 84;
+            window.scrollTo({ top:y, behavior:'smooth' });
+            history.replaceState(null, '', id);
+          }
+        }
+      });
+    });
+  </script>
+</body>
 </html>
